@@ -17,29 +17,7 @@ testFindOneEvent(20) //?
 db.end();
 
 
-// db.query('SELECT * FROM "user" LEFT OUTER JOIN event AS "event" ON "user".id = event.user_id', (error, result) => {
-//     if (error) console.log(error);
-//     else console.log(result.rows);
-// });
 
-// 'SELECT * FROM "user" LEFT OUTER JOIN event ON "user".id = event_id '
-
-// SELECT * FROM "user"
-// LEFT OUTER JOIN "faction"
-// AS "faction"
-// ON "User".
-// "faction_id" = "faction".
-// "id"
-// LEFT OUTER JOIN "role"
-// AS "role"
-// ON "User".
-// "role_id" = "role".
-// "id"
-// LEFT OUTER JOIN "whitelist"
-// AS "whitelistRequest"
-// ON "User".
-// "id" = "whitelistRequest".
-// "user_id";
 
 // ! SELECT * FROM "user" JOIN "user_participate_event" ON ("user".id = user_id);
 
