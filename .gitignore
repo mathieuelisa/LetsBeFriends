@@ -1,0 +1,4 @@
+## API
+api/node_modules
+api/.env
+api/sqitch.conf
