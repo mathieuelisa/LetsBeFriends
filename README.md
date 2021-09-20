@@ -1,16 +1,17 @@
-# projet-03-lets-be-friends
+## Architecture Repo GitHub:
 
-Voici le 1er commit de notre repo GitHub projet Let Be Friends.
+[https://whimsical.com/git-architecture-JZS4TKT8crouANv8mn3Bzg](https://whimsical.com/git-architecture-JZS4TKT8crouANv8mn3Bzg)
 
 ## Convention pour un repo propre et sécu
 
-### 1- Règles globales:
+### 1- Règles à respecter pour un maintenir un Repo BG:
 
 - Faire attention à ne pas travailler sur les branches MASTER ou DEVELOPPEMENT
 - Chaque début de session: Faire un Git Branch pour savoir où on se situe !
 - Créer une nouvelle branche à chaque nouvelle Feature
 - Merge sur DEV à chaque fin de journée seulement si l'ensemble de nos features sont valides et fonctionnent. Si bug/ feature non finie ou autre ⇒ commit sur la branche Feature. Vous pouvez toujours signifier via les icônes ci-dessous si vous avez besoin d'aide.
 - Hydratez-vous TOUS les jours****
+- En cas d'erreur et que vous voulez effacer un commit obsolète, utilisez la commande Git REVERT et NON Git RESET pour que l'on garde un historique fiable. Le Git REVERT va créer un nouveau commit annulant vos changements obsolète du commit que vous venez de faire.
 
 ### 2- Convention pour le nom du commit
 
@@ -34,9 +35,11 @@ EMOJI
 
 🚚: Renommage de fichier/ dossier ⇒ Indiquer les changements dans la description
 
-🎨: Création du projet
-
 Dites moi si vous pensez à d'autres icônes/situations
+
+💬: Update du Readme/ ajout commentaires
+
+📱: Travail sur la partie responsive
 
 ### 3- Commandes courantes
 
@@ -46,4 +49,8 @@ Dites moi si vous pensez à d'autres icônes/situations
 - git clone 'SSH' ⇒ Clone le repo dans votre dossier local
 - git add . ⇒ Ajouter tous les changements dans vos fichiers
 - Ex ⇒  git commit -m **"✅ - NavBar - Robin - "Ajout des Boutons et du logo"**
--
+- 
+
+### 4- Procédures détaillées
+
+[Procedure git pull merge](https://www.notion.so/Procedure-git-pull-merge-26448aac92364359b2684a3ef1d56b1c)
