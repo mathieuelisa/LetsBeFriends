@@ -11,7 +11,7 @@ testFindAllEvents()
 
 const testFindOneEvent = async (id) => {
     const event = await Event.findOne(id);
-    console.log('Test model Event.findOne ==> Existe: ', event ? true : false);
+    console.log('test numéro1 model Event.findOne ==> Existe: ', event ? true : false);
 }
 testFindOneEvent(20)
 

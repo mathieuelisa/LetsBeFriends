@@ -35,5 +35,9 @@ insert into "user_learn_language" (user_id, language_id) values (49, 4);
 insert into "user_learn_language" (user_id, language_id) values (17, 2);
 insert into "user_learn_language" (user_id, language_id) values (29, 2);
 insert into "user_learn_language" (user_id, language_id) values (36, 4);
+insert into "user_ask_event" (user_id, event_id) values (1, 4);
+insert into "user_ask_event" (user_id, event_id) values (3, 6);
+insert into "user_ask_event" (user_id, event_id) values (8, 9);
+insert into "user_ask_event" (user_id, event_id) values (3, 12);
 
 COMMIT;
