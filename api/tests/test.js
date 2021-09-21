@@ -12,14 +12,29 @@ testFindAllEvents()
 const testFindOneEvent = async (id) => {
     const event = await Event.findOneById(id);
     console.log('test numéro1 model Event.findOne ==> Existe: ', event ? true : false);
+    console.log(event)
+    return event
 }
-testFindOneEvent(20)
+const event = testFindOneEvent(20)
 
 
-const testSaveEvent = async () => {
-    const event = await Event.save();
+const mock = {
+    id: 10000,
+    title: 'TestTestTest',
+    starting_date: '2021-10-20 08:55:30+02',
+    ending_date: '2021-11-09 02:34:36+01',
+    img_url: 'http://dummyimage.com/108x100.png/ff4444/ffffff',
+    places_left: 4,
+    description: 'oizehfôziaefhẑeahfiuzaehfgipuzehagfpiuh',
+    longitude: 12.12,
+    latitude: 69.69,
+    user_id: 3,
 }
-testSaveEvent();
+
+// const testSaveEvent = async (mock) => {
+//     console.log(event)
+// }
+// // testSaveEvent();
 
 
 db.end();

@@ -4,7 +4,9 @@ class CoreModel {
 	#id;
 
 	constructor(obj) {
-		this.#id = obj.id;
+		if (this.id) {
+			this.#id = obj.id;
+		}
 	}
 
 	get id() {
