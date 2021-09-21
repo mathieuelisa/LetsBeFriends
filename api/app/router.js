@@ -14,4 +14,7 @@ const userController = require('./controllers/userController');
 // TAG
 
 // USER
+
+router.get('/users/:id', userController.findOnebyId)
+
 module.exports = router;
