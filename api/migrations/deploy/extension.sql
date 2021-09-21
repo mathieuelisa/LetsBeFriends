@@ -20,4 +20,6 @@ CREATE TRIGGER update_timestamp BEFORE UPDATE ON "user_participate_event"
 FOR EACH ROW EXECUTE PROCEDURE moddatetime(updated_at);
 CREATE TRIGGER update_timestamp BEFORE UPDATE ON "event_has_tag"
 FOR EACH ROW EXECUTE PROCEDURE moddatetime(updated_at);
+CREATE TRIGGER update_timestamp BEFORE UPDATE ON "user_ask_event"
+FOR EACH ROW EXECUTE PROCEDURE moddatetime(updated_at);
 COMMIT;

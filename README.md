@@ -46,6 +46,7 @@ Dites moi si vous pensez à d'autres icônes/situations
 - git branch ⇒ Affiche la liste des branches du repo en *surlignant celle où vous trouvez
 - git branch feature ⇒ Vous créez une nouvelle branche Feature mais vous ne vous y trouvez pas encore
 - git checkout feature ⇒ Vous passez sur la branche Feature
+- git checkout -b Feature
 - git clone 'SSH' ⇒ Clone le repo dans votre dossier local
 - git add . ⇒ Ajouter tous les changements dans vos fichiers
 - Ex ⇒  git commit -m **"✅ - NavBar - Robin - "Ajout des Boutons et du logo"**
