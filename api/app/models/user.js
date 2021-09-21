@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 const CoreModel = require('./coremodel');
 const db = require('../database');
-=======
-
-
-class User {
->>>>>>> 6742cefbfffef34a551108584a8005fc37700b23
 
 class User extends CoreModel {
     static tableName = 'user';
