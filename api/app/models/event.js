@@ -27,7 +27,7 @@ class Event extends CoreModel {
 					this.id
 				])
 			} else {
-				const { rows } = await db.query('INSERT INTO event(title, starting_date, ending_date, img_url, places_left, places_left, description, longitude, latitude, user_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id', [
+				const { rows } = await db.query('INSERT INTO event(title, starting_date, ending_date, img_url, places_left, description, longitude, latitude, user_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id', [
 					this.title,
 					this.starting_date,
 					this.ending_date,
