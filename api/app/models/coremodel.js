@@ -25,7 +25,7 @@ class CoreModel {
 		}
 	}
 
-	static async findOne(id) {
+	static async findOneById(id) {
 		try {
 			const { rows } = await db.query(`SELECT * FROM "${this.tableName}" WHERE id=$1`, [id]);
 			if (rows[0]) {

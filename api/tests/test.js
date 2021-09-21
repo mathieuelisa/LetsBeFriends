@@ -10,10 +10,17 @@ const testFindAllEvents = async () => {
 testFindAllEvents()
 
 const testFindOneEvent = async (id) => {
-    const event = await Event.findOne(id);
+    const event = await Event.findOneById(id);
     console.log('test numéro1 model Event.findOne ==> Existe: ', event ? true : false);
 }
 testFindOneEvent(20)
+
+
+const testSaveEvent = async () => {
+    const event = await Event.save();
+}
+testSaveEvent();
+
 
 db.end();
 
