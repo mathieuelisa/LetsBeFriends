@@ -33,7 +33,8 @@ const eventController = {
             res.status(500).json(error);
         }
         
-    }
+    },
+    
 }
 
 module.exports = eventController;
