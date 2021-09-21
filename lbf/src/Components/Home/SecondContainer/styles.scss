@@ -1,0 +1,36 @@
+.second__container{
+    height: 200vh;
+    background-color: red;
+    background: -webkit-linear-gradient(to top,#1a2a6c, #b21f1f);  
+    background: linear-gradient(to top,#1a2a6c, #b21f1f);
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+
+.steps{
+    display: flex;
+    align-items: center;
+    width: 500px;
+    justify-content: space-between;
+    margin: 20px;
+
+    &-text{
+        text-align: end;
+    }
+
+    &-title{
+        color: blue;
+    }
+
+    &-asking{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.steps--logo{
+    height: 6em;
+    margin: 20px;
+}
