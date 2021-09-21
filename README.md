@@ -15,7 +15,7 @@
 
 ### 2- Convention pour le nom du commit
 
-Modèle:  EMOJI - FONCTIONNALITE - PRENOM - DESCRIPTION (type de bug, avancement, infos, ...)
+Modèle:  EMOJI - FONCTIONNALITE - DESCRIPTION (type de bug, avancement, infos, ...)
 
 EMOJI
 
