@@ -24,7 +24,7 @@ CREATE TABLE "user" (
     gender TEXT NOT NULL,
     email email_domain NOT NULL UNIQUE,
     password TEXT NOT NULL,
-    description description_domain,
+    description TEXT,
     age age_domain,
     city TEXT,
     phone_number phone_domain,
@@ -92,6 +92,7 @@ CREATE TABLE event_has_tag (
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
 
 
 COMMIT;
