@@ -8,7 +8,7 @@ const eventController = {
             res.status(201).json(events);
         } catch (error) {
             console.log(error);
-            response.status(500).json(error)
+            response.status(500).json(error);
         }
     },
 
@@ -18,13 +18,13 @@ const eventController = {
 
         } catch (error) {
             console.log(error);
-            res.status(500).json(error)
+            res.status(500).json(error);
         }
     },
 
     findOneByName: async (req, res) => {
         try {
-            const name = req.params.name ;
+            const name = req.params.name;
             const event = await Event.findOneByName(name);
             res.json(event)
             
