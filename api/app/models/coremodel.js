@@ -4,7 +4,9 @@ class CoreModel {
 	#id;
 
 	constructor(obj) {
-		this.#id = obj.id;
+		if (this.id) {
+			this.#id = obj.id;
+		}
 	}
 
 	get id() {
@@ -25,7 +27,7 @@ class CoreModel {
 		}
 	}
 
-	static async findOne(id) {
+	static async findOneById(id) {
 		try {
 			const { rows } = await db.query(`SELECT * FROM "${this.tableName}" WHERE id=$1`, [id]);
 			if (rows[0]) {
