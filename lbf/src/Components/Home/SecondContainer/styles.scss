@@ -1,36 +1,50 @@
 .second__container{
-    height: 200vh;
+    height: 150vh;
     background-color: red;
     background: -webkit-linear-gradient(to top,#1a2a6c, #b21f1f);  
     background: linear-gradient(to top,#1a2a6c, #b21f1f);
     display: flex;
     justify-content: center;
     position: relative;
+    font-family: arial;
+    color: whitesmoke;
 }
-
 
 .steps{
     display: flex;
     align-items: center;
-    width: 500px;
-    justify-content: space-between;
-    margin: 20px;
+    margin: 60px;
+    font-size: 0.8em;
 
-    &-text{
+    &-text1{
         text-align: end;
+        width: 77%;
+        padding-right: 40px;
+    }
+
+    &-text2{
+        text-align: start;
+        width: 90%;
+        padding-left: 40px;
     }
 
     &-title{
-        color: blue;
+        color: white;
+        font-weight: bold;
+        font-size: 1.5em;
     }
 
     &-asking{
         display: flex;
         flex-direction: column;
     }
+
+    &__container{
+        width: 700px;
+    }
 }
 
 .steps--logo{
-    height: 6em;
+    height: 8em;
     margin: 20px;
 }
