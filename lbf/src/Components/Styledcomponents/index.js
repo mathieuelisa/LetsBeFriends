@@ -2,7 +2,8 @@
 
 const Button = ({ className, name }) => {
     return (
-    <a className={className}>{name}</a>
+        // toujours mettre un href sur un anchor sinon erreur lors de la lecture
+    <a href="http://www.google.com" className={className}>{name}</a>
 );}
 
 export default Button;

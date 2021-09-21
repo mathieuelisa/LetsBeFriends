@@ -10,6 +10,15 @@ function SecondContainer(){
     return(
         <div className="second__container">
             <div className="steps__container">
+
+            <div className="steps__explication-text">
+                <p>Hello World est une plateforme visant à se créer de nouveaux amis aux travers d'évènements tout en apprenant ou pratiquant une langue</p>
+            </div>
+
+                <div className="steps__explication-title">
+                    <h2>LET ME EXPLAIN YOU OUR CONCEPT</h2>
+                </div>
+
                 <div className="steps">
                     <img src={calendar} className="steps--logo" alt="Calendar"/>
                         <h3 className="steps-text2"><span className="steps-title">Recherche un évènement</span><br/>avec la langue que tu souhaites
@@ -19,7 +28,7 @@ function SecondContainer(){
                 </div>
 
                 <div className="steps">
-                        <h3 className="steps-text1"><span className="steps-title">Demande de participation</span> <br/> 
+                        <h3 className="steps-text1"><span className="steps-title">Demande de participation</span><br/> 
                             afin de rejoindre l'évènement
                         </h3>
                     <img src={question} className="steps--logo" alt="Question"/>

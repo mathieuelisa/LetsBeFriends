@@ -1,11 +1,12 @@
 .second__container{
+    display: flex;
+    justify-content: center;
     height: 150vh;
+    position: relative;
+    flex-direction: column;
     background-color: red;
     background: -webkit-linear-gradient(to top,#1a2a6c, #b21f1f);  
     background: linear-gradient(to top,#1a2a6c, #b21f1f);
-    display: flex;
-    justify-content: center;
-    position: relative;
     font-family: arial;
     color: whitesmoke;
 }
@@ -41,6 +42,17 @@
 
     &__container{
         width: 700px;
+        margin: 0 auto;
+    }
+
+    &__explication-title, 
+    &__explication-text{
+        text-align: center;
+        margin-bottom: 70px;
+    }
+
+    &__explication-title{
+        color: #e66630;
     }
 }
 
