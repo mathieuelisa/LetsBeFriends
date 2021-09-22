@@ -11,13 +11,13 @@ class User extends CoreModel {
         }
     }
 
-   
 
 
 
-    static async findOneByid(id) {
+
+    static async findOneById(id) {
         try {
-            const {rows} = await db.query(
+            const { rows } = await db.query(
                 `SELECT "user".id, "user".firstname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
                 json_agg(
 					DISTINCT jsonb_build_object(
@@ -61,10 +61,10 @@ class User extends CoreModel {
                 WHERE "user".id = $1
                 GROUP BY "user".id`,
                 [id]);
-                if (rows[0]) {
-                    return new User(rows[0]);
-                }
-                return null;
+            if (rows[0]) {
+                return new User(rows[0]);
+            }
+            return null;
         } catch (error) {
             throw new Error(error.detail)
         }

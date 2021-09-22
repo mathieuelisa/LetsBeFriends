@@ -8,6 +8,7 @@ const tagController = require('./controllers/tagController');
 const userController = require('./controllers/userController');
 
 // EVENT
+router.get('/events/:id', eventController.findOneById)
 
 // LANGUAGE
 
