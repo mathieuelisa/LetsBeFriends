@@ -18,4 +18,9 @@ const userController = require('./controllers/userController');
 router.get('/users/:id', userController.findOneById)
 router.get('/users', userController.findAll)
 
+router.post('/users', userController.create)
+router.patch('/users', userController.update)
+
+router.delete('/users', userController.delete)
+
 module.exports = router;

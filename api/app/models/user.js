@@ -48,14 +48,14 @@ class User extends CoreModel {
                     )
                 ) AS event         
                 FROM user_participate_event 
-                JOIN "user" ON user_participate_event.user_id = "user".id
-                JOIN "event" ON user_participate_event.event_id = event.id
-                JOIN user_speak_language ON "user".id = user_speak_language.user_id
-                INNER JOIN (
+                FULL OUTER JOIN "user" ON user_participate_event.user_id = "user".id
+                FULL OUTER JOIN "event" ON user_participate_event.event_id = event.id
+                FULL OUTER JOIN user_speak_language ON "user".id = user_speak_language.user_id
+                FULL OUTER JOIN (
                     SELECT * FROM "language"
                 ) AS speaking_language ON user_speak_language.language_id = speaking_language.id
-                JOIN user_learn_language ON "user".id = user_learn_language.user_id
-                JOIN (
+                FULL OUTER JOIN user_learn_language ON "user".id = user_learn_language.user_id
+                FULL OUTER JOIN (
                     SELECT * FROM "language"
                 ) as learning_language ON user_learn_language.language_id = learning_language.id
                 WHERE "user".id = $1
@@ -103,14 +103,14 @@ class User extends CoreModel {
                     )
                 ) AS event         
                 FROM user_participate_event 
-                JOIN "user" ON user_participate_event.user_id = "user".id
-                JOIN "event" ON user_participate_event.event_id = event.id
-                JOIN user_speak_language ON "user".id = user_speak_language.user_id
-                INNER JOIN (
+                FULL OUTER JOIN "user" ON user_participate_event.user_id = "user".id
+                FULL OUTER JOIN "event" ON user_participate_event.event_id = event.id
+                FULL OUTER JOIN user_speak_language ON "user".id = user_speak_language.user_id
+                FULL OUTER JOIN (
                     SELECT * FROM "language"
                 ) AS speaking_language ON user_speak_language.language_id = speaking_language.id
-                JOIN user_learn_language ON "user".id = user_learn_language.user_id
-                JOIN (
+                FULL OUTER JOIN user_learn_language ON "user".id = user_learn_language.user_id
+                FULL OUTER JOIN (
                     SELECT * FROM "language"
                 ) as learning_language ON user_learn_language.language_id = learning_language.id
                 GROUP BY "user".id
@@ -126,10 +126,11 @@ class User extends CoreModel {
     }
 
 
-    static async save() {
+    async save() {
         try {
             if (this.id) {
-                await db.query(`UPDATE event SET firstname=$1, lastname=$2, gender=$3, email=$4, password=$5, description=$6, age=$7, city=$8, phone_number=$9, img_url=$10 WHERE id=$11`, [
+                await db.query(`UPDATE "user" SET firstname=$1, lastname=$2, gender=$3, email=$4, password=$5, description=$6, age=$7, city=$8, phone_number=$9, img_url=$10 WHERE id=$11`, [
+                    
                     this.firstname,
                     this.lastname,
                     this.gender,
@@ -142,8 +143,10 @@ class User extends CoreModel {
                     this.img_url,
                     this.id
                 ])
+
+                return this
             } else {
-                const { rows } = await db.query('INSERT INTO event(firstname, lastname, gender, email, password, description, age, city, phone_number, img_url) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id', [
+                const { rows } = await db.query('INSERT INTO "user"(firstname, lastname, gender, email, password, description, age, city, phone_number, img_url) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id', [
                     this.firstname,
                     this.lastname,
                     this.gender,
