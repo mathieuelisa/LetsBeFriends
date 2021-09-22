@@ -21,7 +21,7 @@ function ContactContainer(){
                     <div className="contact__avatar-profils">
                         <div className="contact__avatar-container">
                            <h2>Julien</h2>
-                                <Avatar className="pipo" />
+                                <Avatar customDiv={"contact__avatar-div"} customImg={"contact__avatar-img"}/>
                                 <div className="contact__avatar-social">
                                     <a href="https://www.linkedin.com/in/julien-maurice"  target="_blank" rel="noreferrer">
                                         <img className="linkedin-logo"  src={linkedin} alt="linkedin" href="http://www.google.com" /> 
@@ -34,7 +34,7 @@ function ContactContainer(){
 
                         <div className="contact__avatar-container">
                            <h2>Mathieu</h2>
-                           <Avatar />
+                           <Avatar customDiv={"contact__avatar-div"} customImg={"contact__avatar-img"} />
                                 <div className="contact__avatar-social">
                                     <a href="https://www.linkedin.com/in/mathieuelisa/" target="_blank" rel="noreferrer">
                                         <img className="linkedin-logo" src={linkedin} alt="linkedin" />
@@ -47,7 +47,7 @@ function ContactContainer(){
 
                         <div className="contact__avatar-container">
                            <h2>Emmanuel</h2>
-                           <Avatar />
+                           <Avatar customDiv={"contact__avatar-div"} customImg={"contact__avatar-img"} />
                                 <div className="contact__avatar-social">
                                 <a href="www.google.com" target="_blank" rel="noreferrer">
                                     <img className="linkedin-logo"src={linkedin} alt="linkedin" />
@@ -60,7 +60,7 @@ function ContactContainer(){
 
                         <div className="contact__avatar-container">
                            <h2>Jordan</h2>
-                           <Avatar />
+                           <Avatar customDiv={"contact__avatar-div"} customImg={"contact__avatar-img"}/>
                                 <div className="contact__avatar-social">
                                     <a href="https://www.linkedin.com/in/jordan-espitalier-8322a3213/" target="_blank" rel="noreferrer">
                                         <img className="linkedin-logo" src={linkedin} alt="linkedin" />
@@ -73,7 +73,7 @@ function ContactContainer(){
 
                         <div className="contact__avatar-container">
                            <h2>Robz</h2>
-                           <Avatar />
+                           <Avatar customDiv={"contact__avatar-div"} customImg={"contact__avatar-img"} />
                                 <div className="contact__avatar-social">
                                     <a href="https://www.linkedin.com/in/robin-marien-64a571135/" target="_blank" rel="noreferrer">
                                         <img className="linkedin-logo" src={linkedin} alt="linkedin" />
