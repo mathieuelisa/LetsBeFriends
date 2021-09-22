@@ -2,6 +2,7 @@ import { Route } from "react-router-dom"
 
 import HomePage from '../Home';
 import ProfilPage from "../Profil";
+import ContactPage from "../Contact";
 import './app.scss';
 
 function App() {
@@ -15,6 +16,10 @@ function App() {
 
     <Route path="/profil" exact>
         <ProfilPage />
+    </Route>
+
+    <Route path="/contact" exact>
+        <ContactPage />
     </Route>
     </div>
   );
