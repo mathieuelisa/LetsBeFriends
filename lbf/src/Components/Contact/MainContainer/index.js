@@ -1,6 +1,8 @@
 import Avatar from "../../Styledcomponents/Avatar"
 import "./styles.scss"
 
+import "../../../assets/Fonts/Amalfi.ttf"
+
 import linkedin from "../../../assets/Icons/linkedin.png"
 import github from "../../../assets/Icons/github.png"
 
@@ -19,9 +21,12 @@ function ContactContainer(){
 
                 <div className="contact__avatar-teams">
                     <div className="contact__avatar-profils">
+
+                    {/* Avatar des developpeurs du projet */}
                         <div className="contact__avatar-container">
-                           <h2>Julien</h2>
-                                <Avatar customDiv={"contact__avatar-div"} customImg={"contact__avatar-img"}/>
+                           <h2 className="contact__avatar-name">Julien</h2>
+                            <Avatar customDiv={"contact__avatar-div"} customImg={"contact__avatar-img"}/>
+                            <h3 className="contact__avatar-post">Scrum Master</h3>
                                 <div className="contact__avatar-social">
                                     <a href="https://www.linkedin.com/in/julien-maurice"  target="_blank" rel="noreferrer">
                                         <img className="linkedin-logo"  src={linkedin} alt="linkedin" href="http://www.google.com" /> 
@@ -33,8 +38,9 @@ function ContactContainer(){
                         </div>
 
                         <div className="contact__avatar-container">
-                           <h2>Mathieu</h2>
+                           <h2 className="contact__avatar-name">Mathieu</h2>
                            <Avatar customDiv={"contact__avatar-div"} customImg={"contact__avatar-img"} />
+                           <h3 className="contact__avatar-post">Lead Dev FRONT / Product Owner</h3>
                                 <div className="contact__avatar-social">
                                     <a href="https://www.linkedin.com/in/mathieuelisa/" target="_blank" rel="noreferrer">
                                         <img className="linkedin-logo" src={linkedin} alt="linkedin" />
@@ -46,8 +52,9 @@ function ContactContainer(){
                         </div>
 
                         <div className="contact__avatar-container">
-                           <h2>Emmanuel</h2>
+                           <h2 className="contact__avatar-name">Emmanuel</h2>
                            <Avatar customDiv={"contact__avatar-div"} customImg={"contact__avatar-img"} />
+                           <h3 className="contact__avatar-post">Réfèrent technique</h3>
                                 <div className="contact__avatar-social">
                                 <a href="www.google.com" target="_blank" rel="noreferrer">
                                     <img className="linkedin-logo"src={linkedin} alt="linkedin" />
@@ -59,8 +66,9 @@ function ContactContainer(){
                         </div>
 
                         <div className="contact__avatar-container">
-                           <h2>Jordan</h2>
+                           <h2 className="contact__avatar-name">Jordan</h2>
                            <Avatar customDiv={"contact__avatar-div"} customImg={"contact__avatar-img"}/>
+                           <h3 className="contact__avatar-post">Lead Dev BACK</h3>
                                 <div className="contact__avatar-social">
                                     <a href="https://www.linkedin.com/in/jordan-espitalier-8322a3213/" target="_blank" rel="noreferrer">
                                         <img className="linkedin-logo" src={linkedin} alt="linkedin" />
@@ -72,8 +80,9 @@ function ContactContainer(){
                         </div>
 
                         <div className="contact__avatar-container">
-                           <h2>Robz</h2>
+                           <h2 className="contact__avatar-name">Robz</h2>
                            <Avatar customDiv={"contact__avatar-div"} customImg={"contact__avatar-img"} />
+                           <h3 className="contact__avatar-post">Git Master</h3>
                                 <div className="contact__avatar-social">
                                     <a href="https://www.linkedin.com/in/robin-marien-64a571135/" target="_blank" rel="noreferrer">
                                         <img className="linkedin-logo" src={linkedin} alt="linkedin" />
