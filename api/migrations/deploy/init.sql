@@ -93,6 +93,13 @@ CREATE TABLE event_has_tag (
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+CREATE TABLE event_has_language (
+    event_id INT NOT NULL REFERENCES event(id),
+    language_id INT NOT NULL REFERENCES language(id),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
 CREATE TABLE user_ask_event (
     user_id INT NOT NULL REFERENCES "user"(id),
     event_id INT NOT NULL REFERENCES "event"(id),

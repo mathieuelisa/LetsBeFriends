@@ -1,4 +1,4 @@
-const {Event}  = require(`../models`);
+const { Event } = require(`../models`);
 
 const eventController = {
 
@@ -15,7 +15,8 @@ const eventController = {
     findOneById: async (req, res, next) => {
         try {
             const id = parseInt(req.params.id, 10);
-
+            const event = await Event.findOneById(id);
+            res.json(event)
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
@@ -27,14 +28,14 @@ const eventController = {
             const name = req.params.name;
             const event = await Event.findOneByName(name);
             res.json(event)
-            
+
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
         }
-        
+
     },
-    
+
 }
 
 module.exports = eventController;
