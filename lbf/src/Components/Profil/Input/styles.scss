@@ -1,0 +1,19 @@
+.input__container{
+    text-align: end;
+}
+
+.input__container select{
+    padding: 8px 10px;
+    text-align: center;
+    border-radius: 10px;
+    appearance: none;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
+    background-color: #11ffee00;
+    cursor: pointer;
+    box-shadow: 0 0 7px -1px;
+
+    &:hover{
+        color: rgb(204, 195, 195)
+    }
+}
