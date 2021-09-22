@@ -1,8 +1,11 @@
 import './styles.scss';
 
-const Caroussel = () => (
-  <div className='caroussel'>
-    
+//import React Components
+import EventCard from '../../Styledcomponents/EventCard';
+
+const Caroussel = () => (     
+  <div className="container">
+    <EventCard />
   </div>
 );
 
