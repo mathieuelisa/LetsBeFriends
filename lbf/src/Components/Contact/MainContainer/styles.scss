@@ -63,4 +63,25 @@
         flex-direction: column;
         text-align: center;
     }
+
+    &-social{
+        display: flex;
+        text-align: center;
+        justify-content: space-around;
+    }
+}
+
+
+.contact-tag{
+    margin: 30px;
+}
+
+.linkedin-logo{
+    height: 35px;
+    cursor: pointer;
+}
+
+.github-logo{
+    width: 35px;
+    cursor: pointer;
 }

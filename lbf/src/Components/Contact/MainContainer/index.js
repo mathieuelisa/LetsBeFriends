@@ -1,6 +1,9 @@
 import Avatar from "../../Styledcomponents/Avatar"
 import "./styles.scss"
 
+import linkedin from "../../../assets/Icons/linkedin.png"
+import github from "../../../assets/Icons/github.png"
+
 function ContactContainer(){
     return(
         <div className="contact__container">
@@ -18,32 +21,67 @@ function ContactContainer(){
                     <div className="contact__avatar-profils">
                         <div className="contact__avatar-container">
                            <h2>Julien</h2>
-                           <Avatar className="pipo" />
-                                <p>OUou</p>
+                                <Avatar className="pipo" />
+                                <div className="contact__avatar-social">
+                                    <a href="https://www.linkedin.com/in/julien-maurice"  target="_blank" rel="noreferrer">
+                                        <img className="linkedin-logo"  src={linkedin} alt="linkedin" href="http://www.google.com" /> 
+                                    </a>
+                                    <a href="https://github.com/JulienMaurice" target="_blank" rel="noreferrer">
+                                        <img className="github-logo"  src={github} alt="github" />
+                                    </a>
+                                </div>
                         </div>
 
                         <div className="contact__avatar-container">
                            <h2>Mathieu</h2>
                            <Avatar />
-                                <p>OUou</p>
+                                <div className="contact__avatar-social">
+                                    <a href="https://www.linkedin.com/in/mathieuelisa/" target="_blank" rel="noreferrer">
+                                        <img className="linkedin-logo" src={linkedin} alt="linkedin" />
+                                    </a>
+                                    <a href="https://github.com/mathieuelisa" target="_blank" rel="noreferrer">
+                                        <img className="github-logo"  src={github} alt="github" />
+                                    </a>
+                                </div>
                         </div>
 
                         <div className="contact__avatar-container">
                            <h2>Emmanuel</h2>
                            <Avatar />
-                                <p>OUou</p>
+                                <div className="contact__avatar-social">
+                                <a href="www.google.com" target="_blank" rel="noreferrer">
+                                    <img className="linkedin-logo"src={linkedin} alt="linkedin" />
+                                </a>
+                                <a href="https://github.com/emmanuelMartin53" target="_blank" rel="noreferrer">
+                                    <img className="github-logo" src={github} alt="github" />
+                                </a>
+                                </div>
                         </div>
 
                         <div className="contact__avatar-container">
                            <h2>Jordan</h2>
                            <Avatar />
-                                <p>OUou</p>
+                                <div className="contact__avatar-social">
+                                    <a href="https://www.linkedin.com/in/jordan-espitalier-8322a3213/" target="_blank" rel="noreferrer">
+                                        <img className="linkedin-logo" src={linkedin} alt="linkedin" />
+                                    </a>
+                                    <a href="https://github.com/JordanEspitalier" target="_blank" rel="noreferrer">
+                                        <img className="github-logo"  src={github} alt="github" />
+                                    </a>
+                                </div>
                         </div>
 
                         <div className="contact__avatar-container">
                            <h2>Robz</h2>
                            <Avatar />
-                                <p>OUou</p>
+                                <div className="contact__avatar-social">
+                                    <a href="https://www.linkedin.com/in/robin-marien-64a571135/" target="_blank" rel="noreferrer">
+                                        <img className="linkedin-logo" src={linkedin} alt="linkedin" />
+                                    </a>
+                                    <a href="https://github.com/Marob-nod" target="_blank" rel="noreferrer">
+                                        <img className="github-logo"  src={github} alt="github" />
+                                    </a>
+                                </div>
                         </div>
                 
                     </div>
