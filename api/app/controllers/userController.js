@@ -12,10 +12,10 @@ const userController = {
         }
     },
 
-    findOneByName: async (req, res) => {
+    findOneById: async (req, res) => {
         try {
-            const name = req.params.name;
-            const user = await User.findOneByName(name);
+            const name = req.params.id;
+            const user = await User.findOneById(id);
             res.json(user)
             
         } catch (error) {
