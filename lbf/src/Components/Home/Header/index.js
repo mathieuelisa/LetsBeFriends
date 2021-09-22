@@ -8,6 +8,7 @@ const Header = () => (
     <div className='header__navbar'>
       <Button className='header__navbar__login' name='Login' />
       <Button className='header__navbar__signup' name='Sign Up' />
+      <Button className='header__navbar__hamburger' name='=' />
     </div>
   </div>
 );

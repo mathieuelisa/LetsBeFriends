@@ -1,5 +1,5 @@
-import MainContainer from "./MainContainer"
-import SecondContainer from "./SecondContainer"
+import MainContainer from "./MainContainer";
+import SecondContainer from "./SecondContainer";
 
 function HomePage(){
     return(
@@ -10,4 +10,4 @@ function HomePage(){
     )
 }
 
-export default HomePage
+export default HomePage;
