@@ -1,6 +1,7 @@
 const {Event}  = require(`../models`);
 
 const eventController = {
+<<<<<<< HEAD
 
     findAll: async (req, res) => {
         try {
@@ -34,6 +35,8 @@ const eventController = {
         }
         
     },
+=======
+>>>>>>> af0443a7baa0b6de660efd1b7284623d54bdbbd5
     
 }
 
