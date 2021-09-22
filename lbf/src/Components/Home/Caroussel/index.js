@@ -1,4 +1,4 @@
-import './caroussel.scss';
+import './styles.scss';
 
 const Caroussel = () => (
   <div className='caroussel'>
