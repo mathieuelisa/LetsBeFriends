@@ -10,6 +10,7 @@ class Tag extends CoreModel {
             this[propName] = obj[propName];
         }
     }
+
 };
 
 module.exports = Tag;

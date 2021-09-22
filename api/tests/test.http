@@ -1,9 +1,12 @@
+### ---- USER
 GET http://localhost:3000/v1/users/9
-
-###
-
+### 
 GET http://localhost:3000/v1/users/?limit=2
+### 
+http://localhost:3000/v1/events/
 
-###
+
+### ---- EVENT
 GET http://localhost:3000/v1/events/9
-Les requêtes avancé de Event et User n'affichaient pas les entré qui ne comportais pas tous les JOIN de la requête
+###
+GET http://localhost:3000/v1/events/

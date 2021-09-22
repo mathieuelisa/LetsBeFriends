@@ -107,11 +107,11 @@ class Event extends CoreModel {
 				FULL OUTER JOIN "tag" ON event_has_tag.tag_id = tag.id
 				FULL OUTER JOIN "event_has_language" ON event.id = event_has_language.event_id
 				FULL OUTER JOIN "language" ON event_has_language.language_id = language.id
-				GROUP BY event.id
+				GROUP BY event.id AS events
 				LIMIT $1`,
 				[limit])
 			if (rows.length) {
-				return rows.map(row => new User(row))
+				return rows.map(row => new Event(row))
 			}
 			return null;
 		} catch (error) {
