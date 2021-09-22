@@ -2,8 +2,9 @@ const { User } = require(`../models`);
 
 const userController = {
     findAll: async (req,res) => {
+        const limit = req.query.limit
         try{
-            const users = await User.findAll();
+            const users = await User.findAll(limit);
             res.status(201).json(users)
         } catch (error) {
             console.log(error);
