@@ -3,7 +3,6 @@
     justify-content: center;
     height: 150vh;
     position: relative;
-    flex-direction: column;
     background-color: red;
     background: -webkit-linear-gradient(to top,#1a2a6c, #b21f1f);  
     background: linear-gradient(to top,#1a2a6c, #b21f1f);
@@ -59,4 +58,8 @@
 .steps--logo{
     height: 8em;
     margin: 20px;
+}
+
+#steps-three{
+    margin-bottom: 35px;
 }
