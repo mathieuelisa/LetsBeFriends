@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Amalfi";
+    src: url("../../../assets/Fonts/Amalfi.ttf");
+  }
+
 .contact__container{
     display: flex;
     justify-content: center;
@@ -15,7 +20,7 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
-        height: 40%;
+        height: 26%;
         text-align: center;
         margin: 21px;
         width: 40%;
@@ -69,6 +74,15 @@
         text-align: center;
         justify-content: space-around;
     }
+
+    &-post{
+        font-size: 0.8em;
+        margin-bottom: 15px;
+    }
+
+    &-name{
+        font-family: "Amalfi";
+    }
 }
 
 
@@ -91,12 +105,13 @@
     display: flex;
     flex-direction: column;
     width: 30%;
-    height: 60%;
+    height: 40%;
     padding: 40px;
     font-family: Arial, Helvetica, sans-serif;
     color: green;
     font-size: 0.5em;
     justify-content: space-around;
+    cursor: pointer;
 }
 
 .contact__avatar-img{
@@ -106,4 +121,12 @@
     width: 150px;
     object-fit: cover;
     box-shadow: 0 0 7px -1px;
+    transition: filter .5s ease-in-out;
+    -webkit-filter: grayscale(100%); 
+    filter: grayscale(100%); 
+
+    &:hover{
+    -webkit-filter: grayscale(0%); 
+    filter: grayscale(0%); 
+    }
 }
