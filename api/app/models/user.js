@@ -48,17 +48,17 @@ class User extends CoreModel {
                     )
                 ) AS event         
                 FROM user_participate_event 
-                JOIN "user" ON user_participate_event.user_id = "user".id
-                JOIN "event" ON user_participate_event.event_id = event.id
-                JOIN user_speak_language ON "user".id = user_speak_language.user_id
-                INNER JOIN (
+                FULL OUTER JOIN "user" ON user_participate_event.user_id = "user".id
+                FULL OUTER JOIN "event" ON user_participate_event.event_id = event.id
+                FULL OUTER JOIN user_speak_language ON "user".id = user_speak_language.user_id
+                FULL OUTER JOIN (
                     SELECT * FROM "language"
                 ) AS speaking_language ON user_speak_language.language_id = speaking_language.id
-                JOIN user_learn_language ON "user".id = user_learn_language.user_id
-                JOIN (
+                FULL OUTER JOIN user_learn_language ON "user".id = user_learn_language.user_id
+                FULL OUTER JOIN (
                     SELECT * FROM "language"
                 ) as learning_language ON user_learn_language.language_id = learning_language.id
-                WHERE "user".id = $1
+                WHERE "user".id= $1
                 GROUP BY "user".id`,
                 [id]);
             if (rows[0]) {
@@ -72,7 +72,7 @@ class User extends CoreModel {
 
     static async findAll(limit) {
         try {
-            const {rows} = await db.query(
+            const { rows } = await db.query(
                 `SELECT "user".id, "user".firstname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
                 json_agg(
 					DISTINCT jsonb_build_object(
@@ -116,10 +116,10 @@ class User extends CoreModel {
                 GROUP BY "user".id
                 LIMIT $1`,
                 [limit])
-                if (rows.length) {
-                    return rows.map(row => new User(row))
-                }
-                return null;
+            if (rows.length) {
+                return rows.map(row => new User(row))
+            }
+            return null;
         } catch (error) {
             throw new Error(error.detail)
         }
