@@ -1,15 +1,46 @@
 const CoreModel = require('./coremodel');
 const db = require('../database');
 
+/**
+ * A entity representing a table event
+ * @typedef Event
+ * @property {number} id
+ * @property {string} title
+ * @property {string} img_url
+ * @property {numbner} places_left
+ * @property {string} description
+ * @property {timestamptz} starting_date
+ * @property {timestamptz} ending_date
+ * @property {number} longitude
+ * @property {number} latitude
+ * @property {timestamptz} created_at
+ * @property {timestamptz} updated_at
+ */
+
+/**
+ * a model representing a class Event
+ * @class Event
+ */
+
 class Event extends CoreModel {
 	static tableName = 'event';
-
+/**
+ * The Event constructor
+ * @param {object} obj  a literal object with properties copied into the instance 
+ */
 	constructor(obj) {
 		super(obj)
 		for (const propName in obj) {
 			this[propName] = obj[propName];
 		}
 	}
+	/**
+	 * fetches a single id from the database
+	 * @param {number} id id of the event we're looking for
+	 * @returns {Event|null} null if no event matches the given in database
+	 * @async
+	 * @static
+	 */
 
 	static async findOneById(id) {
 		try {
@@ -64,8 +95,12 @@ class Event extends CoreModel {
 			throw new Error(error.detail)
 		}
 	}
+	
+	/**
+	 * add a post to the database
+	 */
 
-	static async save() {
+ 	  async save() {
 		try {
 			if (this.id) {
 				await db.query(`UPDATE event SET title=$1, starting_date=$2, ending_date=$3, img_url=$4, places_left=$5, description=$6, longitude=$7, latitude=$8, user_id=$9 WHERE id=$10`, [

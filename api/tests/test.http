@@ -1,9 +1,6 @@
 GET http://localhost:3000/v1/users/6
 
 ###
-<<<<<<< HEAD
 
 GET http://localhost:3000/v1/users/?limit=2
-=======
 GET http://localhost:3000/v1/events/2
->>>>>>> queryEvent
