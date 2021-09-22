@@ -24,7 +24,7 @@ function ProfilContainer(){
                     <p>Description:</p>
 
                     <div className="profil__textContent">
-                        <p className="profil__textContent-text">Salut j'aime les brebis </p>
+                        <textarea type="textarea" className="profil__textContent-text"> Salut j'aime les brebis </textarea>
                     </div>
                 </div>
             </div>
