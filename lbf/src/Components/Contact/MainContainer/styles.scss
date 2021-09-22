@@ -1,0 +1,87 @@
+.contact__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+    background: linear-gradient(to top,rgb(178 31 31) 0%, rgba(178, 31, 31,1) 0%, rgba(253, 187, 45, .5));
+
+    &-title{
+        margin-bottom: 20px;
+    }
+
+    &-text{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 40%;
+        text-align: center;
+        margin: 21px;
+        width: 40%;
+    }
+
+    &-infos{
+        font-size: 1em;
+    }
+}
+
+.mainContact__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 700px;
+    width: 80%;
+    background: rgba( 255, 255, 255, 0.1 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 5px );
+    border-radius: 10px;
+}
+
+.contact__avatar{
+    &-teams{
+        display: flex;
+        flex: 1;
+        width: 100%;
+        justify-content: center;
+    }
+
+    &-profils{
+        display: flex;
+        justify-content: space-around;
+        width: 1250px;
+    }
+
+    &-profil{
+        display: flex;
+
+    }
+
+    &-container{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    &-social{
+        display: flex;
+        text-align: center;
+        justify-content: space-around;
+    }
+}
+
+
+.contact-tag{
+    margin: 30px;
+}
+
+.linkedin-logo{
+    height: 35px;
+    cursor: pointer;
+}
+
+.github-logo{
+    width: 35px;
+    cursor: pointer;
+}

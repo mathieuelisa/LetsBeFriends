@@ -1,4 +1,3 @@
-
 import "./styles.scss"
 import avatarMicheline from "../../../assets/Img/micheline.jpg"
 import Input from "../Input"
