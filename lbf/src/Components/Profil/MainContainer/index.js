@@ -2,15 +2,21 @@ import "./styles.scss"
 import avatarMicheline from "../../../assets/Img/micheline.jpg"
 import Input from "../Input"
 
+import Avatar from "../../Styledcomponents/Avatar"
+
 function ProfilContainer(){
     return(
         <div className="profil__container">
             <div className="mainProfil__container">
                 <div className="profil__container-avatar">
-                    <img className="profil__container-pictures" src={avatarMicheline} alt="avatar" />
+                    <Avatar 
+                    customDiv={"profil__container-avatar"} 
+                    customImg={"profil__container-pictures"} 
+                    />
                     <h2>No binary</h2>
                     <h2>Tel: 07 85 11 25 18</h2>
                 </div>
+
 
                 <div className="profil__container-data">
                     <Input />
