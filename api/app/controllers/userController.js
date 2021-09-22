@@ -1,5 +1,4 @@
 const { User } = require(`../models`);
-const db = require('../database');
 
 const userController = {
     findAll: async (req,res) => {
@@ -14,8 +13,9 @@ const userController = {
 
     findOneById: async (req, res) => {
         try {
-            const name = req.params.id;
-            const user = await User.findOneById(id);
+            const id = req.params.id;
+            const user = await User.findOneByid(id);
+            console.log(user)
             res.json(user)
             
         } catch (error) {

@@ -15,6 +15,7 @@ const userController = require('./controllers/userController');
 
 // USER
 
-router.get('/users/:id', userController.findOnebyId)
+router.get('/users/:id', userController.findOneById)
+router.get('/users', userController.findAll)
 
 module.exports = router;
