@@ -15,4 +15,5 @@ Pour lancer la commande sans copier coller dans le terminal:
 createdb lbf
 dbinit
 ```
+
 Le ``dbInit`` est effectué grace à la dépendance shelljs

@@ -50,5 +50,10 @@ insert into "event_has_tag" (event_id, tag_id) values (50, 4);
 insert into "event_has_tag" (event_id, tag_id) values (43, 4);
 insert into "event_has_tag" (event_id, tag_id) values (38, 1);
 insert into "event_has_tag" (event_id, tag_id) values (15, 1);
+insert into "event_has_tag" (event_id, tag_id) values (15, 1);
+insert into "event_has_tag" (event_id, tag_id) values (15, 1);
+insert into "event_has_language" (event_id, language_id) values (2, 1);
+insert into "event_has_language" (event_id, language_id) values (2, 2);
+insert into "event_has_language" (event_id, language_id) values (3, 3);
 
 COMMIT;
