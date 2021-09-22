@@ -1,6 +1,7 @@
 
 import "./styles.scss"
 import avatarMicheline from "../../../assets/Img/micheline.jpg"
+import Input from "../Input"
 
 function ProfilContainer(){
     return(
@@ -13,6 +14,7 @@ function ProfilContainer(){
                 </div>
 
                 <div className="profil__container-data">
+                    <Input />
                     <p>Micheline</p>
                     <p>Michaudiere</p>
                     <p>Paris, 20eme</p>

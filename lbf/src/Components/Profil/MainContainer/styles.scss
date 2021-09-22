@@ -27,6 +27,7 @@
         color: whitesmoke;
         font-size: 0.5em;
         justify-content: space-around;
+
     }
 
     &-pictures{
@@ -35,6 +36,7 @@
         height: 200px;
         width: 200px;
         object-fit: cover;
+        box-shadow: 0 0 7px -1px;
     }
 }
 
@@ -61,6 +63,7 @@
     border-radius: 10px;
     padding: 10px;
     margin: 15px;
+    box-shadow: 0 0 7px -1px;
 
     &-text{
         font-size: 0.8em;
