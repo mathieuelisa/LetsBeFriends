@@ -3,8 +3,9 @@ const { Event } = require(`../models`);
 const eventController = {
 
     findAll: async (req, res) => {
+        const limit = req.query.limit;
         try {
-            const events = await Event.findAll();
+            const events = await Event.findAll(limit);
             res.status(201).json(events);
         } catch (error) {
             console.log(error);
