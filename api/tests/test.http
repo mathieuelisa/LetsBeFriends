@@ -1,6 +1,6 @@
 @baseUrl=http://localhost:3000/v1
 
-GET {{baseUrl}}/users/12
+GET {{baseUrl}}/users/11
 
 ###
 
