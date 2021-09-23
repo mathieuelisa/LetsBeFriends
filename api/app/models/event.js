@@ -24,10 +24,10 @@ const db = require('../database');
 
 class Event extends CoreModel {
 	static tableName = 'event';
-/**
- * The Event constructor
- * @param {object} obj  a literal object with properties copied into the instance 
- */
+	/**
+	 * The Event constructor
+	 * @param {object} obj  a literal object with properties copied into the instance 
+	 */
 	constructor(obj) {
 		super(obj)
 		for (const propName in obj) {
@@ -95,7 +95,7 @@ class Event extends CoreModel {
 			throw new Error(error.detail)
 		}
 	}
-	
+
 	/**
 	 * add a post to the database
 	 */
@@ -157,19 +157,19 @@ class Event extends CoreModel {
 	async save() {
 		try {
 			if (this.id) {
-                let count = 1;
-                const properties = [];
-                const values = [this.id];
+				let count = 1;
+				const properties = [];
+				const values = [this.id];
 
-                for (const key in this){
-                    if(key == 'id') continue;
-                    properties.push(`"${key}"=$${++count}`)
-                    values.push(this[key])
-                }
+				for (const key in this) {
+					if (key == 'id') continue;
+					properties.push(`"${key}"=$${++count}`)
+					values.push(this[key])
+				}
 
-                const { rows } = await db.query(`UPDATE "event" SET ${properties} WHERE id=$1 RETURNING *`, values)
-                return new Event(rows[0])
-			
+				const { rows } = await db.query(`UPDATE "event" SET ${properties} WHERE id=$1 RETURNING *`, values)
+				return new Event(rows[0])
+
 			} else {
 				const { rows } = await db.query('INSERT INTO event(title, starting_date, ending_date, img_url, places_left, description, longitude, latitude, user_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id', [
 					this.title,

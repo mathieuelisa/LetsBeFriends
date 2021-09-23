@@ -46,12 +46,31 @@
                 text-align: center;
                 margin-bottom: 30px;
             }
+
+            &--cityevent, &--cityevent, &--eventdate, &--numberspotsleft, &--eventlanguage {
+                display: flex;
+                align-self: baseline;
+                margin-bottom: 10px;
+            }
+
+            &--eventdate {
+                border-bottom: 1px solid whitesmoke; 
+                width: 200px;
+                padding-bottom: 10px;
+            }
+
+            &--numberspotsleft, &--eventlanguage {
+                font-weight: 600;
+                margin-top: 10px;
+            }
         }
     }
 
     &__image {
         object-fit: cover;
-        border-radius: 20px;
+        border-radius: 20px ;
+        border: 2px solid #0095b7;
+        box-shadow: 0 0 10px -1px #0095b7;
     }
 }
 
@@ -66,4 +85,10 @@
     width: 100px;
     object-fit: cover;
     box-shadow: 0 0 7px -1px;
+}
+
+.logo {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
 }
