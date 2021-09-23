@@ -1,8 +1,33 @@
 const CoreModel = require('./coremodel');
 const db = require('../database');
 
+/**
+ *  An entity representing a table user
+ * @typedef user
+ * @property {number} id
+ * @property {string} firstname
+ * @property {string} lastname
+ * @property {string} gender
+ * @property {string} email
+ * @property {string} password
+ * @property {string} description
+ * @property {number} age
+ * @property {string} city
+ * @property {number} phone_number
+ * @property {timestamptz} created_at
+ * @property {timestamptz} updated_at
+ */
+
+/**
+ * A model representing a class User
+ * @class User
+ */
 class User extends CoreModel {
     static tableName = 'user';
+    /**
+     * The User constgructor
+     * @param {object} obj a literal object with properties copied into the database 
+     */
 
     constructor(obj) {
         super(obj)
@@ -10,6 +35,16 @@ class User extends CoreModel {
             this[propName] = obj[propName];
         }
     }
+
+/**
+ * Fetches a single id from the database
+ * @param {number} id id of the user we're looking for
+ * @returns {User|null} null if no users matches the given id in database
+ * @static
+ * @async
+ */
+
+
 
     static async findOneById(id) {
         try {
@@ -66,6 +101,13 @@ class User extends CoreModel {
         }
     }
 
+    /**
+     * Fetches all users below a certain limit in the database
+     * @returns {Array<User>}
+     * @async
+     * @static
+     */
+
     static async findAll(limit) {
         try {
             const { rows } = await db.query(
@@ -120,9 +162,12 @@ class User extends CoreModel {
             throw new Error(error.detail)
         }
     }
+    /**
+     * Add a user to the database
+     */
 
 
-    async save() {
+     async save() {
         try {
             if (this.id) {
                 let count = 1;

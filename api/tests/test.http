@@ -39,6 +39,7 @@ Content-Type: application/json
 
 ###
 
+<<<<<<< HEAD
 DELETE {{baseUrl}}/users
 Content-Type: application/json
 
@@ -51,3 +52,7 @@ Content-Type: application/json
 GET {{baseUrl}}/events/9
 ###
 GET {{baseUrl}}/events/?limit=10
+=======
+GET http://localhost:3000/v1/users/?limit=2
+GET http://localhost:3000/v1/events/2
+>>>>>>> swagger-generator
