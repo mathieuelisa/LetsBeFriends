@@ -39,12 +39,10 @@ router.get('/events', eventController.findAll)
  */
 router.get('/users', userController.findAll)
 
-<<<<<<< HEAD
 router.post('/users', userController.create)
 router.patch('/users', userController.update)
 
 router.delete('/users', userController.delete)
-=======
 // GET /users/:id
 
 /**
@@ -60,6 +58,5 @@ router.delete('/users', userController.delete)
 
 router.get('/users/:id', userController.findOneById)
 
->>>>>>> swagger-generator
 
 module.exports = router;

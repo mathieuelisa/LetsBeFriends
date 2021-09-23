@@ -30,12 +30,9 @@ class Tag extends CoreModel {
         }
     }
 
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> swagger-generator
 };
 
 module.exports = Tag;
