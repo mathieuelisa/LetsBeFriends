@@ -15,7 +15,7 @@ const Button = ({ openModal, showModal, className, name, URL }) => {
     
     return (
         // toujours mettre un href sur un anchor sinon erreur lors de la lecture
-    <a href={link} className={className}>{name} onClick={openModal} </a>
+    <a href={link} className={className} onClick={openModal}>{name}</a>
 );}
 
 Button.propTypes = {
