@@ -21,10 +21,9 @@
             justify-content: center;
             align-items: center;
             height: 25px;
-            font-size: 1.2em;
+            font-size: 1em;
             padding: 10px;
             margin: 10px 20px 10px 20px;
-            border: 1 px solid;
             background-color: rgba(117, 190, 218, 0);
             color: #fff;
             cursor: pointer;
@@ -35,20 +34,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 25px;
-            font-size: 1.2em;
+            height: 35px;
+            width: 125px;
+            font-size: 1em;
             padding: 10px;
             margin: 10px 20px 10px 20px;            
             border-radius: 5px;
-            border: 1 px solid;
             background-color: rgba(117, 190, 218, 0.0);
             color: rgb(209, 21, 21);
             cursor: pointer;
             text-decoration: none;
+            transition: all 0.4s linear 0s;
 
             &:hover{
                 color: whitesmoke;
-                background-color: rgb(209, 21, 21); ;
+                background-color: rgb(209, 21, 21);
+                transition: all 0.2s linear 0s;
             }
         }
         
@@ -74,6 +75,7 @@
                 background-color: rgba($color: whitesmoke, $alpha: 0.9);
                 color: rgba(229, 175, 108);
                 transition: transform 0.5s, background-color 0.5s;
+                box-shadow: 0 0 7px -1px;
             }
         }
     }

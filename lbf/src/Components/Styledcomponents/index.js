@@ -5,12 +5,12 @@ import React from 'react'
 
 //Robz: J'ai rajouté plusieurs props à Button pour qu'il soit configurable. On peut utiliser celles que l'on veut.
 
-const Button = ({ openModal, showModal, className, name, URL }) => {
+const Button = ({ openModal, showModal, className, name, url }) => {
     
     let link = '';
 
-    if(URL) {
-        link = URL;
+    if(url) {
+        link = url;
     }
     
     return (
