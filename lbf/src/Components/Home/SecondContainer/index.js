@@ -12,7 +12,7 @@ function SecondContainer(){
             <div className="steps__container">
 
             <div className="steps__explication-text">
-                <p>Hello World est une plateforme visant à se créer de nouveaux amis aux travers d'évènements tout en apprenant ou pratiquant une langue</p>
+                <p>Lets be friend est une plateforme visant à se créer de nouveaux amis aux travers d'évènements tout en apprenant ou pratiquant une langue.</p>
             </div>
 
                 <div className="steps__explication-title">
