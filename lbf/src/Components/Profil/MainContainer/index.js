@@ -1,4 +1,8 @@
 import "./styles.scss"
+<<<<<<< HEAD
+
+=======
+>>>>>>> f8a7d5aa5c84f4e064e2dfab98f4cb5837ca5bb7
 import Input from "../Input"
 
 //import ReactComponents
@@ -21,7 +25,7 @@ function ProfilContainer(){
 
 
                 <div className="profil__container-data">
-                    <Input />
+                    <Input name={"PROFIL MODIFIER"} name2={"PASSWORD MODIFIER"}/>
                     <p>Micheline</p>
                     <p>Michaudiere</p>
                     <p>Paris, 20eme</p>
