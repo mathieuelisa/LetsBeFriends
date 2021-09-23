@@ -49,19 +49,24 @@ class Event extends CoreModel {
 				event.img_url AS "imgUrl",  event.places_left AS "placesLeft", event.longitude, event.latitude, event.user_id AS "ownerId",
 				event.created_at AS "createdAt", event.updated_at AS "updatedAt",
 				json_agg(
-					DISTINCT jsonb_build_object(
+					DISTINCT jsonb_strip_nulls(
+						jsonb_build_object(
 						'id', language.id,
 						'name', language.name
+						)
 					)
 				) AS languages,
 				json_agg(
-					DISTINCT jsonb_build_object(
+					DISTINCT jsonb_strip_nulls(
+						jsonb_build_object(
 						'name', tag.name,
 						'color', tag.color
+						)
 					)
 				) AS tags,
 				json_agg(
-					DISTINCT jsonb_build_object(
+					DISTINCT jsonb_strip_nulls(
+						jsonb_build_object(
 						'id', "user".id,
 						'firstname', "user".firstname,
 						'lastname', "user".lastname,
@@ -74,6 +79,7 @@ class Event extends CoreModel {
 						'imgUrl', "user".img_url,
 						'createdAt', "user".created_at,
 						'updatedAt', "user".updated_at
+					)
 					)
 				) AS participants
 				FROM event
@@ -108,31 +114,37 @@ class Event extends CoreModel {
 				event.img_url AS "imgUrl",  event.places_left AS "placesLeft", event.longitude, event.latitude, event.user_id AS "ownerId",
 				event.created_at AS "createdAt", event.updated_at AS "updatedAt",
 				json_agg(
-					DISTINCT jsonb_build_object(
-						'id', language.id,
-						'name', language.name
-					)
+					DISTINCT jsonb_strip_nulls(
+						jsonb_build_object(
+							'id', language.id,
+							'name', language.name
+						)
+						)
 				) AS languages,
 				json_agg(
-					DISTINCT jsonb_build_object(
-						'name', tag.name,
-						'color', tag.color
+					DISTINCT jsonb_strip_nulls(
+						 jsonb_build_object(
+							'name', tag.name,
+							'color', tag.color
+						)
 					)
 				) AS tags,
 				json_agg(
-					DISTINCT jsonb_build_object(
-						'id', "user".id,
-						'firstname', "user".firstname,
-						'lastname', "user".lastname,
-						'gender', "user".gender,
-						'email', "user".email,
-						'bio', "user".description,
-						'age', "user".age,
-						'city', "user".city,
-						'phoneNumber', "user".phone_number,
-						'imgUrl', "user".img_url,
-						'createdAt', "user".created_at,
-						'updatedAt', "user".updated_at
+					DISTINCT jsonb_strip_nulls(
+						 jsonb_build_object(
+							'id', "user".id,
+							'firstname', "user".firstname,
+							'lastname', "user".lastname,
+							'gender', "user".gender,
+							'email', "user".email,
+							'bio', "user".description,
+							'age', "user".age,
+							'city', "user".city,
+							'phoneNumber', "user".phone_number,
+							'imgUrl', "user".img_url,
+							'createdAt', "user".created_at,
+							'updatedAt', "user".updated_at
+						)
 					)
 				) AS participants
 				FROM event
@@ -161,19 +173,19 @@ class Event extends CoreModel {
 >>>>>>> feature-model
 		try {
 			if (this.id) {
-                let count = 1;
-                const properties = [];
-                const values = [this.id];
+				let count = 1;
+				const properties = [];
+				const values = [this.id];
 
-                for (const key in this){
-                    if(key == 'id') continue;
-                    properties.push(`"${key}"=$${++count}`)
-                    values.push(this[key])
-                }
+				for (const key in this) {
+					if (key == 'id') continue;
+					properties.push(`"${key}"=$${++count}`)
+					values.push(this[key])
+				}
 
-                const { rows } = await db.query(`UPDATE "event" SET ${properties} WHERE id=$1 RETURNING *`, values)
-                return new Event(rows[0])
-			
+				const { rows } = await db.query(`UPDATE "event" SET ${properties} WHERE id=$1 RETURNING *`, values)
+				return new Event(rows[0])
+
 			} else {
 				const { rows } = await db.query('INSERT INTO event(title, starting_date, ending_date, img_url, places_left, description, longitude, latitude, user_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id', [
 					this.title,
