@@ -21,7 +21,7 @@ function MainContainer(){
 
             <div className="main__container-overlay">
                 <Header openModal={openModal} />
-                <Modal showModal={showModal} setShowModal={setShowModal} />
+                {/* <Modal showModal={showModal} setShowModal={setShowModal} /> */}
                 <h1 className="main__container--title">LETS BE FRIEND</h1>
                     <h3 className="main__container--secondTitle">The simpliest way to meet people and train languages !</h3>
             </div>
