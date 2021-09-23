@@ -21,7 +21,7 @@ function CreateEventContainer(){
             <div className="mainCreateEvent__container">
                 <div className="createEvent__container-infosDetails">
                     <form id="registerForm"> 
-                        <div className="createEvent__container-infosDetails-location">
+                        <div className="createEvent__container-infosDetails-location" id="div-location">
                             <label>Location: </label>
                             <input className="myInputs" type="text"/>
                         </div>
@@ -37,7 +37,7 @@ function CreateEventContainer(){
                         </div>
 
                         <div className="createEvent__container-infosDetails-location">
-                            <label>Langue: </label>
+                            <label>Language: </label>
                             <Input 
                             name={"FRENCH"} 
                             name2={"ENGLISH"} 
@@ -47,7 +47,7 @@ function CreateEventContainer(){
                         </div>
 
                         <div className="createEvent__container-infosDetails-location">
-                        <label>Nombre de participants</label>
+                        <label>Nombre de participants: </label>
                         <Input 
                             name={"1"} 
                             name2={"2"} 

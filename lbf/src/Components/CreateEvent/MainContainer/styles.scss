@@ -90,6 +90,7 @@
 .myInputs{
     border: none;
     background: transparent;
+    color: whitesmoke;
 }
 
 #registerForm{
@@ -104,5 +105,33 @@
     .mainCreateEvent__container{
         height: auto;
         flex-direction: column;
+        margin: 60px 0 90px 0;
+        text-align: center;
+    }
+
+    .createEvent__container{
+        height: auto;
+    }
+
+    .createEvent__container-infosDetails{
+        margin-left: 0px;
+    }
+
+    .createEvent__container-eventTitle{
+        width: 100%;
+
+        &-title{
+            text-align: center;
+        }
+
+        &-button{
+            text-align: center;
+            margin: 0;
+        }
+
+    }
+
+    #div-location{
+        margin-top: 50px;
     }
 }
