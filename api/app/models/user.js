@@ -138,10 +138,7 @@ class User extends CoreModel {
                     properties.push(`"${key}"=$${++count}`)
                     values.push(this[key])
                 }
-    
-                console.log(properties)
                 console.log(`UPDATE "user" SET ${properties} WHERE id=$1 RETURNING *`)
-                console.log(values)
                 const { rows } = await db.query(`UPDATE "user" SET ${properties} WHERE id=$1 RETURNING *`, values)
                 return new User(rows[0])
             } else {

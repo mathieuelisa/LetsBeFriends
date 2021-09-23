@@ -40,7 +40,6 @@ const userController = {
 
     update : async(req, res, next)=>{
 
-        console.log(req.body)
         const user = new User(req.body);
         try {
             const result = await user.save();

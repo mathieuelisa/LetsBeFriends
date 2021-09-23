@@ -39,7 +39,8 @@ class CoreModel {
 	// }
 
 	static async delete(id) {
-		const tableName = this.constructor.tableName;
+		const tableName = this.tableName;
+		console.log(`DELETE FROM "${tableName}" WHERE id=$1`)
 		try {
 			const result = await db.query(`DELETE FROM "${tableName}" WHERE id=$1`, [id])
 			console.log(result)
