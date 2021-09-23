@@ -20,12 +20,14 @@ const { validateBody, validateQuery, validateParams } = require('./services/vali
  * @returns {string} 404 - An error message
  * @returns {string} 500 - An error message
  */
-router.get('/events/:id', eventController.findOneById)
 
-router.get('/events', eventController.findAll)
-router.post('/events', validateBody(newEventSchema), eventController.create)
-router.patch('/events', validateBody(updateEventSchema), eventController.update)
-router.delete('/events', eventController.delete)
+router.get('/events/:id', eventController.findOneById)
+router
+    .route('/events')
+    .get(eventController.findAll)
+    .post(validateBody(newEventSchema), eventController.create)
+    .patch(validateBody(updateEventSchema), eventController.update)
+    .delete(eventController.delete)
 
 
 // LANGUAGE
@@ -43,12 +45,14 @@ router.delete('/events', eventController.delete)
  * @returns {Array<User>} 200 - An array of users
  * @returns {string} 500 - An error message 
  */
-router.get('/users', userController.findAll)
 
-router.post('/users', validateBody(newUserSchema), userController.create)
-router.patch('/users', validateBody(updateUserSchema), userController.update)
+router
+    .route('/users')
+    .get(userController.findAll)
+    .post(validateBody(newUserSchema), userController.create)
+    .patch(validateBody(updateUserSchema), userController.update)
+    .delete(userController.delete)
 
-router.delete('/users', userController.delete)
 // GET /users/:id
 
 /**
