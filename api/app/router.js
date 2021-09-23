@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const eventController = require('./controllers/eventController');
-const languageController = require('./controllers/languageController');
-const tagController = require('./controllers/tagController');
-const userController = require('./controllers/userController');
+const { eventController, languageController, tagController, userController } = require('./controllers/index')
 
 const { newUserSchema, updateUserSchema } = require('./schemas/user')
 const { newEventSchema, updateEventSchema } = require('./schemas/event')
