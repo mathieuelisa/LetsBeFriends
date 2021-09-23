@@ -13,10 +13,10 @@ app.use(cors());
 
 const port = process.env.PORT || 3000;
 
-
 const expressSwagger = require('express-swagger-generator')(app);
 
-let options ={
+
+let options = {
 
     swaggerDefinition: {
         info: {
@@ -25,8 +25,8 @@ let options ={
             version: '1.0.0',
         },
         host: process.env.NODE_ENV === 'production' ?
-        process.env.HEROKU_URL :
-        `localhost: ${port}`
+            process.env.HEROKU_URL :
+            `localhost: ${port}`
 
         ,
         basepath: '/v1',
@@ -42,10 +42,11 @@ let options ={
 expressSwagger(options)
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 
 app.use('/v1', router);
 
 app.listen(port, () => {
-    console.log(`Server started on http://localhost:${port}`)})
+    console.log(`Server started on http://localhost:${port}`)
+})
