@@ -5,6 +5,9 @@ import Input from "../Input"
 import Button from "../../Styledcomponents"
 import Avatar from "../../Styledcomponents/Avatar"
 
+import avatarMicheline from "../../../assets/Img/micheline.jpg"
+
+
 function ProfilContainer(){
     return(
         <div className="profil__container">
@@ -14,6 +17,7 @@ function ProfilContainer(){
                     <Avatar 
                     customDiv={"profil__container-avatar"} 
                     customImg={"profil__container-pictures"} 
+                    customPics={avatarMicheline}
                     />
                     <h2>No binary</h2>
                     <h2>Tel: 07 85 11 25 18</h2>
