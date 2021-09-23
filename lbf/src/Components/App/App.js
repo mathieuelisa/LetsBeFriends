@@ -18,8 +18,8 @@ function App() {
           <ProfilPage />
       </Route>
 
-      <Route>
-          <CreateEventPage path="/searchEvent" exact/>
+      <Route path="/searchEvent" exact>
+          <CreateEventPage />
       </Route>
 
       <Route path="/contact" exact>
