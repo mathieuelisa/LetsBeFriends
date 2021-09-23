@@ -154,11 +154,7 @@ class Event extends CoreModel {
 		}
 	}
 
-<<<<<<< HEAD
-	 async save() {
-=======
 	async save() {
->>>>>>> feature-model
 		try {
 			if (this.id) {
                 let count = 1;

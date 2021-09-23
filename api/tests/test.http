@@ -14,7 +14,7 @@ Content-Type: application/json
 {
     "firstname": "test_first_name",
     "lastname" : "test_last_name",
-    "email":"test86@gmail.com",
+    "email":"test89@gmail.com",
     "password" : "1234",
     "confirmPassword" : "1234",
     "gender" : "male",
@@ -33,7 +33,6 @@ Content-Type: application/json
 }
 ###
 
-<<<<<<< HEAD
 DELETE {{baseUrl}}/users
 Content-Type: application/json
 
@@ -41,18 +40,23 @@ Content-Type: application/json
     "id" : 1
 }
 
+### ---GET user by email for login
+
+GET  {{baseUrl}}/users/login
+Content-Type: application/json
+
+{
+    "email":"test89@gmail.com",
+    "password" : "1234"
+}
+
+###
 
 ### ---- EVENT
 ## FIND ONE
 GET {{baseUrl}}/events/16
 ### FIND ALL LIMI
 GET {{baseUrl}}/events/?limit=10
-<<<<<<< HEAD
-=======
-GET http://localhost:3000/v1/users/?limit=2
-GET http://localhost:3000/v1/events/2
->>>>>>> swagger-generator
-=======
 ### UPDATE EVENTS
 PATCH  {{baseUrl}}/events
 Content-Type: application/json
@@ -71,4 +75,3 @@ Content-Type: application/json
 ###
 
 
->>>>>>> feature-model

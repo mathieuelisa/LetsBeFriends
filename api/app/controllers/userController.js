@@ -17,12 +17,24 @@ const userController = {
         try {
             const id = req.params.id;
             const user = await User.findOneById(id);
-            res.json(user)
+            res.status(200).json(user)
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
         }
         
+    },
+    login : async(req, res, next)=>{
+        console.log(req.body)
+        const email = req.body.email
+        const password = req.body.password
+        try {
+            const user = await User.findOneByEmail(email, password)
+            res.status(200).json(user)
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error);
+        }
     },
 
     create : async(req, res, next) =>{

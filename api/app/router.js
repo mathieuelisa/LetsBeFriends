@@ -49,6 +49,8 @@ router.post('/users', userController.create)
 router.patch('/users', userController.update)
 
 router.delete('/users', userController.delete)
+
+router.get('/users/login', userController.login)
 // GET /users/:id
 
 /**
@@ -63,6 +65,8 @@ router.delete('/users', userController.delete)
  */
 
 router.get('/users/:id', userController.findOneById)
+
+
 
 
 module.exports = router;

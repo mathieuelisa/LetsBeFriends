@@ -160,13 +160,29 @@ class User extends CoreModel {
             }
             return null;
         } catch (error) {
-            throw new Error(error.detail)
+            console.log(error)
+            throw new Error(error)
         }
     }
     /**
      * Add a user to the database
      */
-
+    static async findOneByEmail(email, password){
+        try {
+            const {rows} = await db.query(`SELECT * FROM "user" WHERE email=$1`, [email])
+            if(rows.length){
+                const isCorrectPassword = await bcrypt.compare(password, rows[0].password)
+                if(isCorrectPassword){
+                    delete rows[0].password
+                    return new User(rows[0]);
+                }
+            }
+            return 'email or password not correct' 
+        } catch (error) {
+            console.log(error)
+            throw new Error(error)
+        }
+    }
 
      async save() {
         try {

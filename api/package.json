@@ -15,15 +15,12 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-swagger-generator": "^1.1.17",
     "faker": "^5.5.3",
     "joi": "^17.4.2",
-    "jsonwebtoken": "^8.5.1",
-    "multer": "^1.4.3",
     "pg": "^8.7.1",
     "shelljs": "^0.8.4"
   }

@@ -10,24 +10,24 @@ const db = require('../database');
  */
 
 class CoreModel {
-	#id;
+	id;
 /**
  * The coreModel constructor
  * @param {object} obj a literal object with properties copied into the instance
  */
 	constructor(obj) {
 		if (this.id) {
-			this.#id = obj.id;
+			this.id = obj.id;
 		}
 	}
 
 	get id() {
-		return this.#id;
+		return this.id;
 	}
 
 	set id(id) {
 		if (typeof id !== 'number') throw Error('id doit être un nombre !');
-		this.#id = id;
+		this.id = id;
 	}
 
 	// static async findAll() {
