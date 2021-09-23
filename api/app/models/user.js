@@ -17,31 +17,37 @@ class User extends CoreModel {
             const { rows } = await db.query(
                 `SELECT "user".id, "user".firstname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
                 json_agg(
-					DISTINCT jsonb_build_object(
-						'id', speaking_language.id,
-						'name', speaking_language.name
-					)
+					DISTINCT jsonb_strip_nulls(
+                        jsonb_build_object(
+                            'id', speaking_language.id,
+                            'name', speaking_language.name
+					    )
+                    )
 				) AS "speakingLanguage",
                 json_agg(
-					DISTINCT jsonb_build_object(
-						'id', learning_language.id,
-						'name', learning_language.name
-					)
+					DISTINCT jsonb_strip_nulls(
+                        jsonb_build_object(
+                            'id', learning_language.id,
+                            'name', learning_language.name
+					    )
+                    )
 				) AS "learningLanguage", 
                 json_agg(
-                    jsonb_build_object(
-                        'id', event.id,
-                        'title', event.title,
-                        'description', event.description,
-                        'startingDate', event.starting_date,
-                        'endingDate', event.ending_date,
-                        'imgUrl', event.img_url,
-                        'placesLeft', event.places_left,
-                        'longitude', event.longitude,
-                        'latitude', event.latitude,
-                        'ownerId', event.user_id,
-                        'createdAt', event.created_at,
-                        'updatedAt', event.updated_at
+                    DISTINCT jsonb_strip_nulls(
+                        jsonb_build_object(
+                            'id', event.id,
+                            'title', event.title,
+                            'description', event.description,
+                            'startingDate', event.starting_date,
+                            'endingDate', event.ending_date,
+                            'imgUrl', event.img_url,
+                            'placesLeft', event.places_left,
+                            'longitude', event.longitude,
+                            'latitude', event.latitude,
+                            'ownerId', event.user_id,
+                            'createdAt', event.created_at,
+                            'updatedAt', event.updated_at
+                        )
                     )
                 ) AS event         
                 FROM user_participate_event 
@@ -72,31 +78,37 @@ class User extends CoreModel {
             const { rows } = await db.query(
                 `SELECT "user".id, "user".firstname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
                 json_agg(
-					DISTINCT jsonb_build_object(
-						'id', speaking_language.id,
-						'name', speaking_language.name
-					)
+					DISTINCT jsonb_strip_nulls(
+                        jsonb_build_object(
+                            'id', speaking_language.id,
+                            'name', speaking_language.name
+					    )
+                    )
 				) AS "speakingLanguage",
                 json_agg(
-					DISTINCT jsonb_build_object(
-						'id', learning_language.id,
-						'name', learning_language.name
-					)
+					DISTINCT jsonb_strip_nulls(
+                        jsonb_build_object(
+                            'id', learning_language.id,
+                            'name', learning_language.name
+					    )
+                    )
 				) AS "learningLanguage", 
                 json_agg(
-                    jsonb_build_object(
-                        'id', event.id,
-                        'title', event.title,
-                        'description', event.description,
-                        'startingDate', event.starting_date,
-                        'endingDate', event.ending_date,
-                        'imgUrl', event.img_url,
-                        'placesLeft', event.places_left,
-                        'longitude', event.longitude,
-                        'latitude', event.latitude,
-                        'ownerId', event.user_id,
-                        'createdAt', event.created_at,
-                        'updatedAt', event.updated_at
+                    jsonb_strip_nulls(
+                        jsonb_build_object(
+                            'id', event.id,
+                            'title', event.title,
+                            'description', event.description,
+                            'startingDate', event.starting_date,
+                            'endingDate', event.ending_date,
+                            'imgUrl', event.img_url,
+                            'placesLeft', event.places_left,
+                            'longitude', event.longitude,
+                            'latitude', event.latitude,
+                            'ownerId', event.user_id,
+                            'createdAt', event.created_at,
+                            'updatedAt', event.updated_at
+                        )
                     )
                 ) AS event         
                 FROM user_participate_event 
@@ -130,8 +142,8 @@ class User extends CoreModel {
                 const properties = [];
                 const values = [this.id];
 
-                for (const key in this){
-                    if(key == 'id') continue;
+                for (const key in this) {
+                    if (key == 'id') continue;
                     properties.push(`"${key}"=$${++count}`)
                     values.push(this[key])
                 }
