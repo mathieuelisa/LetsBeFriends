@@ -108,7 +108,7 @@
     height: 40%;
     padding: 40px;
     font-family: Arial, Helvetica, sans-serif;
-    color: green;
+    color: white;
     font-size: 0.5em;
     justify-content: space-around;
     cursor: pointer;
@@ -128,5 +128,67 @@
     &:hover{
     -webkit-filter: grayscale(0%); 
     filter: grayscale(0%); 
+    }
+}
+.toggle {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    font-size: 1.5em;
+    font-weight: 500;
+    padding: 10px;
+    margin: 10px 20px 10px 20px;
+    border: 3px solid;
+    border-radius: 30px;
+    background-color: rgba(117, 190, 218, 0);
+    cursor: pointer;
+    text-decoration: none;
+    color: whitesmoke;
+    //box-shadow: 0 0 7px -1px;
+
+    &:hover {
+        transform: rotate(90deg);
+        background-color: rgba($color: whitesmoke, $alpha: 0.9);
+        color: rgba(229, 175, 108);
+        transition: transform 0.5s, background-color 0.5s;
+        box-shadow: 0 0 7px -1px;
+    }
+}
+
+@media screen and (max-width: 1240px){
+    .contact__avatar-profils{
+        flex-direction: column;
+    }
+
+    .mainContact__container{
+        height: auto;
+    }
+
+    .contact__avatar-teams{
+        width: 20%;
+    }
+
+    .contact__container{
+        height: auto;
+    }
+
+    .contact__container-text{
+        width: 80%;
+    }
+    
+    .mainContact__container{
+        width: 80%;
+        margin: 60px 0 40px 0;
+    }
+
+    .contact__avatar-post{
+        margin-top: 20px;
+    }
+
+    .contact__container-infos{
+        font-size: 0.8em;
     }
 }
