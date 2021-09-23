@@ -13,7 +13,7 @@ const userController = {
         }
     },
 
-    findOneById: async (req, res) => {
+    findOneById: async (req, res, next) => {
         try {
             const id = req.params.id;
             const user = await User.findOneById(id);
@@ -22,10 +22,45 @@ const userController = {
             console.log(error);
             res.status(500).json(error);
         }
-
+        
     },
 
+    create : async(req, res, next) =>{
 
+        const user = new User(req.body);
+        try {
+            const result = await user.save();
+            res.status(201).json(result)
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error);
+        }
+    },
+
+    update : async(req, res, next)=>{
+
+        const user = new User(req.body);
+        try {
+            const result = await user.save();
+            res.status(201).json(result)
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error);
+        }
+    },
+
+    delete : async(req, res, next)=>{
+        try {
+            const id = req.body.id;
+            console.log(id)
+            await User.delete(id);
+            res.status(200).json(`DELETE user with id ${id} : ok`);
+            
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error);
+        }
+    }
 }
 
 

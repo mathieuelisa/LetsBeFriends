@@ -1,21 +1,21 @@
 const db = require('../database');
 
 class CoreModel {
-	#id;
+	id;
 
 	constructor(obj) {
 		if (this.id) {
-			this.#id = obj.id;
+			this.id = obj.id;
 		}
 	}
 
 	get id() {
-		return this.#id;
+		return this.id;
 	}
 
 	set id(id) {
 		if (typeof id !== 'number') throw Error('id doit être un nombre !');
-		this.#id = id;
+		this.id = id;
 	}
 
 	// static async findAll() {
@@ -39,11 +39,11 @@ class CoreModel {
 	// }
 
 	static async delete(id) {
-		const tableName = this.constructor.tableName;
-		//Allow to delete the actual instance of the model or to target one specify id
-		const idToUse = id ? id : this.id;
+		const tableName = this.tableName;
+		console.log(`DELETE FROM "${tableName}" WHERE id=$1`)
 		try {
-			await db.query(`DELETE FROM "${tableName}" WHERE id=$1`, [idToUse])
+			const result = await db.query(`DELETE FROM "${tableName}" WHERE id=$1`, [id])
+			console.log(result)
 		} catch (error) {
 			console.log(error);
 		}

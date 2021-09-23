@@ -9,7 +9,7 @@ const eventController = {
             res.status(201).json(events);
         } catch (error) {
             console.log(error);
-            response.status(500).json(error);
+            res.status(500).json(error);
         }
     },
 
