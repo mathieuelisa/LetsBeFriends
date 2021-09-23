@@ -1,12 +1,18 @@
 import "./styles.scss"
+<<<<<<< HEAD
 
+=======
+>>>>>>> f8a7d5aa5c84f4e064e2dfab98f4cb5837ca5bb7
 import Input from "../Input"
 
+//import ReactComponents
+import Button from "../../Styledcomponents"
 import Avatar from "../../Styledcomponents/Avatar"
 
 function ProfilContainer(){
     return(
         <div className="profil__container">
+            <Button className='toggle' name='=' />
             <div className="mainProfil__container">
                 <div className="profil__container-avatar">
                     <Avatar 

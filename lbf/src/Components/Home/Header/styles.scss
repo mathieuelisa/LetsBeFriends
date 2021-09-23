@@ -68,6 +68,13 @@
             cursor: pointer;
             text-decoration: none;
             color: whitesmoke;
+
+            &:hover {
+                transform: rotate(90deg);
+                background-color: rgba($color: whitesmoke, $alpha: 0.9);
+                color: rgba(229, 175, 108);
+                transition: transform 0.5s, background-color 0.5s;
+            }
         }
     }
 }

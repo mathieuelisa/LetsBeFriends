@@ -1,4 +1,7 @@
+import Button from "../Styledcomponents"
 import ContactContainer from "./MainContainer"
+
+import './styles.scss'
 
 
 function ContactPage(){
