@@ -14,7 +14,7 @@ Content-Type: application/json
 {
     "firstname": "test_first_name",
     "lastname" : "test_last_name",
-    "email":"test85@gmail.com",
+    "email":"test86@gmail.com",
     "password" : "1234",
     "confirmPassword" : "1234",
     "gender" : "male",
