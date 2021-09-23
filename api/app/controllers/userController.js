@@ -22,12 +22,12 @@ const userController = {
             console.log(error);
             res.status(500).json(error);
         }
-        
+
     },
 
-    create : async(req, res, next) =>{
+    create: async (req, res, next) => {
         const user = new User(req.body);
-        if(user.password === user.confirmPassword){
+        if (user.password === user.confirmPassword) {
             try {
                 const result = await user.save();
                 res.status(201).json(result)
@@ -35,14 +35,14 @@ const userController = {
                 console.log(error);
                 res.status(500).json(error);
             }
-        }else{
+        } else {
             res.status(400).json(`password and confirmPassword must be the same`)
         }
 
     },
 
-    update : async(req, res, next)=>{
-    const user = new User(req.body);
+    update: async (req, res, next) => {
+        const user = new User(req.body);
         try {
             const result = await user.save();
             res.status(201).json(result)
@@ -52,13 +52,13 @@ const userController = {
         }
     },
 
-    delete : async(req, res, next)=>{
+    delete: async (req, res, next) => {
         try {
             const id = req.body.id;
             console.log(id)
             await User.delete(id);
             res.status(200).json(`DELETE user with id ${id} : ok`);
-            
+
         } catch (error) {
             console.log(error);
             res.status(500).json(error);

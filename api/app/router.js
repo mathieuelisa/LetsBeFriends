@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { eventController, languageController, tagController, userController } = require('./controllers/index')
 
-const { newUserSchema, updateUserSchema } = require('./schemas/user')
+const { newUserSchema, updateUserSchema, updateUserSecuritySchema } = require('./schemas/user')
 const { newEventSchema, updateEventSchema } = require('./schemas/event')
 const { validateBody, validateQuery, validateParams } = require('./services/validator')
 
@@ -22,13 +22,13 @@ const { validateBody, validateQuery, validateParams } = require('./services/vali
  */
 
 router.get('/events/:id', eventController.findOneById)
+
 router
     .route('/events')
     .get(eventController.findAll)
     .post(validateBody(newEventSchema), eventController.create)
     .patch(validateBody(updateEventSchema), eventController.update)
     .delete(eventController.delete)
-
 
 // LANGUAGE
 

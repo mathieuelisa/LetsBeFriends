@@ -47,20 +47,23 @@ Content-Type: application/json
 GET {{baseUrl}}/events/16
 ### FIND ALL LIMIT
 GET {{baseUrl}}/events/?limit=10
-<<<<<<< HEAD
-=======
+
+###
 GET http://localhost:3000/v1/users/?limit=2
+
+### 
+
 GET http://localhost:3000/v1/events/2
->>>>>>> swagger-generator
-=======
+
 ### UPDATE EVENTS
 PATCH  {{baseUrl}}/events
 Content-Type: application/json
 
 {
     "id" : 3,
-    "title" : "bullshiiiit"
+    "title" : "efefefef"
 }
+
 ### DELETE
 DELETE {{baseUrl}}/events
 Content-Type: application/json
@@ -70,5 +73,20 @@ Content-Type: application/json
 }
 ###
 
+POST  {{baseUrl}}/events
+Content-Type: application/json
 
->>>>>>> feature-model
+{
+    "title": "efefefef",
+    "starting_date": "2021-10-20T06:00:26.000Z",
+    "ending_date": "2021-11-09T15:35:03.000Z",
+    "img_url": "http://dummyimage.com/103x100.png/5fa2dd/ffffff",
+    "places_left": 9,
+    "description": "Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+    "longitude": 159,
+    "latitude": 14,
+    "user_id": 16
+}
+
+
+
