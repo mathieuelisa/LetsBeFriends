@@ -43,7 +43,7 @@ CREATE TABLE event (
     description TEXT NOT NULL,
     longitude longitude_domain NOT NULL,
     latitude latitude_domain NOT NULL,
-    user_id INT NOT NULL REFERENCES "user"(id),
+    user_id INT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), 
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW() 
 );
@@ -66,43 +66,43 @@ CREATE TABLE tag (
 );
 
 CREATE TABLE user_speak_language (
-    user_id INT NOT NULL REFERENCES "user"(id),
-    language_id INT NOT NULL REFERENCES language(id),
+    user_id INT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    language_id INT NOT NULL REFERENCES language(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE user_learn_language (
-    user_id INT NOT NULL REFERENCES "user"(id),
-    language_id INT NOT NULL REFERENCES language(id),
+    user_id INT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    language_id INT NOT NULL REFERENCES language(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE user_participate_event (
-    user_id INT NOT NULL REFERENCES "user"(id),
-    event_id INT NOT NULL REFERENCES event(id),
+    user_id INT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    event_id INT NOT NULL REFERENCES event(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE event_has_tag (
-    event_id INT NOT NULL REFERENCES event(id),
-    tag_id INT NOT NULL REFERENCES tag(id),
+    event_id INT NOT NULL REFERENCES event(id) ON DELETE CASCADE,
+    tag_id INT NOT NULL REFERENCES tag(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE event_has_language (
-    event_id INT NOT NULL REFERENCES event(id),
-    language_id INT NOT NULL REFERENCES language(id),
+    event_id INT NOT NULL REFERENCES event(id) ON DELETE CASCADE,
+    language_id INT NOT NULL REFERENCES language(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE user_ask_event (
-    user_id INT NOT NULL REFERENCES "user"(id),
-    event_id INT NOT NULL REFERENCES "event"(id),
+    user_id INT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    event_id INT NOT NULL REFERENCES "event"(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

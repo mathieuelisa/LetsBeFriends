@@ -21,7 +21,13 @@ const userController = require('./controllers/userController');
  * @returns {string} 500 - An error message
  */
 router.get('/events/:id', eventController.findOneById)
+
 router.get('/events', eventController.findAll)
+router.post('/events', eventController.create)
+router.patch('/events', eventController.update)
+router.delete('/events', eventController.delete)
+
+
 // LANGUAGE
 
 // TAG
