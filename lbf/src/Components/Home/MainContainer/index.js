@@ -12,16 +12,17 @@ import Header from "../Header"
 
 function MainContainer(){
 
-    const [showModal, setShowModal] = useState(false);
+    const [ModalLogin, setModalLogin] = useState(false);
+    const [ModalSignup, setModalSignup] = useState(false);
     const openModal = () => {
-        setShowModal(prev => !prev);
+        setModalLogin(prev => !prev);
     }
     return(
         <div className="main__container" style={{backgroundImage:`url(${wallpaper})`}}>
 
             <div className="main__container-overlay">
                 <Header openModal={openModal} />
-                <Modal showModal={showModal} /> 
+                <Modal ModalLogin={ModalLogin} /> 
                 <h1 className="main__container--title">LETS BE FRIEND</h1>
                 <h3 className="main__container--secondTitle">The simpliest way to meet people and train languages !</h3>
             </div>

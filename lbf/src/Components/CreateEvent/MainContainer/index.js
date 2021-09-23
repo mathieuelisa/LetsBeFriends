@@ -5,6 +5,7 @@ import Calendar from "react-calendar"
 import "./styles.scss"
 import imgEvent from "../../../assets/Img/sport.png"
 import Input from "../../Profil/Input"
+import Button from "../../Styledcomponents"
 
 function CreateEventContainer(){
     // States for calendar
@@ -16,6 +17,7 @@ function CreateEventContainer(){
 
     return(
         <div className="createEvent__container">
+            <Button className='toggle' name='=' />
             <div className="mainCreateEvent__container">
                 <div className="createEvent__container-infosDetails">
                     <form id="registerForm"> 
