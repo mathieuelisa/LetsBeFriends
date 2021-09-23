@@ -11,6 +11,10 @@ import github from "../../../assets/Icons/github.png"
 
 import avatarMathieu from "../../../assets/Profils/mathieu.jpg"
 import avatarRobin from "../../../assets/Profils/robin.jpg"
+import avatarJulien from "../../../assets/Profils/julien.jpg"
+import avatarJordan from "../../../assets/Profils/jordan.jpg"
+import avatarEmmanuel from "../../../assets/Profils/emmanuel.jpg"
+
 
 function ContactContainer(){
     return(
@@ -35,7 +39,7 @@ function ContactContainer(){
                             <Avatar 
                             customDiv={"contact__avatar-div"} 
                             customImg={"contact__avatar-img"}
-                            customPics={avatarRobin}
+                            customPics={avatarJulien}
                             />
                             <h3 className="contact__avatar-post">Scrum Master</h3>
                                 <div className="contact__avatar-social">
@@ -71,7 +75,7 @@ function ContactContainer(){
                         <Avatar 
                         customDiv={"contact__avatar-div"} 
                         customImg={"contact__avatar-img"} 
-                        customPics={avatarMathieu}
+                        customPics={avatarEmmanuel}
                         />
                         <h3 className="contact__avatar-post">Réfèrent technique</h3>
                                 <div className="contact__avatar-social">
@@ -89,7 +93,7 @@ function ContactContainer(){
                         <Avatar 
                         customDiv={"contact__avatar-div"} 
                         customImg={"contact__avatar-img"}
-                        customPics={avatarMathieu}
+                        customPics={avatarJordan}
                         />
                         <h3 className="contact__avatar-post">Lead Dev BACK</h3>
                                 <div className="contact__avatar-social">
