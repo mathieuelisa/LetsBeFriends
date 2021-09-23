@@ -10,17 +10,15 @@
         flex-direction: column; 
         height: 80%;
         width: 60%;
-        padding: 50px;
+        padding: 30px;
         text-align: start;
         color: whitesmoke;
         font-family: Arial, Helvetica, sans-serif;
-        margin: 10px;
     }
 
-    &-avatar{
+    &-avatars{
         display: flex;
         flex-direction: column;
-        width: 30%;
         height: 60%;
         padding: 40px;
         font-family: Arial, Helvetica, sans-serif;
@@ -43,7 +41,7 @@
 .mainProfil__container{
     display: flex;
     align-items: center;
-    height: 700px;
+    min-height: 700px;
     width: 80%;
     background: rgba( 255, 255, 255, 0.1 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -64,11 +62,47 @@
     padding: 10px;
     margin: 15px;
     box-shadow: 0 0 7px -1px;
+    margin: 0 auto;
 
     &-text{
         font-size: 0.8em;
         background: rgba( 255, 255, 255, 0.0 );
         border: none;
         resize: none;
+    }
+}
+
+.input__container{
+    text-align: end;
+}
+
+.profil-genre, .profil-telNumber{
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+@media screen and (max-width: 970px){
+    .mainProfil__container{
+        flex-direction: column;
+        margin: 60px 0 40px 0;
+        height: auto;
+    }
+
+    .mainProfil__container{
+        height: auto;
+    }
+
+    .profil__container-data{
+        text-align: center;
+        width: 100%;
+    }
+
+    .input__container{
+        margin: 0 auto;
+    }
+
+    .profil__container{
+        height: auto;
     }
 }

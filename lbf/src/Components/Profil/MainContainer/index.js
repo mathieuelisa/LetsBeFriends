@@ -13,14 +13,14 @@ function ProfilContainer(){
         <div className="profil__container">
             <Button className='toggle' name='=' />
             <div className="mainProfil__container">
-                <div className="profil__container-avatar">
+                <div className="profil__container-avatars">
                     <Avatar 
                     customDiv={"profil__container-avatar"} 
                     customImg={"profil__container-pictures"} 
                     customPics={avatarMicheline}
                     />
-                    <h2>No binary</h2>
-                    <h2>Tel: 07 85 11 25 18</h2>
+                    <h2 className="profil-genre">No binary</h2>
+                    <h2 className="profil-telNumber">Tel: 07 85 11 25 18</h2>
                 </div>
 
 
