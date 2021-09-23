@@ -1,5 +1,5 @@
 import "./styles.scss"
-import avatarMicheline from "../../../assets/Img/micheline.jpg"
+
 import Input from "../Input"
 
 import Avatar from "../../Styledcomponents/Avatar"
@@ -19,7 +19,7 @@ function ProfilContainer(){
 
 
                 <div className="profil__container-data">
-                    <Input />
+                    <Input name={"PROFIL MODIFIER"} name2={"PASSWORD MODIFIER"}/>
                     <p>Micheline</p>
                     <p>Michaudiere</p>
                     <p>Paris, 20eme</p>

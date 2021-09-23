@@ -1,6 +1,7 @@
 // Styles
 import "./styles.scss"
 import "../../../assets/Fonts/Surfing2.woff"
+// import "../../../assets/Fonts/capital.woff2"
 import wallpaper from "../../../assets/Wallpaper/wallpaper.jpg"
 
 import Header from "../Header"
