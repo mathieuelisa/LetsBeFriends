@@ -12,11 +12,11 @@ POST  {{baseUrl}}/users
 Content-Type: application/json
 
 {
-    "firstname": "test_first_name",
+    "firstname": "test-first-name",
     "lastname" : "test_last_name",
-    "email":"test86@gmail.com",
-    "password" : "1234",
-    "confirmPassword" : "1234",
+    "email":"test83fffdef@gmail.com",
+    "password" : "azezaeazeaze",
+    "confirmPassword" : "azezaeazeaze",
     "gender" : "male",
     "phone_number" : "04546574984"
     
@@ -45,7 +45,7 @@ Content-Type: application/json
 ### ---- EVENT
 ## FIND ONE
 GET {{baseUrl}}/events/16
-### FIND ALL LIMI
+### FIND ALL LIMIT
 GET {{baseUrl}}/events/?limit=10
 <<<<<<< HEAD
 =======

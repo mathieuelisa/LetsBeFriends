@@ -1,5 +1,4 @@
 const express = require('express');
-
 const router = express.Router();
 
 const eventController = require('./controllers/eventController');
@@ -7,7 +6,11 @@ const languageController = require('./controllers/languageController');
 const tagController = require('./controllers/tagController');
 const userController = require('./controllers/userController');
 
-// EVENT
+const { newUserSchema, updateUserSchema } = require('./schemas/user')
+const { newEventSchema, updateEventSchema } = require('./schemas/event')
+const { validateBody, validateQuery, validateParams } = require('./services/validator')
+
+// --- EVENT
 
 // GET/events/:id
 /**
@@ -23,8 +26,8 @@ const userController = require('./controllers/userController');
 router.get('/events/:id', eventController.findOneById)
 
 router.get('/events', eventController.findAll)
-router.post('/events', eventController.create)
-router.patch('/events', eventController.update)
+router.post('/events', validateBody(newEventSchema), eventController.create)
+router.patch('/events', validateBody(updateEventSchema), eventController.update)
 router.delete('/events', eventController.delete)
 
 
@@ -32,7 +35,7 @@ router.delete('/events', eventController.delete)
 
 // TAG
 
-// USER
+// --- USER
 
 // GET / users
 /**
@@ -45,8 +48,8 @@ router.delete('/events', eventController.delete)
  */
 router.get('/users', userController.findAll)
 
-router.post('/users', userController.create)
-router.patch('/users', userController.update)
+router.post('/users', validateBody(newUserSchema), userController.create)
+router.patch('/users', validateBody(updateUserSchema), userController.update)
 
 router.delete('/users', userController.delete)
 // GET /users/:id
