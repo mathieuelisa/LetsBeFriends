@@ -18,7 +18,7 @@ Content-Type: application/json
 {
     "firstname": "test_first_name",
     "lastname" : "test_last_name",
-    "email":"test14@gmail.com",
+    "email":"test84@gmail.com",
     "password" : "1234",
     "confirmPassword" : "1234",
     "gender" : "male",
@@ -32,7 +32,7 @@ PATCH  {{baseUrl}}/users
 Content-Type: application/json
 
 {
-    "id" : 21,
+    "id" : 77,
     "phone_number" : "125874"
     
 }
@@ -43,7 +43,7 @@ DELETE {{baseUrl}}/users
 Content-Type: application/json
 
 {
-    "id" : 21
+    "id" : 77
 }
 
 ###
