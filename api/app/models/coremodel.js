@@ -11,10 +11,10 @@ const db = require('../database');
 
 class CoreModel {
 	id;
-/**
- * The coreModel constructor
- * @param {object} obj a literal object with properties copied into the instance
- */
+	/**
+	 * The coreModel constructor
+	 * @param {object} obj a literal object with properties copied into the instance
+	 */
 	constructor(obj) {
 		if (this.id) {
 			this.id = obj.id;
@@ -50,9 +50,9 @@ class CoreModel {
 	// 	}
 	// }
 
-/**
- * Delete a instance of the model or to target one specify id
- */
+	/**
+	 * Delete a instance of the model or to target one specify id
+	 */
 
 	static async delete(id) {
 		const tableName = this.constructor.tableName;

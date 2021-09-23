@@ -12,11 +12,11 @@ POST  {{baseUrl}}/users
 Content-Type: application/json
 
 {
-    "firstname": "test_first_name",
+    "firstname": "test-first-name",
     "lastname" : "test_last_name",
     "email":"test89@gmail.com",
-    "password" : "1234",
-    "confirmPassword" : "1234",
+    "password" : "fvzefgzefzerf",
+    "confirmPassword" : "fvzefgzefzerf",
     "gender" : "male",
     "phone_number" : "04546574984"
     
@@ -55,7 +55,7 @@ Content-Type: application/json
 ### ---- EVENT
 ## FIND ONE
 GET {{baseUrl}}/events/16
-### FIND ALL LIMI
+### FIND ALL LIMIT
 GET {{baseUrl}}/events/?limit=10
 ### UPDATE EVENTS
 PATCH  {{baseUrl}}/events
@@ -63,8 +63,9 @@ Content-Type: application/json
 
 {
     "id" : 3,
-    "title" : "bullshiiiit"
+    "title" : "efefefef"
 }
+
 ### DELETE
 DELETE {{baseUrl}}/events
 Content-Type: application/json
@@ -73,5 +74,21 @@ Content-Type: application/json
     "id" : 16
 }
 ###
+
+POST  {{baseUrl}}/events
+Content-Type: application/json
+
+{
+    "title": "efefefef",
+    "starting_date": "2021-10-20T06:00:26.000Z",
+    "ending_date": "2021-11-09T15:35:03.000Z",
+    "img_url": "http://dummyimage.com/103x100.png/5fa2dd/ffffff",
+    "places_left": 9,
+    "description": "Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+    "longitude": 159,
+    "latitude": 14,
+    "user_id": 16
+}
+
 
 

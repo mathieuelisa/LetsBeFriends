@@ -1,4 +1,4 @@
-const {Language}  = require(`../models`);
+const { Language } = require(`../models`);
 
 const languageController = {
 
@@ -10,7 +10,7 @@ const languageController = {
             console.log(error);
             res.status(500).json(error);
         }
-        
+
     },
 
     findOneById: async (req, res, next) => {
@@ -30,7 +30,7 @@ const languageController = {
             res.json(language);
 
         } catch (error) {
-            console;log(error);
+            console; log(error);
             res.status(500).json(error)
         }
     },

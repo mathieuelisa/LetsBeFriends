@@ -38,7 +38,7 @@ const eventController = {
 
     },
 
-    create : async(req, res, next) =>{
+    create: async (req, res, next) => {
         const event = new Event(req.body);
         try {
             const result = await event.save();
@@ -49,7 +49,7 @@ const eventController = {
         }
     },
 
-    update : async(req, res, next)=>{
+    update: async (req, res, next) => {
         const event = new Event(req.body);
         try {
             const result = await event.save();
@@ -60,13 +60,13 @@ const eventController = {
         }
     },
 
-    delete : async(req, res, next)=>{
+    delete: async (req, res, next) => {
         try {
             const id = req.body.id;
             console.log(id)
             await Event.delete(id);
             res.status(200).json(`DELETE event with id ${id} : ok`);
-            
+
         } catch (error) {
             console.log(error);
             res.status(500).json(error);

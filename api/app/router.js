@@ -1,13 +1,13 @@
 const express = require('express');
-
 const router = express.Router();
 
-const eventController = require('./controllers/eventController');
-const languageController = require('./controllers/languageController');
-const tagController = require('./controllers/tagController');
-const userController = require('./controllers/userController');
+const { eventController, languageController, tagController, userController } = require('./controllers/index')
 
-// EVENT
+const { newUserSchema, updateUserSchema, updateUserSecuritySchema } = require('./schemas/user')
+const { newEventSchema, updateEventSchema } = require('./schemas/event')
+const { validateBody, validateQuery, validateParams } = require('./services/validator')
+
+// --- EVENT
 
 // GET/events/:id
 /**
@@ -20,19 +20,21 @@ const userController = require('./controllers/userController');
  * @returns {string} 404 - An error message
  * @returns {string} 500 - An error message
  */
+
 router.get('/events/:id', eventController.findOneById)
 
-router.get('/events', eventController.findAll)
-router.post('/events', eventController.create)
-router.patch('/events', eventController.update)
-router.delete('/events', eventController.delete)
-
+router
+    .route('/events')
+    .get(eventController.findAll)
+    .post(validateBody(newEventSchema), eventController.create)
+    .patch(validateBody(updateEventSchema), eventController.update)
+    .delete(eventController.delete)
 
 // LANGUAGE
 
 // TAG
 
-// USER
+// --- USER
 
 // GET / users
 /**
@@ -43,10 +45,13 @@ router.delete('/events', eventController.delete)
  * @returns {Array<User>} 200 - An array of users
  * @returns {string} 500 - An error message 
  */
-router.get('/users', userController.findAll)
 
-router.post('/users', userController.create)
-router.patch('/users', userController.update)
+router
+    .route('/users')
+    .get(userController.findAll)
+    .post(validateBody(newUserSchema), userController.create)
+    .patch(validateBody(updateUserSchema), userController.update)
+    .delete(userController.delete)
 
 router.delete('/users', userController.delete)
 
