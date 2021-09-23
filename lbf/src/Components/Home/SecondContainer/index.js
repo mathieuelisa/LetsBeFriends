@@ -27,7 +27,7 @@ function SecondContainer(){
                         </h3>
                 </div>
 
-                <div className="steps">
+                <div className="steps" id="reverse-text">
                         <h3 className="steps-text1"><span className="steps-title">2. Demande de participation</span><br/> 
                             afin de rejoindre l'évènement
                         </h3>
@@ -47,7 +47,7 @@ function SecondContainer(){
                     </div>
                 </div>
 
-                <div className="steps">
+                <div className="steps" id="reverse-text">
                         <h3 className="steps-text1"><span className="steps-title">4. Donne une note</span><br/> à la fin de chaque évènement auxquelles tu as participé
                             à tes potentiels nouveaux amis et leurs pratique de la langue
                         </h3>
