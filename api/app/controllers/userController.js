@@ -30,7 +30,7 @@ const userController = {
         const password = req.body.password
         try {
             const user = await User.findOneByEmail(email, password)
-            res.status(200).json(user)
+            res.status(user.id ? 200 : 401).json(user)
         } catch (error) {
             console.log(error);
             res.status(500).json(error);

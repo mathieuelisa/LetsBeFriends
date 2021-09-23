@@ -176,9 +176,7 @@ class User extends CoreModel {
             throw new Error(error)
         }
     }
-    /**
-     * Add a user to the database
-     */
+
     static async findOneByEmail(email, password){
         try {
             const {rows} = await db.query(`SELECT * FROM "user" WHERE email=$1`, [email])
@@ -195,7 +193,9 @@ class User extends CoreModel {
             throw new Error(error)
         }
     }
-
+    /**
+     * Add a user to the database
+     */
      async save() {
         try {
             if (this.id) {
