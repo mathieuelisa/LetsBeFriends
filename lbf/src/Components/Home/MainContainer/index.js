@@ -14,15 +14,19 @@ function MainContainer(){
 
     const [ModalLogin, setModalLogin] = useState(false);
     const [ModalSignup, setModalSignup] = useState(false);
-    const openModal = () => {
+    
+    const openModalLogin = () => {
         setModalLogin(prev => !prev);
+    }
+    const openModalSignup = () => {
+        setModalSignup(prev => !prev);
     }
     return(
         <div className="main__container" style={{backgroundImage:`url(${wallpaper})`}}>
 
             <div className="main__container-overlay">
-                <Header openModal={openModal} />
-                <Modal ModalLogin={ModalLogin} /> 
+                <Header openModalLogin={openModalLogin} openModalSignup={openModalSignup} />
+                <Modal showModalLogin={ModalLogin} showModalSignup={ModalSignup} /> 
                 <h1 className="main__container--title">LETS BE FRIEND</h1>
                 <h3 className="main__container--secondTitle">The simpliest way to meet people and train languages !</h3>
             </div>
