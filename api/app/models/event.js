@@ -119,21 +119,22 @@ class Event extends CoreModel {
 		}
 	}
 
-	static async save() {
+	async save() {
 		try {
 			if (this.id) {
-				await db.query(`UPDATE event SET title=$1, starting_date=$2, ending_date=$3, img_url=$4, places_left=$5, description=$6, longitude=$7, latitude=$8, user_id=$9 WHERE id=$10`, [
-					this.title,
-					this.starting_date,
-					this.ending_date,
-					this.img_url,
-					this.places_left,
-					this.description,
-					this.longitude,
-					this.latitude,
-					this.user_id,
-					this.id
-				])
+                let count = 1;
+                const properties = [];
+                const values = [this.id];
+
+                for (const key in this){
+                    if(key == 'id') continue;
+                    properties.push(`"${key}"=$${++count}`)
+                    values.push(this[key])
+                }
+
+                const { rows } = await db.query(`UPDATE "event" SET ${properties} WHERE id=$1 RETURNING *`, values)
+                return new Event(rows[0])
+			
 			} else {
 				const { rows } = await db.query('INSERT INTO event(title, starting_date, ending_date, img_url, places_left, description, longitude, latitude, user_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id', [
 					this.title,

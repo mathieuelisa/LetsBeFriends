@@ -26,20 +26,23 @@ const userController = {
     },
 
     create : async(req, res, next) =>{
-
         const user = new User(req.body);
-        try {
-            const result = await user.save();
-            res.status(201).json(result)
-        } catch (error) {
-            console.log(error);
-            res.status(500).json(error);
+        if(user.password === user.confirmPassword){
+            try {
+                const result = await user.save();
+                res.status(201).json(result)
+            } catch (error) {
+                console.log(error);
+                res.status(500).json(error);
+            }
+        }else{
+            res.status(400).json(`password and confirmPassword must be the same`)
         }
+
     },
 
     update : async(req, res, next)=>{
-
-        const user = new User(req.body);
+    const user = new User(req.body);
         try {
             const result = await user.save();
             res.status(201).json(result)

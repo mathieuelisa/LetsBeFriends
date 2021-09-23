@@ -1,5 +1,6 @@
 const CoreModel = require('./coremodel');
 const db = require('../database');
+const bcrypt = require('bcrypt');
 
 class User extends CoreModel {
     static tableName = 'user';
@@ -134,7 +135,6 @@ class User extends CoreModel {
                     properties.push(`"${key}"=$${++count}`)
                     values.push(this[key])
                 }
-                console.log(`UPDATE "user" SET ${properties} WHERE id=$1 RETURNING *`)
                 const { rows } = await db.query(`UPDATE "user" SET ${properties} WHERE id=$1 RETURNING *`, values)
                 return new User(rows[0])
             } else {

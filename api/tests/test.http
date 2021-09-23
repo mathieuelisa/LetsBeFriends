@@ -1,14 +1,10 @@
 @baseUrl=http://localhost:3000/v1
 
-
-
-
-GET {{baseUrl}}/users/78
+GET {{baseUrl}}/users/11
 
 ###
 
-GET {{baseUrl}}/users/?limit=10
-
+GET {{baseUrl}}/users/?limit=3
 
 ###
 
@@ -18,7 +14,7 @@ Content-Type: application/json
 {
     "firstname": "test_first_name",
     "lastname" : "test_last_name",
-    "email":"test84@gmail.com",
+    "email":"test85@gmail.com",
     "password" : "1234",
     "confirmPassword" : "1234",
     "gender" : "male",
@@ -32,22 +28,39 @@ PATCH  {{baseUrl}}/users
 Content-Type: application/json
 
 {
-    "id" : 78,
+    "id" : 54,
     "phone_number" : "125874"
-    
 }
-
 ###
 
 DELETE {{baseUrl}}/users
 Content-Type: application/json
 
 {
-    "id" : 80
+    "id" : 1
 }
 
 
 ### ---- EVENT
-GET {{baseUrl}}/events/9
-###
+## FIND ONE
+GET {{baseUrl}}/events/16
+### FIND ALL LIMI
 GET {{baseUrl}}/events/?limit=10
+### UPDATE EVENTS
+PATCH  {{baseUrl}}/events
+Content-Type: application/json
+
+{
+    "id" : 3,
+    "title" : "bullshiiiit"
+}
+### DELETE
+DELETE {{baseUrl}}/events
+Content-Type: application/json
+
+{
+    "id" : 16
+}
+###
+
+
