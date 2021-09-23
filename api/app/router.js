@@ -24,6 +24,7 @@ const userController = require('./controllers/userController');
 router.get('/events', eventController.findAll)
 
 // GET/events/:id
+
 /**
  * Respond with one event from database
  * @route GET / events/{id}
