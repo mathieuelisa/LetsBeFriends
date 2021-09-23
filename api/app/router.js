@@ -9,6 +9,20 @@ const userController = require('./controllers/userController');
 
 // EVENT
 
+// GET /events
+
+/**
+ * Responds with all events in database
+ * @route GET /events
+ * @group Event
+ * @summary Responds with all events in database
+ * @returns {Array<Event>} 200 -An array of events
+ * @returns {string} 500 - An error message
+ */
+
+
+router.get('/events', eventController.findAll)
+
 // GET/events/:id
 /**
  * Respond with one event from database
@@ -21,6 +35,7 @@ const userController = require('./controllers/userController');
  * @returns {string} 500 - An error message
  */
 router.get('/events/:id', eventController.findOneById)
+
 
 // LANGUAGE
 
@@ -39,6 +54,10 @@ router.get('/events/:id', eventController.findOneById)
  */
 router.get('/users', userController.findAll)
 
+
+
+
+
 // GET /users/:id
 
 /**
@@ -53,6 +72,14 @@ router.get('/users', userController.findAll)
  */
 
 router.get('/users/:id', userController.findOneById)
+
+// POST/users/:id
+
+//router.post('/users', userController.create)
+
+//router.patch('/users', userController.update)
+
+//router.delete('/users', userController.delete)
 
 
 module.exports = router;
