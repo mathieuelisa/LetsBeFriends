@@ -37,13 +37,13 @@ class User extends CoreModel {
         }
     }
 
-/**
- * Fetches a single id from the database
- * @param {number} id id of the user we're looking for
- * @returns {User|null} null if no users matches the given id in database
- * @static
- * @async
- */
+    /**
+     * Fetches a single id from the database
+     * @param {number} id id of the user we're looking for
+     * @returns {User|null} null if no users matches the given id in database
+     * @static
+     * @async
+     */
 
 
 
@@ -177,17 +177,17 @@ class User extends CoreModel {
         }
     }
 
-    static async findOneByEmail(email, password){
+    static async findOneByEmail(email, password) {
         try {
-            const {rows} = await db.query(`SELECT * FROM "user" WHERE email=$1`, [email])
-            if(rows.length){
+            const { rows } = await db.query(`SELECT * FROM "user" WHERE email=$1`, [email])
+            if (rows.length) {
                 const isCorrectPassword = await bcrypt.compare(password, rows[0].password)
-                if(isCorrectPassword){
+                if (isCorrectPassword) {
                     delete rows[0].password
                     return new User(rows[0]);
                 }
             }
-            return 'email or password not correct' 
+            return 'email or password not correct'
         } catch (error) {
             console.log(error)
             throw new Error(error)
@@ -196,7 +196,7 @@ class User extends CoreModel {
     /**
      * Add a user to the database
      */
-     async save() {
+    async save() {
         try {
             if (this.id) {
                 let count = 1;

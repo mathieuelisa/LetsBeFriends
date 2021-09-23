@@ -49,19 +49,22 @@ class Event extends CoreModel {
 				event.img_url AS "imgUrl",  event.places_left AS "placesLeft", event.longitude, event.latitude, event.user_id AS "ownerId",
 				event.created_at AS "createdAt", event.updated_at AS "updatedAt",
 				json_agg(
-					DISTINCT jsonb_build_object(
+					DISTINCT jsonb_strip_nulls(
+						jsonb_build_object(
 						'id', language.id,
 						'name', language.name
-					)
+					))
 				) AS languages,
 				json_agg(
-					DISTINCT jsonb_build_object(
+					DISTINCT jsonb_strip_nulls(
+						jsonb_build_object(
 						'name', tag.name,
 						'color', tag.color
-					)
+					))
 				) AS tags,
 				json_agg(
-					DISTINCT jsonb_build_object(
+					DISTINCT jsonb_strip_nulls(
+						jsonb_build_object(
 						'id', "user".id,
 						'firstname', "user".firstname,
 						'lastname', "user".lastname,
@@ -74,7 +77,7 @@ class Event extends CoreModel {
 						'imgUrl', "user".img_url,
 						'createdAt', "user".created_at,
 						'updatedAt', "user".updated_at
-					)
+					))
 				) AS participants
 				FROM event
 				FULL OUTER JOIN user_participate_event ON event.id = user_participate_event.event_id
@@ -108,19 +111,22 @@ class Event extends CoreModel {
 				event.img_url AS "imgUrl",  event.places_left AS "placesLeft", event.longitude, event.latitude, event.user_id AS "ownerId",
 				event.created_at AS "createdAt", event.updated_at AS "updatedAt",
 				json_agg(
-					DISTINCT jsonb_build_object(
+					DISTINCT jsonb_strip_nulls(
+						jsonb_build_object(
 						'id', language.id,
 						'name', language.name
-					)
+					))
 				) AS languages,
 				json_agg(
-					DISTINCT jsonb_build_object(
+					DISTINCT jsonb_strip_nulls(
+						jsonb_build_object(
 						'name', tag.name,
 						'color', tag.color
-					)
+					))
 				) AS tags,
 				json_agg(
-					DISTINCT jsonb_build_object(
+					DISTINCT jsonb_strip_nulls(
+						jsonb_build_object(
 						'id', "user".id,
 						'firstname', "user".firstname,
 						'lastname', "user".lastname,
@@ -133,7 +139,7 @@ class Event extends CoreModel {
 						'imgUrl', "user".img_url,
 						'createdAt', "user".created_at,
 						'updatedAt', "user".updated_at
-					)
+					))
 				) AS participants
 				FROM event
 				FULL OUTER JOIN user_participate_event ON event.id = user_participate_event.event_id
