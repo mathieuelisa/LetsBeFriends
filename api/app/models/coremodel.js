@@ -61,7 +61,11 @@ class CoreModel {
 		try {
 			await db.query(`DELETE FROM "${tableName}" WHERE id=$1`, [idToUse])
 		} catch (error) {
-			console.log(error);
+			if (error.detail) {
+				throw new Error(error.detail)
+			} else {
+				throw error;
+			}
 		}
 	}
 }

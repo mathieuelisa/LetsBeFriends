@@ -1,9 +1,15 @@
 const request = require('supertest');
 const app = require('../index')
 
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-const id = 45;
-const email = "test1456@daube.com"
+const id = getRandomIntInclusive(3, 50);
+const email = `test14${getRandomIntInclusive(3, 999)}@daube.com`
+
 //==================== user API test ====================
 /**
  * Testing get all user endpoint
@@ -32,7 +38,6 @@ describe('GET v1/user/:id', function () {
     });
 });
 
-
 /**
  * Testing get a user endpoint by giving a non-existing user
  */
@@ -50,7 +55,6 @@ describe('GET /v1/user/:id', function () {
             });
     });
 });
-
 
 /**
  * Testing post user endpoint
@@ -106,21 +110,21 @@ describe('POST /users', function () {
 /**
  * Testing DELETE user endpoint
  */
-describe('DELETE /users', function () {
-    let data = {
-        id: id,
-    }
-    it('200', function (done) {
-        request(app)
-            .delete('/v1/users')
-            .send(data)
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(200)
-            .expect(`"DELETE user with id ${id} : ok"`)
-            .end(done)
-    });
-});
+// describe('DELETE /users', function () {
+//     let data = {
+//         id: id,
+//     }
+//     it('200', function (done) {
+//         request(app)
+//             .delete('/v1/users')
+//             .send(data)
+//             .set('Accept', 'application/json')
+//             .expect('Content-Type', /json/)
+//             .expect(200)
+//             .expect(`"DELETE user with id ${id} : ok"`)
+//             .end(done)
+//     });
+// });
 
 
 
