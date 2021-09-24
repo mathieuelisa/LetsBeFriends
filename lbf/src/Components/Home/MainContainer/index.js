@@ -1,5 +1,5 @@
 // React
-import React, {useState, useEffect, useRef, useCallback } from 'react';
+import React, {useState, useRef } from 'react';
 //Import styles
 import "./styles.scss"
 //Import fonts
