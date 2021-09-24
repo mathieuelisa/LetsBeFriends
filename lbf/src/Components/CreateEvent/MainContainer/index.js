@@ -1,19 +1,17 @@
 import { useState } from "react"
-
-import Calendar from "react-calendar"
-
-import "./styles.scss"
-import imgEvent from "../../../assets/Img/sport.png"
+//Import React components
 import Input from "../../Profil/Input"
 import Button from "../../Styledcomponents"
+import DatePicker from "react-datepicker"
+// Import styles
+import "./styles.scss"
+// Import pictures
+import imgEvent from "../../../assets/Img/sport.png"
+
 
 function CreateEventContainer(){
     // States for calendar
-    const [date, setDate] = useState(new Date())
-
-        const onChange = date => {
-            setDate(date)
-        }
+    const [selectedDate, setSelectedDate] = useState(null)
 
     return(
         <div className="createEvent__container">
@@ -27,8 +25,15 @@ function CreateEventContainer(){
                         </div>
 
                         <div className="createEvent__container-infosDetails-calendar">
-                            <Calendar onChange={onChange} value={date} />
-                            {console.log(date)}
+                        <label>Date: </label>
+                            <DatePicker 
+                                className="myInputs"
+                                selected={selectedDate} 
+                                onChange={date=>setSelectedDate(date)}
+                                dateFormat="dd/MM/yyyy"
+                                minDate={new Date()}
+                                isClearable
+                            />
                         </div>
 
                         <div className="createEvent__container-infosDetails-location">

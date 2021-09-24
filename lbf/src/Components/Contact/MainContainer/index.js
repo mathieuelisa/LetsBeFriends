@@ -9,7 +9,7 @@ import "../../../assets/Fonts/Caviar.ttf"
 //Import icons
 import linkedin from "../../../assets/Icons/linkedin.png"
 import github from "../../../assets/Icons/github.png"
-
+//Import pictures
 import avatarMathieu from "../../../assets/Profils/mathieu.jpg"
 import avatarRobin from "../../../assets/Profils/robin.jpg"
 import avatarJulien from "../../../assets/Profils/julien.jpg"

@@ -25,11 +25,12 @@
         }
 
         &-calendar{
-            width: 40%;
+            display: flex;
             margin: 30px;
             margin: 0 auto;
-            min-width: 230px;
-            padding-bottom: 10px;
+            min-width: 250px;
+            padding-bottom: 25px;
+            outline: none;
         }
     }
 
@@ -43,6 +44,7 @@
         &-title{
             text-align: start;
             margin: 20px;
+            font-family: 'Caviar';
         }
 
         &-img{
@@ -98,6 +100,7 @@
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
+    font-family: 'Caviar';
 }
 
 

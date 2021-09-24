@@ -1,0 +1,66 @@
+.searchEvent__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+    width: 100%;
+    background: linear-gradient(to top,rgb(178 31 31) 0%, rgb(161, 25, 109) 0%, rgba(253, 187, 45, .5));
+
+        &-form{
+            display: flex;
+            flex-direction: column;
+            width: 20%;
+            height: 100%;
+        }
+
+        &-leaflet{
+            width: 80%;
+            background-color: blue;
+            height: 100%;
+        }
+
+        &-searchForm{
+            height: 60%;
+        }
+
+        &-resultsForm{
+            height: 40%;
+
+            background-color: grey;
+        }
+
+        &-infosDetails-location{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid whitesmoke;
+            width: 70%;
+            margin: 0 auto;
+    }
+
+    #searchForm{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+        margin-top: 30px;
+        height: 500px;
+        font-family: "Caviar";
+    }
+
+    .mySearchInputs{
+        padding-left: 10px;
+        border: none;
+        background: transparent;
+        color: whitesmoke;
+        width: 80%;
+        outline: none;
+        margin-bottom: 10px;
+        font-family: "Caviar";
+    }
+}
+
+.input__container{
+    margin-bottom: 10px;
+}

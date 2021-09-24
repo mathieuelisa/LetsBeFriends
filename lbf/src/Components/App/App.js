@@ -5,6 +5,7 @@ import ProfilPage from "../Profil";
 import ContactPage from "../Contact";
 import './app.scss';
 import CreateEventPage from "../CreateEvent";
+import SearchEventPage from "../SearchEvent";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
 
       <Route path="/contact" exact>
           <ContactPage />
+      </Route>
+
+      <Route path="/searchEvent" exact>
+          <SearchEventPage />
       </Route>
     </div>
   );
