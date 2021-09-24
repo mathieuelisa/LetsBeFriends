@@ -3,6 +3,11 @@
     src: url("../../../assets/Fonts/Amalfi.ttf");
   }
 
+  @font-face {
+    font-family: "Caviar";
+    src: url("../../../assets/Fonts/Caviar.ttf");
+  }
+
 .contact__container{
     display: flex;
     justify-content: center;
@@ -28,6 +33,7 @@
 
     &-infos{
         font-size: 1em;
+        font-family: "Caviar";
     }
 }
 
@@ -78,6 +84,7 @@
     &-post{
         font-size: 0.8em;
         margin-bottom: 15px;
+        font-family: "Caviar";
     }
 
     &-name{
