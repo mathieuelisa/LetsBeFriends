@@ -28,7 +28,7 @@ const userController = {
     findOneByEmail: async (req, res, next) => {
         try {
             const email = req.body.email;
-            const user = await User.findByEmail(email)
+            const user = await User.findOneByEmail(email)
             if (user) {
                 res.status(200).json(user)
             }
@@ -69,6 +69,7 @@ const userController = {
 
     update: async (req, res, next) => {
         const user = new User(req.body);
+        if (user.confirmPassword) delete user.confirmPassword
         try {
             const result = await user.save();
             res.status(201).json(result)

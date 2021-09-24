@@ -29,6 +29,7 @@ const updateUserSchema = Joi.object({
 })
 
 const updateUserSecuritySchema = Joi.object({
+    id: Joi.number().required(),
     password: Joi.string().min(8).required(),
     confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
 })

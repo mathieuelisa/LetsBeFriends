@@ -177,7 +177,7 @@ class User extends CoreModel {
         }
     }
 
-    static async findByEmail(email, password) {
+    static async findOneByEmail(email) {
         try {
             const { rows } = await db.query(`SELECT * FROM "user" WHERE email=$1`, [email])
             if (rows.length) {

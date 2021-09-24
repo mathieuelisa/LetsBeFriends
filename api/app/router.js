@@ -53,9 +53,14 @@ router
     .patch(validateBody(updateUserSchema), userController.update)
     .delete(userController.delete)
 
+// Ask if email exist, if its does
+// Patch the same url with id, password and password confirm 
+//(both must be the same, that will be checked by the Joi Schema).
+//todo We must put another kind of verification of the get.
+//todo SecretQuestion/Answer or a verification by SMS/EMAIL
 router
     .route('/resetpassword')
-    .get(userController.findByEmail)
+    .get(userController.findOneByEmail)
     .patch(validateBody(updateUserSecuritySchema), userController.update)
 
 router.get('/users/login', userController.login)
