@@ -37,7 +37,7 @@ function MainContainer(){
                 <Modal showModalLogin={ModalLogin} showModalSignup={ModalSignup} openModalLogin={openModalLogin} openModalSignup={openModalSignup} />
                 <div className="main__container-text">
                     <h3 className="main__container--secondTitle">The simpliest way to meet people and train languages !</h3>
-                    <h1 className="main__container--title">LETS BE FRIEND</h1>
+                    <h1 className="main__container--title">LETS BE FRIENDS</h1>
                 </div>
             </div>
         </div>

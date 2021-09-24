@@ -15,17 +15,20 @@
     align-items: center;
     margin: 60px;
     font-size: 0.8em;
+    line-height: 23px;
 
     &-text1{
         text-align: end;
         width: 77%;
         padding-right: 40px;
+        font-family: "Caviar";
     }
 
     &-text2{
         text-align: start;
         width: 90%;
         padding-left: 40px;
+        font-family: "Caviar";
     }
 
     &-title{
@@ -48,6 +51,7 @@
     &__explication-text{
         text-align: center;
         margin-bottom: 70px;
+        font-family: "Caviar";
     }
 
     &__explication-title{
