@@ -1,13 +1,13 @@
 const express = require('express');
-
 const router = express.Router();
 
-const eventController = require('./controllers/eventController');
-const languageController = require('./controllers/languageController');
-const tagController = require('./controllers/tagController');
-const userController = require('./controllers/userController');
+const { eventController, languageController, tagController, userController } = require('./controllers/index')
 
-// EVENT
+const { newUserSchema, updateUserSchema, updateUserSecuritySchema } = require('./schemas/user')
+const { newEventSchema, updateEventSchema } = require('./schemas/event')
+const { validateBody, validateQuery, validateParams } = require('./services/validator')
+
+// --- EVENT
 
 // GET /events
 
@@ -34,14 +34,26 @@ router.get('/events', eventController.findAll);
  * @returns {string} 404 - An error message
  * @returns {string} 500 - An error message
  */
+<<<<<<< HEAD
 router.get('/events/:id', eventController.findOneById);
 
+=======
+
+router.get('/events/:id', eventController.findOneById)
+>>>>>>> developpement
+
+router
+    .route('/events')
+    .get(eventController.findAll)
+    .post(validateBody(newEventSchema), eventController.create)
+    .patch(validateBody(updateEventSchema), eventController.update)
+    .delete(eventController.delete)
 
 // LANGUAGE
 
 // TAG
 
-// USER
+// --- USER
 
 // GET / users
 /**
@@ -52,9 +64,22 @@ router.get('/events/:id', eventController.findOneById);
  * @returns {Array<User>} 200 - An array of users
  * @returns {string} 500 - An error message 
  */
+<<<<<<< HEAD
 router.get('/users', userController.findAll);
 
+=======
+>>>>>>> developpement
 
+router
+    .route('/users')
+    .get(userController.findAll)
+    .post(validateBody(newUserSchema), userController.create)
+    .patch(validateBody(updateUserSchema), userController.update)
+    .delete(userController.delete)
+
+router.delete('/users', userController.delete)
+
+router.get('/users/login', userController.login)
 // GET /users/:id
 
 /**
@@ -79,6 +104,8 @@ router.get('/users/:id', userController.findOneById);
 //router.patch('/users', userController.update)
 
 //router.delete('/users', userController.delete)
+
+
 
 
 module.exports = router;

@@ -1,0 +1,42 @@
+@font-face {
+    font-family: "Surfing2";
+    src: url("../../../assets/Fonts/Surfing2.woff");
+  }
+
+.main__container {
+    text-align: center;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgb(60, 151, 83)), to(rgba(240, 17, 17, 0.651)))
+  
+  }
+
+  .main__container-overlay{
+    width: 100%;
+    height: 100%;
+    background: #1a2a6c;
+    background: linear-gradient(to top,rgb(178 31 31) 0%, rgba(178, 31, 31,1) 0%, rgba(253, 187, 45, .5));
+    opacity: 1;
+    position: absolute;
+  }
+
+.main__container--title {
+  color: whitesmoke;
+  font-family: "Surfing2";
+  font-size: 150px;
+  position: relative;
+  top: 198px;
+  opacity: 0.9;
+}
+
+.main__container--secondTitle{
+  color: whitesmoke;
+  font-family: "Surfing2";
+}

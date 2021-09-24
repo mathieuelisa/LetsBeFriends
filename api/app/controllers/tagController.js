@@ -1,4 +1,4 @@
-const {Tag}  = require(`../models`);
+const { Tag } = require(`../models`);
 
 const tagController = {
     findAll: async (req, res) => {
@@ -11,17 +11,17 @@ const tagController = {
         }
     },
 
-    findOneByid: async(req, res, next) => {
+    findOneByid: async (req, res, next) => {
         try {
             const id = parseInt(req.params.id, 10);
-            
+
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
         }
-        
+
     },
-    findOneByName: async(req, res) => {
+    findOneByName: async (req, res) => {
         try {
             const name = req.params.name;
             const tag = await Tag.findOneByName(name);
@@ -30,7 +30,7 @@ const tagController = {
             console.log(error);
             res.status(500).json(error);
         }
-        
+
     },
 }
 

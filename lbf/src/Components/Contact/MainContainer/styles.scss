@@ -1,0 +1,194 @@
+@font-face {
+    font-family: "Amalfi";
+    src: url("../../../assets/Fonts/Amalfi.ttf");
+  }
+
+.contact__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+    background: linear-gradient(to top,rgb(178 31 31) 0%, rgba(178, 31, 31,1) 0%, rgba(253, 187, 45, .5));
+
+    &-title{
+        margin-bottom: 20px;
+    }
+
+    &-text{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 26%;
+        text-align: center;
+        margin: 21px;
+        width: 40%;
+    }
+
+    &-infos{
+        font-size: 1em;
+    }
+}
+
+.mainContact__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 700px;
+    width: 80%;
+    background: rgba( 255, 255, 255, 0.1 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 5px );
+    border-radius: 10px;
+}
+
+.contact__avatar{
+    &-teams{
+        display: flex;
+        flex: 1;
+        width: 100%;
+        justify-content: center;
+    }
+
+    &-profils{
+        display: flex;
+        justify-content: space-around;
+        width: 1250px;
+    }
+
+    &-profil{
+        display: flex;
+
+    }
+
+    &-container{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    &-social{
+        display: flex;
+        text-align: center;
+        justify-content: space-around;
+    }
+
+    &-post{
+        font-size: 0.8em;
+        margin-bottom: 15px;
+    }
+
+    &-name{
+        font-family: "Amalfi";
+    }
+}
+
+
+.contact-tag{
+    margin: 30px;
+}
+
+.linkedin-logo{
+    height: 35px;
+    cursor: pointer;
+    width: 35px;
+}
+
+.github-logo{
+    width: 35px;
+    cursor: pointer;
+}
+
+.contact__avatar-div{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 40%;
+    padding: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 0.5em;
+    justify-content: space-around;
+    cursor: pointer;
+}
+
+.contact__avatar-img{
+    border-radius: 50%;
+    border: 2px solid whitesmoke;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    box-shadow: 0 0 7px -1px;
+    transition: filter .5s ease-in-out;
+    -webkit-filter: grayscale(100%); 
+    filter: grayscale(100%); 
+
+    &:hover{
+    -webkit-filter: grayscale(0%); 
+    filter: grayscale(0%); 
+    }
+}
+.toggle {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    font-size: 1.5em;
+    font-weight: 500;
+    padding: 10px;
+    margin: 10px 20px 10px 20px;
+    border: 3px solid;
+    border-radius: 30px;
+    background-color: rgba(117, 190, 218, 0);
+    cursor: pointer;
+    text-decoration: none;
+    color: whitesmoke;
+    //box-shadow: 0 0 7px -1px;
+
+    &:hover {
+        transform: rotate(90deg);
+        background-color: rgba($color: whitesmoke, $alpha: 0.9);
+        color: rgba(229, 175, 108);
+        transition: transform 0.5s, background-color 0.5s;
+        box-shadow: 0 0 7px -1px;
+    }
+}
+
+@media screen and (max-width: 1240px){
+    .contact__avatar-profils{
+        flex-direction: column;
+    }
+
+    .mainContact__container{
+        height: auto;
+    }
+
+    .contact__avatar-teams{
+        width: 20%;
+    }
+
+    .contact__container{
+        height: auto;
+    }
+
+    .contact__container-text{
+        width: 80%;
+    }
+    
+    .mainContact__container{
+        width: 80%;
+        margin: 60px 0 40px 0;
+    }
+
+    .contact__avatar-post{
+        margin-top: 20px;
+    }
+
+    .contact__container-infos{
+        font-size: 0.8em;
+    }
+}
