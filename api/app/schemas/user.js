@@ -29,8 +29,8 @@ const updateUserSchema = Joi.object({
 })
 
 const updateUserSecuritySchema = Joi.object({
-    password: Joi.string().min(8),
-    confirmPassword: Joi.string().valid(Joi.ref('password')),
+    password: Joi.string().min(8).required(),
+    confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
 })
 
-module.exports = { newUserSchema, updateUserSchema }
+module.exports = { newUserSchema, updateUserSchema, updateUserSecuritySchema }

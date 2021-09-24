@@ -177,7 +177,20 @@ class User extends CoreModel {
         }
     }
 
-    static async findOneByEmail(email, password) {
+    static async findByEmail(email, password) {
+        try {
+            const { rows } = await db.query(`SELECT * FROM "user" WHERE email=$1`, [email])
+            if (rows.length) {
+                return new User(rows[0]);
+            }
+            return 'email is not correct'
+        } catch (error) {
+            console.log(error)
+            throw new Error(error)
+        }
+    }
+
+    static async validByEmailPassword(email, password) {
         try {
             const { rows } = await db.query(`SELECT * FROM "user" WHERE email=$1`, [email])
             if (rows.length) {

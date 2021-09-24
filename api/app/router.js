@@ -53,9 +53,13 @@ router
     .patch(validateBody(updateUserSchema), userController.update)
     .delete(userController.delete)
 
-router.delete('/users', userController.delete)
+router
+    .route('/resetpassword')
+    .get(userController.findByEmail)
+    .patch(validateBody(updateUserSecuritySchema), userController.update)
 
 router.get('/users/login', userController.login)
+
 // GET /users/:id
 
 /**

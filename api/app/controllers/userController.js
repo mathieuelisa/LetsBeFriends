@@ -24,12 +24,26 @@ const userController = {
         }
 
     },
-    login : async(req, res, next)=>{
+
+    findOneByEmail: async (req, res, next) => {
+        try {
+            const email = req.body.email;
+            const user = await User.findByEmail(email)
+            if (user) {
+                res.status(200).json(user)
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error);
+        }
+    },
+
+    login: async (req, res, next) => {
         console.log(req.body)
         const email = req.body.email
         const password = req.body.password
         try {
-            const user = await User.findOneByEmail(email, password)
+            const user = await User.validByEmailPassword(email, password)
             res.status(user.id ? 200 : 401).json(user)
         } catch (error) {
             console.log(error);
@@ -70,12 +84,11 @@ const userController = {
             console.log(id)
             await User.delete(id);
             res.status(200).json(`DELETE user with id ${id} : ok`);
-
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
         }
-    }
+    },
 }
 
 
