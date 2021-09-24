@@ -1,3 +1,73 @@
+
+
+.settings__container{
+    background-color: red;
+    display: flex;
+    position: fixed;
+    top: -8px;
+    right: 0;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease;
+    transform: translateX(3rem);
+
+    &--form{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    &.open {
+        transform: translateX(0);
+        width: 350px;
+
+        .settings__container--toggle {
+            transform: rotate(90deg);
+            right: 300px;
+        }
+    }
+}
+
+.settings__container--input{
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    height: 35px;
+    padding-left: 10px;
+}
+
+.settings__container--button{
+   background-color: orange;
+   height: 35px;
+   border: none;
+   border-radius: 5px;
+   color: whitesmoke;
+}
+
+.settings__container--toggle{
+    color: orange;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 29px;
+    right: 72px;
+    transition: transform 300ms;
+    transform: rotate(0deg);
+    cursor: pointer;
+}
+
+
+
+
+// CSS BUTTON ROBZ
 .header {
     width: 100%;
     display: flex;
@@ -55,34 +125,34 @@
             }
         }
         
-        &__hamburger {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 40px;
-            width: 40px;
-            font-size: 1.5em;
-            font-weight: 500;
-            padding: 10px;
-            margin: 10px 20px 10px 20px;
-            border: 3px solid;
-            border-radius: 30px;
-            background-color: rgba(117, 190, 218, 0);
-            cursor: pointer;
-            text-decoration: none;
-            color: whitesmoke;
+        // &__hamburger {
+        //     display: flex;
+        //     justify-content: center;
+        //     align-items: center;
+        //     height: 40px;
+        //     width: 40px;
+        //     font-size: 1.5em;
+        //     font-weight: 500;
+        //     padding: 10px;
+        //     margin: 10px 20px 10px 20px;
+        //     border: 3px solid;
+        //     border-radius: 30px;
+        //     background-color: rgba(117, 190, 218, 0);
+        //     cursor: pointer;
+        //     text-decoration: none;
+        //     color: whitesmoke;
 
-            &:hover {
-                transform: rotate(90deg);
-                background-color: rgba($color: whitesmoke, $alpha: 0.9);
-                color: rgba(229, 175, 108);
-                transition: transform 0.5s, background-color 0.5s;
-                box-shadow: 0 0 7px -1px;
-            }
-        }
+        //     &:hover {
+        //         transform: rotate(90deg);
+        //         background-color: rgba($color: whitesmoke, $alpha: 0.9);
+        //         color: rgba(229, 175, 108);
+        //         transition: transform 0.5s, background-color 0.5s;
+        //         box-shadow: 0 0 7px -1px;
+        //     }
+        // }
     }
 }
 
-.searchEvent-button-menuhome {
-    position: relative;
-}
+// .searchEvent-button-menuhome {
+//     position: relative;
+// }
