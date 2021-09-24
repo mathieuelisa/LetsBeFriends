@@ -27,8 +27,6 @@
 
         &-resultsForm{
             height: 40%;
-
-            background-color: grey;
         }
 
         &-infosDetails-location{
@@ -66,6 +64,48 @@
 }
 
 .searchEvent{
-    width: 50%;
-    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+    width: 92%;
+    height: 100px;
+    margin: 10px auto;
+    border-radius: 5px;
+    border: 1px solid;
+    box-shadow: 0 0 7px 2px;
+
+    &-infos{
+        display: flex;
+        font-family: "Caviar";
+        flex-direction: column;
+        width: 60%;
+        padding: 13px;
+    }
+
+    &-pictures{
+        display: flex;
+        width: 40%;
+    }
+
+    &-title{
+        font-size: 1.1em;
+    }
+}
+
+.search__container-avatar{
+    display: flex;
+    flex-direction: column;
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+    font-size: 0.5em;
+    justify-content: space-around;
+}
+
+.search__container-pictures{
+    border-radius: 25%;
+    border: 2px solid whitesmoke;
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+    box-shadow: 0 0 7px 1px;
 }

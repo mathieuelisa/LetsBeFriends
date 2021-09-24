@@ -1,6 +1,7 @@
 import { useState } from "react"
 //Import React components
 import Input from "../../Profil/Input"
+import EventCardSearch from "../../Styledcomponents/EventCardSearch"
 
 import DatePicker from "react-datepicker"
 
@@ -72,9 +73,47 @@ function SearchEventContainer(){
                 </div>
 
                 <div className="searchEvent__container-resultsForm">
-                    <div className="searchEvent">
-                        
-                    </div>
+                    {/* Cards for searchPage */}
+                    <EventCardSearch 
+                        classNameCard={"searchEvent"}
+                        infos={"searchEvent-infos"}
+                        pictures={"searchEvent-pictures"}
+                        title={"Atelier cuisine"}
+                        titleConfig={"searchEvent-title"}
+                        language={"English"}
+                        placeLeft={"1 spot left"}
+                    />
+               
+                    <EventCardSearch 
+                        classNameCard={"searchEvent"}
+                        infos={"searchEvent-infos"}
+                        pictures={"searchEvent-pictures"}
+                        title={"Soirée XBOX"}
+                        titleConfig={"searchEvent-title"}
+                        language={"Roumain"}
+                        placeLeft={"2 spots left"}
+                    />
+
+                    <EventCardSearch 
+                        classNameCard={"searchEvent"}
+                        infos={"searchEvent-infos"}
+                        pictures={"searchEvent-pictures"}
+                        title={"Sortie culturelle"}
+                        titleConfig={"searchEvent-title"}
+                        language={"Japanese"}
+                        placeLeft={"2 spots left"}
+                    />
+
+                    <EventCardSearch 
+                        classNameCard={"searchEvent"}
+                        infos={"searchEvent-infos"}
+                        pictures={"searchEvent-pictures"}
+                        title={"Tous chez julien"}
+                        titleConfig={"searchEvent-title"}
+                        language={"Japanese"}
+                        placeLeft={"1 spot left"}
+                    />
+
                 </div>
             </div>
 
