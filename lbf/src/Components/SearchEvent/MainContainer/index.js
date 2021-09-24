@@ -5,6 +5,8 @@ import EventCardSearch from "../../Styledcomponents/EventCardSearch"
 
 import DatePicker from "react-datepicker"
 
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+
 //Import styles
 import "./styles.scss"
 import "./datepicker.scss"
@@ -116,10 +118,19 @@ function SearchEventContainer(){
 
                 </div>
             </div>
+                {/* Component Leaflet  */}
+                <MapContainer center={[48.858370, 2.294481]} zoom={13} scrollWheelZoom={true}>
+                    <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                        <Marker position={[48.858370, 2.294481]}>
+                            <Popup>
+                                A pretty CSS3 popup. <br /> Easily customizable.
+                            </Popup>
+                        </Marker>
+                </MapContainer>
 
-            <div className="searchEvent__container-leaflet">
-                <h1>LEAFLET</h1>
-            </div>
         </div>
     )
 }

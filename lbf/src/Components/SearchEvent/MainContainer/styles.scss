@@ -27,7 +27,10 @@
 
         &-resultsForm{
             height: 40%;
+            overflow-y: scroll;
+            scrollbar-color: rebeccapurple green;
         }
+        
 
         &-infosDetails-location{
             display: flex;
@@ -108,4 +111,24 @@
     width: 80px;
     object-fit: cover;
     box-shadow: 0 0 7px 1px;
+}
+
+.leaflet-container{
+    width: 80%;
+    height: 100vh;
+  }
+
+.searchEvent__container-resultsForm::-webkit-scrollbar{
+    width: 5px;
+} 
+
+
+@media screen and (max-width: 1070px){
+    .searchEvent__container-leaflet{
+        display: none;
+    }
+
+    .searchEvent__container-form{
+        width: 90%;
+    }
 }
