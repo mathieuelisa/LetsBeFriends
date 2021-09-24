@@ -1,6 +1,5 @@
 // React
-import React, {useState} from 'react'
-
+import React, {useState, useEffect, useRef, useCallback } from 'react';
 // Styles
 import "./styles.scss"
 import "../../../assets/Fonts/Surfing2.woff"
@@ -14,27 +13,35 @@ function MainContainer(){
 
     const [ModalLogin, setModalLogin] = useState(false);
     const [ModalSignup, setModalSignup] = useState(false);
+
+    const modalRef = useRef();
+
+    const closeModal = e => {
+        if(modalRef.current === e.target) {
+            setModalLogin(false);
+            setModalSignup(false);
+        }
+    }
     
-    const openModalLogin = () => {
+    const openModalLogin = (prev) => {
         setModalLogin(prev => !prev);
     }
-    const openModalSignup = () => {
+    const openModalSignup = (prev) => {
         setModalSignup(prev => !prev);
     }
     return(
-        <div className="main__container" style={{backgroundImage:`url(${wallpaper})`}}>
+        <div className="main__container" style={{backgroundImage:`url(${wallpaper})`}} >
 
-            <div className="main__container-overlay">
+            <div className="main__container-overlay" ref={modalRef} onClick={closeModal}>
                 <Header openModalLogin={openModalLogin} openModalSignup={openModalSignup} />
-                <Modal showModalLogin={ModalLogin} showModalSignup={ModalSignup} />
+                <Modal showModalLogin={ModalLogin} showModalSignup={ModalSignup} openModalLogin={openModalLogin} openModalSignup={openModalSignup} />
                 <div className="main__container-text">
                     <h3 className="main__container--secondTitle">The simpliest way to meet people and train languages !</h3>
                     <h1 className="main__container--title">LETS BE FRIEND</h1>
                 </div>
             </div>
-
         </div>
     )
 }
 
-export default MainContainer
+export default MainContainer;

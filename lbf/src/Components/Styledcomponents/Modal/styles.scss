@@ -20,6 +20,10 @@
         border-radius: 10px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
         text-align: left;
+        animation-duration: 250;
+        opacity: 1;
+        transform: translateY(0%);
+        transition: 300;
 
         &__form{
 
