@@ -14,6 +14,7 @@
         text-align: start;
         color: whitesmoke;
         font-family: Arial, Helvetica, sans-serif;
+        font-family: "Caviar";
     }
 
     &-avatars{
@@ -34,7 +35,7 @@
         height: 200px;
         width: 200px;
         object-fit: cover;
-        box-shadow: 0 0 7px -1px;
+        box-shadow: 0 0 7px 4px;
     }
 }
 
@@ -79,6 +80,7 @@
 .profil-genre, .profil-telNumber{
     text-align: center;
     margin-top: 20px;
+    font-family: "Caviar";
 }
 
 

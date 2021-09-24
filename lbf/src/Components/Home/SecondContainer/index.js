@@ -1,6 +1,9 @@
 
 import "./styles.scss"
 
+// Fonts
+import "../../../assets/Fonts/Caviar.ttf"
+
 import calendar from "../../../assets/Icons/calendar.svg"
 import question from "../../../assets/Icons/question.svg"
 import ballot from "../../../assets/Icons/ballot.svg"
