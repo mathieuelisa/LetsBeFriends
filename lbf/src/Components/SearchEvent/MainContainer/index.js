@@ -23,24 +23,24 @@ function SearchEventContainer(){
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Event: </label>
-                            <Input 
-                                name={"Soirée BBQ"} 
-                                name2={"Atelier Cuisine"} 
-                                name3={"Soirée Jeux"}
-                                name4={"Sortie culturelle"}
-                            />
+                                <Input 
+                                    name={"Soirée BBQ"} 
+                                    name2={"Atelier Cuisine"} 
+                                    name3={"Soirée Jeux"}
+                                    name4={"Sortie culturelle"}
+                                />
                         </div>
                         {/* Date from */}
                         <div className="searchEvent__container-infosDetails-location">
                             <label>From: </label>
-                            <DatePicker 
-                                className="mySearchInputs"
-                                selected={selectedEndDate} 
-                                onChange={date=>setselectendDate(date)}
-                                dateFormat="dd/MM/yyyy"
-                                minDate={new Date()}
-                                isClearable
-                            />
+                                <DatePicker 
+                                    className="mySearchInputs"
+                                    selected={selectedEndDate} 
+                                    onChange={date=>setselectendDate(date)}
+                                    dateFormat="dd/MM/yyyy"
+                                    minDate={new Date()}
+                                    isClearable
+                                />
                         </div>
                         {/* Date to */}
                         <div className="searchEvent__container-infosDetails-location">
@@ -72,7 +72,9 @@ function SearchEventContainer(){
                 </div>
 
                 <div className="searchEvent__container-resultsForm">
-                    2
+                    <div className="searchEvent">
+                        
+                    </div>
                 </div>
             </div>
 
