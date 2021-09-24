@@ -63,13 +63,23 @@ const eventController = {
     delete: async (req, res, next) => {
         try {
             const id = req.body.id;
-            console.log(id)
             await Event.delete(id);
             res.status(200).json(`DELETE event with id ${id} : ok`);
 
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
+        }
+    },
+
+    search : async (req, res, next)=>{
+        // console.log(req.body)
+        try {
+            const events = await Event.findByParameters(req.body)
+            res.status(200).json(events)
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error.message);
         }
     }
 
