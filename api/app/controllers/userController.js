@@ -6,7 +6,7 @@ const userController = {
         const limit = req.query.limit
         try {
             const users = await User.findAll(limit);
-            res.status(201).json(users);
+            res.status(200).json(users);
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
@@ -17,10 +17,11 @@ const userController = {
         try {
             const id = req.params.id;
             const user = await User.findOneById(id);
-            res.status(200).json(user)
+            if (user) res.status(200).json(user);
+            else res.status(404).json("user not found");
         } catch (error) {
             console.log(error);
-            res.status(500).json(error);
+            res.status(505).json("error");
         }
 
     },

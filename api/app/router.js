@@ -58,6 +58,7 @@ router
 //(both must be the same, that will be checked by the Joi Schema).
 //todo We must put another kind of verification of the get.
 //todo SecretQuestion/Answer or a verification by SMS/EMAIL
+
 router
     .route('/resetpassword')
     .get(userController.findOneByEmail)
