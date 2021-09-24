@@ -2,7 +2,7 @@ import "./styles.scss"
 import Input from "../Input"
 
 //import ReactComponents
-import Button from "../../Styledcomponents"
+import ButtonToggle from "../../Styledcomponents/ButtonToggle"
 import Avatar from "../../Styledcomponents/Avatar"
 
 import avatarMicheline from "../../../assets/Img/micheline.jpg"
@@ -11,7 +11,7 @@ import avatarMicheline from "../../../assets/Img/micheline.jpg"
 function ProfilContainer(){
     return(
         <div className="profil__container">
-            <Button className='toggle' name='=' />
+            <ButtonToggle className='toggle' name='=' />
             <div className="mainProfil__container">
                 <div className="profil__container-avatars">
                     <Avatar 

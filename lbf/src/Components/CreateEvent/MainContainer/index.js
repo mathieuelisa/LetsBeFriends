@@ -1,7 +1,7 @@
 import { useState } from "react"
 //Import React components
 import Input from "../../Profil/Input"
-import Button from "../../Styledcomponents"
+import ButtonToggle from "../../Styledcomponents/ButtonToggle"
 import DatePicker from "react-datepicker"
 // Import styles
 import "./styles.scss"
@@ -15,7 +15,7 @@ function CreateEventContainer(){
 
     return(
         <div className="createEvent__container">
-            <Button className='toggle' name='=' />
+            <ButtonToggle className='toggle' name='=' />
             <div className="mainCreateEvent__container">
                 <div className="createEvent__container-infosDetails">
                     <form id="registerForm"> 

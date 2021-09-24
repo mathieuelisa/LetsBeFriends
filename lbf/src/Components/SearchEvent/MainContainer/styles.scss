@@ -116,12 +116,48 @@
 .leaflet-container{
     width: 80%;
     height: 100vh;
+    z-index: 0;
   }
 
 .searchEvent__container-resultsForm::-webkit-scrollbar{
     width: 5px;
 } 
 
+.toggle--search {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    font-size: 1.5em;
+    font-weight: 500;
+    padding: 10px;
+    margin: 10px 20px 10px 20px;
+    border: 3px solid;
+    border-radius: 30px;
+    background-color: rgba(117, 190, 218, 0);
+    cursor: pointer;
+    text-decoration: none;
+    color: whitesmoke;
+    //box-shadow: 0 0 7px -1px;
+
+    &:hover {
+        transform: rotate(90deg);
+        background-color: rgba($color: whitesmoke, $alpha: 0.9);
+        color: rgba(229, 175, 108);
+        transition: transform 0.5s, background-color 0.5s;
+        box-shadow: 0 0 7px -1px;
+    }
+
+}
+
+.searchEvent-button-menu {
+    position: fixed;
+    z-index: 99;
+    right: 4px;
+    top: 4px;
+}
 
 @media screen and (max-width: 1070px){
     .searchEvent__container-leaflet{

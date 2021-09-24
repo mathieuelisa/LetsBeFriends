@@ -1,5 +1,5 @@
 //Import React components
-import Button from "../../Styledcomponents"
+import ButtonToggle from "../../Styledcomponents/ButtonToggle"
 import Avatar from "../../Styledcomponents/Avatar"
 //Import styles
 import "./styles.scss"
@@ -20,7 +20,7 @@ import avatarEmmanuel from "../../../assets/Profils/emmanuel.jpg"
 function ContactContainer(){
     return(
         <div className="contact__container">
-        <Button className='toggle' name='=' />
+        <ButtonToggle className='toggle' name='=' />
             <div className="mainContact__container">
                 <div className="contact__container-text">
                     <h1 className="contact__container-title">LETS WORK TOGETHER</h1>

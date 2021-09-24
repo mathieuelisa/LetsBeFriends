@@ -2,9 +2,10 @@ import { useState } from "react"
 //Import React components
 import Input from "../../Profil/Input"
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
+import ButtonToggle from '../../Styledcomponents/ButtonToggle'
 
+//Import Tools
 import DatePicker from "react-datepicker"
-
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 //Import styles
@@ -16,6 +17,7 @@ function SearchEventContainer(){
     const [selectedEndDate, setselectendDate] = useState(null)
     return(
         <div className="searchEvent__container">
+            <ButtonToggle className='toggle--search' classNameDiv='searchEvent-button-menu' name='=' />
             <div className="searchEvent__container-form">
                 <div className="searchEvent__container-searchForm">
                    <form id="searchForm">
@@ -120,6 +122,7 @@ function SearchEventContainer(){
             </div>
                 {/* Component Leaflet  */}
                 <MapContainer center={[48.858370, 2.294481]} zoom={13} scrollWheelZoom={true}>
+                
                     <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -135,4 +138,4 @@ function SearchEventContainer(){
     )
 }
 
-export default SearchEventContainer
+export default SearchEventContainer;

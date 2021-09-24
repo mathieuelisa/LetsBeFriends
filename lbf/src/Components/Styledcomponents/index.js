@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react'
 
 
+
 //Robz: J'ai rajouté plusieurs props à Button pour qu'il soit configurable. On peut utiliser celles que l'on veut.
 
 const Button = ({ openModal, className, name, url }) => {
@@ -14,6 +15,7 @@ const Button = ({ openModal, className, name, url }) => {
     }
     const changeModal = (e) => {
         e.preventDefault();
+        console.log('Vous avez cliqué !')
         openModal();
     }
 
