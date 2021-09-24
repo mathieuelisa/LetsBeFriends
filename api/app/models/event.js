@@ -7,14 +7,14 @@ const db = require('../database');
  * @property {number} id
  * @property {string} title
  * @property {string} img_url
- * @property {numbner} places_left
+ * @property {number} places_left
  * @property {string} description
- * @property {timestamptz} starting_date
- * @property {timestamptz} ending_date
- * @property {number} longitude
- * @property {number} latitude
- * @property {timestamptz} created_at
- * @property {timestamptz} updated_at
+ * @property {Date} starting_date
+ * @property {Date} ending_date
+ * @property {number} x.required longitude
+ * @property {number} y.required latitude
+ * @property {Date} created_at
+ * @property {Date} updated_at
  */
 
 /**
@@ -34,6 +34,7 @@ class Event extends CoreModel {
 			this[propName] = obj[propName];
 		}
 	}
+	
 	/**
 	 * fetches a single id from the database
 	 * @param {number} id id of the event we're looking for

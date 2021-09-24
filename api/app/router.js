@@ -13,7 +13,7 @@ const userController = require('./controllers/userController');
 
 /**
  * Responds with all events in database
- * @route GET /events
+ * @route GET /v1/events
  * @group Event
  * @summary Responds with all events in database
  * @returns {Array<Event>} 200 -An array of events
@@ -21,21 +21,20 @@ const userController = require('./controllers/userController');
  */
 
 
-router.get('/events', eventController.findAll)
+router.get('/events', eventController.findAll);
 
 // GET/events/:id
 
 /**
  * Respond with one event from database
- * @route GET / events/{id}
+ * @route GET /events/{id}
  * @group Event
  * @summary Responds with event from database
- * @param {number} id.path.required The id of the event to fetch
  * @returns {Event.model} 200 - A single post identified by its id
  * @returns {string} 404 - An error message
  * @returns {string} 500 - An error message
  */
-router.get('/events/:id', eventController.findOneById)
+router.get('/events/:id', eventController.findOneById);
 
 
 // LANGUAGE
@@ -53,10 +52,7 @@ router.get('/events/:id', eventController.findOneById)
  * @returns {Array<User>} 200 - An array of users
  * @returns {string} 500 - An error message 
  */
-router.get('/users', userController.findAll)
-
-
-
+router.get('/users', userController.findAll);
 
 
 // GET /users/:id
@@ -67,12 +63,14 @@ router.get('/users', userController.findAll)
  * @group User
  * @summary Responds with one user from database
  * @param {number} id.path.required The id of the user to fetch
+ * @param {string} email.query.required - email
+ * @param {string} password.query.required -password user
  * @returns {User.model} 200 - A single post identified by its id
  * @returns {string} 404 - An error message
  * @returns {string} 500 - An error message
  */
 
-router.get('/users/:id', userController.findOneById)
+router.get('/users/:id', userController.findOneById);
 
 // POST/users/:id
 
