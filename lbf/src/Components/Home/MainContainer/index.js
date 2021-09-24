@@ -1,19 +1,14 @@
 // React
 import React, {useState, useEffect, useRef, useCallback } from 'react';
-// Styles
-import "./styles.scss"
-import "../../../assets/Fonts/Surfing2.woff"
-// import "../../../assets/Fonts/capital.woff2"
-import wallpaper from "../../../assets/Wallpaper/wallpaper.jpg"
-//React Components
-import Modal from "../../Styledcomponents/Modal"
-import Header from "../Header"
 //Import styles
 import "./styles.scss"
 //Import fonts
 import "../../../assets/Fonts/Surfing2.woff"
 //Import pictures
 import wallpaper from "../../../assets/Wallpaper/wallpaper.jpg"
+//React Components
+import Modal from "../../Styledcomponents/Modal"
+import Header from "../Header"
 
 function MainContainer(){
 
