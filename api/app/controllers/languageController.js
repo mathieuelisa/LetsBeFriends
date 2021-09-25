@@ -35,13 +35,26 @@ const languageController = {
         }
     },
 
-    createUserSpeakLanguage: async (req, res, next) => {
+    newUserSpeakLanguage: async (req, res, next) => {
         const user_id = req.body.userId;
         const language_id = req.body.languageId;
 
         try {
             const result = await Language.newUserSpeakLanguage(user_id, language_id);
             res.status(201).json(result)
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error);
+        }
+    },
+
+    deleteUserSpeakLanguage: async (req, res, next) => {
+        const user_id = req.body.userId;
+        const language_id = req.body.languageId;
+
+        try {
+            const result = await Language.deleteUserSpeakLanguage(user_id, language_id);
+            res.status(200).json(`Relation between user ${user_id} and languageId ${language_id} deleted`);
         } catch (error) {
             console.log(error);
             res.status(500).json(error);

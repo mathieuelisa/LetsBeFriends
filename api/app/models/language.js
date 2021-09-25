@@ -46,6 +46,20 @@ class Language extends CoreModel {
         }
 
     }
+
+    static async deleteUserSpeakLanguage(user_id, language_id) {
+        try {
+            await db.query('DELETE FROM "user_speak_language" WHERE user_id=$1 AND language_id=$2', [user_id, language_id])
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            } else {
+                throw error;
+            }
+        }
+
+    }
 };
 
 module.exports = Language;
