@@ -40,7 +40,6 @@ const userController = {
     },
 
     login: async (req, res, next) => {
-        console.log(req.body)
         const email = req.body.email
         const password = req.body.password
         try {
@@ -73,7 +72,8 @@ const userController = {
         if (user.confirmPassword) delete user.confirmPassword
         try {
             const result = await user.save();
-            res.status(201).json(result)
+            if (result) res.status(200).json(result)
+            else res.status(400).json("data not valid or ressource do not exist")
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
@@ -83,7 +83,6 @@ const userController = {
     delete: async (req, res, next) => {
         try {
             const id = req.body.id;
-            console.log(id)
             await User.delete(id);
             res.status(200).json(`DELETE user with id ${id} : ok`);
         } catch (error) {
