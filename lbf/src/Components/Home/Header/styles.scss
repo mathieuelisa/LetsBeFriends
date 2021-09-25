@@ -10,7 +10,8 @@
     justify-content: center;
     align-items: center;
     transition: all .3s ease;
-    transform: translateX(3rem);
+    z-index: 99;
+    transform: translateX(50px);
 
     &--form{
         display: flex;
@@ -19,7 +20,7 @@
     }
 
     &.open {
-        transform: translateX(0);
+        transform: translateX(-50px);
         width: 350px;
 
         .settings__container--toggle {
