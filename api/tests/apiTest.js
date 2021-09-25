@@ -238,7 +238,7 @@ describe('GET /v1/events', function () {
 describe('GET /v1/events/:id', function () {
     it('should respond with json containing a single event', function (done) {
         request(app)
-            .get('/v1/events/9')
+            .get('/v1/events/3')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200, done);

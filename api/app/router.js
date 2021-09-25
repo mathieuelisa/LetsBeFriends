@@ -31,7 +31,7 @@ router
     .delete(eventController.delete)
 
 // LANGUAGE
-
+router.post('/speak', languageController.createUserSpeakLanguage)
 // TAG
 
 // --- USER
