@@ -10,6 +10,7 @@ function getRandomIntInclusive(min, max) {
 const id = getRandomIntInclusive(3, 50);
 const email = `test14${getRandomIntInclusive(3, 999)}@daube.com`
 const phone_number = `0610171${getRandomIntInclusive(100, 200)}`
+
 //==================== user API test ====================
 /**
  * Testing get all user endpoint
@@ -26,9 +27,9 @@ describe('GET v1/users', function () {
 });
 
 /**
- * Testing get a user endpoint by giving an existing user
+ * Testing get a user endpoint by giving an existing user id
  */
-describe('GET v1/user/:id', function () {
+describe('GET v1/users/:id', function () {
     it('should respond with json containing a single user', function (done) {
         request(app)
             .get('/v1/users/5')
@@ -197,7 +198,7 @@ describe('GET /users/login bad login', function () {
  */
 describe('GET /users/login', function () {
     let data = {
-        "email": "test89@gmail.com",
+        "email": email,
         "password": "fvzefgzefzerf"
     }
     it('should be accepted, return 200 and user', function (done) {
@@ -213,8 +214,171 @@ describe('GET /users/login', function () {
             });
     });
 });
-//TODO test with good login
 
 
 
 //==================== event API test ====================
+/**
+ * Testing get all event endpoint
+ */
+describe('GET /v1/events', function () {
+    it('should respond with json containing a list of all events (with a limit of 10)', function (done) {
+        request(app)
+            .get('/v1/events')
+            .query({ limit: 10 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, done)
+    });
+});
+
+/**
+ * Testing get a event endpoint by giving an existing event id
+ */
+describe('GET /v1/events/:id', function () {
+    it('should respond with json containing a single event', function (done) {
+        request(app)
+            .get('/v1/events/9')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, done);
+    });
+});
+
+/**
+ * Testing get a event endpoint by giving a non-existing user
+ */
+describe('GET /v1/event/:id Failing', function () {
+    it('should respond with json event not found and 404 code', function (done) {
+        request(app)
+            .get('/v1/events/176877')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(404)
+            .expect('"event not found"') // expecting content value
+            .end((err) => {
+                if (err) return done(err);
+                done();
+            });
+    });
+});
+
+
+/**
+ * Testing post event endpoint
+ */
+describe('POST /events', function () {
+    let data = {
+        "title": "efefefef",
+        "starting_date": "2021-10-20T06:00:26.000Z",
+        "ending_date": "2021-11-09T15:35:03.000Z",
+        "img_url": "http://dummyimage.com/103x100.png/5fa2dd/ffffff",
+        "places_left": 6,
+        "description": "Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+        "longitude": 159,
+        "latitude": 14,
+        "user_id": 16
+    }
+    it('respond with 201 created', function (done) {
+        request(app)
+            .post('/v1/events')
+            .send(data)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(201)
+            .end((err) => {
+                if (err) return done(err);
+                done();
+            });
+    });
+});
+
+/**
+ * Testing post event endpoint
+ */
+describe('POST /events', function () {
+    let data = {
+        //no id
+        "name": "dummy",
+        "contact": "dummy",
+        "address": "dummy"
+    }
+    it('respond with 400 not created', function (done) {
+        request(app)
+            .post('/v1/events')
+            .send(data)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(400)
+            .end((err) => {
+                if (err) return done(err);
+                done();
+            });
+    });
+});
+
+
+/**
+ * Testing patch event endpoint
+ */
+describe('PATCH /events', function () {
+    let data = {
+        "id": 3,
+        "title": "efefefef"
+    }
+    it('Update an event, return 200 and the profil updated', function (done) {
+        request(app)
+            .patch('/v1/events')
+            .send(data)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .end((err) => {
+                if (err) return done(err);
+                done();
+            });
+    });
+});
+
+/**
+ * Testing patch event endpoint
+ */
+describe('PATCH /events', function () {
+    let data = {
+        "fakedata": id,
+        "kjbkjb": phone_number,
+        "fakedata": "Riendutous"
+    }
+    it('should be refused, return 400, and the data that has not been allowed', function (done) {
+        request(app)
+            .patch('/v1/events')
+            .send(data)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(400)
+            .expect('"\\"fakedata\\" is not allowed"')
+            .end((err) => {
+                if (err) return done(err);
+                done();
+            });
+    });
+});
+
+/**
+ * Testing DELETE event endpoint
+ */
+describe('DELETE /events', function () {
+    let data = {
+        id: id,
+    }
+    it('Delete one event by ID', function (done) {
+        request(app)
+            .delete('/v1/events')
+            .send(data)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .expect(`"DELETE event with id ${id} : ok"`)
+            .end(done)
+    });
+});
