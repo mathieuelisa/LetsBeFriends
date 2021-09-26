@@ -34,7 +34,7 @@ const languageController = {
             res.status(500).json(error)
         }
     },
-
+    // --- User Speak Languages
     newUserSpeakLanguage: async (req, res, next) => {
         const user_id = req.body.userId;
         const language_id = req.body.languageId;
@@ -54,6 +54,33 @@ const languageController = {
 
         try {
             const result = await Language.deleteUserSpeakLanguage(user_id, language_id);
+            res.status(200).json(`Relation between user ${user_id} and languageId ${language_id} deleted`);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error);
+        }
+    },
+
+    //--- User Learn Languages
+    newUserLearnLanguage: async (req, res, next) => {
+        const user_id = req.body.userId;
+        const language_id = req.body.languageId;
+
+        try {
+            const result = await Language.newUserLearnLanguage(user_id, language_id);
+            res.status(201).json(result)
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error);
+        }
+    },
+
+    deleteUserLearnLanguage: async (req, res, next) => {
+        const user_id = req.body.userId;
+        const language_id = req.body.languageId;
+
+        try {
+            const result = await Language.deleteUserLearnLanguage(user_id, language_id);
             res.status(200).json(`Relation between user ${user_id} and languageId ${language_id} deleted`);
         } catch (error) {
             console.log(error);

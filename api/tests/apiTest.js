@@ -32,29 +32,10 @@ describe('GET v1/users', function () {
 describe('GET v1/users/:id', function () {
     it('should respond with json containing a single user', function (done) {
         request(app)
-            .get('/v1/users/5')
+            .get('/v1/users/12')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200, done);
-    });
-});
-
-
-/**
- * Testing get a user endpoint by giving a non-existing user
- */
-describe('GET /v1/user/:id', function () {
-    it('should respond with json user not found', function (done) {
-        request(app)
-            .get('/v1/users/176877')
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(404)
-            .expect('"user not found"') // expecting content value
-            .end((err) => {
-                if (err) return done(err);
-                done();
-            });
     });
 });
 
@@ -78,6 +59,23 @@ describe('POST /users', function () {
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(201)
+            .end((err) => {
+                if (err) return done(err);
+                done();
+            });
+    });
+});
+/**
+ * Testing get a user endpoint by giving a non-existing user
+ */
+describe('GET /v1/user/:id', function () {
+    it('should respond with json user not found', function (done) {
+        request(app)
+            .get('/v1/users/176877')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(404)
+            .expect('"user not found"') // expecting content value
             .end((err) => {
                 if (err) return done(err);
                 done();
@@ -380,5 +378,77 @@ describe('DELETE /events', function () {
             .expect(200)
             .expect(`"DELETE event with id ${id} : ok"`)
             .end(done)
+    });
+});
+
+//==================== event API test ====================
+
+/**
+ * Testing new relation user_speak_language
+ */
+describe('POST /v1/speak', function () {
+    let data = {
+        "userId": "3",
+        "languageId": "3",
+    }
+    it('should return 200 and the relation created', function (done) {
+        request(app)
+            .post('/v1/speak')
+            .send(data)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(201, done)
+    });
+});
+/**
+ * Testing new relation user_learn_language
+ */
+describe('POST /v1/learn', function () {
+    let data = {
+        "userId": "3",
+        "languageId": "3",
+    }
+    it('should return 200 and the relation created', function (done) {
+        request(app)
+            .post('/v1/learn')
+            .send(data)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(201, done)
+    });
+});
+
+/**
+ * Testing delete relation user_speak_language
+ */
+describe('DELETE /v1/speak', function () {
+    let data = {
+        "userId": "3",
+        "languageId": "3",
+    }
+    it('should return 200', function (done) {
+        request(app)
+            .delete('/v1/speak')
+            .send(data)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, done)
+    });
+});
+/**
+ * Testing delete relation user_learn_language
+ */
+describe('DELETE /v1/learn', function () {
+    let data = {
+        "userId": "3",
+        "languageId": "3",
+    }
+    it('should return 200', function (done) {
+        request(app)
+            .delete('/v1/learn')
+            .send(data)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, done)
     });
 });

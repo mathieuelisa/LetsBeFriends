@@ -93,7 +93,7 @@ Content-Type: application/json
 
 ###
 
-POST  {{baseUrl}}/speak
+POST  {{baseUrl}}/learn
 Content-Type: application/json
 
 {
@@ -102,7 +102,7 @@ Content-Type: application/json
 }
 ###
 
-DELETE  {{baseUrl}}/speak
+DELETE  {{baseUrl}}/learn
 Content-Type: application/json
 
 {

@@ -35,6 +35,11 @@ router
     .route('/speak')
     .post(languageController.newUserSpeakLanguage)
     .delete(languageController.deleteUserSpeakLanguage)
+router
+    .route('/learn')
+    .post(languageController.newUserLearnLanguage)
+    .delete(languageController.deleteUserLearnLanguage)
+
 // TAG
 
 // --- USER
