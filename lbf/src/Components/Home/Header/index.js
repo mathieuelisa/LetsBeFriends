@@ -25,10 +25,9 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
       <div className='header__navbar'>
         <ButtonModal openModal={openModalLogin} className='header__navbar__login' name='LOGIN' />
         <ButtonModal openModal={openModalSignup} className='header__navbar__signup' name='SIGN UP' />
-        <div className={toggleAction ? 'settings__container' : 'settings__container.open'}>
+        <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
           <ButtonToggle 
             className='settings__container--toggle' 
-            // classNameDiv={`settings__container${toggleAction ? ' open' : "" }`} 
             name='=' 
             handleClick={handleClick}
           />

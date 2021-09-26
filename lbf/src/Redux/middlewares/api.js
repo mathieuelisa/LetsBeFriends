@@ -1,10 +1,10 @@
 
-//import {  } from '../actions/event';
+import {  } from '../actions/event';
 
-export default (store) => (next) => (action) => {
+ export default (store) => (next) => (action) => {
   switch (action.type) {
     
-    default:
-      next(action);
-  }
-};
+     default:
+       next(action);
+   }
+ };
