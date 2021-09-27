@@ -77,7 +77,7 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                     <p>Description:</p>
 
                     <div className="profil__textContent">
-                        <textarea type="textarea" className="profil__textContent-text"> Salut j'aime les brebis </textarea>
+                        <textarea type="textarea" className="profil__textContent-text" name="description" value="This is a description."> Salut j'aime les brebis </textarea>
                     </div>
                 </div>
             </div>

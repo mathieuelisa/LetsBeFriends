@@ -1,8 +1,6 @@
 
 //Import React
 import { useState, useEffect } from "react"
-//Import Redux
-import { useSelector} from 'react-redux'
 //Import React components
 import Input from "../../Profil/Input"
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
@@ -39,7 +37,7 @@ function SearchEventContainer(){
     // useEffect permettant de remettre le menu hamburger a false a chaque rendu
     useEffect(()=>{
         dispatch({type: RESET_TOGGLE})
-    },[])
+    },)
 
 
     return(

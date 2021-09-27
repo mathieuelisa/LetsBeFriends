@@ -23,7 +23,7 @@ const Modal = ({ showModalLogin, showModalSignup, openModalLogin, openModalSignu
     //ex utilisation: setFieldIdentification(valeur du champ: antoine.dupont@gmail.com, name: email, type: signup )
     
     const handleChangeField = (e) => {
-        dispatch(setFieldIdentification(e.target.value, e.target.name, e.target.typeform));
+        dispatch(setFieldIdentification(e.target.value, e.target.name, e.target.label));
     }
 
     //Action update boolean Acceptation des terms
@@ -53,7 +53,7 @@ const Modal = ({ showModalLogin, showModalSignup, openModalLogin, openModalSignu
                             <Input 
                                 name='email'
                                 type='email'
-                                typeform='login' 
+                                label='login' 
                                 value={emailLogin} 
                                 onChange={handleChangeField} 
                                 placeHolder='Email' 
@@ -63,7 +63,7 @@ const Modal = ({ showModalLogin, showModalSignup, openModalLogin, openModalSignu
                             <Input 
                             name='password'
                             type='password'
-                            typeform='login' 
+                            label='login' 
                             value={passwordLogin} 
                             onChange={handleChangeField} 
                             placeHolder='Password' 
@@ -79,13 +79,13 @@ const Modal = ({ showModalLogin, showModalSignup, openModalLogin, openModalSignu
                         <form className='modal-container__modal__formsignup'>
                             <h1>Sign Up</h1>
                             <div className='modal-container__modal__formsignup__name'>
-                                <Input name='firstname' type='text' typeform='signup' value={firstName} placeHolder='Firstname' classNameInput='modal-container__modal__formsignup__name--firstname' classNameDiv='div-input-login' onChange={handleChangeField} />
-                                <Input name='lastname' type='text' typeform='signup' value={lastName} placeHolder='Lastname' classNameInput='modal-container__modal__formsignup__name--lastname' classNameDiv='div-input-login' onChange={handleChangeField} />
+                                <Input name='firstname' type='text' label='signup' value={firstName} placeHolder='Firstname' classNameInput='modal-container__modal__formsignup__name--firstname' classNameDiv='div-input-login' onChange={handleChangeField} />
+                                <Input name='lastname' type='text' label='signup' value={lastName} placeHolder='Lastname' classNameInput='modal-container__modal__formsignup__name--lastname' classNameDiv='div-input-login' onChange={handleChangeField} />
                             </div>
-                            <Input name='email' type='email' typeform='signup' value={emailSignup} placeHolder='Email' classNameInput='modal-container__modal__formsignup--email' classNameDiv='div-input-login' onChange={handleChangeField} />
-                            <Input name='password' type='password' typeform='signup' value={passwordSignup} placeHolder='Password' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField}  />
-                            <Input name='confirmedPassword' type='password' typeform='signup' value={confirmedPassword} placeHolder='Confirm Password' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField} />
-                            <Input name='gender' type='text' typeform='signup' value={gender} placeHolder='Gender' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField} />
+                            <Input name='email' type='email' label='signup' value={emailSignup} placeHolder='Email' classNameInput='modal-container__modal__formsignup--email' classNameDiv='div-input-login' onChange={handleChangeField} />
+                            <Input name='password' type='password' label='signup' value={passwordSignup} placeHolder='Password' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField}  />
+                            <Input name='confirmedPassword' type='password' label='signup' value={confirmedPassword} placeHolder='Confirm Password' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField} />
+                            <Input name='gender' type='text' label='signup' value={gender} placeHolder='Gender' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField} />
                             
                             
                             <div className='modal-container__modal__formsignup__terms'>
