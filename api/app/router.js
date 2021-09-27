@@ -5,7 +5,8 @@ const { eventController, languageController, tagController, userController } = r
 
 const { newUserSchema, updateUserSchema, updateUserSecuritySchema } = require('./schemas/user')
 const { newEventSchema, updateEventSchema } = require('./schemas/event')
-const { validateBody, validateQuery, validateParams } = require('./services/validator')
+const { validateBody, validateQuery, validateParams } = require('./services/validator');
+const { User } = require('./models');
 
 // --- EVENT
 
@@ -13,8 +14,8 @@ const { validateBody, validateQuery, validateParams } = require('./services/vali
 
 /**
  * Responds with all events in database
- * @route GET /v1/events
- * @group Event
+ * @route GET /events
+ * @group Events
  * @summary Responds with all events in database
  * @returns {Array<Event>} 200 -An array of events
  * @returns {string} 500 - An error message
@@ -28,19 +29,16 @@ router.get('/events', eventController.findAll);
 /**
  * Respond with one event from database
  * @route GET /events/{id}
- * @group Event
+ * @group Events
+ * @param {number} id.path.required The id  of the event to fetch
  * @summary Responds with event from database
  * @returns {Event.model} 200 - A single post identified by its id
  * @returns {string} 404 - An error message
  * @returns {string} 500 - An error message
  */
-<<<<<<< HEAD
+
 router.get('/events/:id', eventController.findOneById);
 
-=======
-
-router.get('/events/:id', eventController.findOneById)
->>>>>>> developpement
 
 router
     .route('/events')
@@ -64,32 +62,24 @@ router
  * @returns {Array<User>} 200 - An array of users
  * @returns {string} 500 - An error message 
  */
-<<<<<<< HEAD
 router.get('/users', userController.findAll);
 
-=======
->>>>>>> developpement
 
-router
-    .route('/users')
-    .get(userController.findAll)
-    .post(validateBody(newUserSchema), userController.create)
-    .patch(validateBody(updateUserSchema), userController.update)
-    .delete(userController.delete)
 
-router.delete('/users', userController.delete)
+
 
 router.get('/users/login', userController.login)
+
 // GET /users/:id
 
 /**
  * Respond with one user from database
  * @route GET / users/{id}
- * @group User
+ * @group Users
  * @summary Responds with one user from database
  * @param {number} id.path.required The id of the user to fetch
- * @param {string} email.query.required - email
- * @param {string} password.query.required -password user
+ * @param {string} - email
+ * @param {string} -password user
  * @returns {User.model} 200 - A single post identified by its id
  * @returns {string} 404 - An error message
  * @returns {string} 500 - An error message
@@ -97,15 +87,50 @@ router.get('/users/login', userController.login)
 
 router.get('/users/:id', userController.findOneById);
 
-// POST/users/:id
+// POST/users/
 
-//router.post('/users', userController.create)
+/**
+ * Expected json object in request body
+ * @typedef ReqUserJson
+ * @property {string} firstname
+ * @property {string} lastname
+ * @property {string} gender
+ * @property {string} email
+ * @property {string} password
+ * @property {string} description
+ * @property {number} age
+ * @property {string} city
+ * @property {number} phone_number
+ */
 
-//router.patch('/users', userController.update)
+/**
+ * Add a new user in database
+ * @route POST / users
+ * @group Users
+ * @summary Add a new post in database
+ * @param {ReqUserJson.model | User.model} object.body.required
+ * @returns {User.model} 201 - the newly created user
+ * @returns {string} 500 - An errormessage
+ * @returns {string} 400 - A validation error message
+ */
 
-//router.delete('/users', userController.delete)
 
+router.post('/users', userController.create)
 
+// PATCH/users
+
+router.patch('/users', userController.update)
+
+// DELETE/users
+
+router.delete('/users', userController.delete)
+
+router
+    .route('/users')
+    .get(userController.findAll)
+    .post(validateBody(newUserSchema), userController.create)
+    .patch(validateBody(updateUserSchema), userController.update)
+    .delete(userController.delete)
 
 
 module.exports = router;

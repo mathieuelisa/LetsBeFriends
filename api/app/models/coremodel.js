@@ -1,6 +1,6 @@
 const db = require('../database');
 /**
- * An entity representing a class coremodel
+ * An entity representing a class coreModel
  */
 
 

@@ -10,13 +10,13 @@ const bcrypt = require('bcrypt');
  * @property {string} lastname.required
  * @property {string} gender.required
  * @property {string} email.required
- * @property {string} password.required
+ * @property {string} password
  * @property {string} description
  * @property {number} age
  * @property {string} city
  * @property {number} phone_number
- * @property {Date} created_at
- * @property {Date} updated_at
+ * @property {string}($date-time) created_at
+ * @property {string}($date-time) updated_at
  */
 
 /**
@@ -176,6 +176,15 @@ class User extends CoreModel {
             throw new Error(error)
         }
     }
+
+    /**
+     * Fetches a user by email
+     * @param {*} email 
+     * @param {*} password 
+     * @returns {Array<User>}
+     * @static
+     * @async
+     */
 
     static async findOneByEmail(email, password) {
         try {

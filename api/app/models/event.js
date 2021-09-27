@@ -9,12 +9,12 @@ const db = require('../database');
  * @property {string} img_url
  * @property {number} places_left
  * @property {string} description
- * @property {Date} starting_date
- * @property {Date} ending_date
+ * @property {string} starting_date
+ * @property {string} ending_date
  * @property {number} x.required longitude
  * @property {number} y.required latitude
- * @property {Date} created_at
- * @property {Date} updated_at
+ * @property {string} ($date-time) created_at
+ * @property {string} ($date-time) updated_at
  */
 
 /**
@@ -100,10 +100,7 @@ class Event extends CoreModel {
 		}
 	}
 
-	/**
-	 * add a post to the database
-	 */
-
+	
 
 	static async findAll(limit) {
 		try {
@@ -160,7 +157,9 @@ class Event extends CoreModel {
 			throw new Error(error.detail)
 		}
 	}
-
+	/**
+	 * Add a event in the database
+	 */
 	async save() {
 		try {
 			if (this.id) {
