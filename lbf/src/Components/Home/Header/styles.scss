@@ -9,6 +9,7 @@
 
         display: flex;
         align-items: center;
+        margin-right: 50px;
 
         &__logo {
             top: 0;
@@ -56,8 +57,6 @@
         }
 
          &__settings {
-
-            transition: all 1.5s ease;
         
          .settings__container--toggle {
                 display: flex;
@@ -95,10 +94,10 @@
             transform: translateX(50px);
             position: fixed;
             top: 0px;
-            background: rgba( 255, 255, 255, 0.5 );
+            background: rgba( 255, 255, 255, 0.3 );
             box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-            backdrop-filter: blur( 4px );
-            -webkit-backdrop-filter: blur( 4px );
+            backdrop-filter: blur( 2px );
+            -webkit-backdrop-filter: blur( 2px );
             border-radius: 10px;
             border: 1px solid rgba( 255, 255, 255, 0.18 );
             transition: all 1.5s ease;
@@ -148,5 +147,9 @@
         color: grey;
         cursor: pointer;
         text-decoration: none;
+        
+        &:hover{
+            color: black;
+        }
     }
 }

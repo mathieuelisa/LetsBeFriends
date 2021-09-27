@@ -1,23 +1,61 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 //Import React components
 import Input from "../../Profil/Input"
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
 import ButtonToggle from '../../Styledcomponents/ButtonToggle'
-
 //Import Tools
 import DatePicker from "react-datepicker"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-
 //Import styles
 import "./styles.scss"
 import "./datepicker.scss"
 
+import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux"
+// import actions types
+import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
+
 function SearchEventContainer(){
     const [selectedDate, setSelectedDate] = useState(null)
     const [selectedEndDate, setselectendDate] = useState(null)
+
+    const dispatch = useDispatch()
+    const toggleAction = useSelector((state)=> state.common.toggleAction)
+
+    function handleClick(event){
+        event.preventDefault()
+        console.log("Tu as cliqué sur le bouton")
+        dispatch({type: SET_TOGGLE})
+    }
+
+    // useEffect permettant de remettre le menu hamburger a false a chaque rendu
+    useEffect(()=>{
+        dispatch({type: RESET_TOGGLE})
+    },[])
+
+
     return(
         <div className="searchEvent__container">
-            <ButtonToggle className='toggle--search' classNameDiv='searchEvent-button-menu' name='=' />
+            <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
+                <ButtonToggle 
+                    className='settings__container--toggle' 
+                    name='=' 
+                    handleClick={handleClick}
+                />
+
+                {toggleAction ? 
+                    <div className="header__hamburger">
+                        <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+                        <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
+                        <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
+                        <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
+                        <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
+                        <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
+                    </div>
+                    : ""
+                } 
+            </div>
+
             <div className="searchEvent__container-form">
                 <div className="searchEvent__container-searchForm">
                    <form id="searchForm">
