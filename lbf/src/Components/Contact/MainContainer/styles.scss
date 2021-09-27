@@ -3,6 +3,11 @@
     src: url("../../../assets/Fonts/Amalfi.ttf");
   }
 
+  @font-face {
+    font-family: "Caviar";
+    src: url("../../../assets/Fonts/Caviar.ttf");
+  }
+
 .contact__container{
     display: flex;
     justify-content: center;
@@ -14,6 +19,7 @@
 
     &-title{
         margin-bottom: 20px;
+        font-family: 'Caviar';
     }
 
     &-text{
@@ -28,6 +34,7 @@
 
     &-infos{
         font-size: 1em;
+        font-family: "Caviar";
     }
 }
 
@@ -35,7 +42,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 700px;
+    min-height: 700px;
     width: 80%;
     background: rgba( 255, 255, 255, 0.1 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -78,6 +85,7 @@
     &-post{
         font-size: 0.8em;
         margin-bottom: 15px;
+        font-family: "Caviar";
     }
 
     &-name{
@@ -94,11 +102,21 @@
     height: 35px;
     cursor: pointer;
     width: 35px;
+
+    &:hover{
+        opacity: 0.7;
+        transition: all .3s ease-in-out;
+    }
 }
 
 .github-logo{
     width: 35px;
     cursor: pointer;
+
+    &:hover{
+        opacity: 0.7;
+        transition: all .3s ease-in-out;
+    }
 }
 
 .contact__avatar-div{
@@ -159,20 +177,20 @@
 }
 
 @media screen and (max-width: 1240px){
-    .contact__avatar-profils{
-        flex-direction: column;
+    .contact__container{
+        height: auto;
     }
 
     .mainContact__container{
         height: auto;
     }
 
-    .contact__avatar-teams{
-        width: 20%;
+    .contact__avatar-profils{
+        flex-direction: column;
     }
 
-    .contact__container{
-        height: auto;
+    .contact__avatar-teams{
+        width: 20%;
     }
 
     .contact__container-text{
@@ -190,5 +208,11 @@
 
     .contact__container-infos{
         font-size: 0.8em;
+    }
+
+    .contact__avatar-social{
+        justify-content: space-between;
+        width: 41%;
+        margin: 0 auto;
     }
 }

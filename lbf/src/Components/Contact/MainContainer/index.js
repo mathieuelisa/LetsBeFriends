@@ -1,28 +1,32 @@
 //Import React components
-import Button from "../../Styledcomponents"
+import ButtonToggle from "../../Styledcomponents/ButtonToggle"
 import Avatar from "../../Styledcomponents/Avatar"
 //Import styles
 import "./styles.scss"
 //Import fonts
 import "../../../assets/Fonts/Amalfi.ttf"
+import "../../../assets/Fonts/Caviar.ttf"
 //Import icons
 import linkedin from "../../../assets/Icons/linkedin.png"
 import github from "../../../assets/Icons/github.png"
-
+//Import pictures
 import avatarMathieu from "../../../assets/Profils/mathieu.jpg"
 import avatarRobin from "../../../assets/Profils/robin.jpg"
+import avatarJulien from "../../../assets/Profils/julien.jpg"
+import avatarJordan from "../../../assets/Profils/jordan.jpg"
+import avatarEmmanuel from "../../../assets/Profils/emmanuel.jpg"
+
 
 function ContactContainer(){
     return(
         <div className="contact__container">
-        <Button className='toggle' name='=' />
+        <ButtonToggle className='toggle' name='=' />
             <div className="mainContact__container">
                 <div className="contact__container-text">
-                    <h1 className="contact__container-title">CONTACT</h1>
-                        <p className="contact__container-infos">Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                        nisi ut aliquip ex ea commodo consequat.
+                    <h1 className="contact__container-title">LETS WORK TOGETHER</h1>
+                        <p className="contact__container-infos">Below are the members of the Lets Be Friends project team.<br/>
+                            For more details, to report any bugs or to simply meet one of the members of the site
+                            don't hesitate to contact us on our social networks.
                         </p>
                 </div>
 
@@ -35,7 +39,7 @@ function ContactContainer(){
                             <Avatar 
                             customDiv={"contact__avatar-div"} 
                             customImg={"contact__avatar-img"}
-                            customPics={avatarRobin}
+                            customPics={avatarJulien}
                             />
                             <h3 className="contact__avatar-post">Scrum Master</h3>
                                 <div className="contact__avatar-social">
@@ -71,7 +75,7 @@ function ContactContainer(){
                         <Avatar 
                         customDiv={"contact__avatar-div"} 
                         customImg={"contact__avatar-img"} 
-                        customPics={avatarMathieu}
+                        customPics={avatarEmmanuel}
                         />
                         <h3 className="contact__avatar-post">Réfèrent technique</h3>
                                 <div className="contact__avatar-social">
@@ -89,7 +93,7 @@ function ContactContainer(){
                         <Avatar 
                         customDiv={"contact__avatar-div"} 
                         customImg={"contact__avatar-img"}
-                        customPics={avatarMathieu}
+                        customPics={avatarJordan}
                         />
                         <h3 className="contact__avatar-post">Lead Dev BACK</h3>
                                 <div className="contact__avatar-social">

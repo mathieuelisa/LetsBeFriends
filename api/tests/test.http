@@ -17,8 +17,7 @@ Content-Type: application/json
     "email":"test89@gmail.com",
     "password" : "fvzefgzefzerf",
     "confirmPassword" : "fvzefgzefzerf",
-    "gender" : "male",
-    "phone_number" : "04546574984"
+    "gender" : "male"
     
 }
 
@@ -47,14 +46,14 @@ Content-Type: application/json
 
 {
     "email":"test89@gmail.com",
-    "password" : "1234"
+    "password" : "fvzefgzefzerf"
 }
 
 ###
 
 ### ---- EVENT
 ## FIND ONE
-GET {{baseUrl}}/events/15
+GET {{baseUrl}}/events/2
 ### FIND ALL LIMIT
 GET {{baseUrl}}/events/?limit=10
 ### UPDATE EVENTS
@@ -89,7 +88,18 @@ Content-Type: application/json
     "latitude": 14,
     "user_id": 16
 }
+###
 
+GET  {{baseUrl}}/events/search
+
+Content-Type: application/json
+{
+    "tagName" : ["Couisine"],
+    "languageName" : ["French"],
+    "startingDate" : "2021-10-20 01:08:43+02",
+    "endingDate" : "2021-10-20 12:49:55+02"
+}
+###
 
 ###
 
