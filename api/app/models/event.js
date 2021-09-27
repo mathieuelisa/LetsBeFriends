@@ -35,7 +35,7 @@ class Event extends CoreModel {
 			this[propName] = obj[propName];
 		}
 	}
-	
+
 	/**
 	 * fetches a single id from the database
 	 * @param {number} id.path.required id of the event we're looking for
@@ -202,7 +202,7 @@ class Event extends CoreModel {
 			}
 		}
 	}
-	static async findByParameters  (obj){
+	static async findByParameters(obj) {
 
 		try {
 			const finalObj = format(obj)
@@ -251,7 +251,7 @@ class Event extends CoreModel {
 			${finalObj.query}
 			GROUP BY event.id
 			ORDER BY event.starting_date`, finalObj.values);
-			if(rows.length){
+			if (rows.length) {
 				return rows.map(row => new Event(row));
 			}
 			return null
@@ -259,7 +259,33 @@ class Event extends CoreModel {
 			console.log(error)
 			throw new Error(error.detail)
 		}
+	}
 
+	static async newUserAskEvent(user_id, event_id) {
+		try {
+			const { rows } = await db.query('INSERT INTO "user_ask_event"(user_id, event_id) VALUES($1, $2) RETURNING user_id AS "userId", event_id AS "eventId"', [user_id, event_id])
+			return new Event(rows[0])
+		} catch (error) {
+			console.log(error);
+			if (error.detail) {
+				throw new Error(error.detail)
+			} else {
+				throw error;
+			}
+		}
+	}
+
+	static async deleteUserAskEvent(user_id, event_id) {
+		try {
+			const { rows } = await db.query('DELETE FROM "user_ask_event" WHERE user_id=$1 AND event_id=$2', [user_id, event_id])
+		} catch (error) {
+			console.log(error);
+			if (error.detail) {
+				throw new Error(error.detail)
+			} else {
+				throw error;
+			}
+		}
 	}
 }
 
