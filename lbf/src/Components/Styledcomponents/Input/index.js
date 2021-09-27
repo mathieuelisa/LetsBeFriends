@@ -10,7 +10,7 @@ const Input = ({ name, placeHolder, value, onChange, classNameDiv, classNameInpu
 Input.propTypes = {
     type: PropTypes.string.isRequired,
     placeHolder: PropTypes.string.isRequired,
-    //value: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     classNameDiv: PropTypes.string.isRequired,
     classNameInput: PropTypes.string.isRequired,

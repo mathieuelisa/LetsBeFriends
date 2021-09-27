@@ -24,3 +24,20 @@ export const setFieldIdentification = (value, name, formType) => (
     formType,
   }
 );
+
+export const SET_CHECKBOX_REMEMBER = 'SET_CHECKBOX_REMEMBER';
+
+export const setCheckboxRemember = () => (
+   {
+    type: SET_CHECKBOX_REMEMBER,
+  }
+);
+
+export const SET_CHECKBOX_TERMS = 'SET_CHECKBOX_TERMS';
+
+export const setCheckboxTerms = () => (
+   {
+    type: SET_CHECKBOX_TERMS,
+    
+  }
+);

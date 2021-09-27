@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 import { useEffect, useState } from "react"
+=======
+
+//Import Redux
+import { useSelector, useDispatch} from 'react-redux'
+//Import React
+import { useState } from "react"
+>>>>>>> 4120b778d4586fcd565414d545b50781401dafe8
 //Import React components
 import Input from "../../Profil/Input"
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
@@ -10,12 +18,19 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import "./styles.scss"
 import "./datepicker.scss"
 
+<<<<<<< HEAD
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
+=======
+
+>>>>>>> 4120b778d4586fcd565414d545b50781401dafe8
 
 function SearchEventContainer(){
+
+    const events = useSelector(state => state.event.events)
+
     const [selectedDate, setSelectedDate] = useState(null)
     const [selectedEndDate, setselectendDate] = useState(null)
 
@@ -116,46 +131,7 @@ function SearchEventContainer(){
 
                 <div className="searchEvent__container-resultsForm">
                     {/* Cards for searchPage */}
-                    <EventCardSearch 
-                        classNameCard={"searchEvent"}
-                        infos={"searchEvent-infos"}
-                        pictures={"searchEvent-pictures"}
-                        title={"Atelier cuisine"}
-                        titleConfig={"searchEvent-title"}
-                        language={"English"}
-                        placeLeft={"1 spot left"}
-                    />
-               
-                    <EventCardSearch 
-                        classNameCard={"searchEvent"}
-                        infos={"searchEvent-infos"}
-                        pictures={"searchEvent-pictures"}
-                        title={"Soirée XBOX"}
-                        titleConfig={"searchEvent-title"}
-                        language={"Roumain"}
-                        placeLeft={"2 spots left"}
-                    />
-
-                    <EventCardSearch 
-                        classNameCard={"searchEvent"}
-                        infos={"searchEvent-infos"}
-                        pictures={"searchEvent-pictures"}
-                        title={"Sortie culturelle"}
-                        titleConfig={"searchEvent-title"}
-                        language={"Japanese"}
-                        placeLeft={"2 spots left"}
-                    />
-
-                    <EventCardSearch 
-                        classNameCard={"searchEvent"}
-                        infos={"searchEvent-infos"}
-                        pictures={"searchEvent-pictures"}
-                        title={"Tous chez julien"}
-                        titleConfig={"searchEvent-title"}
-                        language={"Japanese"}
-                        placeLeft={"1 spot left"}
-                    />
-
+                    {events.map((event) => ( <EventCardSearch key={event.id} {...event} classNameCard='searchEvent'/> ))}
                 </div>
             </div>
                 {/* Component Leaflet  */}
