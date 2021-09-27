@@ -1,5 +1,8 @@
+
 //Import React
 import { useState, useEffect } from "react"
+//Import Redux
+import { useSelector} from 'react-redux'
 //Import React components
 import Input from "../../Profil/Input"
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
