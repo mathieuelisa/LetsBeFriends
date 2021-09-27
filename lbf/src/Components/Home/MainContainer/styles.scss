@@ -15,8 +15,15 @@
     justify-content: center;
     align-items: center;
     -webkit-mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgb(60, 151, 83)), to(rgba(240, 17, 17, 0.651)))
-  
   }
+
+.main__container-text{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 200px;
+    opacity: 0.9;
+}
 
   .main__container-overlay{
     width: 100%;
@@ -30,13 +37,37 @@
 .main__container--title {
   color: whitesmoke;
   font-family: "Surfing2";
-  font-size: 150px;
-  position: relative;
-  top: 198px;
-  opacity: 0.9;
+  font-size: 11em;
 }
 
 .main__container--secondTitle{
   color: whitesmoke;
   font-family: "Surfing2";
+}
+
+@media screen and (max-width: 700px){
+  .main__container--title{
+    font-size: 5em;
+    margin-top: 25px;
+  }
+
+  .main__container--secondTitle{
+    font-size: 0.8em;
+  }
+  
+  .eventcard{
+      display: none
+  }
+ 
+  .steps--logo{
+    margin: 0;
+  }
+
+  .header__navbar{
+    flex-direction: column;
+  }
+
+  .main__container-text{
+    top: 70px;
+  }
 }

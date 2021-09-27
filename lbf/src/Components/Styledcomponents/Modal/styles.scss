@@ -1,6 +1,151 @@
 .modal-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    
+    &__modal {
+        position: fixed;
+        left: 25%;
+        top: 15%;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+        width: 50vw;
+        box-sizing: border-box;
+        background-color: whitesmoke;
+        font-family: "Caviar";
+        background: rgba( 255, 255, 255, 0.35 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 13.5px );
+        -webkit-backdrop-filter: blur( 13.5px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        text-align: left;
+        animation-duration: 250;
+        opacity: 1;
+        transform: translateY(0%);
+        transition: 300;
+
+        &__formlogin{
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: stretch;
+            background-color: rgba($color: #fff, $alpha: 0.0);
+            height: 70%;
+            width: 60%;
+            padding: 50px;
+
+            h1 {
+                text-align: center;
+            }
+            
+            &__input-login {
+                width: 100%;
+                border: transparent;
+                //border-bottom: 2px solid red;
+                padding: 10px;
+                border-bottom: 1px solid #E66630 ;
+                background-color: rgba($color: #fff, $alpha: 0.0); ;
+
+                &::placeholder, &:focus {
+                    outline: none;
+                    font-weight: 700;
+                    font-family: 'Caviar';
+                }
+            }
+
+            &__remember {
+                display: flex;
+                justify-content: space-around;
+                align-items: baseline;
+                width: 45%;
+            }
+
+            &__button--login {
+                width: 100%;
+                text-align: center;
+                background-color: rgba($color: #E66630, $alpha: 0.9);
+                color: whitesmoke;
+                font-weight: 700;
+                border-radius: 10px;
+                text-decoration: none;
+                padding: 10px;
+            }
+        }
+
+        &__formsignup {            
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: stretch;
+                background-color: rgba($color: #fff, $alpha: 0.0);
+                height: 80%;
+                width: 60%;
+                padding: 50px;
+    
+                h1 {
+                    text-align: center;
+                }
+                &__name{
+                    display: flex;
+                    justify-content: space-between;
+
+                    &--firstname, &--lastname {
+                        width: 70%;
+                        border: transparent;
+                        //border-bottom: 2px solid red;
+                        padding: 10px;
+                        border-bottom: 1px solid #E66630 ;
+                        background-color: rgba($color: #fff, $alpha: 0.0); ;
+        
+                        &:focus, &::placeholder {
+                            outline: none;
+                            font-weight: 700;
+                            font-family: 'Caviar';
+                        }
+                    }
+                }
+    
+                &--email, &--password {
+                    width: 100%;
+                    border: transparent;
+                    //border-bottom: 2px solid red;
+                    padding: 10px;
+                    border-bottom: 1px solid #E66630 ;
+                    background-color: rgba($color: #fff, $alpha: 0.0); ;
+    
+                    &:focus, &::placeholder {
+                        outline: none;
+                        font-weight: 700;
+                        font-family: 'Caviar';
+                    }
+                }
+                
+                &__terms {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: baseline;
+                    font-size: 0.8em;
+                    width: 80%;
+                    
+                }
+
+                .button-sign {
+                    width: 100%;
+                    text-align: center;
+                    background-color: rgba($color: #E66630, $alpha: 0.9);
+                    color: whitesmoke;
+                    font-weight: 700;
+                    border-radius: 10px;
+                    text-decoration: none;
+                    padding: 10px;
+                }
+            
+        }
+    }
+}
+
+.div-input-login {
+    border: none;
 }

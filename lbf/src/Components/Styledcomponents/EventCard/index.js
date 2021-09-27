@@ -8,6 +8,8 @@ import calendar from '../../../assets/Icons/calendar.svg'
 //import React Component
 import Avatar from '../Avatar';
 
+import avatarMicheline from "../../../assets/Img/micheline.jpg"
+
 const EventCard = ({ className }) => (
   
   <div className='eventcard'>
@@ -16,7 +18,10 @@ const EventCard = ({ className }) => (
 
         {/* Profil */}
 
-        <Avatar customDiv='avatar-div' customImg='avatar-image' />
+        <Avatar 
+        customDiv='avatar-div' 
+        customImg='avatar-image'
+        customPics={avatarMicheline} />
         <div className='eventcard__infos__profil__identity'>
           <h2 className='eventcard__infos__profil__identity--firstname'>Gertrude M.</h2>
           <p className='eventcard__infos__profil__identity--age'>21 ans</p>
