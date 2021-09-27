@@ -30,6 +30,12 @@ class Language extends CoreModel {
             this[propName] = obj[propName];
         }
     }
+    /**
+     * Fetches a id of user and id of language
+     * @param {number} user_id 
+     * @param {number} language_id 
+     * @returns {Array<Language>}
+     */
 
     static async newUserSpeakLanguage(user_id, language_id) {
         try {
@@ -45,6 +51,7 @@ class Language extends CoreModel {
         }
 
     }
+    
 
     static async deleteUserSpeakLanguage(user_id, language_id) {
         try {
