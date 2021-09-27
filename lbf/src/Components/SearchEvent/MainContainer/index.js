@@ -1,6 +1,6 @@
 
 //Import Redux
-import { useSelector, useDispatch} from 'react-redux'
+import { useSelector} from 'react-redux'
 //Import React
 import { useState } from "react"
 //Import React components
@@ -21,6 +21,7 @@ import "./datepicker.scss"
 function SearchEventContainer(){
 
     const events = useSelector(state => state.event.events)
+    const fieldsSearch = useSelector(state => state.event.fieldsSearch)
 
     const [selectedDate, setSelectedDate] = useState(null)
     const [selectedEndDate, setselectendDate] = useState(null)
@@ -32,7 +33,7 @@ function SearchEventContainer(){
                    <form id="searchForm">
                         <div className="searchEvent__container-infosDetails-location">
                             <label>City: </label>
-                            <input className="mySearchInputs" type="text"/>
+                            <input className="mySearchInputs" type="text" value={fieldsSearch.city}/>
                         </div>
 
                         <div className="searchEvent__container-infosDetails-location">
