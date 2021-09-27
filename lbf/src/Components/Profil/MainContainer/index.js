@@ -1,3 +1,4 @@
+// Import styles
 import "./styles.scss"
 import Input from "../Input"
 

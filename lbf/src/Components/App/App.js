@@ -1,11 +1,13 @@
 import { Route } from "react-router-dom"
-
+// Import styles
+import './app.scss';
+// Components
 import HomePage from '../Home';
 import ProfilPage from "../Profil";
 import ContactPage from "../Contact";
-import './app.scss';
 import CreateEventPage from "../CreateEvent";
 import SearchEventPage from "../SearchEvent";
+import ListEventPage from "../ListingEvent";
 
 function App() {
   return (
@@ -23,12 +25,16 @@ function App() {
           <CreateEventPage />
       </Route>
 
-      <Route path="/contact" exact>
-          <ContactPage />
-      </Route>
-
       <Route path="/searchEvent" exact>
           <SearchEventPage />
+      </Route>
+
+      <Route path="/listEvent" exact>
+          <ListEventPage />
+      </Route>
+
+      <Route path="/contact" exact>
+          <ContactPage />
       </Route>
     </div>
   );
