@@ -13,8 +13,18 @@ import { useState } from 'react';
 
 
 const Modal = ({ showModalLogin, showModalSignup  }) => {
-    const [login, setLogin] = useState("")
-    const [signUp, setSignUp] = useState("") 
+    const [login, setLogin] = useState({
+        email:"",
+        password:""
+    })
+    const [signUp, setSignUp] = useState({
+        firstname:"",
+        lastname:"",
+        email:"",
+        password:"",
+        confirmedPassword:"",
+        gender:""
+    }) 
 
 
     // const { emailLogin, passwordLogin } = useSelector(state => state.profil.login);
@@ -47,12 +57,22 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
 
     const handleSubmitLogin = (e) => {
         e.preventDefault();
-        setLogin(e.target.value, e.target.name)
+        console.log(e.target.value)
+        console.log(e.target.name)
+        setLogin({
+            ...login,
+            [e.target.name]: e.target.value
+        })
         // dispatch(submitLogin(e.target.value, e.target.name));
     }
     const handleSubmitSignup = (e) => {
         e.preventDefault();
-        setSignUp(e.target.value, e.target.name)
+        console.log(e.target.value)
+        console.log(e.target.name)
+        setSignUp({
+            ...login,
+            [e.target.name]: e.target.value
+        })
         // dispatch(submitSignUp(e.target.value, e.target.name));
     }
 
@@ -66,10 +86,10 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                         <form className='modal-container__modal__formlogin' onSubmit={handleSubmitLogin}>
                             <h1>Login</h1>
                             <Input 
-                                name='email'
                                 type='email'
-                                label='login' 
-                                value={login} 
+                                name='email'
+                                // label='login' 
+                                value={login.email} 
                                 onChange={handleSubmitLogin} 
                                 placeHolder='Email' 
                                 classNameInput='modal-container__modal__formlogin__input-login' 
@@ -79,8 +99,8 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                             <Input 
                                 name='password'
                                 type='password'
-                                label='login' 
-                                value={login} 
+                                // label='login' 
+                                value={login.password} 
                                 onChange={handleSubmitLogin} 
                                 placeHolder='Password' 
                                 classNameInput='modal-container__modal__formlogin__input-login' classNameDiv='div-input-login'
@@ -105,7 +125,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                                     name='firstname'
                                     type='text' 
                                     label='signup' 
-                                    value={signUp} 
+                                    value={signUp.firstname} 
                                     placeHolder='Firstname'
                                     classNameInput='modal-container__modal__formsignup__name--firstname' 
                                     classNameDiv='div-input-login' 
@@ -115,7 +135,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                                     name='lastname' 
                                     type='text' 
                                     label='signup' 
-                                    value={signUp} 
+                                    value={signUp.lastname} 
                                     placeHolder='Lastname' 
                                     classNameInput='modal-container__modal__formsignup__name--lastname' 
                                     classNameDiv='div-input-login' 
@@ -126,7 +146,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                                     name='email' 
                                     type='email' 
                                     label='signup' 
-                                    value={signUp} 
+                                    value={signUp.email} 
                                     placeHolder='Email' 
                                     classNameInput='modal-container__modal__formsignup--email' 
                                     classNameDiv='div-input-login' 
@@ -136,7 +156,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                                     name='password' 
                                     type='password' 
                                     label='signup' 
-                                    value={signUp} 
+                                    value={signUp.password} 
                                     placeHolder='Password' 
                                     classNameInput='modal-container__modal__formsignup--password' 
                                     classNameDiv='div-input-login' 
@@ -146,7 +166,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                                     name='confirmedPassword' 
                                     type='password' 
                                     label='signup' 
-                                    value={signUp} 
+                                    value={signUp.confirmedPassword} 
                                     placeHolder='Confirm Password' 
                                     classNameInput='modal-container__modal__formsignup--password' 
                                     classNameDiv='div-input-login' 
@@ -156,7 +176,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                                     name='gender' 
                                     type='text' 
                                     label='signup' 
-                                    value={signUp} 
+                                    value={signUp.gender} 
                                     placeHolder='Gender' 
                                     classNameInput='modal-container__modal__formsignup--password' 
                                     classNameDiv='div-input-login' 
