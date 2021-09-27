@@ -1,3 +1,7 @@
+
+//Import Redux
+import { useSelector, useDispatch} from 'react-redux'
+//Import React
 import { useState } from "react"
 //Import React components
 import Input from "../../Profil/Input"
@@ -12,7 +16,12 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import "./styles.scss"
 import "./datepicker.scss"
 
+
+
 function SearchEventContainer(){
+
+    const events = useSelector(state => state.event.events)
+
     const [selectedDate, setSelectedDate] = useState(null)
     const [selectedEndDate, setselectendDate] = useState(null)
     return(
@@ -78,46 +87,7 @@ function SearchEventContainer(){
 
                 <div className="searchEvent__container-resultsForm">
                     {/* Cards for searchPage */}
-                    <EventCardSearch 
-                        classNameCard={"searchEvent"}
-                        infos={"searchEvent-infos"}
-                        pictures={"searchEvent-pictures"}
-                        title={"Atelier cuisine"}
-                        titleConfig={"searchEvent-title"}
-                        language={"English"}
-                        placeLeft={"1 spot left"}
-                    />
-               
-                    <EventCardSearch 
-                        classNameCard={"searchEvent"}
-                        infos={"searchEvent-infos"}
-                        pictures={"searchEvent-pictures"}
-                        title={"Soirée XBOX"}
-                        titleConfig={"searchEvent-title"}
-                        language={"Roumain"}
-                        placeLeft={"2 spots left"}
-                    />
-
-                    <EventCardSearch 
-                        classNameCard={"searchEvent"}
-                        infos={"searchEvent-infos"}
-                        pictures={"searchEvent-pictures"}
-                        title={"Sortie culturelle"}
-                        titleConfig={"searchEvent-title"}
-                        language={"Japanese"}
-                        placeLeft={"2 spots left"}
-                    />
-
-                    <EventCardSearch 
-                        classNameCard={"searchEvent"}
-                        infos={"searchEvent-infos"}
-                        pictures={"searchEvent-pictures"}
-                        title={"Tous chez julien"}
-                        titleConfig={"searchEvent-title"}
-                        language={"Japanese"}
-                        placeLeft={"1 spot left"}
-                    />
-
+                    {events.map((event) => ( <EventCardSearch key={event.id} {...event} classNameCard='searchEvent'/> ))}
                 </div>
             </div>
                 {/* Component Leaflet  */}

@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux'
 //React Components
 import Button from '../../Styledcomponents'
-
 //React components
 import Input from '../Input';
 
@@ -20,15 +19,20 @@ const Modal = ({ showModalLogin, showModalSignup, openModalLogin, openModalSignu
     const { termsAccepted, isRemembered } = useSelector(state => state.profil);
 
     const dispatch = useDispatch();
+
+    //CallNack de l'event onChange général à tous les champs controllés 
+    //ex utilisation: setFieldIdentification(valeur du champ: antoine.dupont@gmail.com, name: email, type: signup )
     
     const handleChangeField = (e) => {
         dispatch(setFieldIdentification(e.target.value, e.target.name, e.target.type));
     }
 
+    //Action update boolean Acceptation des terms
     const handleCheckboxTerms = () => {
         dispatch(setCheckboxTerms())
     }
 
+    //Action  update boolean Remember me
     const handleCheckboxRemember = () => {
         dispatch(setCheckboxRemember())
     }
