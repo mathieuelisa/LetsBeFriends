@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { eventController, languageController, tagController, userController } = require('./controllers/index')
+const { imageController, eventController, languageController, tagController, userController } = require('./controllers/index')
 
 const { newUserSchema, updateUserSchema, updateUserSecuritySchema } = require('./schemas/user')
 const { newEventSchema, updateEventSchema } = require('./schemas/event')
@@ -130,6 +130,10 @@ router
  * @returns {string} 404 - A validation error message
  */
     .delete(userController.delete)
+
+router
+    .route('/imageprofil')
+    .post(imageController.uploadProfil)
 
 // Ask if email exist, if its does
 // Patch the same url with id, password and password confirm 
