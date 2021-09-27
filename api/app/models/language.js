@@ -35,6 +35,8 @@ class Language extends CoreModel {
      * @param {number} user_id 
      * @param {number} language_id 
      * @returns {Array<Language>}
+     * @async
+     * @static
      */
 
     static async newUserSpeakLanguage(user_id, language_id) {
@@ -51,7 +53,14 @@ class Language extends CoreModel {
         }
 
     }
-    
+    /**
+     * Delete an user with id of user and id of language
+     * @param {number} user_id 
+     * @param {number} language_id 
+     * @returns {string}
+     * @async
+     * @static
+     */
 
     static async deleteUserSpeakLanguage(user_id, language_id) {
         try {
@@ -66,6 +75,14 @@ class Language extends CoreModel {
         }
 
     }
+    /**
+     * Add a  user who want learn a language
+     * @param {number} user_id 
+     * @param {number} language_id 
+     * @returns {string}
+     * @async
+     * @static
+     */
     static async newUserLearnLanguage(user_id, language_id) {
         try {
             const { rows } = await db.query('INSERT INTO "user_learn_language"(user_id, language_id) VALUES($1, $2) RETURNING user_id AS "userId", language_id AS "languageId"', [user_id, language_id])
@@ -80,6 +97,14 @@ class Language extends CoreModel {
         }
 
     }
+    /**
+     * Delete an user who learn a language
+     * @param {number} user_id 
+     * @param {number} language_id 
+     * @returns {string}
+     * @async
+     * @static
+     */
 
     static async deleteUserLearnLanguage(user_id, language_id) {
         try {

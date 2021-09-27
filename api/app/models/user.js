@@ -176,6 +176,13 @@ class User extends CoreModel {
             throw new Error(error)
         }
     }
+    /**
+     * fetches one user with email
+     * @param {string} email.query.required
+     * @returns {Array<User>}
+     * @async
+     * @static
+     */
 
     static async findOneByEmail(email) {
         try {
@@ -189,6 +196,14 @@ class User extends CoreModel {
             throw new Error(error)
         }
     }
+    /**
+     * Validate a user with email and password
+     * @param {string} email.query.required emmail
+     * @param {string} password.query.required password
+     * @returns {Array<User>}
+     * @async
+     * @static}
+     */
 
     static async validByEmailPassword(email, password) {
         try {
