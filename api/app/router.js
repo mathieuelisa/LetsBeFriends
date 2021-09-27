@@ -139,6 +139,15 @@ router
 
 router
     .route('/resetpassword')
+      /**
+ * Responds with email of user
+ * @route GET /users
+ * @group User
+ * @summary Responds with all users in database
+ * @param {string} email.query.required - email
+ * @returns {Array<User>} 200 -An array of users
+ * @returns {string} 500 - An error message
+ */
     .get(userController.findOneByEmail)
     .patch(validateBody(updateUserSecuritySchema), userController.update)
 
