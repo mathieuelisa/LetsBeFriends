@@ -6,17 +6,17 @@ const bcrypt = require('bcrypt');
  *  An entity representing a table user
  * @typedef user
  * @property {number} id
- * @property {string} firstname.required
- * @property {string} lastname.required
- * @property {string} gender.required
- * @property {string} email.required
+ * @property {string} firstname
+ * @property {string} lastname
+ * @property {string} gender
+ * @property {string} email
  * @property {string} password
  * @property {string} description
  * @property {number} age
  * @property {string} city
  * @property {number} phone_number
- * @property {string}($date-time) created_at
- * @property {string}($date-time) updated_at
+ * @property {timestamptz} created_at
+ * @property {timestamptz} updated_at
  */
 
 /**
@@ -176,15 +176,6 @@ class User extends CoreModel {
             throw new Error(error)
         }
     }
-
-    /**
-     * Fetches a user by email
-     * @param {*} email 
-     * @param {*} password 
-     * @returns {Array<User>}
-     * @static
-     * @async
-     */
 
     static async findOneByEmail(email) {
         try {

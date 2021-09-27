@@ -7,8 +7,8 @@ const db = require('../database');
  * @property {number} id
  * @property {string} name
  * @property {string} img_url
- * @property {string} created_at
- * @property {string} updated_at
+ * @property {timestamptz} created_at
+ * @property {timestamptz} updated_at
 */
 
 
