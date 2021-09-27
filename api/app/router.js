@@ -62,9 +62,8 @@ router
     .delete(userController.delete)
 
 router
-    .route('/avatar')
-    .post(imageController.upload)
-    .get(imageController.get)
+    .route('/imageprofil')
+    .post(imageController.uploadProfil)
 
 // Ask if email exist, if its does
 // Patch the same url with id, password and password confirm 
