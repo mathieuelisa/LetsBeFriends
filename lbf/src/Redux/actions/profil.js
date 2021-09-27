@@ -15,7 +15,6 @@ export const setFieldLoginPassword = (value) => (
 );
 
 export const SET_FIELD_IDENTIFICATION = 'SET_FIELD_SIGNUP';
-
 export const setFieldIdentification = (value, name, formType) => (
    {
     type: SET_FIELD_IDENTIFICATION,
@@ -26,7 +25,6 @@ export const setFieldIdentification = (value, name, formType) => (
 );
 
 export const SET_CHECKBOX_REMEMBER = 'SET_CHECKBOX_REMEMBER';
-
 export const setCheckboxRemember = () => (
    {
     type: SET_CHECKBOX_REMEMBER,
@@ -34,7 +32,6 @@ export const setCheckboxRemember = () => (
 );
 
 export const SET_CHECKBOX_TERMS = 'SET_CHECKBOX_TERMS';
-
 export const setCheckboxTerms = () => (
    {
     type: SET_CHECKBOX_TERMS,

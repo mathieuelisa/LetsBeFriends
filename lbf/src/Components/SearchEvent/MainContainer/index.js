@@ -1,14 +1,4 @@
 import { useEffect, useState } from "react"
-<<<<<<< HEAD
-=======
-=======
-
-//Import Redux
-import { useSelector} from 'react-redux'
-//Import React
-import { useState } from "react"
->>>>>>> 4120b778d4586fcd565414d545b50781401dafe8
->>>>>>> 973bb935852c3e0fc5b5ae9c9a4d49c058c3c49b
 //Import React components
 import Input from "../../Profil/Input"
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
