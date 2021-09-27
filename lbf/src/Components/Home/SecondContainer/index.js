@@ -2,7 +2,7 @@
 import "./styles.scss"
 
 // Fonts
-import "../../../assets/Fonts/Caviar.ttf"
+import "../../../assets/Fonts/Caviar.ttf";
 
 import calendar from "../../../assets/Icons/calendar.svg"
 import question from "../../../assets/Icons/question.svg"
@@ -19,7 +19,7 @@ function SecondContainer(){
             </div>
 
                 <div className="steps__explication-title">
-                    <h2>LET ME EXPLAIN YOU OUR CONCEPT</h2>
+                    <h2>LET ME EXPLAIN TO YOU OUR CONCEPT</h2>
                 </div>
 
                 <div className="steps">
@@ -50,8 +50,7 @@ function SecondContainer(){
                 </div>
 
                 <div className="steps" id="reverse-text">
-                        <h3 className="steps-text1"><span className="steps-title">4. Give a review</span><br/> at the end of each event you attended
-                        to your potential new friends and their language practice.
+                        <h3 className="steps-text1"><span className="steps-title">4. Give a review</span><br/> at the end of each event you attended about your new friends & your language experience.
                         </h3>
                     <img src={evaluation} className="steps--logo" alt="Evaluation"/>
                 </div>
