@@ -13,3 +13,14 @@ export const setFieldLoginPassword = (value) => (
     value,
   }
 );
+
+export const SET_FIELD_IDENTIFICATION = 'SET_FIELD_SIGNUP';
+
+export const setFieldIdentification = (value, name, formType) => (
+   {
+    type: SET_FIELD_IDENTIFICATION,
+    value,
+    name,
+    formType,
+  }
+);

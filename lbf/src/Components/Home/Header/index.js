@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 import { SET_TOGGLE } from '../../../Redux/actions/common';
 
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 
 
 
