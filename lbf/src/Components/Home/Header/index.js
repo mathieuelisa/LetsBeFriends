@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { SET_TOGGLE } from '../../../Redux/actions/common';
 
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 
 
 const Header = ({ openModalLogin, openModalSignup }) => {

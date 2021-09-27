@@ -1,22 +1,20 @@
-import { SET_FIELD_LOGIN_EMAIL, SET_FIELD_LOGIN_PASSWORD } from '../actions/profil';
+import { SET_FIELD_IDENTIFICATION } from '../actions/profil';
 
 export const initialState = {
-  email: 'robin.marien@gmail.com',
-  password: 'abcd',
+  login: {email: 'robin.marien@gmail.com', password: 'abcd'},
+  signup: {email: 'robin.marien@gmail.com', password: 'abcd'},
+
+  
 };
 
 const reducer = (state = initialState, action = {}) => {
 
   switch (action.type) {
-    case SET_FIELD_LOGIN_EMAIL :
-      return {
-        ...state,
-        email: action.value,
-      };
-      case SET_FIELD_LOGIN_PASSWORD :
+      case SET_FIELD_IDENTIFICATION :
         return {
           ...state,
-          password: action.value,
+          [action.formType.name]: action.value,
+
         }
     default:
       return state;
