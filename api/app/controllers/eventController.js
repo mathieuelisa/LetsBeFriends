@@ -98,7 +98,7 @@ const eventController = {
         }
     },
 
-    deleteUserSpeakLanguage: async (req, res, next) => {
+    deleteUserAskEvent: async (req, res, next) => {
         const user_id = req.body.userId;
         const event_id = req.body.eventId;
 
