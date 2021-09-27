@@ -1,32 +1,39 @@
 import { useState } from "react"
-
-import Calendar from "react-calendar"
-
-import "./styles.scss"
-import imgEvent from "../../../assets/Img/sport.png"
+//Import React components
 import Input from "../../Profil/Input"
+import ButtonToggle from "../../Styledcomponents/ButtonToggle"
+import DatePicker from "react-datepicker"
+// Import styles
+import "./styles.scss"
+// Import pictures
+import imgEvent from "../../../assets/Img/sport.png"
+
 
 function CreateEventContainer(){
     // States for calendar
-    const [date, setDate] = useState(new Date())
-
-        const onChange = date => {
-            setDate(date)
-        }
+    const [selectedDate, setSelectedDate] = useState(null)
 
     return(
         <div className="createEvent__container">
+            <ButtonToggle className='toggle' name='=' />
             <div className="mainCreateEvent__container">
                 <div className="createEvent__container-infosDetails">
                     <form id="registerForm"> 
-                        <div className="createEvent__container-infosDetails-location">
+                        <div className="createEvent__container-infosDetails-location" id="div-location">
                             <label>Location: </label>
                             <input className="myInputs" type="text"/>
                         </div>
 
                         <div className="createEvent__container-infosDetails-calendar">
-                            <Calendar onChange={onChange} value={date} />
-                            {console.log(date)}
+                        <label>Date: </label>
+                            <DatePicker 
+                                className="myInputs"
+                                selected={selectedDate} 
+                                onChange={date=>setSelectedDate(date)}
+                                dateFormat="dd/MM/yyyy"
+                                minDate={new Date()}
+                                isClearable
+                            />
                         </div>
 
                         <div className="createEvent__container-infosDetails-location">
@@ -35,7 +42,7 @@ function CreateEventContainer(){
                         </div>
 
                         <div className="createEvent__container-infosDetails-location">
-                            <label>Langue: </label>
+                            <label>Language: </label>
                             <Input 
                             name={"FRENCH"} 
                             name2={"ENGLISH"} 
@@ -45,7 +52,7 @@ function CreateEventContainer(){
                         </div>
 
                         <div className="createEvent__container-infosDetails-location">
-                        <label>Nombre de participants</label>
+                        <label>Nombre de participants: </label>
                         <Input 
                             name={"1"} 
                             name2={"2"} 

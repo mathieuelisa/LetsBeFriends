@@ -1,5 +1,4 @@
 import "./styles.scss"
-// import avatarMicheline from "../../../assets/Img/micheline.jpg"
 
 function Avatar({customDiv, customImg, customPics}){
     return(

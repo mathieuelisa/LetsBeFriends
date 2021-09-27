@@ -1,6 +1,5 @@
 import CreateEventContainer from "./MainContainer"
 
-
 function CreateEventPage(){
     return(
         <CreateEventContainer />

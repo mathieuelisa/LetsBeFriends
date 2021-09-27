@@ -15,17 +15,20 @@
     align-items: center;
     margin: 60px;
     font-size: 0.8em;
+    line-height: 23px;
 
     &-text1{
         text-align: end;
         width: 77%;
         padding-right: 40px;
+        font-family: "Caviar";
     }
 
     &-text2{
         text-align: start;
         width: 90%;
         padding-left: 40px;
+        font-family: "Caviar";
     }
 
     &-title{
@@ -48,6 +51,7 @@
     &__explication-text{
         text-align: center;
         margin-bottom: 70px;
+        font-family: "Caviar";
     }
 
     &__explication-title{
@@ -62,4 +66,33 @@
 
 #steps-three{
     margin-bottom: 35px;
+}
+
+
+@media screen and (max-width: 700px){
+    .steps{
+      font-size: 0.6em;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #reverse-text{
+        flex-direction: column-reverse;
+    }
+
+    .steps__explication-text,
+    .steps__explication-title{
+      width: 75%;
+      margin: 0 auto;
+      margin-top: 30px;
+      width: 64%;
+      font-size: 0.8em;
+    }
+
+    .steps-text1, 
+    .steps-text2{
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
