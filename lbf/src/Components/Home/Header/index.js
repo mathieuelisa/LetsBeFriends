@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 
 import { NavLink } from 'react-router-dom';
 
-import { SET_TOGGLE } from '../../../Redux/actions/common';
+import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
 
 import { useDispatch, useSelector } from "react-redux";
-
+import { useEffect } from 'react';
 
 
 const Header = ({ openModalLogin, openModalSignup }) => {
@@ -22,6 +22,11 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
     dispatch({type: SET_TOGGLE})
 }
 
+  // useEffect permettant de remettre le menu hamburger a false a chaque rendu
+  useEffect(()=>{
+    dispatch({type: RESET_TOGGLE})
+  },[])
+
   return (
     <div className='header'>
       <h1 className='header__logo'>LBF</h1>
@@ -34,6 +39,8 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
             name='=' 
             handleClick={handleClick}
           />
+
+          {/* Lorsque la classe open est active l'ensemble des NavLink sont disponible */}
          {toggleAction ? 
          <div className="header__hamburger">
             <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
@@ -44,6 +51,7 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
             <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
          </div>
          : ""} 
+
         </div>
       </div>
     </div>

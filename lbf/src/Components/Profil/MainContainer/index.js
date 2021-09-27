@@ -6,13 +6,53 @@ import Input from "../Input"
 import ButtonToggle from "../../Styledcomponents/ButtonToggle"
 import Avatar from "../../Styledcomponents/Avatar"
 
+import { NavLink } from 'react-router-dom';
+
 import avatarMicheline from "../../../assets/Img/micheline.jpg"
+import { useDispatch, useSelector } from "react-redux"
+
+// import actions types
+import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
+import { useEffect } from "react";
 
 
 function ProfilContainer(){
+
+const dispatch = useDispatch()
+const toggleAction = useSelector((state)=> state.common.toggleAction)
+
+    function handleClick(event){
+        event.preventDefault()
+        console.log("Tu as cliqué sur le bouton")
+        dispatch({type: SET_TOGGLE})
+    }
+    
+    // useEffect permettant de remettre le menu hamburger a false a chaque rendu
+    useEffect(()=>{
+        dispatch({type: RESET_TOGGLE})
+    },[])
+
     return(
         <div className="profil__container">
-            <ButtonToggle className='toggle' name='=' />
+            <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
+                <ButtonToggle 
+                className='settings__container--toggle' 
+                name='=' 
+                handleClick={handleClick}
+                />
+
+                {toggleAction ? 
+                <div className="header__hamburger">
+                    <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+                    <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
+                    <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
+                    <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
+                    <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
+                    <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
+                </div>
+                : ""} 
+            </div>
+
             <div className="mainProfil__container">
                 <div className="profil__container-avatars">
                     <Avatar 
@@ -41,8 +81,8 @@ function ProfilContainer(){
                     </div>
                 </div>
             </div>
+            </div>
 
-        </div>
     )
 }
 

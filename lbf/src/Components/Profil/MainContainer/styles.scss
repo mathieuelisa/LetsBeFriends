@@ -109,3 +109,29 @@
         margin: 0 auto;
     }
 }
+
+.settings__container--toggle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 40px;
+    width: 40px;
+    font-size: 1.5em;
+    font-weight: 500;
+    padding: 10px;
+    margin: 10px 20px 10px 20px;
+    border: 3px solid;
+    border-radius: 30px;
+    background-color: rgba(117, 190, 218, 0);
+    cursor: pointer;
+    text-decoration: none;
+    color: whitesmoke;
+    z-index: 80;
+}
+
+.header__navbar__settings-open{
+    right: 0;
+}

@@ -1,4 +1,4 @@
-import { SET_TOGGLE } from "../actions/common";
+import { RESET_TOGGLE, SET_TOGGLE } from "../actions/common";
 
 export const initialState = {
   toggleAction: false,
@@ -10,6 +10,11 @@ const reducer = (state = initialState, action = {}) => {
         return{
           ...state,
           toggleAction:!state.toggleAction
+        }
+      case RESET_TOGGLE:
+        return{
+          ...state,
+          toggleAction: false
         }
     default:
       return state;
