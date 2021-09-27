@@ -5,30 +5,31 @@ export const initialState = {
     id: 1,
     infos: "searchEvent-infos",
     pictures: "searchEvent-pictures",
-    title: "Atelier cuisine",
+    eventTag: "Atelier cuisine",
     titleConfig: "searchEvent-title",
     language: "English",
-    placeLeft: 1
+    placeLeft: 1,
   },
   { 
-    id: 1,
+    id: 2,
     infos: "searchEvent-infos",
     pictures: "searchEvent-pictures",
-    title: "Soirée XBOX",
+    eventTag: "Soirée XBOX",
     titleConfig: "searchEvent-title",
     language: "Roumain",
     placeLeft: 2
   },
   { 
-    id: 1,
+    id: 3,
     infos: "searchEvent-infos",
     pictures: "searchEvent-pictures",
-    title: "Tous chez Julien",
+    eventTag: "Tous chez Julien",
     titleConfig: "searchEvent-title",
     language: "Japanese",
     placeLeft: 1
   },  
 ],
+  fieldsSearch: {city: 'Paris', eventTag: 'Soirée BBQ', dateBegin: '27-09-2021', dateEnd: '10-10-2021', language: 'English'},
 
 };
 
