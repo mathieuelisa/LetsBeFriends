@@ -26,6 +26,8 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
         gender:""
     }) 
 
+    const [isCheckedLogin,setIsCheckedLogin] = useState(false)
+    const [isCheckedSignUp,setIsCheckedSignUp] = useState(false)
 
     // const { emailLogin, passwordLogin } = useSelector(state => state.profil.login);
     // const { emailSignup, passwordSignup, confirmedPassword, firstName, lastName, gender } = useSelector(state => state.profil.signup);
@@ -112,6 +114,12 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                                     name="remember" {...isRemembered ? 'checked' : 'unchecked'} 
                                     onClick={handleCheckboxRemember} 
                                 /> */}
+                            <input 
+                                type="checkbox"
+                                id="remember"
+                                checked={isCheckedLogin} 
+                                onChange={(e)=>{setIsCheckedLogin(e.target.checked)}} 
+                            />
                                 <label className='modal-container__modal__formlogin__remember--label' htmlFor="remember">Remember Me</label>
                             </div>
                             <button type="submit" className='modal-container__modal__formlogin__button--login' name='Login' />
@@ -191,6 +199,13 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                                     name="terms" {...termsAccepted ? 'checked' : 'unchecked'} 
                                     onClick={handleCheckboxTerms} 
                                 /> */}
+                                
+                                <input 
+                                type="checkbox"
+                                id="terms"
+                                checked={isCheckedSignUp} 
+                                onChange={(e)=>{setIsCheckedSignUp(e.target.checked)}} 
+                            />
                                 <label 
                                     className='modal-container__modal__formsignup__terms--label' 
                                     htmlFor="remember">I accept the Term of Use & Privacy Policy
