@@ -42,13 +42,12 @@ export const setCheckboxTerms = () => (
 export const LOGIN = 'LOGIN';
 export const submitLogin = () => (
    {
-    type: LOGIN,
-    
+    type: LOGIN, 
   }
 );
 
 export const SIGN_UP = "SIGN_UP";
-export const signUp = () => (
+export const submitSignUp = () => (
   {
     type: SIGN_UP
   }

@@ -1,44 +1,59 @@
 //Actions
-import { setFieldIdentification, setCheckboxRemember, setCheckboxTerms, submitLogin } from '../../../Redux/actions/profil'
+// import { setFieldIdentification, setCheckboxRemember, setCheckboxTerms, submitLogin, submitSignUp} from '../../../Redux/actions/profil'
+// import {submitLogin, submitSignUp} from '../../../Redux/actions/profil'
 //Styles
 import './styles.scss';
 //Dependencies
 import PropTypes from 'prop-types';
 //Redux
-import { useSelector, useDispatch } from 'react-redux'
+// import { useSelector, useDispatch } from 'react-redux'
 //React Components
-//React components
 import Input from '../Input';
+import { useState } from 'react';
 
 
 const Modal = ({ showModalLogin, showModalSignup  }) => {
+    const [login, setLogin] = useState("")
+    const [signUp, setSignUp] = useState("") 
 
-    const { emailLogin, passwordLogin } = useSelector(state => state.profil.login);
-    const { emailSignup, passwordSignup, confirmedPassword, firstName, lastName, gender } = useSelector(state => state.profil.signup);
-    const { termsAccepted, isRemembered } = useSelector(state => state.profil);
 
-    const dispatch = useDispatch();
+    // const { emailLogin, passwordLogin } = useSelector(state => state.profil.login);
+    // const { emailSignup, passwordSignup, confirmedPassword, firstName, lastName, gender } = useSelector(state => state.profil.signup);
+    // const { termsAccepted, isRemembered } = useSelector(state => state.profil);
+
+    // const dispatch = useDispatch();
 
     //CallNack de l'event onChange général à tous les champs controllés 
     //ex utilisation: setFieldIdentification(valeur du champ: antoine.dupont@gmail.com, name: email, type: signup )
     
-    const handleChangeField = (e) => {
-        dispatch(setFieldIdentification(e.target.value, e.target.name, e.target.label));
-    }
+    // Ne pas utiliser redux mais un useState
+    // const handleChangeField = (e) => {
+    //     console.log(e.target.value)
+    //     console.log(e.target.name)
+    //     // console.log(e.target.label)
+    //     // dispatch(setFieldIdentification(e.target.value, e.target.name, e.target.label));
+    //     dispatch(setFieldIdentification(e.target.value, e.target.name));
+    // }
 
     //Action update boolean Acceptation des terms
-    const handleCheckboxTerms = () => {
-        dispatch(setCheckboxTerms())
-    }
+    // const handleCheckboxTerms = () => {
+    //     dispatch(setCheckboxTerms())
+    // }
 
-    //Action  update boolean Remember me
-    const handleCheckboxRemember = () => {
-        dispatch(setCheckboxRemember())
-    }
+    // //Action  update boolean Remember me
+    // const handleCheckboxRemember = () => {
+    //     dispatch(setCheckboxRemember())
+    // }
 
-    const handleSubmit = (e) => {
+    const handleSubmitLogin = (e) => {
         e.preventDefault();
-        dispatch(submitLogin());
+        setLogin(e.target.value, e.target.name)
+        // dispatch(submitLogin(e.target.value, e.target.name));
+    }
+    const handleSubmitSignup = (e) => {
+        e.preventDefault();
+        setSignUp(e.target.value, e.target.name)
+        // dispatch(submitSignUp(e.target.value, e.target.name));
     }
 
     return (
@@ -48,49 +63,118 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                     {/* Login Form */}
                     {showModalLogin ? (
 
-                        <form className='modal-container__modal__formlogin' onSubmit={handleSubmit}>
+                        <form className='modal-container__modal__formlogin' onSubmit={handleSubmitLogin}>
                             <h1>Login</h1>
                             <Input 
                                 name='email'
                                 type='email'
                                 label='login' 
-                                value={emailLogin} 
-                                onChange={handleChangeField} 
+                                value={login} 
+                                onChange={handleSubmitLogin} 
                                 placeHolder='Email' 
                                 classNameInput='modal-container__modal__formlogin__input-login' 
                                 classNameDiv='div-input-login'
                             />
+
                             <Input 
-                            name='password'
-                            type='password'
-                            label='login' 
-                            value={passwordLogin} 
-                            onChange={handleChangeField} 
-                            placeHolder='Password' 
-                            classNameInput='modal-container__modal__formlogin__input-login' classNameDiv='div-input-login'/>
+                                name='password'
+                                type='password'
+                                label='login' 
+                                value={login} 
+                                onChange={handleSubmitLogin} 
+                                placeHolder='Password' 
+                                classNameInput='modal-container__modal__formlogin__input-login' classNameDiv='div-input-login'
+                            />
                             <div className='modal-container__modal__formlogin__remember'> 
-                                <input type="checkbox" id="remember" name="remember" {...isRemembered ? 'checked' : 'unchecked'} onClick={handleCheckboxRemember} />
+                                {/* <input 
+                                    type="checkbox" 
+                                    id="remember" 
+                                    name="remember" {...isRemembered ? 'checked' : 'unchecked'} 
+                                    onClick={handleCheckboxRemember} 
+                                /> */}
                                 <label className='modal-container__modal__formlogin__remember--label' htmlFor="remember">Remember Me</label>
                             </div>
                             <button type="submit" className='modal-container__modal__formlogin__button--login' name='Login' />
                         </form>
                     ) : 
                     
-                        <form className='modal-container__modal__formsignup'>
+                        <form className='modal-container__modal__formsignup' onSubmit={handleSubmitSignup}>
                             <h1>Sign Up</h1>
                             <div className='modal-container__modal__formsignup__name'>
-                                <Input name='firstname' type='text' label='signup' value={firstName} placeHolder='Firstname' classNameInput='modal-container__modal__formsignup__name--firstname' classNameDiv='div-input-login' onChange={handleChangeField} />
-                                <Input name='lastname' type='text' label='signup' value={lastName} placeHolder='Lastname' classNameInput='modal-container__modal__formsignup__name--lastname' classNameDiv='div-input-login' onChange={handleChangeField} />
+                                <Input 
+                                    name='firstname'
+                                    type='text' 
+                                    label='signup' 
+                                    value={signUp} 
+                                    placeHolder='Firstname'
+                                    classNameInput='modal-container__modal__formsignup__name--firstname' 
+                                    classNameDiv='div-input-login' 
+                                    onChange={handleSubmitSignup}
+                                />
+                                <Input 
+                                    name='lastname' 
+                                    type='text' 
+                                    label='signup' 
+                                    value={signUp} 
+                                    placeHolder='Lastname' 
+                                    classNameInput='modal-container__modal__formsignup__name--lastname' 
+                                    classNameDiv='div-input-login' 
+                                    onChange={handleSubmitSignup}
+                                />
                             </div>
-                            <Input name='email' type='email' label='signup' value={emailSignup} placeHolder='Email' classNameInput='modal-container__modal__formsignup--email' classNameDiv='div-input-login' onChange={handleChangeField} />
-                            <Input name='password' type='password' label='signup' value={passwordSignup} placeHolder='Password' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField}  />
-                            <Input name='confirmedPassword' type='password' label='signup' value={confirmedPassword} placeHolder='Confirm Password' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField} />
-                            <Input name='gender' type='text' label='signup' value={gender} placeHolder='Gender' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField} />
+                                <Input 
+                                    name='email' 
+                                    type='email' 
+                                    label='signup' 
+                                    value={signUp} 
+                                    placeHolder='Email' 
+                                    classNameInput='modal-container__modal__formsignup--email' 
+                                    classNameDiv='div-input-login' 
+                                    onChange={handleSubmitSignup} 
+                                />
+                                <Input 
+                                    name='password' 
+                                    type='password' 
+                                    label='signup' 
+                                    value={signUp} 
+                                    placeHolder='Password' 
+                                    classNameInput='modal-container__modal__formsignup--password' 
+                                    classNameDiv='div-input-login' 
+                                    onChange={handleSubmitSignup}
+                                />
+                                <Input 
+                                    name='confirmedPassword' 
+                                    type='password' 
+                                    label='signup' 
+                                    value={signUp} 
+                                    placeHolder='Confirm Password' 
+                                    classNameInput='modal-container__modal__formsignup--password' 
+                                    classNameDiv='div-input-login' 
+                                    onChange={handleSubmitSignup} 
+                                />
+                                <Input 
+                                    name='gender' 
+                                    type='text' 
+                                    label='signup' 
+                                    value={signUp} 
+                                    placeHolder='Gender' 
+                                    classNameInput='modal-container__modal__formsignup--password' 
+                                    classNameDiv='div-input-login' 
+                                    onChange={handleSubmitSignup} 
+                                />
                             
                             
                             <div className='modal-container__modal__formsignup__terms'>
-                                <input type="checkbox" id= "terms" name="terms" {...termsAccepted ? 'checked' : 'unchecked'} onClick={handleCheckboxTerms} />
-                                <label className='modal-container__modal__formsignup__terms--label' htmlFor="remember">I accept the Term of Use & Privacy Policy</label>
+                                {/* <input 
+                                    type="checkbox" 
+                                    id= "terms" 
+                                    name="terms" {...termsAccepted ? 'checked' : 'unchecked'} 
+                                    onClick={handleCheckboxTerms} 
+                                /> */}
+                                <label 
+                                    className='modal-container__modal__formsignup__terms--label' 
+                                    htmlFor="remember">I accept the Term of Use & Privacy Policy
+                                </label>
                             </div>
                             <button type='submit' className='button-sign' name='Sign' />
                         </form>
