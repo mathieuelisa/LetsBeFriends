@@ -55,13 +55,16 @@ class CoreModel {
 	 */
 
 	static async delete(id) {
-		const tableName = this.constructor.tableName;
+		const tableName = this.tableName;
 		//Allow to delete the actual instance of the model or to target one specify id
-		const idToUse = id ? id : this.id;
 		try {
-			await db.query(`DELETE FROM "${tableName}" WHERE id=$1`, [idToUse])
+			await db.query(`DELETE FROM "${tableName}" WHERE id=$1`, [id])
 		} catch (error) {
-			console.log(error);
+			if (error.detail) {
+				throw new Error(error.detail)
+			} else {
+				throw error;
+			}
 		}
 	}
 }

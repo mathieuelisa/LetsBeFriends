@@ -1,6 +1,6 @@
 @baseUrl=http://localhost:3000/v1
 
-GET {{baseUrl}}/users/12
+GET {{baseUrl}}/users/11
 
 ###
 
@@ -37,7 +37,7 @@ DELETE {{baseUrl}}/users
 Content-Type: application/json
 
 {
-    "id" : 1
+    "id" : 36
 }
 
 ### ---GET user by email for login
@@ -91,4 +91,22 @@ Content-Type: application/json
 }
 
 
+###
+
+POST  {{baseUrl}}/learn
+Content-Type: application/json
+
+{
+    "userId": 5,
+    "languageId": 2
+}
+###
+
+DELETE  {{baseUrl}}/learn
+Content-Type: application/json
+
+{
+    "userId": 5,
+    "languageId": 2
+}
 

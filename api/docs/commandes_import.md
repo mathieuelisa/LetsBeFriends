@@ -1,5 +1,7 @@
 Commandes:
 ```
+dropdb lbf
+create lbf
 sqitch deploy &&
 psql -U postgres -d lbf -f ./data/importFakeData.sql && 
 psql -U postgres -d lbf -f ./data/dummyData/importUser.sql && 
