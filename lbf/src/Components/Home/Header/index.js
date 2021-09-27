@@ -3,9 +3,12 @@ import ButtonModal from '../../Styledcomponents';
 import ButtonToggle from '../../Styledcomponents/ButtonToggle';
 import PropTypes from 'prop-types';
 
+import { NavLink } from 'react-router-dom';
+
 import { SET_TOGGLE } from '../../../Redux/actions/common';
 
 import { useDispatch, useSelector } from "react-redux"
+
 
 
 const Header = ({ openModalLogin, openModalSignup }) => {
@@ -31,6 +34,16 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
             name='=' 
             handleClick={handleClick}
           />
+         {toggleAction ? 
+         <div className="header__hamburger">
+            <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+            <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
+            <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
+            <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
+            <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
+            <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
+         </div>
+         : ""} 
         </div>
       </div>
     </div>
