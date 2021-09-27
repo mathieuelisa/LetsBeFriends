@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 
 import reducer from '../reducers/index';
-import apiMiddleware from '../middlewares/api';
+import authMiddleware from '../middlewares/api';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const middlewares = [apiMiddleware];
+const middlewares = [authMiddleware];
 
 const enhancers = composeEnhancers(
   applyMiddleware(...middlewares),

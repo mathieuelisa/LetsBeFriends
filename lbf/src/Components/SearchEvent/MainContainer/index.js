@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-import { useEffect, useState } from "react"
-=======
-
-//Import Redux
-import { useSelector} from 'react-redux'
 //Import React
-import { useState } from "react"
->>>>>>> 4120b778d4586fcd565414d545b50781401dafe8
+import { useState, useEffect } from "react"
 //Import React components
 import Input from "../../Profil/Input"
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
@@ -18,14 +11,10 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import "./styles.scss"
 import "./datepicker.scss"
 
-<<<<<<< HEAD
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
-=======
-
->>>>>>> 4120b778d4586fcd565414d545b50781401dafe8
 
 function SearchEventContainer(){
 
