@@ -17,8 +17,7 @@ Content-Type: application/json
     "email":"test89@gmail.com",
     "password" : "fvzefgzefzerf",
     "confirmPassword" : "fvzefgzefzerf",
-    "gender" : "male",
-    "phone_number" : "04546574984"
+    "gender" : "male"
     
 }
 
@@ -47,7 +46,7 @@ Content-Type: application/json
 
 {
     "email":"test89@gmail.com",
-    "password" : "1234"
+    "password" : "fvzefgzefzerf"
 }
 
 ###
