@@ -2,7 +2,7 @@ import { SET_FIELD_IDENTIFICATION, SET_CHECKBOX_REMEMBER, SET_CHECKBOX_TERMS } f
 
 export const initialState = {
   login: {email: 'gertrude.manoukian@gmail.com', password: 'abcd'},
-  signup: {email: 'antoine.dupond@gmail.com', password: 'efgh', confirmedPassword: 'efgh', firstName: 'Antoine', lastName: 'Dupond' },
+  signup: {email: 'antoine.dupond@gmail.com', password: 'efgh', confirmedPassword: 'efgh', firstName: 'Antoine', lastName: 'Dupond', gender:"male" },
   termsAccepted: false,
   isRemembered: false,
   

@@ -29,7 +29,7 @@ Button.propTypes = {
    // openModal: PropTypes.func.isRequired,
     className: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    URL: PropTypes.string,
+    url: PropTypes.string,
     type: PropTypes.string,
   };
 

@@ -15,12 +15,12 @@ export const setFieldLoginPassword = (value) => (
 );
 
 export const SET_FIELD_IDENTIFICATION = 'SET_FIELD_SIGNUP';
-export const setFieldIdentification = (value, name, formType) => (
+export const setFieldIdentification = (value, name, formtype) => (
    {
     type: SET_FIELD_IDENTIFICATION,
     value,
     name,
-    formType,
+    formtype,
   }
 );
 
@@ -38,3 +38,18 @@ export const setCheckboxTerms = () => (
     
   }
 );
+
+export const LOGIN = 'LOGIN';
+export const submitLogin = () => (
+   {
+    type: LOGIN,
+    
+  }
+);
+
+export const SIGN_UP = "SIGN_UP";
+export const signUp = () => (
+  {
+    type: SIGN_UP
+  }
+)
