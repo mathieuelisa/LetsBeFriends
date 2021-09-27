@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Input from '../Input';
 
 
-const Modal = ({ showModalLogin, showModalSignup, openModalLogin, openModalSignup }) => {
+const Modal = ({ showModalLogin, showModalSignup  }) => {
 
     const { emailLogin, passwordLogin } = useSelector(state => state.profil.login);
     const { emailSignup, passwordSignup, confirmedPassword, firstName, lastName, gender } = useSelector(state => state.profil.signup);

@@ -8,7 +8,6 @@ const Input = ({ name, placeHolder, value, onChange, classNameDiv, classNameInpu
 );
 
 Input.propTypes = {
-    typeForm: PropTypes.string,
     placeHolder: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
