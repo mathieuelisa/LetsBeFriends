@@ -30,6 +30,63 @@ class Language extends CoreModel {
             this[propName] = obj[propName];
         }
     }
+
+    static async newUserSpeakLanguage(user_id, language_id) {
+        try {
+            const { rows } = await db.query('INSERT INTO "user_speak_language"(user_id, language_id) VALUES($1, $2) RETURNING user_id AS "userId", language_id AS "languageId"', [user_id, language_id])
+            return new Language(rows[0])
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            } else {
+                throw error;
+            }
+        }
+
+    }
+
+    static async deleteUserSpeakLanguage(user_id, language_id) {
+        try {
+            await db.query('DELETE FROM "user_speak_language" WHERE user_id=$1 AND language_id=$2', [user_id, language_id])
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            } else {
+                throw error;
+            }
+        }
+
+    }
+    static async newUserLearnLanguage(user_id, language_id) {
+        try {
+            const { rows } = await db.query('INSERT INTO "user_learn_language"(user_id, language_id) VALUES($1, $2) RETURNING user_id AS "userId", language_id AS "languageId"', [user_id, language_id])
+            return new Language(rows[0])
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            } else {
+                throw error;
+            }
+        }
+
+    }
+
+    static async deleteUserLearnLanguage(user_id, language_id) {
+        try {
+            await db.query('DELETE FROM "user_learn_language" WHERE user_id=$1 AND language_id=$2', [user_id, language_id])
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            } else {
+                throw error;
+            }
+        }
+
+    }
 };
 
 module.exports = Language;
