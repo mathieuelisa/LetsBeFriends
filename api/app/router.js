@@ -145,7 +145,7 @@ router
     .get(userController.findOneByEmail)
     .patch(validateBody(updateUserSecuritySchema), userController.update)
 
-router.get('/users/login', userController.login)
+router.post('/users/login', userController.login)
 
 // GET /users/:id
 
