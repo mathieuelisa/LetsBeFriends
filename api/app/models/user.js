@@ -195,7 +195,7 @@ class User extends CoreModel {
     }
     /**
      * Validate a user with email and password
-     * @param {string} email.query.required emmail
+     * @param {string} email.query.required email
      * @param {string} password.query.required password
      * @returns {Array<User>}
      * @async
