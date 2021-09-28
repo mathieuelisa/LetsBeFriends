@@ -40,6 +40,7 @@ const userController = {
     },
 
     login: async (req, res, next) => {
+        console.dir(`req.body : ${req.body}`)
         const email = req.body.email
         const password = req.body.password
         try {
@@ -52,8 +53,7 @@ const userController = {
     },
 
     create: async (req, res, next) => {
-        console.log(`req : ${req}`)
-        console.log(`req.body : ${req.body}`)
+        console.dir(`req.body : ${req.body}`)
         const user = new User(req.body);
         if (user.password === user.confirmPassword) {
             try {
