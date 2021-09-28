@@ -1,5 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router';
 //Import React components
 import Input from "../../Profil/Input"
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
@@ -10,10 +13,10 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 //Import styles
 import "./styles.scss"
 import "./datepicker.scss"
+// Import axios
 import axios from 'axios'
 
-import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux"
+
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
 import { setAllEvents } from '../../../Redux/actions/event';
@@ -60,6 +63,12 @@ function SearchEventContainer(){
         //console.log('La variable events est : ', events);
     },[])
 
+    const history = useHistory()
+    // Function permettant de se logout en reinitialisant le localStorage
+        function handleLogOut(){
+        localStorage.clear()
+        history.push("/home")
+    }
 
     console.log('events: ', events);
 
@@ -74,12 +83,13 @@ function SearchEventContainer(){
 
                 {toggleAction ? 
                     <div className="header__hamburger">
-                        <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+                        <NavLink to="/home" exact className="header__hamburger-titlePage">HOME</NavLink>
                         <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
                         <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
                         <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
                         <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
                         <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
+                            {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} to="/home" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
                     </div>
                     : ""
                 } 
@@ -117,24 +127,24 @@ function SearchEventContainer(){
                         {/* Date to */}
                         <div className="searchEvent__container-infosDetails-location">
                             <label>To: </label>
-                            <DatePicker 
-                            className="mySearchInputs"
-                                selected={selectedDate} 
-                                onChange={date=>setSelectedDate(date)}
-                                dateFormat="dd/MM/yyyy"
-                                minDate={new Date()}
-                                isClearable
-                            />
+                                <DatePicker 
+                                    className="mySearchInputs"
+                                    selected={selectedDate} 
+                                    onChange={date=>setSelectedDate(date)}
+                                    dateFormat="dd/MM/yyyy"
+                                    minDate={new Date()}
+                                    isClearable
+                                />
                         </div>
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Event: </label>
-                            <Input 
-                                name={"English"} 
-                                name2={"Japanese"} 
-                                name3={"Portuguese"}
-                                name4={"Spanish"}
-                            />
+                                <Input 
+                                    name={"English"} 
+                                    name2={"Japanese"} 
+                                    name3={"Portuguese"}
+                                    name4={"Spanish"}
+                                />
                         </div>
                    </form>
 
@@ -170,8 +180,6 @@ function SearchEventContainer(){
                                     </Popup>        
                                 </Marker>)
                         }
-                        
-
                     })}
                 </MapContainer>
 

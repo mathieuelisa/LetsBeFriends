@@ -10,7 +10,7 @@ import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-
+import { useHistory } from 'react-router';
 
 const Header = ({ openModalLogin, openModalSignup }) => {
 
@@ -28,12 +28,27 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
     dispatch({type: RESET_TOGGLE})
   },[])
 
+
+  const history = useHistory()
+
+    function handleLogOut(){
+        localStorage.clear()
+        history.push("/home")
+  }
+
+let myFirstName = useSelector((state)=>state.profil.myName)
+
   return (
     <div className='header'>
       <h1 className='header__logo'>LBF</h1>
       <div className='header__navbar'>
-        <ButtonModal openModal={openModalLogin} className='header__navbar__login' name='LOGIN' />
-        <ButtonModal openModal={openModalSignup} className='header__navbar__signup' name='SIGN UP' />
+      {/* Si un user un localstorage existe ca affichera son prenom et retirera les boutons login et sign up */}
+        {localStorage.getItem("user") ? <a className='header__navbar__nameOfUser'>Hi {myFirstName} </a> : 
+        <>
+          <ButtonModal openModal={openModalLogin} className='header__navbar__login' name='LOGIN' /> 
+          <ButtonModal openModal={openModalSignup} className='header__navbar__signup' name='SIGN UP' />
+        </>
+        }
         <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
           <ButtonToggle 
             className='settings__container--toggle' 
@@ -44,12 +59,13 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
           {/* Lorsque la classe open est active l'ensemble des NavLink sont disponible */}
          {toggleAction ? 
          <div className="header__hamburger">
-            <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+            <NavLink to="/home" exact className="header__hamburger-titlePage">HOME</NavLink>
             <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
             <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
             <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
             <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
             <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
+            {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} to="/home" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
          </div>
          : ""} 
 

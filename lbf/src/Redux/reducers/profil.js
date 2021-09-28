@@ -1,4 +1,4 @@
-import { SET_FIELD_IDENTIFICATION, SET_CHECKBOX_REMEMBER, SET_CHECKBOX_TERMS, LOGIN, SET_PSEUDO } from '../actions/profil';
+import { SET_FIELD_IDENTIFICATION, SET_CHECKBOX_REMEMBER, SET_CHECKBOX_TERMS, SET_PSEUDO } from '../actions/profil';
 
 export const initialState = {
   //login: {email: 'gertrude.manoukian@gmail.com', password: 'abcd'},

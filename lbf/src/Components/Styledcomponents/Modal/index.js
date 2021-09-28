@@ -1,16 +1,15 @@
-//Actiions
-import { submitLogin, setPseudo } from '../../../Redux/actions/profil'
-//Styles
+//Import Actions
+import { setPseudo } from '../../../Redux/actions/profil'
+//Import Styles
 import './styles.scss';
 //Dependencies
 import PropTypes from 'prop-types';
 import axios from 'axios'
 //React Components
 import Input from '../Input';
-import { useEffect, useState } from 'react';
-// Redux
+import { useState } from 'react';
+//Redux
 import { useDispatch, useSelector } from 'react-redux';
-
 
 const getData = () =>{
     let dataProfil = localStorage.getItem("user")
@@ -67,10 +66,10 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
         }, optionsPost)
         .then((response) => {
             console.log(response.data);
+            // Gestion du localstorage 
             if(response.data){
                 localStorage.setItem("user", JSON.stringify(response.data))
                 localStorage.setItem("userDate", Date.now())
-                // console.log("testt:", response.data.firstname)
                 dispatch(setPseudo(response.data.firstname))
             }
         })
@@ -92,7 +91,8 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
         })
     }
 
-        const test = useSelector((state)=>state.profil.myName)
+    // Recuperation de la valeur afin de l'afficher par la suite
+        const nameUser = useSelector((state)=>state.profil.myName)
 
     return (
     <div className='modal-container'>
@@ -100,10 +100,8 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
             <div className='modal-container__modal'>                
                     {/* Login Form */}
                     {showModalLogin ? (
-
                         <form className='modal-container__modal__formlogin' onSubmit={handleSubmitLogin}>
-                            <h1>Login</h1>
-                            {localStorage.getItem("user")? <h1>Bonjour {test}</h1> : ""}
+                            {localStorage.getItem("user")? <h1>Bonjour {nameUser}</h1> : <h1>Login</h1>}
                             <Input 
                                 type='email'
                                 name='email'
@@ -137,7 +135,6 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                     ) : 
                     
                         <form className='modal-container__modal__formsignup' onSubmit={handleSubmitSignUp}>
-
                         
                             <h1>Sign Up</h1>
                             <div className='modal-container__modal__formsignup__name'>
@@ -206,11 +203,11 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                             
                             <div className='modal-container__modal__formsignup__terms'>                                
                                 <input 
-                                type="checkbox"
-                                id="terms"
-                                checked={isCheckedSignUp} 
-                                onChange={(e)=>{setIsCheckedSignUp(e.target.checked)}} 
-                            />
+                                    type="checkbox"
+                                    id="terms"
+                                    checked={isCheckedSignUp} 
+                                    onChange={(e)=>{setIsCheckedSignUp(e.target.checked)}} 
+                                />
                                 <label 
                                     className='modal-container__modal__formsignup__terms--label' 
                                     htmlFor="remember">I accept the Term of Use & Privacy Policy

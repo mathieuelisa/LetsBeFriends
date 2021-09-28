@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 //Import React components
 import Input from "../../Profil/Input"
 import ButtonToggle from "../../Styledcomponents/ButtonToggle"
@@ -9,8 +10,8 @@ import "./styles.scss"
 import imgEvent from "../../../assets/Img/sport.png"
 
 import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
-import { useDispatch, useSelector } from "react-redux"
 
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
@@ -33,6 +34,14 @@ function CreateEventContainer(){
         dispatch({type: RESET_TOGGLE})
     },[])
 
+    const history = useHistory()
+
+    function handleLogOut(){
+        localStorage.clear()
+        history.push("/home")
+    }
+
+
     return(
         <div className="createEvent__container">
             <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
@@ -44,12 +53,13 @@ function CreateEventContainer(){
 
                 {toggleAction ? 
                     <div className="header__hamburger">
-                        <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+                        <NavLink to="/home" exact className="header__hamburger-titlePage">HOME</NavLink>
                         <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
                         <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
                         <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
                         <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
                         <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
+                        {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} to="/contact" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
                     </div>
                     : ""
                 } 
