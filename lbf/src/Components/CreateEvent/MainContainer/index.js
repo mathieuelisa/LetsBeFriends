@@ -31,7 +31,7 @@ function CreateEventContainer(){
     // useEffect permettant de remettre le menu hamburger a false a chaque rendu
     useEffect(()=>{
         dispatch({type: RESET_TOGGLE})
-    },)
+    },[])
 
     return(
         <div className="createEvent__container">

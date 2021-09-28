@@ -37,7 +37,7 @@ function ContactContainer(){
     // useEffect permettant de remettre le menu hamburger a false a chaque rendu
     useEffect(()=>{
         dispatch({type: RESET_TOGGLE})
-    },)
+    },[])
 
     return(
         <div className="contact__container">

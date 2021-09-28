@@ -25,7 +25,7 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu
   useEffect(()=>{
     dispatch({type: RESET_TOGGLE})
-  },)
+  },[])
 
   return (
     <div className='header'>
