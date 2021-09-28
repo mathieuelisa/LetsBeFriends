@@ -40,6 +40,8 @@ const eventController = {
     },
 
     create: async (req, res, next) => {
+        console.log('--> Create Event: req.body')
+        console.table(req.body)
         const event = new Event(req.body);
         try {
             const result = await event.save();
@@ -51,6 +53,8 @@ const eventController = {
     },
 
     update: async (req, res, next) => {
+        console.log('--> Update Event: req.body')
+        console.table(req.body)
         const event = new Event(req.body);
         try {
             const result = await event.save();
@@ -63,6 +67,8 @@ const eventController = {
     },
 
     delete: async (req, res, next) => {
+        console.log('--> Delete event: req.body')
+        console.table(req.body)
         try {
             const id = req.body.id;
             await Event.delete(id);
@@ -75,6 +81,8 @@ const eventController = {
     },
 
     search: async (req, res, next) => {
+        console.log('--> Search param: req.body')
+        console.table(req.body)
         try {
             const events = await Event.findByParameters(req.body)
             res.status(200).json(events)
