@@ -58,3 +58,27 @@
 }
 
 
+@media screen and (max-width: 970px){
+    .mainListEvent__container{
+        flex-direction: column;
+    }
+
+    .title__listContainer{
+        font-size: 0.5em;
+        justify-content: center;
+    }
+
+    .search__container-pictures{
+        height: 56px;
+        width: 56px;
+    }
+
+    .searchEvent-infos{
+        font-size: 0.6em;
+    }
+
+    .listEvent{
+        width: 100%;
+        height: 87px;
+    }
+}

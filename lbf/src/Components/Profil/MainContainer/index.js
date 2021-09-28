@@ -9,6 +9,7 @@ import Avatar from "../../Styledcomponents/Avatar"
 import { NavLink } from 'react-router-dom';
 
 import avatarMicheline from "../../../assets/Img/micheline.jpg"
+import calendar from "../../../assets/Icons/calendar.svg"
 import { useDispatch, useSelector } from "react-redux"
 
 // import actions types
@@ -63,7 +64,6 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                     <h2 className="profil-genre">No binary</h2>
                     <h2 className="profil-telNumber">Tel: 07 85 11 25 18</h2>
                 </div>
-
 
                 <div className="profil__container-data">
                     <Input name={"PROFIL MODIFIER"} name2={"PASSWORD MODIFIER"}/>
