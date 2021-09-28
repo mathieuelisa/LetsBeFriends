@@ -102,7 +102,11 @@ class Event extends CoreModel {
 	}
 
 	/**
-	 * add a post to the database
+	 * Fetches all events below a determining limit
+	 * @param {number} limit
+	 * @returns {Array<Event>}
+	 * @async
+	 * @static
 	 */
 
 
@@ -202,6 +206,13 @@ class Event extends CoreModel {
 			}
 		}
 	}
+	/**
+	 * Fetches a event by parameters
+	 * @param {object} obj 
+	 * @returns {Array<Event>}
+	 * @async}
+	 * @static
+	 */
 	static async findByParameters  (obj){
 
 		try {
