@@ -32,12 +32,13 @@ let options = {
             "application/json"
         ],
         schemes: ['http', 'https'],
-
+            
     },
     basedir: __dirname,
     files: ['./app/**/*.js']
 };
 expressSwagger(options)
+
 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
