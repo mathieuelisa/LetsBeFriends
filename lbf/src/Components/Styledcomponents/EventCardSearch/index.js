@@ -8,13 +8,13 @@ import avatarMicheline from "../../../assets/Img/micheline.jpg"
 import PropTypes from 'prop-types'
 
 
-function EventCardSearch({classNameCard, infos, pictures, title, titleConfig, language, placeLeft}){
+function EventCardSearch({classNameCard, infos, pictures, title, titleConfig, language, placesLeft}){
     return(
         <div className={classNameCard}>
             <div className={infos}>
                 <h2 className={titleConfig}>{title}</h2>
                 <p>{language}</p>
-                <p>{placeLeft} spot left</p>
+                <p>{placesLeft} spot left</p>
             </div>
 
             <div className={pictures}>
@@ -29,13 +29,13 @@ function EventCardSearch({classNameCard, infos, pictures, title, titleConfig, la
 }
 
 EventCardSearch.propTypes = {
-    classNameCard: PropTypes.string.isRequired,
-    infos: PropTypes.string.isRequired,
-    pictures: PropTypes.string.isRequired,
-    title:  PropTypes.string.isRequired,
-    titleConfig: PropTypes.string.isRequired,
-    language: PropTypes.string.isRequired,
-    placeLeft: PropTypes.number.isRequired,
+    classNameCard: PropTypes.string,
+    infos: PropTypes.string,
+    pictures: PropTypes.string,
+    title:  PropTypes.string,
+    titleConfig: PropTypes.string,
+    language: PropTypes.string,
+    placesLeft: PropTypes.number,
 }
 
 export default EventCardSearch
