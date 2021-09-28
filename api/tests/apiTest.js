@@ -179,7 +179,7 @@ describe('GET /users/login bad login', function () {
     }
     it('should be refused, return 401 and a message', function (done) {
         request(app)
-            .get('/v1/users/login')
+            .post('/v1/users/login')
             .send(data)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -201,7 +201,7 @@ describe('GET /users/login', function () {
     }
     it('should be accepted, return 200 and user', function (done) {
         request(app)
-            .get('/v1/users/login')
+            .post('/v1/users/login')
             .send(data)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
