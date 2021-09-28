@@ -30,7 +30,12 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
     const [isCheckedSignUp,setIsCheckedSignUp] = useState(false)
     const dispatch = useDispatch();
 
-    const options = {
+    const optionsPost = {
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+    }
+    const optionsGet = {
+        method: 'get',
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",
     }
@@ -82,10 +87,10 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
         
         e.preventDefault();
         console.log('Votre forumlaire : ')
-        axios.get('https://lets-be-friend.herokuapp.com/v1/users/login', {
-            "email": "trucdusaitpas@gmail.com",
-            "password": "abcdefgh"
-        })
+        axios.post('https://lets-be-friend.herokuapp.com/v1/users/login', {
+            "email": login.email,
+            "password": login.password
+        }, optionsPost)
         .then((response) => {
             console.log(response.data);
         })
@@ -96,13 +101,13 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
         e.preventDefault();
         console.log('Votre forumlaire : ')
         axios.post('https://lets-be-friend.herokuapp.com/v1/users', {
-            "firstname": "John",
-            "lastname": "Doe",
-            "email": "trucdusaitpas@gmail.com",
-            "password": "abcdefgh",
-            "confirmPassword": "abcdefgh",
-            "gender": "male"
-        }, options)
+            "firstname": signUp.firstname,
+            "lastname": signUp.lastname,
+            "email": signUp.email,
+            "password": signUp.password,
+            "confirmPassword": signUp.confirmedPassword,
+            "gender": signUp.gender
+        }, optionsPost)
         .then((response) => {
             console.log(response.data);
         })
