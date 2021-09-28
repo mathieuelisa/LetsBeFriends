@@ -66,6 +66,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
         })
       
     }
+    
     const handleChangeSignup = (e) => {
         e.preventDefault();
         console.log(e.target.value)
