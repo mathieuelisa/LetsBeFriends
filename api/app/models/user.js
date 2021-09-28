@@ -47,7 +47,7 @@ class User extends CoreModel {
     static async findOneById(id) {
         try {
             const { rows } = await db.query(
-                `SELECT "user".id, "user".firstname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
+                `SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
                 json_agg(
 					DISTINCT jsonb_strip_nulls(
                         jsonb_build_object(
@@ -115,7 +115,7 @@ class User extends CoreModel {
     static async findAll(limit) {
         try {
             const { rows } = await db.query(
-                `SELECT "user".id, "user".firstname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
+                `SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
                 json_agg(
 					DISTINCT jsonb_strip_nulls(
                         jsonb_build_object(

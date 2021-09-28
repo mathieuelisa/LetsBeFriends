@@ -35,7 +35,7 @@ class Event extends CoreModel {
 			this[propName] = obj[propName];
 		}
 	}
-	
+
 	/**
 	 * fetches a single id from the database
 	 * @param {number} id.path.required id of the event we're looking for
@@ -262,7 +262,7 @@ class Event extends CoreModel {
 			${finalObj.query}
 			GROUP BY event.id
 			ORDER BY event.starting_date`, finalObj.values);
-			if(rows.length){
+			if (rows.length) {
 				return rows.map(row => new Event(row));
 			}
 			return null
@@ -270,8 +270,8 @@ class Event extends CoreModel {
 			console.log(error)
 			throw new Error(error.detail)
 		}
-
 	}
+
 }
 
 module.exports = Event;

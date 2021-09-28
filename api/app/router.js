@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { eventController, languageController, tagController, userController } = require('./controllers/index')
+const { requestController, imageController, eventController, languageController, tagController, userController } = require('./controllers/index')
 
 const { newUserSchema, updateUserSchema, updateUserSecuritySchema } = require('./schemas/user')
 const { newEventSchema, updateEventSchema } = require('./schemas/event')
@@ -25,49 +25,54 @@ router.get('/events/:id', eventController.findOneById);
 
 router
     .route('/events')
-/**
- * Responds with all events in database
- * @route GET /events
- * @group Event
- * @summary Responds with all events in database
- * @returns {Array<Event>} 200 -An array of events
- * @returns {string} 500 - An error message
- */
+    /**
+     * Responds with all events in database
+     * @route GET /events
+     * @group Event
+     * @summary Responds with all events in database
+     * @returns {Array<Event>} 200 -An array of events
+     * @returns {string} 500 - An error message
+     */
     .get(eventController.findAll)
-/**
- * Add a new form of event
- * @route POST /events
- * @group Event
- * @summary Add a new event in database
- * @param {ReqEventJson.model | Event.model} object.body.required Object containing the properties to insert a event
- * @returns {Event.model} 201 - The newly created event
- * @returns {string} 500 - An error message
- * @returns {string} 400 - A validation error message
- */
+    /**
+     * Add a new form of event
+     * @route POST /events
+     * @group Event
+     * @summary Add a new event in database
+     * @param {ReqEventJson.model | Event.model} object.body.required Object containing the properties to insert a event
+     * @returns {Event.model} 201 - The newly created event
+     * @returns {string} 500 - An error message
+     * @returns {string} 400 - A validation error message
+     */
     .post(validateBody(newEventSchema), eventController.create)
-/**
- * Updade a existing event
- * @route PUT /events
- * @group Event
- * @summary Update a existing event
- * @param {ReqEventJson | Event.model} object.body.required Object containing the properties to update a event
- * @returns {Event.model} 204 - the updating event
- * @returns {string} 500 - an error message
- * @returns {string} 404 - A validation error message
- * 
- */
+    /**
+     * Updade a existing event
+     * @route PUT /events
+     * @group Event
+     * @summary Update a existing event
+     * @param {ReqEventJson | Event.model} object.body.required Object containing the properties to update a event
+     * @returns {Event.model} 204 - the updating event
+     * @returns {string} 500 - an error message
+     * @returns {string} 404 - A validation error message
+     * 
+     */
     .patch(validateBody(updateEventSchema), eventController.update)
-/**
- * Delete an existing event
- * @route DELETE /events
- * @group Event
- * @summary Delete a existing event
- * @param {number} id.path.required id necessary for delete event
- * @returns {string} 200 - the event deleted
- * @returns {string} 500 - An error message
- * @returns {string} 404 - A validation error message
- */
+    /**
+     * Delete an existing event
+     * @route DELETE /events
+     * @group Event
+     * @summary Delete a existing event
+     * @param {number} id.path.required id necessary for delete event
+     * @returns {string} 200 - the event deleted
+     * @returns {string} 500 - An error message
+     * @returns {string} 404 - A validation error message
+     */
     .delete(eventController.delete)
+
+router
+    .route('/events/join')
+    .post(requestController.makeJoiningRequest)
+    .delete(requestController.confirmJoiningRequest)
 
 // LANGUAGE
 router
@@ -131,11 +136,9 @@ router
  */
     .delete(userController.delete)
 
-// Ask if email exist, if its does
-// Patch the same url with id, password and password confirm 
-//(both must be the same, that will be checked by the Joi Schema).
-//todo We must put another kind of verification of the get.
-//todo SecretQuestion/Answer or a verification by SMS/EMAIL
+router
+    .route('/imageprofil')
+    .post(imageController.uploadProfil)
 
 router
     .route('/resetpassword')
@@ -151,7 +154,7 @@ router
     .get(userController.findOneByEmail)
     .patch(validateBody(updateUserSecuritySchema), userController.update)
 
-router.get('/users/login', userController.login)
+router.post('/users/login', userController.login)
 
 // GET /users/:id
 

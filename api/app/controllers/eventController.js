@@ -74,8 +74,7 @@ const eventController = {
         }
     },
 
-    search : async (req, res, next)=>{
-        // console.log(req.body)
+    search: async (req, res, next) => {
         try {
             const events = await Event.findByParameters(req.body)
             res.status(200).json(events)
@@ -83,7 +82,7 @@ const eventController = {
             console.log(error);
             res.status(500).json(error.message);
         }
-    }
+    },
 
 }
 
