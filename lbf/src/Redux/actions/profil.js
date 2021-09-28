@@ -52,3 +52,11 @@ export const submitSignUp = () => (
     type: SIGN_UP,
   }
 )
+
+export const SET_PSEUDO = "SET_PSEUDO"
+export const setPseudo = (value) => (
+  {
+    type: SET_PSEUDO,
+    value,
+  }
+)

@@ -1,12 +1,19 @@
-import { SET_FIELD_IDENTIFICATION, SET_CHECKBOX_REMEMBER, SET_CHECKBOX_TERMS, LOGIN } from '../actions/profil';
+import { SET_FIELD_IDENTIFICATION, SET_CHECKBOX_REMEMBER, SET_CHECKBOX_TERMS, LOGIN, SET_PSEUDO } from '../actions/profil';
 
 export const initialState = {
   //login: {email: 'gertrude.manoukian@gmail.com', password: 'abcd'},
   //signup: {email: 'antoine.dupond@gmail.com', password: 'efgh', confirmedPassword: 'efgh', firstName: 'Antoine', lastName: 'Dupond', gender:"male" },
   termsAccepted: false,
   isRemembered: false,
-  
+  myName: ""
 };
+
+let pipo = localStorage.getItem("user") 
+let result =  JSON.parse(pipo)
+
+if (pipo) {
+    initialState.myName = result.firstname 
+}
 
 const reducer = (state = initialState, action = {}) => {
 
@@ -28,6 +35,11 @@ const reducer = (state = initialState, action = {}) => {
           ...state,
           termsAccepted: !state.termsAccepted,
         }
+      case SET_PSEUDO: 
+      return{
+        ...state,
+        myName: action.value
+      }
     default:
       return state;
   }
