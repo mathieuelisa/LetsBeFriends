@@ -52,6 +52,8 @@ const userController = {
     },
 
     create: async (req, res, next) => {
+        console.log(`req : ${req}`)
+        console.log(`req.body : ${req.body}`)
         const user = new User(req.body);
         if (user.password === user.confirmPassword) {
             try {
