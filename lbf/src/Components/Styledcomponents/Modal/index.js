@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 //Actiions
 import { submitLogin, setPseudo } from '../../../Redux/actions/profil'
+=======
+
+>>>>>>> 8303c18451cd9abb3905a93ca86408843c4451e9
 //Styles
 import './styles.scss';
 //Dependencies
@@ -34,18 +38,43 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
 
     const [isCheckedLogin,setIsCheckedLogin] = useState(false)
     const [isCheckedSignUp,setIsCheckedSignUp] = useState(false)
+<<<<<<< HEAD
 
     const dispatch = useDispatch()
+=======
+>>>>>>> 8303c18451cd9abb3905a93ca86408843c4451e9
 
     const optionsPost = {
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",
     }
+<<<<<<< HEAD
+=======
+
+    // const { emailLogin, passwordLogin } = useSelector(state => state.profil.login);
+    // const { emailSignup, passwordSignup, confirmedPassword, firstName, lastName, gender } = useSelector(state => state.profil.signup);
+    // const { termsAccepted, isRemembered } = useSelector(state => state.profil);
+
+    // const dispatch = useDispatch();
+
+    //CallNack de l'event onChange général à tous les champs controllés 
+    //ex utilisation: setFieldIdentification(valeur du champ: antoine.dupont@gmail.com, name: email, type: signup )
+    
+    //Ne pas utiliser redux mais un useState
+ 
+
+    //Action update boolean Acceptation des terms
+    // const handleCheckboxTerms = () => {
+    //     dispatch(setCheckboxTerms())
+    // }
+
+    // const handleCheckboxRemember = () => {
+    //     dispatch(setCheckboxRemember())
+    // }
+>>>>>>> 8303c18451cd9abb3905a93ca86408843c4451e9
 
     const handleChangeLogin = (e) => {
         e.preventDefault();
-        console.log(e.target.value)
-        console.log(e.target.name)
         setLogin({
             ...login,
             [e.target.name]: e.target.value
@@ -54,8 +83,6 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
     
     const handleChangeSignup = (e) => {
         e.preventDefault();
-        console.log(e.target.value)
-        console.log(e.target.name)
         setSignUp({
             ...signUp,
             [e.target.name]: e.target.value

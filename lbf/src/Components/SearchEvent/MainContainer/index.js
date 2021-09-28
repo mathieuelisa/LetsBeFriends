@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 //Import React components
 import Input from "../../Profil/Input"
@@ -9,11 +10,13 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 //Import styles
 import "./styles.scss"
 import "./datepicker.scss"
+import axios from 'axios'
 
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
+import { setAllEvents } from '../../../Redux/actions/event';
 
 function SearchEventContainer(){
 
@@ -26,17 +29,30 @@ function SearchEventContainer(){
     const dispatch = useDispatch()
     const toggleAction = useSelector((state)=> state.common.toggleAction)
 
+
     function handleClick(event){
         event.preventDefault()
         console.log("Tu as cliqué sur le bouton")
         dispatch({type: SET_TOGGLE})
     }
 
-    // useEffect permettant de remettre le menu hamburger a false a chaque rendu
+    const GetAllEvents = () => {
+        axios.get('https://lets-be-friend.herokuapp.com/v1/events')
+        .then((response) => {
+            //console.log('La liste des évéènements est : ', response.data);
+            dispatch(setAllEvents(response.data));
+        }).catch(
+            (error) => console.log('error'),
+          );
+    }
+    // useEffect permettant de remettre le menu hamburger a false a chaque rendu + Get tous les évènements
     useEffect(()=>{
         dispatch({type: RESET_TOGGLE})
-        //getAllEvents();
+        GetAllEvents();
+        console.log('La variable events est : ', events);
     },[])
+
+
 
 
     return(

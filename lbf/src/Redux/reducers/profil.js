@@ -28,6 +28,7 @@ const reducer = (state = initialState, action = {}) => {
           ...state,
           termsAccepted: !state.termsAccepted,
         }
+<<<<<<< HEAD
       case SET_PSEUDO: 
       return{
         ...state,
@@ -38,6 +39,8 @@ const reducer = (state = initialState, action = {}) => {
       // return{
       //   ...state,
       // }
+=======
+>>>>>>> 8303c18451cd9abb3905a93ca86408843c4451e9
     default:
       return state;
   }
