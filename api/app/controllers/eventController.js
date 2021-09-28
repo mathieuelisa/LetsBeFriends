@@ -75,7 +75,6 @@ const eventController = {
     },
 
     search: async (req, res, next) => {
-        // console.log(req.body)
         try {
             const events = await Event.findByParameters(req.body)
             res.status(200).json(events)
@@ -85,31 +84,6 @@ const eventController = {
         }
     },
 
-    newUserAskEvent: async (req, res, next) => {
-        const user_id = req.body.userId;
-        const event_id = req.body.eventId;
-
-        try {
-            const result = await Event.newUserAskEvent(user_id, event_id);
-            res.status(201).json(result)
-        } catch (error) {
-            console.log(error);
-            res.status(500).json(error);
-        }
-    },
-
-    deleteUserAskEvent: async (req, res, next) => {
-        const user_id = req.body.userId;
-        const event_id = req.body.eventId;
-
-        try {
-            const result = await Event.deleteUserAskEvent(user_id, event_id);
-            res.status(200).json(`Relation between user ${user_id} and EventId ${event_id} deleted`);
-        } catch (error) {
-            console.log(error);
-            res.status(500).json(error);
-        }
-    },
 }
 
 module.exports = eventController;

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { imageController, eventController, languageController, tagController, userController } = require('./controllers/index')
+const { requestController, imageController, eventController, languageController, tagController, userController } = require('./controllers/index')
 
 const { newUserSchema, updateUserSchema, updateUserSecuritySchema } = require('./schemas/user')
 const { newEventSchema, updateEventSchema } = require('./schemas/event')
@@ -71,8 +71,8 @@ router
 
 router
     .route('/events/join')
-    .post(eventController.newUserAskEvent)
-    .delete(eventController.deleteUserAskEvent)
+    .post(requestController.makeJoiningRequest)
+    .delete(requestController.confirmJoiningRequest)
 
 // LANGUAGE
 router

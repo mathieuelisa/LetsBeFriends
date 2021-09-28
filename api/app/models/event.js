@@ -261,32 +261,6 @@ class Event extends CoreModel {
 		}
 	}
 
-	static async newUserAskEvent(user_id, event_id) {
-		try {
-			const { rows } = await db.query('INSERT INTO "user_ask_event"(user_id, event_id) VALUES($1, $2) RETURNING user_id AS "userId", event_id AS "eventId"', [user_id, event_id])
-			return new Event(rows[0])
-		} catch (error) {
-			console.log(error);
-			if (error.detail) {
-				throw new Error(error.detail)
-			} else {
-				throw error;
-			}
-		}
-	}
-
-	static async deleteUserAskEvent(user_id, event_id) {
-		try {
-			const { rows } = await db.query('DELETE FROM "user_ask_event" WHERE user_id=$1 AND event_id=$2', [user_id, event_id])
-		} catch (error) {
-			console.log(error);
-			if (error.detail) {
-				throw new Error(error.detail)
-			} else {
-				throw error;
-			}
-		}
-	}
 }
 
 module.exports = Event;
