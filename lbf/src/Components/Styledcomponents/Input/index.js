@@ -1,9 +1,9 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
 
-const Input = ({ name, placeHolder, value, onChange, classNameDiv, classNameInput, type, label }) => (
+const Input = ({ name, placeHolder, value, onChange, classNameDiv, classNameInput, type, htmlFor }) => (
   <div className={classNameDiv}>
-    <input className={classNameInput} name={name} placeholder={placeHolder} value={value} onChange={onChange} label={label} type={type} />
+    <input className={classNameInput} name={name} placeholder={placeHolder} value={value} onChange={onChange} htmlFor={htmlFor} type={type} />
   </div>
 );
 
@@ -14,7 +14,7 @@ Input.propTypes = {
     classNameDiv: PropTypes.string,
     classNameInput: PropTypes.string,
     type: PropTypes.string,
-    label: PropTypes.string,
+    htmlFor: PropTypes.string,
     name: PropTypes.string,
 }
 

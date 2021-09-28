@@ -1,5 +1,5 @@
 //Actions
-import { setFieldIdentification, setCheckboxRemember, setCheckboxTerms, submitLogin } from '../../../Redux/actions/profil'
+import { setFieldIdentification, setCheckboxRemember, setCheckboxTerms, submitLogin, submitSignup } from '../../../Redux/actions/profil'
 //Styles
 import './styles.scss';
 //Dependencies
@@ -23,7 +23,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
     //ex utilisation: setFieldIdentification(valeur du champ: antoine.dupont@gmail.com, name: email, type: signup )
     
     const handleChangeField = (e) => {
-        dispatch(setFieldIdentification(e.target.value, e.target.name, e.target.label));
+        dispatch(setFieldIdentification(e.target.value, e.target.name, e.target.htmlFor));
     }
 
     //Action update boolean Acceptation des terms
@@ -41,6 +41,11 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
         dispatch(submitLogin());
     }
 
+    const handleSubmitSignup = (e) => {
+        e.preventDefault();
+        dispatch(submitSignup())
+    }
+
     return (
     <div className='modal-container'>
         {(showModalLogin || showModalSignup) ? (
@@ -53,7 +58,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                             <Input 
                                 name='email'
                                 type='email'
-                                label='login' 
+                                htmlFor='login' 
                                 value={emailLogin} 
                                 onChange={handleChangeField} 
                                 placeHolder='Email' 
@@ -63,7 +68,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                             <Input 
                             name='password'
                             type='password'
-                            label='login' 
+                            htmlFor='login' 
                             value={passwordLogin} 
                             onChange={handleChangeField} 
                             placeHolder='Password' 
@@ -76,16 +81,16 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                         </form>
                     ) : 
                     
-                        <form className='modal-container__modal__formsignup'>
+                        <form className='modal-container__modal__formsignup' onSubmit={handleSubmitSignup}>
                             <h1>Sign Up</h1>
                             <div className='modal-container__modal__formsignup__name'>
-                                <Input name='firstname' type='text' label='signup' value={firstName} placeHolder='Firstname' classNameInput='modal-container__modal__formsignup__name--firstname' classNameDiv='div-input-login' onChange={handleChangeField} />
-                                <Input name='lastname' type='text' label='signup' value={lastName} placeHolder='Lastname' classNameInput='modal-container__modal__formsignup__name--lastname' classNameDiv='div-input-login' onChange={handleChangeField} />
+                                <Input name='firstname' type='text' htmlFor='signup' value={firstName} placeHolder='Firstname' classNameInput='modal-container__modal__formsignup__name--firstname' classNameDiv='div-input-login' onChange={handleChangeField} />
+                                <Input name='lastname' type='text' htmlFor='signup' value={lastName} placeHolder='Lastname' classNameInput='modal-container__modal__formsignup__name--lastname' classNameDiv='div-input-login' onChange={handleChangeField} />
                             </div>
-                            <Input name='email' type='email' label='signup' value={emailSignup} placeHolder='Email' classNameInput='modal-container__modal__formsignup--email' classNameDiv='div-input-login' onChange={handleChangeField} />
-                            <Input name='password' type='password' label='signup' value={passwordSignup} placeHolder='Password' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField}  />
-                            <Input name='confirmedPassword' type='password' label='signup' value={confirmedPassword} placeHolder='Confirm Password' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField} />
-                            <Input name='gender' type='text' label='signup' value={gender} placeHolder='Gender' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField} />
+                            <Input name='email' type='email' htmlFor='signup' value={emailSignup} placeHolder='Email' classNameInput='modal-container__modal__formsignup--email' classNameDiv='div-input-login' onChange={handleChangeField} />
+                            <Input name='password' type='password' htmlFor='signup' value={passwordSignup} placeHolder='Password' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField}  />
+                            <Input name='confirmedPassword' type='password' htmlFor='signup' value={confirmedPassword} placeHolder='Confirm Password' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField} />
+                            <Input name='gender' type='text' htmlFor='signup' value={gender} placeHolder='Gender' classNameInput='modal-container__modal__formsignup--password' classNameDiv='div-input-login' onChange={handleChangeField} />
                             
                             
                             <div className='modal-container__modal__formsignup__terms'>
