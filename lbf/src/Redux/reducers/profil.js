@@ -28,11 +28,6 @@ const reducer = (state = initialState, action = {}) => {
           ...state,
           termsAccepted: !state.termsAccepted,
         }
-        // Utiliser axios
-      // case LOGIN: 
-      // return{
-      //   ...state,
-      // }
     default:
       return state;
   }

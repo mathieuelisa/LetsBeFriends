@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // Import styles
 import "./styles.scss"
 import Input from "../Input"

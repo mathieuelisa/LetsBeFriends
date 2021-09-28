@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './styles.scss';
 import ButtonModal from '../../Styledcomponents';
 import ButtonToggle from '../../Styledcomponents/ButtonToggle';

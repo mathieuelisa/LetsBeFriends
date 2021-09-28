@@ -1,12 +1,9 @@
-//Actiions
-import { submitLogin } from '../../../Redux/actions/profil'
+
 //Styles
 import './styles.scss';
 //Dependencies
 import PropTypes from 'prop-types';
 import axios from 'axios'
-//Redux
-import { useDispatch } from 'react-redux'
 //React Components
 import Input from '../Input';
 import { useState } from 'react';
@@ -28,14 +25,8 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
 
     const [isCheckedLogin,setIsCheckedLogin] = useState(false)
     const [isCheckedSignUp,setIsCheckedSignUp] = useState(false)
-    const dispatch = useDispatch();
 
     const optionsPost = {
-        'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": "*",
-    }
-    const optionsGet = {
-        method: 'get',
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",
     }
@@ -63,8 +54,6 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
 
     const handleChangeLogin = (e) => {
         e.preventDefault();
-        console.log(e.target.value)
-        console.log(e.target.name)
         setLogin({
             ...login,
             [e.target.name]: e.target.value
@@ -73,8 +62,6 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
     }
     const handleChangeSignup = (e) => {
         e.preventDefault();
-        console.log(e.target.value)
-        console.log(e.target.name)
         setSignUp({
             ...signUp,
             [e.target.name]: e.target.value
