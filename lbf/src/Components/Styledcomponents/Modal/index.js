@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 //Actiions
 import { submitLogin, setPseudo } from '../../../Redux/actions/profil'
-=======
-
->>>>>>> 8303c18451cd9abb3905a93ca86408843c4451e9
 //Styles
 import './styles.scss';
 //Dependencies
@@ -38,40 +34,13 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
 
     const [isCheckedLogin,setIsCheckedLogin] = useState(false)
     const [isCheckedSignUp,setIsCheckedSignUp] = useState(false)
-<<<<<<< HEAD
 
     const dispatch = useDispatch()
-=======
->>>>>>> 8303c18451cd9abb3905a93ca86408843c4451e9
 
     const optionsPost = {
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",
     }
-<<<<<<< HEAD
-=======
-
-    // const { emailLogin, passwordLogin } = useSelector(state => state.profil.login);
-    // const { emailSignup, passwordSignup, confirmedPassword, firstName, lastName, gender } = useSelector(state => state.profil.signup);
-    // const { termsAccepted, isRemembered } = useSelector(state => state.profil);
-
-    // const dispatch = useDispatch();
-
-    //CallNack de l'event onChange général à tous les champs controllés 
-    //ex utilisation: setFieldIdentification(valeur du champ: antoine.dupont@gmail.com, name: email, type: signup )
-    
-    //Ne pas utiliser redux mais un useState
- 
-
-    //Action update boolean Acceptation des terms
-    // const handleCheckboxTerms = () => {
-    //     dispatch(setCheckboxTerms())
-    // }
-
-    // const handleCheckboxRemember = () => {
-    //     dispatch(setCheckboxRemember())
-    // }
->>>>>>> 8303c18451cd9abb3905a93ca86408843c4451e9
 
     const handleChangeLogin = (e) => {
         e.preventDefault();
@@ -101,6 +70,8 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
             if(response.data){
                 localStorage.setItem("user", JSON.stringify(response.data))
                 localStorage.setItem("userDate", Date.now())
+                // console.log("testt:", response.data.firstname)
+                dispatch(setPseudo(response.data.firstname))
             }
         })
     }
@@ -120,15 +91,6 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
             console.log(response.data);
         })
     }
-            
-           let pipo = localStorage.getItem("user") 
-           let result =  JSON.parse(pipo)
-           let myValue = result.firstname 
-           
-           const getPseudo = () => {
-               dispatch(setPseudo(myValue))
-            }
-            getPseudo()
 
         const test = useSelector((state)=>state.profil.myName)
 
