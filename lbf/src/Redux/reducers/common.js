@@ -2,6 +2,7 @@ import { RESET_TOGGLE, SET_TOGGLE } from "../actions/common";
 
 export const initialState = {
   toggleAction: false,
+  myName: ""
 };
 
 const reducer = (state = initialState, action = {}) => {

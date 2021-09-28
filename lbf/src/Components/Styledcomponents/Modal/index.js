@@ -1,22 +1,28 @@
 //Actiions
-import { submitLogin } from '../../../Redux/actions/profil'
+import { submitLogin, setPseudo } from '../../../Redux/actions/profil'
 //Styles
 import './styles.scss';
 //Dependencies
 import PropTypes from 'prop-types';
 import axios from 'axios'
-//Redux
-import { useDispatch } from 'react-redux'
 //React Components
 import Input from '../Input';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
 
+
+const getData = () =>{
+    let dataProfil = localStorage.getItem("user")
+    if(dataProfil){
+        return JSON.parse(dataProfil)
+    } else{
+        return ""
+    }
+}
 
 const Modal = ({ showModalLogin, showModalSignup  }) => {
-    const [login, setLogin] = useState({
-        email:"",
-        password:""
-    })
+    const [login, setLogin] = useState(getData())
     const [signUp, setSignUp] = useState({
         firstname:"",
         lastname:"",
@@ -28,38 +34,13 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
 
     const [isCheckedLogin,setIsCheckedLogin] = useState(false)
     const [isCheckedSignUp,setIsCheckedSignUp] = useState(false)
-    const dispatch = useDispatch();
+
+    const dispatch = useDispatch()
 
     const optionsPost = {
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",
     }
-    const optionsGet = {
-        method: 'get',
-        'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": "*",
-    }
-
-    // const { emailLogin, passwordLogin } = useSelector(state => state.profil.login);
-    // const { emailSignup, passwordSignup, confirmedPassword, firstName, lastName, gender } = useSelector(state => state.profil.signup);
-    // const { termsAccepted, isRemembered } = useSelector(state => state.profil);
-
-    // const dispatch = useDispatch();
-
-    //CallNack de l'event onChange général à tous les champs controllés 
-    //ex utilisation: setFieldIdentification(valeur du champ: antoine.dupont@gmail.com, name: email, type: signup )
-    
-    //Ne pas utiliser redux mais un useState
- 
-
-    //Action update boolean Acceptation des terms
-    // const handleCheckboxTerms = () => {
-    //     dispatch(setCheckboxTerms())
-    // }
-
-    // const handleCheckboxRemember = () => {
-    //     dispatch(setCheckboxRemember())
-    // }
 
     const handleChangeLogin = (e) => {
         e.preventDefault();
@@ -69,7 +50,6 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
             ...login,
             [e.target.name]: e.target.value
         })
-      
     }
     
     const handleChangeSignup = (e) => {
@@ -80,11 +60,9 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
             ...signUp,
             [e.target.name]: e.target.value
         })
-       
     }
 
     const handleSubmitLogin = (e) => {
-        
         e.preventDefault();
         console.log('Votre forumlaire : ')
         axios.post('https://lets-be-friend.herokuapp.com/v1/users/login', {
@@ -93,11 +71,14 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
         }, optionsPost)
         .then((response) => {
             console.log(response.data);
+            if(response.data){
+                localStorage.setItem("user", JSON.stringify(response.data))
+                localStorage.setItem("userDate", Date.now())
+            }
         })
     }
 
     const handleSubmitSignUp = (e) => {
-        
         e.preventDefault();
         console.log('Votre forumlaire : ')
         axios.post('https://lets-be-friend.herokuapp.com/v1/users', {
@@ -112,13 +93,17 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
             console.log(response.data);
         })
     }
+            
+           let pipo = localStorage.getItem("user") 
+           let result =  JSON.parse(pipo)
+           let myValue = result.firstname 
+           
+           const getPseudo = () => {
+               dispatch(setPseudo(myValue))
+            }
+            getPseudo()
 
-                // firstname: signUp.firstname,
-            // lastname: signUp.lastname,
-            // email: signUp.email,
-            // password: signUp.password,
-            // confirmPassword: signUp.confirmedPassword,
-            // gender: signUp.gender,
+        const test = useSelector((state)=>state.profil.myName)
 
     return (
     <div className='modal-container'>
@@ -129,6 +114,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
 
                         <form className='modal-container__modal__formlogin' onSubmit={handleSubmitLogin}>
                             <h1>Login</h1>
+                            {localStorage.getItem("user")? <h1>Bonjour {test}</h1> : ""}
                             <Input 
                                 type='email'
                                 name='email'
@@ -162,6 +148,8 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                     ) : 
                     
                         <form className='modal-container__modal__formsignup' onSubmit={handleSubmitSignUp}>
+
+                        
                             <h1>Sign Up</h1>
                             <div className='modal-container__modal__formsignup__name'>
                                 <Input 

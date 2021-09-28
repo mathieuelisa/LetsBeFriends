@@ -27,6 +27,15 @@ export const initialState = {
     titleConfig: "searchEvent-title",
     language: "Japanese",
     placeLeft: 1
+  }, 
+  { 
+    id: 4,
+    infos: "searchEvent-infos",
+    pictures: "searchEvent-pictures",
+    eventTag: "Tous chez Julien",
+    titleConfig: "searchEvent-title",
+    language: "Japanese",
+    placeLeft: 6
   },  
 ],
   fieldsSearch: {city: 'Paris', eventTag: 'Soirée BBQ', dateBegin: '27-09-2021', dateEnd: '10-10-2021', language: 'English'},
