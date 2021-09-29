@@ -234,6 +234,7 @@ class User extends CoreModel {
                     values.push(this[key])
                 }
                 const { rows } = await db.query(`UPDATE "user" SET ${properties} WHERE id=$1 RETURNING *`, values)
+                delete rows[0].password
                 return new User(rows[0])
             } else {
                 this.password = await bcrypt.hash(this.password, 10)

@@ -19,7 +19,10 @@ const { validateBody, validateQuery, validateParams } = require('./services/vali
  * @returns {Event.model} 200 - A single post identified by its id
  * @returns {string} 404 - An error message
  * @returns {string} 500 - An error message
+ * 
  */
+
+router.get('/events/search', eventController.search);
 router.get('/events/:id', eventController.findOneById);
 
 
