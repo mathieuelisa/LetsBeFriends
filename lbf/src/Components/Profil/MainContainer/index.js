@@ -46,20 +46,20 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
         <div className="profil__container">
             <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
                 <ButtonToggle 
-                className='settings__container--toggle' 
-                name='=' 
-                handleClick={handleClick}
+                    className='settings__container--toggle' 
+                    name='=' 
+                    handleClick={handleClick}
                 />
 
                 {toggleAction ? 
                 <div className="header__hamburger">
-                    <NavLink to="/home" exact className="header__hamburger-titlePage">HOME</NavLink>
+                    <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
                     <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
                     <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
                     <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
                     <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
                     <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
-                    {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} to="/home" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
+                    {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} exact to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
                 </div>
                 : ""} 
             </div>
@@ -67,9 +67,9 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
             <div className="mainProfil__container">
                 <div className="profil__container-avatars">
                     <Avatar 
-                    customDiv={"profil__container-avatar"} 
-                    customImg={"profil__container-pictures"} 
-                    customPics={avatarMicheline}
+                        customDiv={"profil__container-avatar"} 
+                        customImg={"profil__container-pictures"} 
+                        customPics={avatarMicheline}
                     />
                     <h2 className="profil-genre">No binary</h2>
                     <h2 className="profil-telNumber">Tel: 07 85 11 25 18</h2>
@@ -77,17 +77,17 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
 
                 <div className="profil__container-data">
                     <Input name={"PROFIL MODIFIER"} name2={"PASSWORD MODIFIER"}/>
-                    <p>Micheline</p>
-                    <p>Michaudiere</p>
-                    <p>Paris, 20eme</p>
-                    <p>pipo@gmail.com</p>
-                    <p>Language speakin: FRENCH</p>
-                    <p>Language to learn: RUSSIAN</p>
-                    <p>Age: 22</p>
-                    <p>Description:</p>
+                        <p>Micheline</p>
+                        <p>Michaudiere</p>
+                        <p>Paris, 20eme</p>
+                        <p>pipo@gmail.com</p>
+                        <p>Language speakin: FRENCH</p>
+                        <p>Language to learn: RUSSIAN</p>
+                        <p>Age: 22</p>
+                        <p>Description:</p>
 
                     <div className="profil__textContent">
-                        <textarea type="textarea" className="profil__textContent-text" name="description" value="This is a description."> Salut j'aime les brebis </textarea>
+                        <textarea type="textarea" className="profil__textContent-text" name="description" value="This is a description."></textarea>
                     </div>
                 </div>
             </div>

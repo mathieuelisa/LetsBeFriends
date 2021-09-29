@@ -94,13 +94,13 @@ function SearchEventContainer(){
 
                 {toggleAction ? 
                     <div className="header__hamburger">
-                        <NavLink to="/home" exact className="header__hamburger-titlePage">HOME</NavLink>
+                        <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
                         <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
                         <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
                         <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
                         <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
                         <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
-                            {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} to="/home" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
+                            {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} exact to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
                     </div>
                     : ""
                 } 
@@ -132,8 +132,8 @@ function SearchEventContainer(){
                             <label>From: </label>
                                 <DatePicker 
                                     className="mySearchInputs"
-                                    selected={selectedEndDate} 
-                                    onChange={date=>setselectendDate(date)}
+                                    selected={selectedDate} 
+                                    onChange={date=>setSelectedDate(date)}
                                     dateFormat="dd/MM/yyyy"
                                     minDate={new Date()}
                                     isClearable
@@ -144,8 +144,8 @@ function SearchEventContainer(){
                             <label>To: </label>
                                 <DatePicker 
                                     className="mySearchInputs"
-                                    selected={selectedDate} 
-                                    onChange={date=>setSelectedDate(date)}
+                                    selected={selectedEndDate} 
+                                    onChange={date=>setselectendDate(date)}
                                     dateFormat="dd/MM/yyyy"
                                     minDate={new Date()}
                                     isClearable

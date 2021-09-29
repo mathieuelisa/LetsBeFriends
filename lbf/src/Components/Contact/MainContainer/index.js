@@ -60,13 +60,13 @@ const history = useHistory()
 
                 {toggleAction ? 
                     <div className="header__hamburger">
-                        <NavLink to="/home" exact className="header__hamburger-titlePage">HOME</NavLink>
+                        <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
                         <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
                         <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
                         <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
                         <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
                         <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
-                            {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} to="/contact" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
+                            {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} exact to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
                     </div>
                     : ""
                 } 
