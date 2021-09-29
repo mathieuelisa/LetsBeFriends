@@ -15,11 +15,11 @@ function App() {
    
     <div className="App">
 
+<Switch> 
         <Route path="/home" exact>
             <HomePage />
         </Route>
 
-<Switch> 
         <Route path="/profil" exact>
             <ProfilPage />
         </Route>

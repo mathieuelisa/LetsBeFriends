@@ -41,7 +41,6 @@ function CreateEventContainer(){
         history.push("/home")
     }
 
-
     return(
         <div className="createEvent__container">
             <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
@@ -64,6 +63,7 @@ function CreateEventContainer(){
                     : ""
                 } 
             </div>
+
             <div className="mainCreateEvent__container">
                 <div className="createEvent__container-infosDetails">
                     <form id="registerForm"> 
@@ -92,26 +92,26 @@ function CreateEventContainer(){
                         <div className="createEvent__container-infosDetails-location">
                             <label>Language: </label>
                             <Input 
-                            name={"FRENCH"} 
-                            name2={"ENGLISH"} 
-                            name3={"JAPANESE"}
-                            name4={"ROUMAIN"}
+                                name={"FRENCH"} 
+                                name2={"ENGLISH"} 
+                                name3={"JAPANESE"}
+                                name4={"ROUMAIN"}
                             />
                         </div>
 
                         <div className="createEvent__container-infosDetails-location">
-                        <label>Nombre de participants: </label>
-                        <Input 
-                            name={"1"} 
-                            name2={"2"} 
-                            name3={"3"}
-                            name4={"4"}
+                            <label>Nombre de participants: </label>
+                            <Input 
+                                name={"1"} 
+                                name2={"2"} 
+                                name3={"3"}
+                                name4={"4"}
                             />
                         </div>
 
                         <div className="createEvent__container-infosDetails-location">
                             <label>Description:</label>
-                            <textarea className="myInputs" type="text"/>
+                                <textarea className="myInputs" type="text"/>
                         </div>
                     </form>
                 </div>

@@ -42,13 +42,14 @@ let myFirstName = useSelector((state)=>state.profil.myName)
     <div className='header'>
       <h1 className='header__logo'>LBF</h1>
       <div className='header__navbar'>
-      {/* Si un user un localstorage existe ca affichera son prenom et retirera les boutons login et sign up */}
-        {localStorage.getItem("user") ? <a className='header__navbar__nameOfUser'>Hi {myFirstName} </a> : 
+      {/* Si un user est stocké dans un localstorage ca affichera son prenom et retirera les boutons login et sign up */}
+        {localStorage.getItem("user") ? <a href className='header__navbar__nameOfUser'>Hi {myFirstName} </a> : 
         <>
           <ButtonModal openModal={openModalLogin} className='header__navbar__login' name='LOGIN' /> 
           <ButtonModal openModal={openModalSignup} className='header__navbar__signup' name='SIGN UP' />
         </>
         }
+        
         <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
           <ButtonToggle 
             className='settings__container--toggle' 

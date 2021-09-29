@@ -162,11 +162,11 @@ function SearchEventContainer(){
                 <MapContainer center={[48.858370, 2.294481]} zoom={13} scrollWheelZoom={true}>
                 
                     <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     {events.map((event, i) => {  
-                        console.log('LE vrai map : ', event)
+                        console.log('La vrai map : ', event)
 
                         if( event.latitude>0 && 
                             event.latitude<84 && 

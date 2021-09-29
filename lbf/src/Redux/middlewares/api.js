@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { LOGIN, SIGN_UP } from '../actions/profil';
+// import axios from 'axios'
+// import { LOGIN, SIGN_UP } from '../actions/profil';
 
 
 const authMiddleware = (store) => (next) => (action) => {

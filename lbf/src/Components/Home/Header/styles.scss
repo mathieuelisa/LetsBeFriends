@@ -84,7 +84,8 @@
 
                 &:hover {
                 transform: rotate(90deg);
-                background-color: rgba($color: whitesmoke, $alpha: 0.9);
+                background-color: whitesmoke;
+                opacity: 0.8;
                 color: rgba(229, 175, 108);
                 transition: transform 0.5s, background-color 0.5s;
                 box-shadow: 0 0 7px -1px;
@@ -129,7 +130,8 @@
                 text-decoration: none;
                 color: whitesmoke;
                 transform: rotate(90deg);
-                background-color: rgba($color: whitesmoke, $alpha: 0.9);
+                background-color: whitesmoke;
+                opacity: 0.8;
                 color: rgba(229, 175, 108);
                 transition: transform 0.5s, background-color 0.5s;
                 box-shadow: 0 0 7px -1px;

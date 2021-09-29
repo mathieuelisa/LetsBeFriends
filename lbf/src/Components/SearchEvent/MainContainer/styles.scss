@@ -142,7 +142,6 @@
     cursor: pointer;
     text-decoration: none;
     color: whitesmoke;
-    //box-shadow: 0 0 7px -1px;
 
     &:hover {
         transform: rotate(90deg);
@@ -151,7 +150,6 @@
         transition: transform 0.5s, background-color 0.5s;
         box-shadow: 0 0 7px -1px;
     }
-
 }
 
 .searchEvent-button-menu {
@@ -175,7 +173,6 @@
     }
 
     .searchEvent__container-form{
-        // box-shadow: none;
         box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
         border-radius: 10px;
         height: 85%;
