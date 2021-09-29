@@ -1,3 +1,4 @@
+const { string } = require('joi');
 const Joi = require('joi');
 
 const newEventSchema = Joi.object({
@@ -8,8 +9,7 @@ const newEventSchema = Joi.object({
     img_url: Joi.string().max(1500),
     places_left: Joi.number().min(0).max(6).required(),
     description: Joi.string().max(1800).required(),
-    longitude: Joi.number().min(-180).max(180).required(),
-    latitude: Joi.number().min(-90).max(90).required(),
+    adress : Joi.string().required(),
     user_id: Joi.number().required(),
 })
 
@@ -21,8 +21,7 @@ const updateEventSchema = Joi.object({
     img_url: Joi.string().max(1500),
     places_left: Joi.number().min(0).max(6),
     description: Joi.string().max(1800),
-    longitude: Joi.number().min(-180).max(180),
-    latitude: Joi.number().min(-90).max(90),
+    adress : Joi.string().required(),
     user_id: Joi.number()
 })
 
