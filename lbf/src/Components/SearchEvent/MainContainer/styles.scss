@@ -31,6 +31,47 @@
             height: 40%;
             overflow-y: scroll;
             scrollbar-color: rebeccapurple green;
+
+                &__searchEvent {
+                    display: flex;
+                    justify-content: space-between;
+                    font-family: "Caviar";
+                    font-size: 0.7em;
+                    width: 92%;
+                    height: 100px;
+                    background: linear-gradient(to top,rgba(247, 11, 3, 0.37), rgba(247, 80, 3, 0.37),rgba(247, 113, 3, 0.37));
+                    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+                    backdrop-filter: blur( 7.5px );
+                    -webkit-backdrop-filter: blur( 7.5px );
+                    border-radius: 10px;
+                    border: 1px solid rgba( 255, 255, 255, 0.18 );
+                    color: whitesmoke;
+                    padding: 10px;
+                    margin-bottom: 0.8rem;
+
+            
+                
+                    &-infos{
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        width: 60%;
+                        padding: 13px;
+                        
+                    }
+                
+                    &-pictures{
+                        display: flex;
+                        width: 40%;
+                    }
+                
+                    &-title{
+                        font-size: 1.1em;
+                        margin-bottom: 0.5rem;
+                    }
+                }
+
+            
         }
         
 
@@ -180,6 +221,7 @@
             flex-direction: column;
             width: 60%;
             padding: 13px;
+
         }
     
         &-pictures{
