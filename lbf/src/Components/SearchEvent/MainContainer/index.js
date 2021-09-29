@@ -113,8 +113,8 @@ function SearchEventContainer(){
                             <label>From: </label>
                                 <DatePicker 
                                     className="mySearchInputs"
-                                    selected={selectedEndDate} 
-                                    onChange={date=>setselectendDate(date)}
+                                    selected={selectedDate} 
+                                    onChange={date=>setSelectedDate(date)}
                                     dateFormat="dd/MM/yyyy"
                                     minDate={new Date()}
                                     isClearable
@@ -125,8 +125,8 @@ function SearchEventContainer(){
                             <label>To: </label>
                                 <DatePicker 
                                     className="mySearchInputs"
-                                    selected={selectedDate} 
-                                    onChange={date=>setSelectedDate(date)}
+                                    selected={selectedEndDate} 
+                                    onChange={date=>setselectendDate(date)}
                                     dateFormat="dd/MM/yyyy"
                                     minDate={new Date()}
                                     isClearable
