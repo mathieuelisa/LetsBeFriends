@@ -34,7 +34,7 @@ router
      * @returns {Array<Event>} 200 -An array of events
      * @returns {string} 500 - An error message
      */
-    .get(eventController.findAll)
+    .get(checkJwt, eventController.findAll)
     /**
      * Add a new form of event
      * @route POST /events
@@ -45,7 +45,7 @@ router
      * @returns {string} 500 - An error message
      * @returns {string} 400 - A validation error message
      */
-    .post(validateBody(newEventSchema), eventController.create)
+    .post(checkJwt, validateBody(newEventSchema), eventController.create)
     /**
      * Updade a existing event
      * @route PUT /events
@@ -57,7 +57,7 @@ router
      * @returns {string} 404 - A validation error message
      * 
      */
-    .patch(validateBody(updateEventSchema), eventController.update)
+    .patch(checkJwt, validateBody(updateEventSchema), eventController.update)
     /**
      * Delete an existing event
      * @route DELETE /events
@@ -68,22 +68,22 @@ router
      * @returns {string} 500 - An error message
      * @returns {string} 404 - A validation error message
      */
-    .delete(eventController.delete)
+    .delete(checkJwt, eventController.delete)
 
 router
     .route('/events/join')
-    .post(requestController.makeJoiningRequest)
-    .delete(requestController.confirmJoiningRequest)
+    .post(checkJwt, requestController.makeJoiningRequest)
+    .delete(checkJwt, requestController.confirmJoiningRequest)
 
 // LANGUAGE
 router
     .route('/speak')
-    .post(languageController.newUserSpeakLanguage)
-    .delete(languageController.deleteUserSpeakLanguage)
+    .post(checkJwt, languageController.newUserSpeakLanguage)
+    .delete(checkJwt, languageController.deleteUserSpeakLanguage)
 router
     .route('/learn')
-    .post(languageController.newUserLearnLanguage)
-    .delete(languageController.deleteUserLearnLanguage)
+    .post(checkJwt, languageController.newUserLearnLanguage)
+    .delete(checkJwt, languageController.deleteUserLearnLanguage)
 
 // TAG
 
@@ -101,7 +101,7 @@ router
  * @returns {Array<User>} 200 -An array of users
  * @returns {string} 500 - An error message
  */
-    .get(userController.findAll)
+    .get(checkJwt, userController.findAll)
     /**
  * Add a new form of user
  * @route POST /users
@@ -124,7 +124,7 @@ router
  * @returns {string} 404 - A validation error message
  * 
  */
-    .patch(validateBody(updateUserSchema), userController.update)
+    .patch(checkJwt, validateBody(updateUserSchema), userController.update)
     /**
  * Delete an existing event
  * @route DELETE /users
@@ -135,7 +135,7 @@ router
  * @returns {string} 500 - An error message
  * @returns {string} 404 - A validation error message
  */
-    .delete(userController.delete)
+    .delete(checkJwt, userController.delete)
 
 router
     .route('/imageprofil')
@@ -163,7 +163,7 @@ router.post('/users/login', userController.login)
  * @returns {string} 500 - An error message
  */
 
-router.get('/users/:id', userController.findOneById);
+router.get('/users/:id', checkJwt, userController.findOneById);
 
 // POST/users/:id
 

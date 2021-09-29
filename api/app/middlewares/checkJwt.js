@@ -1,13 +1,14 @@
-
 const jwt = require('../services/jwt');
 
 module.exports = (req, res, next) => {
     try {
-        let token = request.headers['authorization'];
-        const payload = jwt.validateToken(token);
-        req.body.id = payload.userId
+        let authHeader = req.headers['authorization'];
+        if (!authHeader) {
+            return res.sendStatus(401);
+        }
+        const payload = jwt.validateToken(authHeader);
         next();
     } catch (error) {
-        response.status(500).json(error.message);
+        res.status(401).json('Invalid Token');
     }
 }

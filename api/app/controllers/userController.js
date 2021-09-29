@@ -46,15 +46,16 @@ const userController = {
         console.log('--> Login: req.body')
         console.table(req.body)
 
-        console.dir(req.body)
         const email = req.body.email
         const password = req.body.password
         try {
             const user = await User.validByEmailPassword(email, password)
-            // if(user.id){
-            //     res.setHeader('Authorization', jwt.makeToken(user.id));
-            // }
-            res.status(user.id ? 200 : 401).json(user)
+            if (user.id) {
+                const accessToken = jwt.makeToken(user.id)
+                res.setHeader('authorization', accessToken);
+                res.status(200).json(user)
+            }
+            res.status(401)
         } catch (error) {
             console.log(error);
             res.status(500).json(error);

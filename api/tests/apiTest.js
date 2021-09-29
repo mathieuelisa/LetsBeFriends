@@ -10,7 +10,7 @@ function getRandomIntInclusive(min, max) {
 const id = getRandomIntInclusive(3, 50);
 const email = `test14${getRandomIntInclusive(3, 999)}@daube.com`
 const phone_number = `0610171${getRandomIntInclusive(100, 200)}`
-
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjY1LCJpYXQiOjE2MzI5MDQ1NDAsImV4cCI6MTYzMjkwNjM0MH0.Jb8RxJ4qVoRMjtKEsowBZdyCOtf9UmT5qIlyFPzZgcg'
 //==================== user API test ====================
 /**
  * Testing get all user endpoint
@@ -21,6 +21,7 @@ describe('GET v1/users', function () {
             .get('/v1/users')
             .query({ limit: 10 })
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(200, done)
     });
@@ -34,6 +35,7 @@ describe('GET v1/users/:id', function () {
         request(app)
             .get('/v1/users/12')
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(200, done);
     });
@@ -57,6 +59,7 @@ describe('POST /users', function () {
             .post('/v1/users')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(201)
             .end((err) => {
@@ -73,6 +76,7 @@ describe('GET /v1/user/:id', function () {
         request(app)
             .get('/v1/users/176877')
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(404)
             .expect('"user not found"') // expecting content value
@@ -98,6 +102,7 @@ describe('POST /users', function () {
             .post('/v1/users')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(400)
             .end((err) => {
@@ -120,6 +125,7 @@ describe('PATCH /users', function () {
             .patch('/v1/users')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(200)
             .end((err) => {
@@ -140,6 +146,7 @@ describe('PATCH /users', function () {
             .patch('/v1/users')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(400)
             .expect('"\\"fakedata\\" is not allowed"')
@@ -162,6 +169,7 @@ describe('DELETE /users', function () {
             .delete('/v1/users')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(200)
             .expect(`"DELETE user with id ${id} : ok"`)
@@ -225,6 +233,7 @@ describe('GET /v1/events', function () {
             .get('/v1/events')
             .query({ limit: 10 })
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(200, done)
     });
@@ -238,6 +247,7 @@ describe('GET /v1/events/:id', function () {
         request(app)
             .get('/v1/events/3')
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(200, done);
     });
@@ -251,6 +261,7 @@ describe('GET /v1/event/:id Failing', function () {
         request(app)
             .get('/v1/events/176877')
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(404)
             .expect('"event not found"') // expecting content value
@@ -282,6 +293,7 @@ describe('POST /events', function () {
             .post('/v1/events')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(201)
             .end((err) => {
@@ -306,6 +318,7 @@ describe('POST /events', function () {
             .post('/v1/events')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(400)
             .end((err) => {
@@ -329,6 +342,7 @@ describe('PATCH /events', function () {
             .patch('/v1/events')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(200)
             .end((err) => {
@@ -352,6 +366,7 @@ describe('PATCH /events', function () {
             .patch('/v1/events')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(400)
             .expect('"\\"fakedata\\" is not allowed"')
@@ -374,6 +389,7 @@ describe('DELETE /events', function () {
             .delete('/v1/events')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(200)
             .expect(`"DELETE event with id ${id} : ok"`)
@@ -396,6 +412,7 @@ describe('POST /v1/speak', function () {
             .post('/v1/speak')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(201, done)
     });
@@ -413,6 +430,7 @@ describe('POST /v1/learn', function () {
             .post('/v1/learn')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(201, done)
     });
@@ -431,6 +449,7 @@ describe('DELETE /v1/speak', function () {
             .delete('/v1/speak')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(200, done)
     });
@@ -448,6 +467,7 @@ describe('DELETE /v1/learn', function () {
             .delete('/v1/learn')
             .send(data)
             .set('Accept', 'application/json')
+            .set('Authorization', token)
             .expect('Content-Type', /json/)
             .expect(200, done)
     });

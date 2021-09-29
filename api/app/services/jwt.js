@@ -4,32 +4,14 @@ require('dotenv').config();
 module.exports = {
     makeToken: userId => {
         try {
-            console.log(JWT.sign(
-                //payload
-                {
-                    userId
-                },
-                //le mot de passe de chiffrement
-                'process.env.JWT_SECRET',
-                //header
-                {
-                    algorithm: 'HS256',
-                    expiresIn: '30m'
-
-                }
-            ))
             return JWT.sign(
-                //payload
                 {
                     userId
                 },
-                //le mot de passe de chiffrement
-                'process.env.JWT_SECRET',
-                //header
+                process.env.JWT_SECRET,
                 {
                     algorithm: 'HS256',
                     expiresIn: '30m'
-
                 }
             );
         } catch (error) {
@@ -42,14 +24,14 @@ module.exports = {
         try {
             return JWT.verify(
                 token,
-                'process.env.JWT_SECRET',
+                process.env.JWT_SECRET,
                 {
                     algorithms: ['HS256']
                 }
             );
         } catch (error) {
             console.log(error);
-            throw error;
+            return res.sendStatus(401);
         }
     }
 }
