@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react"
+import { useEffect, useState, } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
@@ -24,7 +24,12 @@ import { setAllEvents } from '../../../Redux/actions/event';
 function SearchEventContainer(){
 
     const events = useSelector(state => state.event.events)
-    const fieldsSearch = useSelector(state => state.event.fieldsSearch)
+    // Délai d'actualisation pour les listes déroulantes
+    const [fieldsSearch, setFieldsSearch] = useState({
+        city: '',
+        eventTag: '',
+        language: '',
+    })
 
     const [selectedDate, setSelectedDate] = useState(null)
     const [selectedEndDate, setselectendDate] = useState(null)
@@ -36,6 +41,16 @@ function SearchEventContainer(){
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",
     }
+
+    const handleChangeFieldsSearch = (e) => {
+        e.preventDefault();
+        setFieldsSearch({
+            ...fieldsSearch,
+            [e.target.name]: e.target.value
+        })
+        console.log('fieldsSearch : ', fieldsSearch)
+    }
+
 
     function handleClick(event){
         event.preventDefault()
@@ -96,17 +111,21 @@ function SearchEventContainer(){
                    <form id="searchForm">
                         <div className="searchEvent__container-infosDetails-location">
                             <label>City: </label>
-                            <input className="mySearchInputs" type="text" value={fieldsSearch.city}/>
+                            <input name='city' className="mySearchInputs" type="text" value={fieldsSearch.city} onChange={handleChangeFieldsSearch} />
                         </div>
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Event: </label>
-                                <Input 
-                                    name={"Soirée BBQ"} 
-                                    name2={"Atelier Cuisine"} 
-                                    name3={"Soirée Jeux"}
-                                    name4={"Sortie culturelle"}
-                                />
+                                <select name='eventTag' value={fieldsSearch.eventTag} onChange={handleChangeFieldsSearch}>
+                                    <option></option>
+                                    <option>Soirée BBQ</option>
+                                    <option>Atelier Cuisine</option> 
+                                    <option>Soirée jeux</option> 
+                                    <option>Sortie culturelle</option>
+                                    <option>Sortie Cinéma</option>
+                                    <option>Moment café</option>
+                                    <option>Soirée Pijama</option>  
+                                </select>
                         </div>
                         {/* Date from */}
                         <div className="searchEvent__container-infosDetails-location">
@@ -134,13 +153,17 @@ function SearchEventContainer(){
                         </div>
 
                         <div className="searchEvent__container-infosDetails-location">
-                            <label>Event: </label>
-                                <Input 
-                                    name={"English"} 
-                                    name2={"Japanese"} 
-                                    name3={"Portuguese"}
-                                    name4={"Spanish"}
-                                />
+                            <label>Language: </label>
+                                <select name='language' value={fieldsSearch.language} onChange={handleChangeFieldsSearch}>
+                                    <option></option>
+                                    <option>English</option>
+                                    <option>French</option> 
+                                    <option>Spanish</option> 
+                                    <option>Japanese</option>
+                                    <option>Mandarin</option>
+                                    <option>Russian</option>
+                                    <option>Italian</option>  
+                                </select>
                         </div>
                    </form>
 
@@ -151,7 +174,7 @@ function SearchEventContainer(){
 
                 <div className="searchEvent__container-resultsForm">
                     {/* Cards for searchPage */}
-                    {events.map((event) => ( <EventCardSearch key={event.id} {...event} classNameCard='searchEvent'/> ))}
+                    {events.map((event) => ( <EventCardSearch key={event.id} {...event} classNameCard='searchEvent__container-resultsForm__searchEvent'/> ))}
                 </div>
             </div>
                 {/* Component Leaflet  */}
