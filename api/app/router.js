@@ -9,7 +9,7 @@ const { validateBody, validateQuery, validateParams } = require('./middlewares/v
 const checkJwt = require('../app/middlewares/checkJwt')
 
 // --- EVENT
-router.get('/events/search', eventController.search)
+router.post('/events/search', eventController.search)
 
 /**
  * Respond with one event from database
@@ -23,7 +23,6 @@ router.get('/events/search', eventController.search)
  * 
  */
 
-router.post('/events/search', eventController.search);
 router.get('/events/:id', eventController.findOneById);
 
 
