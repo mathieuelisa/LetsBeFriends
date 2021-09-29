@@ -24,10 +24,6 @@ import { setAllEvents } from '../../../Redux/actions/event';
 function SearchEventContainer(){
 
     const events = useSelector(state => state.event.events)
-    const getLatLong = () => {
-       events.filter( event => event.latitude);
-    }
-    console.log('getLatLong : ', getLatLong());
     const fieldsSearch = useSelector(state => state.event.fieldsSearch)
 
     const [selectedDate, setSelectedDate] = useState(null)
@@ -50,7 +46,7 @@ function SearchEventContainer(){
     const GetAllEvents = () => {
         axios.get('https://lets-be-friend.herokuapp.com/v1/events', optionsGet)
         .then((response) => {
-            console.log('La liste des évéènements est : ', response.data);
+            //console.log('La liste des évéènements est : ', response.data);
             dispatch(setAllEvents(response.data));
         }).catch(
             (error) => console.log('error'),
@@ -70,7 +66,7 @@ function SearchEventContainer(){
         history.push("/home")
     }
 
-    console.log('events: ', events);
+    //console.log('events: ', events);
 
     return(
         <div className="searchEvent__container">
@@ -166,8 +162,6 @@ function SearchEventContainer(){
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     {events.map((event, i) => {  
-                        console.log('La vrai map : ', event)
-
                         if( event.latitude>0 && 
                             event.latitude<84 && 
                             event.longitude>0 && 
@@ -175,8 +169,8 @@ function SearchEventContainer(){
                         )  {
                             return (
                                 <Marker key={event.id} position={[event.latitude, event.longitude]}>
-                                    <Popup>
-                                        <EventCardSearch key={event.id} {...event} classNameCard='searchEvent'/>
+                                    <Popup >
+                                        <EventCardSearch key={event.id} {...event} classNameCard='leaflet-popup-content-wrapper__searchEvent'/>
                                     </Popup>        
                                 </Marker>)
                         }
