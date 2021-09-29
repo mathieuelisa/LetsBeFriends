@@ -23,7 +23,7 @@ router.get('/events/search', eventController.search)
  * 
  */
 
-router.get('/events/search', eventController.search);
+router.post('/events/search', eventController.search);
 router.get('/events/:id', eventController.findOneById);
 
 
