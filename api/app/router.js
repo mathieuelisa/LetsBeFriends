@@ -5,10 +5,11 @@ const { requestController, imageController, eventController, languageController,
 
 const { newUserSchema, updateUserSchema, updateUserSecuritySchema } = require('./schemas/user')
 const { newEventSchema, updateEventSchema } = require('./schemas/event')
-const { validateBody, validateQuery, validateParams } = require('./services/validator')
+const { validateBody, validateQuery, validateParams } = require('./middlewares/validator')
+const checkJwt = require('../app/middlewares/checkJwt')
 
 // --- EVENT
-
+router.get('/events/search', eventController.search)
 
 /**
  * Respond with one event from database

@@ -22,6 +22,8 @@
     "express-swagger-generator": "^1.1.17",
     "faker": "^5.5.3",
     "joi": "^17.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.5",
     "pg": "^8.7.1"
   },
   "devDependencies": {
