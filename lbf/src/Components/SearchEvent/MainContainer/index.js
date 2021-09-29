@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, } from "react"
+import { useEffect, useState, React } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
 //Import React components
-import Input from "../../Profil/Input"
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
 import ButtonToggle from '../../Styledcomponents/ButtonToggle'
 //Import Tools
 import DatePicker from "react-datepicker"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+//Import selectors
 //Import styles
 import "./styles.scss"
 import "./datepicker.scss"
@@ -22,35 +22,40 @@ import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
 import { setAllEvents } from '../../../Redux/actions/event';
 
 function SearchEventContainer(){
-
+    const toggleAction = useSelector((state)=> state.common.toggleAction)
     const events = useSelector(state => state.event.events)
-    // Délai d'actualisation pour les listes déroulantes
-    const [fieldsSearch, setFieldsSearch] = useState({
-        city: '',
-        eventTag: '',
-        language: '',
-    })
 
     const [selectedDate, setSelectedDate] = useState(null)
-    const [selectedEndDate, setselectendDate] = useState(null)
+    const [selectedEndDate, setSelectEndDate] = useState(null)
+    const [fieldsSearch, setFieldsSearch] = useState({
+        city: '',
+        eventTag: [''],
+        language: [''],
+    })
 
     const dispatch = useDispatch()
-    const toggleAction = useSelector((state)=> state.common.toggleAction)
+
 
     const optionsGet = {
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",
     }
 
-    const handleChangeFieldsSearch = (e) => {
+    const handleChangeFieldsSearchTag = (e) => {
         e.preventDefault();
         setFieldsSearch({
             ...fieldsSearch,
-            [e.target.name]: e.target.value
+            [e.target.name]: [e.target.name].push(e.target.value), 
         })
-        console.log('fieldsSearch : ', fieldsSearch)
     }
 
+    const handleChangeFieldsSearchText = (e) => {
+        e.preventDefault();
+        setFieldsSearch({
+            ...fieldsSearch,
+            [e.target.name]: e.target.value, 
+        })
+    }
 
     function handleClick(event){
         event.preventDefault()
@@ -58,21 +63,37 @@ function SearchEventContainer(){
         dispatch({type: SET_TOGGLE})
     }
 
+     const handleSubmitForm = (e) => {
+        e.preventDefault();
+        searchEvent([], ['English'], "2021-10-20T20:49:12.000Z", "2021-11-09T05:31:49.000Z");
+    }
+
     const GetAllEvents = () => {
         axios.get('https://lets-be-friend.herokuapp.com/v1/events', optionsGet)
         .then((response) => {
-            //console.log('La liste des évéènements est : ', response.data);
             dispatch(setAllEvents(response.data));
         }).catch(
             (error) => console.log('error'),
           );
     }
+
+    const searchEvent = (tagName, languageName, startingDate, endingDate) => {
+        console.log('tagName', tagName)
+        axios.post('https://lets-be-friend.herokuapp.com/v1/events/search', {
+            "tagName": tagName,
+            "languageName": languageName,
+            "startingDate" : startingDate,
+            "endingDate": endingDate
+        }, optionsGet )
+        .then((response) => {
+            console.log('Voici la réponse de l API pour recherche d evenements :', response.data);
+            dispatch(setAllEvents(response.data));
+        }).catch(error => console.log('Error recherche event '));
+    }
+    
+    
     // useEffect permettant de remettre le menu hamburger a false a chaque rendu + Get tous les évènements
-    useEffect(()=>{
-        dispatch({type: RESET_TOGGLE})
-        GetAllEvents();
-        //console.log('La variable events est : ', events);
-    },[])
+   
 
     const history = useHistory()
     // Function permettant de se logout en reinitialisant le localStorage
@@ -81,7 +102,11 @@ function SearchEventContainer(){
         history.push("/home")
     }
 
-    //console.log('events: ', events);
+    useEffect(()=>{
+        dispatch({type: RESET_TOGGLE})
+        GetAllEvents()
+    },[])
+
 
     return(
         <div className="searchEvent__container">
@@ -108,15 +133,15 @@ function SearchEventContainer(){
 
             <div className="searchEvent__container-form">
                 <div className="searchEvent__container-searchForm">
-                   <form id="searchForm">
+                   <form id="searchForm" onSubmit={handleSubmitForm}>
                         <div className="searchEvent__container-infosDetails-location">
                             <label>City: </label>
-                            <input name='city' className="mySearchInputs" type="text" value={fieldsSearch.city} onChange={handleChangeFieldsSearch} />
+                            <input name='city' className="mySearchInputs" type="text" value={fieldsSearch.city} onChange={handleChangeFieldsSearchText} />
                         </div>
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Event: </label>
-                                <select name='eventTag' value={fieldsSearch.eventTag} onChange={handleChangeFieldsSearch}>
+                                <select name='eventTag' value={fieldsSearch.eventTag} onChange={handleChangeFieldsSearchTag}>
                                     <option></option>
                                     <option>Soirée BBQ</option>
                                     <option>Atelier Cuisine</option> 
@@ -124,16 +149,17 @@ function SearchEventContainer(){
                                     <option>Sortie culturelle</option>
                                     <option>Sortie Cinéma</option>
                                     <option>Moment café</option>
-                                    <option>Soirée Pijama</option>  
+                                    <option>Couisine</option>  
                                 </select>
                         </div>
                         {/* Date from */}
                         <div className="searchEvent__container-infosDetails-location">
                             <label>From: </label>
                                 <DatePicker 
+                                    name='selectedDate'
                                     className="mySearchInputs"
                                     selected={selectedDate} 
-                                    onChange={date=>setSelectedDate(date)}
+                                    onChange={(date) => setSelectedDate(date)}
                                     dateFormat="dd/MM/yyyy"
                                     minDate={new Date()}
                                     isClearable
@@ -143,9 +169,10 @@ function SearchEventContainer(){
                         <div className="searchEvent__container-infosDetails-location">
                             <label>To: </label>
                                 <DatePicker 
+                                    name='selectedEndDate'
                                     className="mySearchInputs"
                                     selected={selectedEndDate} 
-                                    onChange={date=>setselectendDate(date)}
+                                    onChange={(date) => setSelectEndDate(date)}
                                     dateFormat="dd/MM/yyyy"
                                     minDate={new Date()}
                                     isClearable
@@ -154,7 +181,7 @@ function SearchEventContainer(){
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Language: </label>
-                                <select name='language' value={fieldsSearch.language} onChange={handleChangeFieldsSearch}>
+                                <select name='language' value={fieldsSearch.language} onChange={handleChangeFieldsSearchTag}>
                                     <option></option>
                                     <option>English</option>
                                     <option>French</option> 
