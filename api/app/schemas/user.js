@@ -23,6 +23,8 @@ const updateUserSchema = Joi.object({
     email: Joi.string().max(30).email(),
     description: Joi.string().max(1800),
     age: Joi.number().max(124).min(18),
+    learningLanguage: Joi.array(),
+    speakingLanguage: Joi.array(),
     city: Joi.string(),
     phone_number: Joi.string().pattern(new RegExp('^[+]{1}[-0-9.]{2,20}$|^[-0-9.]{1,20}$')).max(25),
     img_url: Joi.string().max(1500)

@@ -3,21 +3,21 @@ BEGIN;
 
 insert into "user" (firstname, lastname, gender, email, password, description, age, city, phone_number, img_url) values 
 
-('Emmanuel', 'Martin', 'Male', 'gnutley0@nature.com', 'guyD3bhJUXf', 'je vis à bordeaux.', 43, 'Bordeaux', '0123456789', 'https://robohash.org/deseruntmollitiarepudiandae.png?size=50x50&set=set1'),
+('Emmanuel', 'Martin', 'Male', 'gnutley0@nature.com', '$2b$10$8c4H.Bt5T2rkmKhIXe.OCeLRWVme2CZBsXdxVMImxFBA5sNWLplUS', 'je vis à bordeaux.', 43, 'Bordeaux', '0123456789', 'https://robohash.org/deseruntmollitiarepudiandae.png?size=50x50&set=set1'),
 
-('Julien', 'Maurice', 'Male', 'mruff1@google.com.hk', 'xCadHR', 'je suis de lyon', 30, 'Lyon', '9876543210', 'https://robohash.org/sednesciuntveniam.png?size=50x50&set=set1'),
+('Julien', 'Maurice', 'Male', 'mruff1@google.com.hk', '$2b$10$8c4H.Bt5T2rkmKhIXe.OCeLRWVme2CZBsXdxVMImxFBA5sNWLplUS', 'je suis de lyon', 30, 'Lyon', '9876543210', 'https://robohash.org/sednesciuntveniam.png?size=50x50&set=set1'),
 
-('Jeanne', 'Castex', 'Female', 'speaker2@ustream.tv', 'GvvT9P0QnT', 'je suis de Pau.', 65, 'Pau', '1357493210', 'https://robohash.org/autconsecteturodio.png?size=50x50&set=set1'),
+('Jeanne', 'Castex', 'Female', 'speaker2@ustream.tv', '$2b$10$8c4H.Bt5T2rkmKhIXe.OCeLRWVme2CZBsXdxVMImxFBA5sNWLplUS', 'je suis de Pau.', 65, 'Pau', '1357493210', 'https://robohash.org/autconsecteturodio.png?size=50x50&set=set1'),
 
-('Nicolas', 'Charpin', 'male', 'ehockell3@blogs.com', 'Cw6Gb8', 'je suis en Charente Maritime.', 44, 'La Rochelle', '572-218-0375', 'https://robohash.org/voluptatemautlabore.png?size=50x50&set=set1'),
+('Nicolas', 'Charpin', 'male', 'ehockell3@blogs.com', '$2b$10$8c4H.Bt5T2rkmKhIXe.OCeLRWVme2CZBsXdxVMImxFBA5sNWLplUS', 'je suis en Charente Maritime.', 44, 'La Rochelle', '572-218-0375', 'https://robohash.org/voluptatemautlabore.png?size=50x50&set=set1'),
 
-('Haroun', 'Tazieff', 'Male', 'hskaife4@discovery.com', 'K1Kq0Hdirpt', 'je vis à paris.', 70, 'Paris', '945-776-4245', 'https://robohash.org/maiorescommodiquis.png?size=50x50&set=set1'),
+('Haroun', 'Tazieff', 'Male', 'hskaife4@discovery.com', '$2b$10$8c4H.Bt5T2rkmKhIXe.OCeLRWVme2CZBsXdxVMImxFBA5sNWLplUS', 'je vis à paris.', 70, 'Paris', '945-776-4245', 'https://robohash.org/maiorescommodiquis.png?size=50x50&set=set1'),
 
-('Jordan', 'Espitallier', 'Male', 'sdillicate5@tamu.edu', '6VljROWzG', 'je vis en provence. ', 26, 'Aix-en-provence', '497-437-3470', 'https://robohash.org/modiipsumarchitecto.png?size=50x50&set=set1'),
+('Jordan', 'Espitallier', 'Male', 'sdillicate5@tamu.edu', '$2b$10$8c4H.Bt5T2rkmKhIXe.OCeLRWVme2CZBsXdxVMImxFBA5sNWLplUS', 'je vis en provence. ', 26, 'Aix-en-provence', '497-437-3470', 'https://robohash.org/modiipsumarchitecto.png?size=50x50&set=set1'),
 
-('Mathieu', 'Eliza', 'Male', 'lszapiro6@techcrunch.com', 'ObfmGgZ', 'Je vis en région parisienne', 33, 'Paris', '903-144-0020', 'https://robohash.org/perferendislaboreaut.png?size=50x50&set=set1'),
+('Mathieu', 'Eliza', 'Male', 'lszapiro6@techcrunch.com', '$2b$10$8c4H.Bt5T2rkmKhIXe.OCeLRWVme2CZBsXdxVMImxFBA5sNWLplUS', 'Je vis en région parisienne', 33, 'Paris', '903-144-0020', 'https://robohash.org/perferendislaboreaut.png?size=50x50&set=set1'),
 
-('Angelina', 'Jolie', 'Female', 'tsiggins7@linkedin.com', 'HHq9pXoGm', 'j`habite en PACA', 57, 'Toulon', '398-158-2974', 'https://robohash.org/rerumfacerequos.png?size=50x50&set=set1');
+('Angelina', 'Jolie', 'Female', 'tsiggins7@linkedin.com', '$2b$10$8c4H.Bt5T2rkmKhIXe.OCeLRWVme2CZBsXdxVMImxFBA5sNWLplUS', 'j`habite en PACA', 57, 'Toulon', '398-158-2974', 'https://robohash.org/rerumfacerequos.png?size=50x50&set=set1');
 
 
 
@@ -55,7 +55,7 @@ insert into language ("name") values
 
  ('japanese'),
 
- ('deutch'),
+ ('deutsch'),
 
  ('indian'),
 
@@ -75,6 +75,7 @@ insert into tag ("name") values
  ('brunch'),
 
  ('nature'),
+ 
  ('test');
 
 

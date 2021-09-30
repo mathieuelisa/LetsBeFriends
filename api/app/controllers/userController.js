@@ -1,4 +1,4 @@
-const { User } = require(`../models`);
+const { User, Language } = require(`../models`);
 const db = require('../database');
 const jwt = require('../services/jwt')
 
@@ -84,11 +84,32 @@ const userController = {
         console.log('--> Update account: req.body')
         console.table(req.body)
         const user = new User(req.body);
-        if (user.confirmPassword) delete user.confirmPassword
+
         try {
+
+            if (req.body.learningLanguage) {
+                for (let language of req.body.learningLanguage) {
+                    await Language.newUserLearnLanguage(user.id,language)
+                };
+                delete user.learningLanguage
+            }
+
+            if (req.body.speakingLanguage) {
+                for (let language of req.body.speakingLanguage) {
+                    await Language.newUserSpeakLanguage(user.id,language)
+                };
+                delete user.speakingLanguage
+            }
+
+            if (user.confirmPassword) delete user.confirmPassword
+            
             const result = await user.save();
-            if (result) res.status(200).json(result)
+            if (result){
+                const userResult = await User.findOneById(user.id)
+                res.status(200).json(userResult)
+            } 
             else res.status(400).json("data not valid or ressource do not exist")
+
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
