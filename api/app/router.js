@@ -8,8 +8,13 @@ const { newEventSchema, updateEventSchema } = require('./schemas/event')
 const { validateBody, validateQuery, validateParams } = require('./middlewares/validator')
 const checkJwt = require('../app/middlewares/checkJwt')
 
+<<<<<<< HEAD
 // --- EVENT
 router.post('/events/search', eventController.search)
+=======
+//? --- EVENT
+router.get('/events/search', eventController.search)
+>>>>>>> requestFix
 
 /**
  * Respond with one event from database
@@ -24,7 +29,6 @@ router.post('/events/search', eventController.search)
  */
 
 router.get('/events/:id', eventController.findOneById);
-
 
 router
     .route('/events')
@@ -72,12 +76,22 @@ router
      */
     .delete(eventController.delete)
 
+//? --- JOINING REQUEST
 router
-    .route('/events/join')
-    .post(requestController.makeJoiningRequest)
-    .delete(requestController.confirmJoiningRequest)
+    .route('/events/request/:id')
+    .get(requestController.findAllJoiningRequest)
 
-// LANGUAGE
+router
+    .route('/events/request/new')
+    .post(requestController.makeJoiningRequest)
+
+router
+    .route('/events/request/confirm')
+    .post(requestController.confirmJoiningRequest)
+    .delete(requestController.refuseJoiningRequest)
+
+
+//? --- LANGUAGE
 router
     .route('/speak')
     .post(languageController.newUserSpeakLanguage)
@@ -87,12 +101,9 @@ router
     .post(languageController.newUserLearnLanguage)
     .delete(languageController.deleteUserLearnLanguage)
 
-// TAG
+//? --- TAG
 
-// --- USER
-
-
-
+//? --- USER
 router
     .route('/users')
     /**

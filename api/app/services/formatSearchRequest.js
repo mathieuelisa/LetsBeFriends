@@ -22,10 +22,10 @@
 //     languageName : ["Chinois"],
 //     startingDate : "2021-10-20 01:08:43+02",
 //     endingDate : "2021-11-09 02:59:31+01"
-    
+
 // }
 console.time('test')
-const format = (obj)=>{
+const format = (obj) => {
     let count = 1;
     let where = [];
     let tags = [];
@@ -38,20 +38,20 @@ const format = (obj)=>{
     let endingDateToSting;
     let betweenDatesToString;
     const final = {
-        values : [],
-        query : ''
+        values: [],
+        query: ''
     }
 
 
-    if(obj.tagName.length){
-        for(const tag of obj.tagName){
+    if (obj.tagName.length) {
+        for (const tag of obj.tagName) {
             tags.push(`tag.name=$${count++}`)
             final.values.push(tag)
         }
-        tagsToString =  `(${tags.join(' OR ')})`
+        tagsToString = `(${tags.join(' OR ')})`
 
     }
-    if(obj.languageName.length){
+    if (obj.languageName.length) {
         for (const language of obj.languageName) {
             languages.push(`language.name=$${count++}`)
             final.values.push(language)
@@ -59,35 +59,35 @@ const format = (obj)=>{
         languageToSting = `(${languages.join(` OR `)})`
 
     }
-    if(obj.startingDate && obj.endingDate){
+    if (obj.startingDate && obj.endingDate) {
         startingDate.push(`event.starting_date BETWEEN $${count++}`)
         endingDate.push(`AND $${count++}`)
         final.values.push(obj.startingDate)
         final.values.push(obj.endingDate)
         betweenDatesToString = `(${startingDate} ${endingDate})`
 
-    }else if (obj.startingDate) {
+    } else if (obj.startingDate) {
         startingDate.push(`event.starting_date >= $${count++}`)
         final.values.push(obj.startingDate)
         startingDateToString = `(${startingDate})`
 
-    }else if (obj.endingDate){
+    } else if (obj.endingDate) {
         endingDate.push(`event.ending_date <= $${count++}`)
         final.values.push(obj.endingDate)
         endingDateToSting = `(${endingDate})`
 
     }
 
-    if(tagsToString) where.push(tagsToString)
-    if(languageToSting) where.push(languageToSting)
-    if(startingDateToString) where.push(startingDateToString)
-    if(endingDateToSting) where.push(endingDateToSting)
-    if(betweenDatesToString) where.push(betweenDatesToString)
+    if (tagsToString) where.push(tagsToString)
+    if (languageToSting) where.push(languageToSting)
+    if (startingDateToString) where.push(startingDateToString)
+    if (endingDateToSting) where.push(endingDateToSting)
+    if (betweenDatesToString) where.push(betweenDatesToString)
 
     final.query = where.join(' AND ')
     final.query = 'WHERE ' + final.query
-    
-    
+
+
     return final
 }
 
