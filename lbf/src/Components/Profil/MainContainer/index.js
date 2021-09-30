@@ -167,7 +167,7 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                         </div>
 
                         <div className="myInputs-profilPage">
-                            <label className="myInputs-ProfilPage-label">Language spoken:</label>           
+                            <label className="myInputs-ProfilPage-label" id="profil__language">Language spoken:</label>           
                                 <select
                                     className="myInputs-profilPage-input"
                                     name='language_spoken'
@@ -185,7 +185,7 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                         </div>
 
                         <div className="myInputs-profilPage">
-                            <label className="myInputs-ProfilPage-label">Language to learn:</label>
+                            <label className="myInputs-ProfilPage-label" id="profil__language">Language to learn:</label>
                                 <select
                                     className="myInputs-profilPage-input"
                                     name='language_toLearn'

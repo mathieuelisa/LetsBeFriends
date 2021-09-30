@@ -112,7 +112,7 @@ function CreateEventContainer() {
 
                     <form id="registerForm">
                         <div className="createEvent__container-infosDetails-location" id="div-location">
-                            <label>Location: </label>
+                            <label className="createEvent__container-label">Location: </label>
                             <input
                                 name="location"
                                 className="myInputs"
@@ -123,7 +123,7 @@ function CreateEventContainer() {
                         </div>
 
                         <div className="createEvent__container-infosDetails-location" id="div-location">
-                            <label>Zip code: </label>
+                            <label className="createEvent__container-label">ZipCode: </label>
                             <input
                                 name="zipCode"
                                 className="myInputs"
@@ -134,7 +134,7 @@ function CreateEventContainer() {
                         </div>
 
                         <div className="createEvent__container-infosDetails-location" id="div-location">
-                            <label>City: </label>
+                            <label className="createEvent__container-label">City: </label>
                             <input
                                 name="city"
                                 className="myInputs"
@@ -145,7 +145,7 @@ function CreateEventContainer() {
                         </div>
 
                         <div className="createEvent__container-infosDetails-location" id="div-location">
-                            <label>Country: </label>
+                            <label className="createEvent__container-label">Country: </label>
                             <input
                                 name="country"
                                 className="myInputs"
@@ -156,7 +156,7 @@ function CreateEventContainer() {
                         </div>
 
                         <div className="createEvent__container-infosDetails-calendar">
-                            <label className="createEvent__container-infosDetails-calendar-label" >Date from: </label>
+                            <label className="createEvent__container-infosDetails-calendar-label" >From: </label>
                             <input 
                                 type="datetime-local"
                                 name="dateFrom"
@@ -167,7 +167,7 @@ function CreateEventContainer() {
                         </div>
 
                         <div className="createEvent__container-infosDetails-calendar">
-                            <label className="createEvent__container-infosDetails-calendar-label">Date to: </label>
+                            <label className="createEvent__container-infosDetails-calendar-label">To: </label>
                             <input 
                                 type="datetime-local"
                                 name="dateTo"
@@ -177,8 +177,8 @@ function CreateEventContainer() {
                             />
                         </div>
 
-                        <div className="createEvent__container-infosDetails-location">
-                            <label>Theme: </label>
+                        <div className="createEvent__container-infosDetails-location" id="createEvent__label">
+                            <label className="createEvent__container-label">Theme: </label>
                             <select 
                                 className="myInputs"
                                 name='eventTags' 
@@ -195,10 +195,11 @@ function CreateEventContainer() {
                                 </select>
                         </div>
 
-                        <div className="createEvent__container-infosDetails-location">
-                            <label>Language: </label>
+                        <div className="createEvent__container-infosDetails-location" id="createEvent__label">
+                            <label className="createEvent__container-label">Language: </label>
                             <select
                                 className="myInputs"
+                                id="createEvent__label"
                                 name='language'
                                 value={fieldsCreate.language}
                                 onChange={handleFieldsCreateChange}>
@@ -213,10 +214,11 @@ function CreateEventContainer() {
                             </select>
                         </div>
 
-                        <div className="createEvent__container-infosDetails-location">
-                            <label>Nombre de participants: </label>
+                        <div className="createEvent__container-infosDetails-location" id="createEvent__label" >
+                            <label className="createEvent__container-label">Nombre de participants: </label>
                             <select
                                 className="createEvent__container-infosDetails-location"
+                                id="createEvent__label"
                                 name='participants'
                                 value={fieldsCreate.participants}
                                 onChange={handleFieldsCreateChange}>
@@ -231,11 +233,12 @@ function CreateEventContainer() {
                             </select>
                         </div>
 
-                        <div className="createEvent__container-infosDetails-location">
+                        <div className="createEvent__container-infosDetails-location" id="createEvent-textArea">
                             <label>Description:</label>
                             <textarea
                                 name="description"
                                 className="myInputs"
+                                id="createEvent-textArea-width"
                                 type="text"
                                 value={fieldsCreate.description}
                                 onChange={handleFieldsCreateChange}
