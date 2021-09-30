@@ -32,7 +32,7 @@ let options = {
             "application/json"
         ],
         schemes: ['http', 'https'],
-            
+
     },
     basedir: __dirname,
     files: ['./app/**/*.js']

@@ -9,7 +9,7 @@ const newEventSchema = Joi.object({
     img_url: Joi.string().max(1500),
     places_left: Joi.number().min(0).max(6).required(),
     description: Joi.string().max(1800).required(),
-    adress : Joi.string().required(),
+    adress: Joi.string().required(),
     user_id: Joi.number().required(),
 })
 
@@ -21,7 +21,7 @@ const updateEventSchema = Joi.object({
     img_url: Joi.string().max(1500),
     places_left: Joi.number().min(0).max(6),
     description: Joi.string().max(1800),
-    adress : Joi.string().required(),
+    adress: Joi.string(),
     user_id: Joi.number()
 })
 

@@ -8,13 +8,8 @@ const { newEventSchema, updateEventSchema } = require('./schemas/event')
 const { validateBody, validateQuery, validateParams } = require('./middlewares/validator')
 const checkJwt = require('../app/middlewares/checkJwt')
 
-<<<<<<< HEAD
 // --- EVENT
 router.post('/events/search', eventController.search)
-=======
-//? --- EVENT
-router.get('/events/search', eventController.search)
->>>>>>> requestFix
 
 /**
  * Respond with one event from database
