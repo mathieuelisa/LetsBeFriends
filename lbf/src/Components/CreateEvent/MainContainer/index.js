@@ -3,13 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 //Import React components
 // import Input from "../../Profil/Input"
 import ButtonToggle from "../../Styledcomponents/ButtonToggle"
-import DatePicker from "react-datepicker"
 // Import styles
 import "./styles.scss"
 // Import pictures
 import imgEvent from "../../../assets/Img/sport.png"
-
-import DayJS from "react-dayjs"
 
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
@@ -18,9 +15,7 @@ import { useHistory } from 'react-router';
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
 
 function CreateEventContainer() {
-    // States for calendar
-    // const [selectedDate, setSelectedDate] = useState(null)
-    // const [selectedEndDate, setselectendDate] = useState(null)
+
 
     const [fieldsCreate, setFieldsCreate] = useState({
         location: "",
@@ -62,32 +57,7 @@ function CreateEventContainer() {
     }
 
     console.log(fieldsCreate)
-    // console.log("test:", fieldsCreate )
-    // console.log(fieldsCreate.dateFrom)
 
-    // Functions pour gerer et afficher les dates des deux calendrier
-    // function handleChangeDate(e) {
-    //     let date = e.target.value
-    //     let formatDate = new Date(date)
-    //     setFieldsCreate({
-    //         ...fieldsCreate,
-    //         [e.target.name]: {
-    //             formatISO: formatDate.toISOString(),
-    //             formatString: date
-    //         }
-    //     })
-    // }
-
-
-
-    // function handleFieldsEndDateChange(date){
-    //     // date = "31/05/2012"
-    //     // date = date.toLocaleDateString('de-DE')
-    //     setFieldsCreate({
-    //         ...fieldsCreate,
-    //         dateTo: date
-    //     })
-    // }
 
     const dispatch = useDispatch()
     const toggleAction = useSelector((state) => state.common.toggleAction)
@@ -180,10 +150,11 @@ function CreateEventContainer() {
                         <div className="createEvent__container-infosDetails-calendar">
                             <label className="createEvent__container-infosDetails-calendar-label" >Date from: </label>
 
-                            <input type="datetime-local"
+                            <input 
+                                type="datetime-local"
                                 name="dateFrom"
                                 className="myInputs"
-                                value={fieldsCreate.dateFrom.formatString ? fieldsCreate.dateFrom.formatString : ""}
+                                value={fieldsCreate.dateFrom.formatString}
                                 onChange={handleFieldsCreateChange}>
                             </input>
                         </div>
@@ -191,7 +162,8 @@ function CreateEventContainer() {
                         <div className="createEvent__container-infosDetails-calendar">
                             <label className="createEvent__container-infosDetails-calendar-label">Date to: </label>
 
-                            <input type="datetime-local"
+                            <input 
+                                type="datetime-local"
                                 name="dateTo"
                                 className="myInputs"
                                 value={fieldsCreate.dateTo.formatString}

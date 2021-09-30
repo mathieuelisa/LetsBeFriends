@@ -9,7 +9,7 @@
         display: flex;
         flex-direction: column; 
         height: 80%;
-        width: 60%;
+        width: 90%;
         padding: 30px;
         text-align: start;
         color: whitesmoke;
@@ -64,6 +64,7 @@
     margin: 15px;
     box-shadow: 0 0 7px -1px;
     margin: 0 auto;
+    margin-top: 10px;
 
     &-text{
         font-size: 0.8em;
@@ -88,6 +89,61 @@
     font-family: "Caviar";
 }
 
+.myInputs-profilPage{
+    display: flex;
+    // width: 250px;
+    justify-content: space-between;
+    margin: 5px;
+
+    &-label{
+        width: 229px;
+    }
+
+    &-input{
+        background: transparent;
+        width: 60%;
+        border: none;
+        color: whitesmoke;
+        font-family: "Caviar";
+    }
+}
+
+.profil__myButtons{
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.myButton-deleted, .myButton-validate{
+    width: 145px;
+    height: 41px;
+    border: 1px solid whitesmoke;
+    background-color: transparent;
+    border-radius: 5px;
+    color: whitesmoke;
+    cursor: pointer;
+    box-shadow: 0 0 7px -1px;
+    transition: all 1s ease;
+}
+
+.myButton-deleted:hover{
+    border: 1px solid rgb(192, 28, 28);
+    color: rgb(192, 28, 28);
+    background-color: rgb(245, 245, 245, 0.2);
+    box-shadow: 0 0 19px 0.2px;
+}
+
+.myButton-validate:hover{
+    border: 1px solid rgb(35, 131, 32);
+    color: rgb(35, 131, 32);
+    background-color: rgb(245, 245, 245, 0.2);
+    box-shadow: 0 0 19px 0.2px;
+}
+
+#profil__description-textArea{
+    flex-direction: column;
+}
 
 @media screen and (max-width: 970px){
     .profil__container{
