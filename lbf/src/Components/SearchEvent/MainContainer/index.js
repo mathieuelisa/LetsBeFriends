@@ -37,7 +37,8 @@ function SearchEventContainer(){
     
     const dispatch = useDispatch()
 
-    console.log('INitialisation : ', fieldsSearch.eventTag)
+    console.log('INitialisation EventTag: ', fieldsSearch.eventTag)
+    console.log('INitialisation Language: ', fieldsSearch.language)
  
 
     const optionsGet = {
@@ -59,12 +60,12 @@ function SearchEventContainer(){
                     formatString: date
                 }
             })
-        } else if (e.target.name === 'eventTag'){
-            //setFieldsSearch([fieldsSearch.eventTag, 'caca'])
-            setFieldsSearch({ eventTag: [...fieldsSearch.eventTag, e.target.value] })
-            console.log('Dans ta callback : ', fieldsSearch.eventTag)
+        } else if (e.target.name == 'eventTag'){
+            setFieldsSearch({ ...fieldsSearch,
+                eventTag: [...fieldsSearch.eventTag, e.target.value] })
         } else if (e.target.name == 'language'){
-            setFieldsSearch([...fieldsSearch.language, e.target.value])
+            setFieldsSearch({ ...fieldsSearch,
+                language: [...fieldsSearch.language, e.target.value] })
         }else {
             setFieldsSearch({
                 ...fieldsSearch,
