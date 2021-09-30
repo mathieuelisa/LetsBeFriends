@@ -55,7 +55,7 @@ insert into language ("name") values
 
  ('japanese'),
 
- ('deutch'),
+ ('deutsch'),
 
  ('indian'),
 
@@ -75,6 +75,7 @@ insert into tag ("name") values
  ('brunch'),
 
  ('nature'),
+
  ('test');
 
 

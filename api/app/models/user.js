@@ -176,7 +176,13 @@ class User extends CoreModel {
             throw new Error(error)
         }
     }
-
+    /**
+     * Find a user with a email
+     * @param {String} email.query.required email
+     * @returns {Array<User>}
+     * @async
+     * @static
+     */
     static async findOneByEmail(email) {
         try {
             const { rows } = await db.query(`SELECT * FROM "user" WHERE email=$1`, [email])
@@ -189,6 +195,14 @@ class User extends CoreModel {
             throw new Error(error)
         }
     }
+    /**
+     * Validate a user who connect
+     * @param {string} email.query.required email
+     * @param {string} password.query.required password 
+     * @returns {Array<User>}
+     * @static
+     * @async
+     */
 
     static async validByEmailPassword(email, password) {
         try {

@@ -1,6 +1,6 @@
-@baseUrl=http://localhost:3001/v1
+@baseUrl=http://localhost:3000/v1
 
-GET {{baseUrl}}/users
+GET {{baseUrl}}/users/
 
 ###
 
@@ -23,11 +23,11 @@ Content-Type: application/json
 
 ###
 
-PATCH  {{baseUrl}}/users
+PATCH  {{baseUrl}}/users/
 Content-Type: application/json
 
 {
-    "id" : 54,
+    "id" : 1,
     "phone_number" : "125874"
 }
 ###
@@ -36,7 +36,7 @@ DELETE {{baseUrl}}/users
 Content-Type: application/json
 
 {
-    "id" : 36
+    "id" : 3
 }
 
 ### ---GET user by email for login
@@ -74,7 +74,7 @@ Content-Type: application/json
 }
 ###
 
-POST  {{baseUrl}}/events
+POST  {{baseUrl}}/events/
 Content-Type: application/json
 
 {
