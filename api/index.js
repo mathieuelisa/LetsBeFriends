@@ -2,8 +2,7 @@
 require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
-
-// TODO désintaller les modules mutler et body-parser
+const { cloudinary } = require('./app/services/cloudinary');
 
 const router = require('./app/router');
 
@@ -15,7 +14,6 @@ const port = process.env.PORT || 3000;
 
 const expressSwagger = require('express-swagger-generator')(app);
 
-
 let options = {
 
     swaggerDefinition: {
@@ -26,7 +24,7 @@ let options = {
         },
         host: process.env.NODE_ENV === 'production' ?
             process.env.HEROKU_URL :
-            `localhost: ${port}`
+            `localhost:${port}`
 
         ,
         basepath: '/v1',
@@ -41,8 +39,9 @@ let options = {
 };
 expressSwagger(options)
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 
 app.use('/v1', router);

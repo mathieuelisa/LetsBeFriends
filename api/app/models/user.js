@@ -6,17 +6,17 @@ const bcrypt = require('bcrypt');
  *  An entity representing a table user
  * @typedef user
  * @property {number} id
- * @property {string} firstname
- * @property {string} lastname
- * @property {string} gender
- * @property {string} email
- * @property {string} password
+ * @property {string} firstname.required
+ * @property {string} lastname.required
+ * @property {string} gender.required
+ * @property {string} email.required
+ * @property {string} password.required
  * @property {string} description
  * @property {number} age
  * @property {string} city
  * @property {number} phone_number
- * @property {timestamptz} created_at
- * @property {timestamptz} updated_at
+ * @property {Date} created_at
+ * @property {Date} updated_at
  */
 
 /**
@@ -50,7 +50,7 @@ class User extends CoreModel {
     static async findOneById(id) {
         try {
             const { rows } = await db.query(
-                `SELECT "user".id, "user".firstname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
+                `SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
                 json_agg(
 					DISTINCT jsonb_strip_nulls(
                         jsonb_build_object(
@@ -86,14 +86,14 @@ class User extends CoreModel {
                     )
                 ) AS event         
                 FROM user_participate_event 
-                FULL OUTER JOIN "user" ON user_participate_event.user_id = "user".id
-                FULL OUTER JOIN "event" ON user_participate_event.event_id = event.id
-                FULL OUTER JOIN user_speak_language ON "user".id = user_speak_language.user_id
-                FULL OUTER JOIN (
+                RIGHT JOIN "user" ON user_participate_event.user_id = "user".id
+                LEFT JOIN "event" ON user_participate_event.event_id = event.id
+                LEFT JOIN user_speak_language ON "user".id = user_speak_language.user_id
+                LEFT JOIN (
                     SELECT * FROM "language"
                 ) AS speaking_language ON user_speak_language.language_id = speaking_language.id
-                FULL OUTER JOIN user_learn_language ON "user".id = user_learn_language.user_id
-                FULL OUTER JOIN (
+                LEFT JOIN user_learn_language ON "user".id = user_learn_language.user_id
+                LEFT JOIN (
                     SELECT * FROM "language"
                 ) as learning_language ON user_learn_language.language_id = learning_language.id
                 WHERE "user".id= $1
@@ -118,7 +118,7 @@ class User extends CoreModel {
     static async findAll(limit) {
         try {
             const { rows } = await db.query(
-                `SELECT "user".id, "user".firstname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
+                `SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
                 json_agg(
 					DISTINCT jsonb_strip_nulls(
                         jsonb_build_object(
@@ -154,14 +154,14 @@ class User extends CoreModel {
                     )
                 ) AS event         
                 FROM user_participate_event 
-                FULL OUTER JOIN "user" ON user_participate_event.user_id = "user".id
-                FULL OUTER JOIN "event" ON user_participate_event.event_id = event.id
-                FULL OUTER JOIN user_speak_language ON "user".id = user_speak_language.user_id
-                FULL OUTER  JOIN (
+                RIGHT JOIN "user" ON user_participate_event.user_id = "user".id
+                LEFT JOIN "event" ON user_participate_event.event_id = event.id
+                LEFT JOIN user_speak_language ON "user".id = user_speak_language.user_id
+                LEFT JOIN (
                     SELECT * FROM "language"
                 ) AS speaking_language ON user_speak_language.language_id = speaking_language.id
-                FULL OUTER JOIN user_learn_language ON "user".id = user_learn_language.user_id
-                FULL OUTER JOIN (
+                LEFT JOIN user_learn_language ON "user".id = user_learn_language.user_id
+                LEFT JOIN (
                     SELECT * FROM "language"
                 ) as learning_language ON user_learn_language.language_id = learning_language.id
                 GROUP BY "user".id
@@ -222,6 +222,7 @@ class User extends CoreModel {
                     values.push(this[key])
                 }
                 const { rows } = await db.query(`UPDATE "user" SET ${properties} WHERE id=$1 RETURNING *`, values)
+                delete rows[0].password
                 return new User(rows[0])
             } else {
                 this.password = await bcrypt.hash(this.password, 10)

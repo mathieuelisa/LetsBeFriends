@@ -7,8 +7,8 @@ const db = require('../database');
  * @property {number} id
  * @property {string} name
  * @property {string} img_url
- * @property {timestamptz} created_at
- * @property {timestamptz} updated_at
+ * @property {Date} created_at
+ * @property {Date} updated_at
 */
 
 
@@ -30,6 +30,12 @@ class Language extends CoreModel {
             this[propName] = obj[propName];
         }
     }
+    /**
+     * Fetches a id of user and id of language
+     * @param {number} user_id 
+     * @param {number} language_id 
+     * @returns {Array<Language>}
+     */
 
     static async newUserSpeakLanguage(user_id, language_id) {
         try {
@@ -45,6 +51,7 @@ class Language extends CoreModel {
         }
 
     }
+    
 
     static async deleteUserSpeakLanguage(user_id, language_id) {
         try {

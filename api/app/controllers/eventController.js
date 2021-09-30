@@ -1,4 +1,5 @@
 const { Event } = require(`../models`);
+const adressTranslate = require('../services/positionStack')
 
 const eventController = {
 
@@ -40,7 +41,16 @@ const eventController = {
     },
 
     create: async (req, res, next) => {
-        const event = new Event(req.body);
+        console.log('--> Create Event: req.body')
+        console.table(req.body)
+        let data = req.body
+        let adress = data.adress
+        const coordinates = await adressTranslate(adress)
+        data.longitude = coordinates.longitude
+        data.latitude = coordinates.latitude
+        delete data.adress
+        console.log(data)
+        const event = new Event(data);
         try {
             const result = await event.save();
             res.status(201).json(result)
@@ -51,6 +61,8 @@ const eventController = {
     },
 
     update: async (req, res, next) => {
+        console.log('--> Update Event: req.body')
+        console.table(req.body)
         const event = new Event(req.body);
         try {
             const result = await event.save();
@@ -63,6 +75,8 @@ const eventController = {
     },
 
     delete: async (req, res, next) => {
+        console.log('--> Delete event: req.body')
+        console.table(req.body)
         try {
             const id = req.body.id;
             await Event.delete(id);
@@ -74,8 +88,9 @@ const eventController = {
         }
     },
 
-    search : async (req, res, next)=>{
-        // console.log(req.body)
+    search: async (req, res, next) => {
+        console.log('--> Search param: req.body')
+        console.table(req.body)
         try {
             const events = await Event.findByParameters(req.body)
             res.status(200).json(events)
@@ -83,7 +98,7 @@ const eventController = {
             console.log(error);
             res.status(500).json(error.message);
         }
-    }
+    },
 
 }
 

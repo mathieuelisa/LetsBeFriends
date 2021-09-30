@@ -1,5 +1,6 @@
 const { User } = require(`../models`);
 const db = require('../database');
+const jwt = require('../services/jwt')
 
 const userController = {
     findAll: async (req, res) => {
@@ -27,6 +28,8 @@ const userController = {
     },
 
     findOneByEmail: async (req, res, next) => {
+        console.log('--> Find by login: req.body')
+        console.table(req.body)
         try {
             const email = req.body.email;
             const user = await User.findOneByEmail(email)
@@ -40,10 +43,17 @@ const userController = {
     },
 
     login: async (req, res, next) => {
+        console.log('--> Login: req.body')
+        console.table(req.body)
+
+        console.dir(req.body)
         const email = req.body.email
         const password = req.body.password
         try {
             const user = await User.validByEmailPassword(email, password)
+            // if(user.id){
+            //     res.setHeader('Authorization', jwt.makeToken(user.id));
+            // }
             res.status(user.id ? 200 : 401).json(user)
         } catch (error) {
             console.log(error);
@@ -52,10 +62,13 @@ const userController = {
     },
 
     create: async (req, res, next) => {
+        console.log('--> Create account: req.body')
+        console.table(req.body)
         const user = new User(req.body);
         if (user.password === user.confirmPassword) {
             try {
                 const result = await user.save();
+                // res.setHeader('Authorization', jwt.makeToken(user.id));
                 res.status(201).json(result)
             } catch (error) {
                 console.log(error);
@@ -68,6 +81,8 @@ const userController = {
     },
 
     update: async (req, res, next) => {
+        console.log('--> Update account: req.body')
+        console.table(req.body)
         const user = new User(req.body);
         if (user.confirmPassword) delete user.confirmPassword
         try {
@@ -81,6 +96,8 @@ const userController = {
     },
 
     delete: async (req, res, next) => {
+        console.log('--> Delete User: req.body')
+        console.table(req.body)
         try {
             const id = req.body.id;
             await User.delete(id);

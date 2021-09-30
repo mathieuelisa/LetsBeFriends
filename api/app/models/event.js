@@ -2,20 +2,21 @@ const CoreModel = require('./coremodel');
 const db = require('../database');
 const format = require('../services/formatSearchRequest')
 
+
 /**
  * A entity representing a table event
  * @typedef Event
  * @property {number} id
  * @property {string} title
  * @property {string} img_url
- * @property {numbner} places_left
+ * @property {number} places_left
  * @property {string} description
- * @property {timestamptz} starting_date
- * @property {timestamptz} ending_date
- * @property {number} longitude
- * @property {number} latitude
- * @property {timestamptz} created_at
- * @property {timestamptz} updated_at
+ * @property {Date} starting_date
+ * @property {Date} ending_date
+ * @property {number} x.required longitude
+ * @property {number} y.required latitude
+ * @property {Date} created_at
+ * @property {Date} updated_at
  */
 
 /**
@@ -35,9 +36,10 @@ class Event extends CoreModel {
 			this[propName] = obj[propName];
 		}
 	}
+
 	/**
 	 * fetches a single id from the database
-	 * @param {number} id id of the event we're looking for
+	 * @param {number} id.path.required id of the event we're looking for
 	 * @returns {Event|null} null if no event matches the given in database
 	 * @async
 	 * @static
@@ -81,12 +83,12 @@ class Event extends CoreModel {
 					))
 				) AS participants
 				FROM event
-				FULL OUTER JOIN user_participate_event ON event.id = user_participate_event.event_id
-				FULL OUTER JOIN "user" ON user_participate_event.user_id = "user".id
-				FULL OUTER JOIN "event_has_tag" ON event.id = event_has_tag.event_id
-				FULL OUTER JOIN "tag" ON event_has_tag.tag_id = tag.id
-				FULL OUTER JOIN "event_has_language" ON event.id = event_has_language.event_id
-				FULL OUTER JOIN "language" ON event_has_language.language_id = language.id
+				LEFT JOIN user_participate_event ON event.id = user_participate_event.event_id
+				LEFT JOIN "user" ON "user".id = user_participate_event.user_id
+				LEFT JOIN "event_has_tag" ON event.id = event_has_tag.event_id
+				LEFT JOIN "tag" ON tag.id = event_has_tag.tag_id
+				LEFT JOIN "event_has_language" ON event.id = event_has_language.event_id
+				LEFT JOIN "language" ON language.id = event_has_language.language_id
 				WHERE event.id = $1
 				GROUP BY event.id`,
 				[id]);
@@ -143,12 +145,12 @@ class Event extends CoreModel {
 					))
 				) AS participants
 				FROM event
-				FULL OUTER JOIN user_participate_event ON event.id = user_participate_event.event_id
-				FULL OUTER JOIN "user" ON user_participate_event.user_id = "user".id
-				FULL OUTER JOIN "event_has_tag" ON event.id = event_has_tag.event_id
-				FULL OUTER JOIN "tag" ON event_has_tag.tag_id = tag.id
-				FULL OUTER JOIN "event_has_language" ON event.id = event_has_language.event_id
-				FULL OUTER JOIN "language" ON event_has_language.language_id = language.id
+				LEFT JOIN user_participate_event ON event.id = user_participate_event.event_id
+				LEFT JOIN "user" ON "user".id = user_participate_event.user_id
+				LEFT JOIN "event_has_tag" ON event.id = event_has_tag.event_id
+				LEFT JOIN "tag" ON tag.id = event_has_tag.tag_id
+				LEFT JOIN "event_has_language" ON event.id = event_has_language.event_id
+				LEFT JOIN "language" ON language.id = event_has_language.language_id
 				GROUP BY event.id
 				LIMIT $1`,
 				[limit])
@@ -201,7 +203,7 @@ class Event extends CoreModel {
 			}
 		}
 	}
-	static async findByParameters  (obj){
+	static async findByParameters(obj) {
 
 		try {
 			const finalObj = format(obj)
@@ -250,7 +252,7 @@ class Event extends CoreModel {
 			${finalObj.query}
 			GROUP BY event.id
 			ORDER BY event.starting_date`, finalObj.values);
-			if(rows.length){
+			if (rows.length) {
 				return rows.map(row => new Event(row));
 			}
 			return null
@@ -258,8 +260,8 @@ class Event extends CoreModel {
 			console.log(error)
 			throw new Error(error.detail)
 		}
-
 	}
+
 }
 
 module.exports = Event;
