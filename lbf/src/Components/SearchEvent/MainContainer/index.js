@@ -100,6 +100,9 @@ function SearchEventContainer(){
         dispatch({type: SET_TOGGLE})
     }
 
+    const handleClickClosedTag = () => {
+        setTagOpened(false);
+    }
      const handleSubmitForm = (e) => {
         e.preventDefault();
         searchEvent(fieldsSearch.eventTags,fieldsSearch.languages, fieldsSearch.dateFrom.formatISO, fieldsSearch.dateTo.formatISO);
@@ -245,7 +248,7 @@ function SearchEventContainer(){
                                 </select>
                         </div>
                             <div className='searchEvent__container-infosDetails-location__tag-selected'>
-                                    {tagOpened && fieldsSearch.languages.map((tag) => (<Tag tag={tag} name={tag} />)) }
+                                    {tagOpened && fieldsSearch.languages.map((tag) => (<Tag handleClick={handleClickClosedTag} tag={tag} name={tag} />)) }
                             </div>
                    </form>
 
