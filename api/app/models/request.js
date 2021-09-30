@@ -40,7 +40,7 @@ class Request extends CoreModel {
 
     static async findAllJoiningRequest(event_id) {
         try {
-            const { rows } = await db.query('SELECT * FROM "user_ask_event" WHERE event_id=$1', event_id)
+            const { rows } = await db.query('SELECT * FROM "user_ask_event" WHERE event_id=$1', [event_id])
             if (rows) {
                 return rows.map(row => new Request(row))
             }
