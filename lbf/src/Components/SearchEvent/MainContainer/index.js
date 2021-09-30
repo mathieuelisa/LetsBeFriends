@@ -7,12 +7,9 @@ import { useHistory } from 'react-router';
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
 import ButtonToggle from '../../Styledcomponents/ButtonToggle'
 //Import Tools
-import DatePicker from "react-datepicker"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-//Import selectors
 //Import styles
 import "./styles.scss"
-import "./datepicker.scss"
 // Import axios
 import axios from 'axios'
 
@@ -24,13 +21,18 @@ import { setAllEvents } from '../../../Redux/actions/event';
 function SearchEventContainer(){
     const toggleAction = useSelector((state)=> state.common.toggleAction)
     const events = useSelector(state => state.event.events)
-
-    const [selectedDate, setSelectedDate] = useState(null)
-    const [selectedEndDate, setSelectEndDate] = useState(null)
     const [fieldsSearch, setFieldsSearch] = useState({
         city: '',
         eventTag: [''],
         language: [''],
+        dateFrom: {
+            formatISO: "",
+            formatString: ""
+        },
+        dateTo: {
+            formatISO: "",
+            formatString: ""
+        }
     })
 
     const dispatch = useDispatch()
@@ -41,6 +43,30 @@ function SearchEventContainer(){
         "Access-Control-Allow-Origin": "*",
     }
 
+
+    function handleFieldSearchChange(e) {
+        e.preventDefault()
+        if (e.target.name == "dateTo" || e.target.name == "dateFrom") {
+            let date = e.target.value
+            let formatDate = new Date(date)
+            setFieldsSearch({
+                ...fieldsSearch,
+                [e.target.name]: {
+                    formatISO: formatDate.toISOString(),
+                    formatString: date
+                }
+            })
+        } else if (e.target.name == 'eventTag' || e.target.name == 'language'){
+            setFieldsSearch({
+                ...fieldsSearch,
+                [e.target.name]: [e.target.name].push(e.target.value), 
+            })
+        } else {
+            setFieldsSearch({
+                ...fieldsSearch,
+                [e.target.name]: e.target.value
+            })
+    }
     const handleChangeFieldsSearchTag = (e) => {
         e.preventDefault();
         setFieldsSearch({
@@ -136,12 +162,12 @@ function SearchEventContainer(){
                    <form id="searchForm" onSubmit={handleSubmitForm}>
                         <div className="searchEvent__container-infosDetails-location">
                             <label>City: </label>
-                            <input name='city' className="mySearchInputs" type="text" value={fieldsSearch.city} onChange={handleChangeFieldsSearchText} />
+                            <input name='city' className="mySearchInputs" type="text" value={fieldsSearch.city} onChange={handleFieldSearchChange} />
                         </div>
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Event: </label>
-                                <select name='eventTag' value={fieldsSearch.eventTag} onChange={handleChangeFieldsSearchTag}>
+                                <select name='eventTag' value={fieldsSearch.eventTag} onChange={handleFieldSearchChange}>
                                     <option></option>
                                     <option>Soirée BBQ</option>
                                     <option>Atelier Cuisine</option> 
@@ -155,27 +181,21 @@ function SearchEventContainer(){
                         {/* Date from */}
                         <div className="searchEvent__container-infosDetails-location">
                             <label>From: </label>
-                                <DatePicker 
-                                    name='selectedDate'
+                                <input 
+                                    name='dateTo'
                                     className="mySearchInputs"
-                                    selected={selectedDate} 
-                                    onChange={(date) => setSelectedDate(date)}
-                                    dateFormat="dd/MM/yyyy"
-                                    minDate={new Date()}
-                                    isClearable
+                                    onChange={handleFieldSearchChange}
+                                    value={fieldsSearch.dateFrom}
                                 />
                         </div>
                         {/* Date to */}
                         <div className="searchEvent__container-infosDetails-location">
                             <label>To: </label>
-                                <DatePicker 
-                                    name='selectedEndDate'
+                                <input 
+                                    name='dateFrom'
                                     className="mySearchInputs"
-                                    selected={selectedEndDate} 
-                                    onChange={(date) => setSelectEndDate(date)}
-                                    dateFormat="dd/MM/yyyy"
-                                    minDate={new Date()}
-                                    isClearable
+                                    value={fieldsSearch.dateTo}
+                                    onChange={handleFieldSearchChange}               
                                 />
                         </div>
 

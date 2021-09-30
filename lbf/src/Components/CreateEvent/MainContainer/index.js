@@ -8,9 +8,6 @@ import DatePicker from "react-datepicker"
 import "./styles.scss"
 // Import pictures
 import imgEvent from "../../../assets/Img/sport.png"
-
-import DayJS from "react-dayjs"
-
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
 
