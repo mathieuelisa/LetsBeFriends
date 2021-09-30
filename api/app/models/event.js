@@ -85,7 +85,8 @@ class Event extends CoreModel {
 				FROM event
 				FULL OUTER JOIN user_participate_event ON event.id = user_participate_event.event_id
 				FULL OUTER JOIN "user" ON user_participate_event.user_id = "user".id
-				FULL OUTER JOIN "event_has_tag" ON event.id = event_has_tag.event_id
+				FULL OUTER JOIN "event_has_tagg_id = tag.id
+				FULL OUTER JOIN "event_has_language" ON e" ON event.id = event_has_tag.event_id
 				FULL OUTER JOIN "tag" ON event_has_tag.tag_id = tag.id
 				FULL OUTER JOIN "event_has_language" ON event.id = event_has_language.event_id
 				FULL OUTER JOIN "language" ON event_has_language.language_id = language.id

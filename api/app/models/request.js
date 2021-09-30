@@ -55,6 +55,20 @@ class Request extends CoreModel {
         }
     }
 
+    static async newUserInEvent(user_id, event_id) {
+        try {
+            const { rows } = await db.query('INSERT INTO "user_participate_event"(user_id, event_id) VALUES($1, $2) RETURNING user_id AS "userId", event_id AS "eventId"', [user_id, event_id])
+            return new Request(rows[0])
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            } else {
+                throw error;
+            }
+        }
+    }
+
 
 };
 
