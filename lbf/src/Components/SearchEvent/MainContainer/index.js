@@ -226,7 +226,12 @@ function SearchEventContainer(){
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>languages: </label>
-                                <select name='languages' value={fieldsSearch.languages} onChange={handleFieldSearchChange} onClick={displayTags}>
+                                <select
+                                className="searchEvent__container-select" 
+                                name='languages' 
+                                value={fieldsSearch.languages} 
+                                onChange={handleFieldSearchChange} 
+                                onClick={displayTags}>
                                     
                                     <option></option>
                                     {events.map((event) => (<option>{event.languages[0].name}</option>))}
@@ -262,10 +267,10 @@ function SearchEventContainer(){
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     {events.map((event, i) => {  
-                        if( event.latitude>0 && 
-                            event.latitude<84 && 
-                            event.longitude>0 && 
-                            event.longitude<150 
+                        if( event.latitude > 0 && 
+                            event.latitude < 84 && 
+                            event.longitude > 0 && 
+                            event.longitude < 150 
                         )  {
                             return (
                                 <Marker key={event.id} position={[event.latitude, event.longitude]}>
