@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, React } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -23,7 +24,7 @@ function SearchEventContainer(){
     const events = useSelector(state => state.event.events)
     const [fieldsSearch, setFieldsSearch] = useState({
         city: '',
-        eventTag: [],
+        eventTags: [],
         language: [],
         dateFrom: {
             formatISO: "",
@@ -37,8 +38,8 @@ function SearchEventContainer(){
     
     const dispatch = useDispatch()
 
-    console.log('INitialisation EventTag: ', fieldsSearch.eventTag)
-    console.log('INitialisation Language: ', fieldsSearch.language)
+    console.log('INitialisation fieldsSearch: ', fieldsSearch)
+
  
 
     const optionsGet = {
@@ -60,9 +61,9 @@ function SearchEventContainer(){
                     formatString: date
                 }
             })
-        } else if (e.target.name == 'eventTag'){
+        } else if (e.target.name == 'eventTags'){
             setFieldsSearch({ ...fieldsSearch,
-                eventTag: [...fieldsSearch.eventTag, e.target.value] })
+                eventTags: [...fieldsSearch.eventTags, e.target.value] })
         } else if (e.target.name == 'language'){
             setFieldsSearch({ ...fieldsSearch,
                 language: [...fieldsSearch.language, e.target.value] })
@@ -99,7 +100,7 @@ function SearchEventContainer(){
 
      const handleSubmitForm = (e) => {
         e.preventDefault();
-        searchEvent([], ['English'], "2021-10-20T20:49:12.000Z", "2021-11-09T05:31:49.000Z");
+        searchEvent(fieldsSearch.eventTags,fieldsSearch.language, fieldsSearch.dateFrom.formatISO, fieldsSearch.dateTo.formatISO);
     }
 
     const GetAllEvents = () => {
@@ -112,7 +113,7 @@ function SearchEventContainer(){
     }
 
     const searchEvent = (tagName, languageName, startingDate, endingDate) => {
-        console.log('tagName', tagName)
+       // console.log('tagName', tagName)
         axios.post('https://lets-be-friend.herokuapp.com/v1/events/search', {
             "tagName": tagName,
             "languageName": languageName,
@@ -174,7 +175,7 @@ function SearchEventContainer(){
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Event: </label>
-                                <select name='eventTag' value={fieldsSearch.eventTag} onChange={handleFieldSearchChange} multiple>
+                                <select name='eventTags' value={fieldsSearch.eventTags} onChange={handleFieldSearchChange} >
                                     <option></option>
                                     <option id='Soirée BBQ'>Soirée BBQ</option>
                                     <option id='Atelier Cuisine'>Atelier Cuisine</option> 
@@ -193,7 +194,7 @@ function SearchEventContainer(){
                                     type='datetime-local'
                                     className="mySearchInputs"
                                     onChange={handleFieldSearchChange}
-                                    value={fieldsSearch.dateFrom}
+                                    value={fieldsSearch.dateFrom.formatString}
                                 />
                         </div>
                         {/* Date to */}
@@ -203,14 +204,14 @@ function SearchEventContainer(){
                                     name='dateTo'
                                     type='datetime-local'
                                     className="mySearchInputs"
-                                    value={fieldsSearch.dateTo}
+                                    value={fieldsSearch.dateTo.formatString}
                                     onChange={handleFieldSearchChange}               
                                 />
                         </div>
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Language: </label>
-                                <select name='language' value={fieldsSearch.language} onChange={handleFieldSearchChange} multiple >
+                                <select name='language' value={fieldsSearch.language} onChange={handleFieldSearchChange} >
                                     <option></option>
                                     <option>English</option>
                                     <option>French</option> 
