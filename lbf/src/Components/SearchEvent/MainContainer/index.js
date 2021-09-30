@@ -7,12 +7,9 @@ import { useHistory } from 'react-router';
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
 import ButtonToggle from '../../Styledcomponents/ButtonToggle'
 //Import Tools
-import DatePicker from "react-datepicker"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-//Import selectors
 //Import styles
 import "./styles.scss"
-import "./datepicker.scss"
 // Import axios
 import axios from 'axios'
 
@@ -24,38 +21,75 @@ import { setAllEvents } from '../../../Redux/actions/event';
 function SearchEventContainer(){
     const toggleAction = useSelector((state)=> state.common.toggleAction)
     const events = useSelector(state => state.event.events)
-
-    const [selectedDate, setSelectedDate] = useState(null)
-    const [selectedEndDate, setSelectEndDate] = useState(null)
     const [fieldsSearch, setFieldsSearch] = useState({
         city: '',
-        eventTag: [''],
-        language: [''],
+        eventTag: [],
+        language: [],
+        dateFrom: {
+            formatISO: "",
+            formatString: ""
+        },
+        dateTo: {
+            formatISO: "",
+            formatString: ""
+        }
     })
-
+    
     const dispatch = useDispatch()
 
+    console.log('INitialisation EventTag: ', fieldsSearch.eventTag)
+    console.log('INitialisation Language: ', fieldsSearch.language)
+ 
 
     const optionsGet = {
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",
     }
 
-    const handleChangeFieldsSearchTag = (e) => {
-        e.preventDefault();
-        setFieldsSearch({
-            ...fieldsSearch,
-            [e.target.name]: [e.target.name].push(e.target.value), 
-        })
+
+    function handleFieldSearchChange(e) {
+
+        e.preventDefault()
+        if (e.target.name == "dateTo" || e.target.name == "dateFrom") {
+            let date = e.target.value
+            let formatDate = new Date(date)
+            setFieldsSearch({
+                ...fieldsSearch,
+                [e.target.name]: {
+                    formatISO: formatDate.toISOString(),
+                    formatString: date
+                }
+            })
+        } else if (e.target.name == 'eventTag'){
+            setFieldsSearch({ ...fieldsSearch,
+                eventTag: [...fieldsSearch.eventTag, e.target.value] })
+        } else if (e.target.name == 'language'){
+            setFieldsSearch({ ...fieldsSearch,
+                language: [...fieldsSearch.language, e.target.value] })
+        }else {
+            setFieldsSearch({
+                ...fieldsSearch,
+                [e.target.name]: e.target.value
+            })
+        }
+        
     }
 
-    const handleChangeFieldsSearchText = (e) => {
-        e.preventDefault();
-        setFieldsSearch({
-            ...fieldsSearch,
-            [e.target.name]: e.target.value, 
-        })
-    }
+    // const handleChangeFieldsSearchTag = (e) => {
+    //     e.preventDefault();
+    //     setFieldsSearch({
+    //         ...fieldsSearch,
+    //         [e.target.name]: [e.target.name].push(e.target.value), 
+    //     })
+    // }
+
+    // const handleChangeFieldsSearchText = (e) => {
+    //     e.preventDefault();
+    //     setFieldsSearch({
+    //         ...fieldsSearch,
+    //         [e.target.name]: e.target.value, 
+    //     })
+    // }
 
     function handleClick(event){
         event.preventDefault()
@@ -93,7 +127,6 @@ function SearchEventContainer(){
     
     
     // useEffect permettant de remettre le menu hamburger a false a chaque rendu + Get tous les évènements
-   
 
     const history = useHistory()
     // Function permettant de se logout en reinitialisant le localStorage
@@ -136,52 +169,48 @@ function SearchEventContainer(){
                    <form id="searchForm" onSubmit={handleSubmitForm}>
                         <div className="searchEvent__container-infosDetails-location">
                             <label>City: </label>
-                            <input name='city' className="mySearchInputs" type="text" value={fieldsSearch.city} onChange={handleChangeFieldsSearchText} />
+                            <input name='city' className="mySearchInputs" type="text" value={fieldsSearch.city} onChange={handleFieldSearchChange} />
                         </div>
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Event: </label>
-                                <select name='eventTag' value={fieldsSearch.eventTag} onChange={handleChangeFieldsSearchTag}>
+                                <select name='eventTag' value={fieldsSearch.eventTag} onChange={handleFieldSearchChange} multiple>
                                     <option></option>
-                                    <option>Soirée BBQ</option>
-                                    <option>Atelier Cuisine</option> 
-                                    <option>Soirée jeux</option> 
-                                    <option>Sortie culturelle</option>
-                                    <option>Sortie Cinéma</option>
-                                    <option>Moment café</option>
-                                    <option>Couisine</option>  
+                                    <option id='Soirée BBQ'>Soirée BBQ</option>
+                                    <option id='Atelier Cuisine'>Atelier Cuisine</option> 
+                                    <option id='Soirée jeux'>Soirée jeux</option> 
+                                    <option id='Sortie culturelle'>Sortie culturelle</option>
+                                    <option id='Sortie Cinéma'>Sortie Cinéma</option>
+                                    <option id='Moment café'>Moment café</option>
+                                    <option id='Couisine'>Couisine</option>  
                                 </select>
                         </div>
                         {/* Date from */}
                         <div className="searchEvent__container-infosDetails-location">
                             <label>From: </label>
-                                <DatePicker 
-                                    name='selectedDate'
+                                <input 
+                                    name='dateFrom'
+                                    type='datetime-local'
                                     className="mySearchInputs"
-                                    selected={selectedDate} 
-                                    onChange={(date) => setSelectedDate(date)}
-                                    dateFormat="dd/MM/yyyy"
-                                    minDate={new Date()}
-                                    isClearable
+                                    onChange={handleFieldSearchChange}
+                                    value={fieldsSearch.dateFrom}
                                 />
                         </div>
                         {/* Date to */}
                         <div className="searchEvent__container-infosDetails-location">
                             <label>To: </label>
-                                <DatePicker 
-                                    name='selectedEndDate'
+                                <input 
+                                    name='dateTo'
+                                    type='datetime-local'
                                     className="mySearchInputs"
-                                    selected={selectedEndDate} 
-                                    onChange={(date) => setSelectEndDate(date)}
-                                    dateFormat="dd/MM/yyyy"
-                                    minDate={new Date()}
-                                    isClearable
+                                    value={fieldsSearch.dateTo}
+                                    onChange={handleFieldSearchChange}               
                                 />
                         </div>
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Language: </label>
-                                <select name='language' value={fieldsSearch.language} onChange={handleChangeFieldsSearchTag}>
+                                <select name='language' value={fieldsSearch.language} onChange={handleFieldSearchChange} multiple >
                                     <option></option>
                                     <option>English</option>
                                     <option>French</option> 
