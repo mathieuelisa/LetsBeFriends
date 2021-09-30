@@ -183,7 +183,12 @@ function SearchEventContainer(){
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Event: </label>
-                                <select name='eventTags' value={fieldsSearch.eventTags} onChange={handleFieldSearchChange} >
+                                <select
+                                    className="searchEvent__container-select" 
+                                    name='eventTags' 
+                                    value={fieldsSearch.eventTags} 
+                                    onChange={handleFieldSearchChange} 
+                                >
                                     <option></option>
                                     {events.map((event) => (<option>{event.tags[0].name}</option>))}
                                     {/*

@@ -241,6 +241,12 @@
     top: 4px;
 }
 
+.searchEvent__container-select{
+    background: transparent;
+    border: none;
+    color: whitesmoke;
+}
+
 @media screen and (max-width: 1070px){
     .searchEvent__container-leaflet{
         display: none;
