@@ -165,7 +165,7 @@ router.post('/users/login', userController.login)
  * @returns {string} 500 - An error message
  */
 
-router.get('/users/:id', userController.findOneById);s
+router.get('/users/:id', userController.findOneById);
 
 
 
