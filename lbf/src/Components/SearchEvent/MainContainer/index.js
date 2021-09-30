@@ -7,6 +7,7 @@ import { useHistory } from 'react-router';
 //Import React components
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
 import ButtonToggle from '../../Styledcomponents/ButtonToggle'
+import Tag from "../../Styledcomponents/Tag";
 //Import Tools
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 //Import styles
@@ -22,10 +23,11 @@ import { setAllEvents } from '../../../Redux/actions/event';
 function SearchEventContainer(){
     const toggleAction = useSelector((state)=> state.common.toggleAction)
     const events = useSelector(state => state.event.events)
+    const [tagOpened, setTagOpened] = useState(false);
     const [fieldsSearch, setFieldsSearch] = useState({
         city: '',
         eventTags: [],
-        language: [],
+        languages: [],
         dateFrom: {
             formatISO: "",
             formatString: ""
@@ -64,9 +66,9 @@ function SearchEventContainer(){
         } else if (e.target.name == 'eventTags'){
             setFieldsSearch({ ...fieldsSearch,
                 eventTags: [...fieldsSearch.eventTags, e.target.value] })
-        } else if (e.target.name == 'language'){
+        } else if (e.target.name == 'languages'){
             setFieldsSearch({ ...fieldsSearch,
-                language: [...fieldsSearch.language, e.target.value] })
+                languages: [...fieldsSearch.languages, e.target.value] })
         }else {
             setFieldsSearch({
                 ...fieldsSearch,
@@ -100,23 +102,29 @@ function SearchEventContainer(){
 
      const handleSubmitForm = (e) => {
         e.preventDefault();
-        searchEvent(fieldsSearch.eventTags,fieldsSearch.language, fieldsSearch.dateFrom.formatISO, fieldsSearch.dateTo.formatISO);
+        searchEvent(fieldsSearch.eventTags,fieldsSearch.languages, fieldsSearch.dateFrom.formatISO, fieldsSearch.dateTo.formatISO);
     }
 
     const GetAllEvents = () => {
         axios.get('https://lets-be-friend.herokuapp.com/v1/events', optionsGet)
         .then((response) => {
             dispatch(setAllEvents(response.data));
+            console.log('La liste de tous les events : ', response.data)
         }).catch(
             (error) => console.log('error'),
           );
     }
 
-    const searchEvent = (tagName, languageName, startingDate, endingDate) => {
+    const displayTags = (e) => {
+        console.log('Tes dans la callback displayTags' );
+        setTagOpened(true);
+    }
+
+    const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
        // console.log('tagName', tagName)
         axios.post('https://lets-be-friend.herokuapp.com/v1/events/search', {
             "tagName": tagName,
-            "languageName": languageName,
+            "languageName": languagesName,
             "startingDate" : startingDate,
             "endingDate": endingDate
         }, optionsGet )
@@ -177,13 +185,15 @@ function SearchEventContainer(){
                             <label>Event: </label>
                                 <select name='eventTags' value={fieldsSearch.eventTags} onChange={handleFieldSearchChange} >
                                     <option></option>
+                                    {events.map((event) => (<option>{event.tags[0].name}</option>))}
+                                    {/*
                                     <option id='Soirée BBQ'>Soirée BBQ</option>
                                     <option id='Atelier Cuisine'>Atelier Cuisine</option> 
                                     <option id='Soirée jeux'>Soirée jeux</option> 
                                     <option id='Sortie culturelle'>Sortie culturelle</option>
                                     <option id='Sortie Cinéma'>Sortie Cinéma</option>
                                     <option id='Moment café'>Moment café</option>
-                                    <option id='Couisine'>Couisine</option>  
+                                    <option id='Couisine'>Couisine</option>   */}
                                 </select>
                         </div>
                         {/* Date from */}
@@ -210,18 +220,23 @@ function SearchEventContainer(){
                         </div>
 
                         <div className="searchEvent__container-infosDetails-location">
-                            <label>Language: </label>
-                                <select name='language' value={fieldsSearch.language} onChange={handleFieldSearchChange} >
+                            <label>languages: </label>
+                                <select name='languages' value={fieldsSearch.languages} onChange={handleFieldSearchChange} onClick={displayTags}>
+                                    
                                     <option></option>
-                                    <option>English</option>
+                                    {events.map((event) => (<option>{event.languages[0].name}</option>))}
+                                    {/* <option>English</option>
                                     <option>French</option> 
                                     <option>Spanish</option> 
                                     <option>Japanese</option>
                                     <option>Mandarin</option>
                                     <option>Russian</option>
-                                    <option>Italian</option>  
+                                    <option>Italian</option>   */}
                                 </select>
                         </div>
+                            <div className='searchEvent__container-infosDetails-location__tag-selected'>
+                                    {tagOpened && fieldsSearch.languages.map((tag) => (<Tag tag={tag} name={tag} />)) }
+                            </div>
                    </form>
 
                    <div className="createEvent__container-eventTitle-button">

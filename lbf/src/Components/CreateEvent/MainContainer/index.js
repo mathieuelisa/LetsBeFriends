@@ -7,10 +7,6 @@ import ButtonToggle from "../../Styledcomponents/ButtonToggle"
 import "./styles.scss"
 // Import pictures
 import imgEvent from "../../../assets/Img/sport.png"
-<<<<<<< HEAD
-
-=======
->>>>>>> 95bfc032cabc19cc142d6f461f81031617957aae
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
 
