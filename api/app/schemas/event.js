@@ -11,6 +11,7 @@ const newEventSchema = Joi.object({
     description: Joi.string().max(1800).required(),
     adress: Joi.string().required(),
     user_id: Joi.number().required(),
+    eventLanguage: Joi.array(),
 })
 
 const updateEventSchema = Joi.object({
@@ -22,7 +23,8 @@ const updateEventSchema = Joi.object({
     places_left: Joi.number().min(0).max(6),
     description: Joi.string().max(1800),
     adress: Joi.string(),
-    user_id: Joi.number()
+    user_id: Joi.number(),
+    eventLanguage: Joi.array(),
 })
 
 module.exports = { newEventSchema, updateEventSchema }

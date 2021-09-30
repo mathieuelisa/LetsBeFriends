@@ -92,6 +92,20 @@ class Language extends CoreModel {
                 throw error;
             }
         }
+    }
+
+    static async newEventHasLanguage(event_id, language_id) {
+        try {
+            const { rows } = await db.query('INSERT INTO "event_has_language"(event_id, language_id) VALUES($1, $2) RETURNING event_id AS "eventId", language_id AS "languageId"', [event_id, language_id])
+            return new Language(rows[0])
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            } else {
+                throw error;
+            }
+        }
 
     }
 };
