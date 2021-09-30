@@ -83,12 +83,12 @@ class Event extends CoreModel {
 					))
 				) AS participants
 				FROM event
-				FULL OUTER JOIN user_participate_event ON event.id = user_participate_event.event_id
-				FULL OUTER JOIN "user" ON user_participate_event.user_id = "user".id
-				FULL OUTER JOIN "event_has_tag" ON event.id = event_has_tag.event_id
-				FULL OUTER JOIN "tag" ON event_has_tag.tag_id = tag.id
-				FULL OUTER JOIN "event_has_language" ON event.id = event_has_language.event_id
-				FULL OUTER JOIN "language" ON event_has_language.language_id = language.id
+				LEFT JOIN user_participate_event ON event.id = user_participate_event.event_id
+				LEFT JOIN "user" ON "user".id = user_participate_event.user_id
+				LEFT JOIN "event_has_tag" ON event.id = event_has_tag.event_id
+				LEFT JOIN "tag" ON tag.id = event_has_tag.tag_id
+				LEFT JOIN "event_has_language" ON event.id = event_has_language.event_id
+				LEFT JOIN "language" ON language.id = event_has_language.language_id
 				WHERE event.id = $1
 				GROUP BY event.id`,
 				[id]);
@@ -145,12 +145,12 @@ class Event extends CoreModel {
 					))
 				) AS participants
 				FROM event
-				FULL OUTER JOIN user_participate_event ON event.id = user_participate_event.event_id
-				FULL OUTER JOIN "user" ON user_participate_event.user_id = "user".id
-				FULL OUTER JOIN "event_has_tag" ON event.id = event_has_tag.event_id
-				FULL OUTER JOIN "tag" ON event_has_tag.tag_id = tag.id
-				FULL OUTER JOIN "event_has_language" ON event.id = event_has_language.event_id
-				FULL OUTER JOIN "language" ON event_has_language.language_id = language.id
+				LEFT JOIN user_participate_event ON event.id = user_participate_event.event_id
+				LEFT JOIN "user" ON "user".id = user_participate_event.user_id
+				LEFT JOIN "event_has_tag" ON event.id = event_has_tag.event_id
+				LEFT JOIN "tag" ON tag.id = event_has_tag.tag_id
+				LEFT JOIN "event_has_language" ON event.id = event_has_language.event_id
+				LEFT JOIN "language" ON language.id = event_has_language.language_id
 				GROUP BY event.id
 				LIMIT $1`,
 				[limit])

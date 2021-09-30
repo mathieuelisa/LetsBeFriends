@@ -86,14 +86,14 @@ class User extends CoreModel {
                     )
                 ) AS event         
                 FROM user_participate_event 
-                FULL OUTER JOIN "user" ON user_participate_event.user_id = "user".id
-                FULL OUTER JOIN "event" ON user_participate_event.event_id = event.id
-                FULL OUTER JOIN user_speak_language ON "user".id = user_speak_language.user_id
-                FULL OUTER JOIN (
+                RIGHT JOIN "user" ON user_participate_event.user_id = "user".id
+                LEFT JOIN "event" ON user_participate_event.event_id = event.id
+                LEFT JOIN user_speak_language ON "user".id = user_speak_language.user_id
+                LEFT JOIN (
                     SELECT * FROM "language"
                 ) AS speaking_language ON user_speak_language.language_id = speaking_language.id
-                FULL OUTER JOIN user_learn_language ON "user".id = user_learn_language.user_id
-                FULL OUTER JOIN (
+                LEFT JOIN user_learn_language ON "user".id = user_learn_language.user_id
+                LEFT JOIN (
                     SELECT * FROM "language"
                 ) as learning_language ON user_learn_language.language_id = learning_language.id
                 WHERE "user".id= $1
@@ -154,14 +154,14 @@ class User extends CoreModel {
                     )
                 ) AS event         
                 FROM user_participate_event 
-                FULL OUTER JOIN "user" ON user_participate_event.user_id = "user".id
-                FULL OUTER JOIN "event" ON user_participate_event.event_id = event.id
-                FULL OUTER JOIN user_speak_language ON "user".id = user_speak_language.user_id
-                FULL OUTER  JOIN (
+                RIGHT JOIN "user" ON user_participate_event.user_id = "user".id
+                LEFT JOIN "event" ON user_participate_event.event_id = event.id
+                LEFT JOIN user_speak_language ON "user".id = user_speak_language.user_id
+                LEFT JOIN (
                     SELECT * FROM "language"
                 ) AS speaking_language ON user_speak_language.language_id = speaking_language.id
-                FULL OUTER JOIN user_learn_language ON "user".id = user_learn_language.user_id
-                FULL OUTER JOIN (
+                LEFT JOIN user_learn_language ON "user".id = user_learn_language.user_id
+                LEFT JOIN (
                     SELECT * FROM "language"
                 ) as learning_language ON user_learn_language.language_id = learning_language.id
                 GROUP BY "user".id

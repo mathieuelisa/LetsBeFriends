@@ -1,10 +1,10 @@
-@baseUrl=http://localhost:3000/v1
+@baseUrl=http://localhost:3001/v1
 
-GET {{baseUrl}}/users/12
+GET {{baseUrl}}/users
 
 ###
 
-GET {{baseUrl}}/users/?limit=3
+GET {{baseUrl}}/users/?limit=10
 
 ###
 
@@ -53,7 +53,7 @@ Content-Type: application/json
 
 ### ---- EVENT
 ## FIND ONE
-GET {{baseUrl}}/events/2
+GET {{baseUrl}}/events/1
 ### FIND ALL LIMIT
 GET {{baseUrl}}/events/?limit=10
 ### UPDATE EVENTS
