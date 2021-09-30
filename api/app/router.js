@@ -5,10 +5,11 @@ const { requestController, imageController, eventController, languageController,
 
 const { newUserSchema, updateUserSchema, updateUserSecuritySchema } = require('./schemas/user')
 const { newEventSchema, updateEventSchema } = require('./schemas/event')
-const { validateBody, validateQuery, validateParams } = require('./services/validator')
+const { validateBody, validateQuery, validateParams } = require('./middlewares/validator')
+const checkJwt = require('../app/middlewares/checkJwt')
 
 // --- EVENT
-
+router.post('/events/search', eventController.search)
 
 /**
  * Respond with one event from database
@@ -22,9 +23,7 @@ const { validateBody, validateQuery, validateParams } = require('./services/vali
  * 
  */
 
-router.get('/events/search', eventController.search);
 router.get('/events/:id', eventController.findOneById);
-
 
 router
     .route('/events')
@@ -72,12 +71,22 @@ router
      */
     .delete(eventController.delete)
 
+//? --- JOINING REQUEST
 router
-    .route('/events/join')
-    .post(requestController.makeJoiningRequest)
-    .delete(requestController.confirmJoiningRequest)
+    .route('/events/request/:id')
+    .get(requestController.findAllJoiningRequest)
 
-// LANGUAGE
+router
+    .route('/events/request/new')
+    .post(requestController.makeJoiningRequest)
+
+router
+    .route('/events/request/confirm')
+    .post(requestController.confirmJoiningRequest)
+    .delete(requestController.refuseJoiningRequest)
+
+
+//? --- LANGUAGE
 router
     .route('/speak')
     .post(languageController.newUserSpeakLanguage)
@@ -87,12 +96,9 @@ router
     .post(languageController.newUserLearnLanguage)
     .delete(languageController.deleteUserLearnLanguage)
 
-// TAG
+//? --- TAG
 
-// --- USER
-
-
-
+//? --- USER
 router
     .route('/users')
     /**

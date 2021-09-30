@@ -1,4 +1,5 @@
 const { Event } = require(`../models`);
+const adressTranslate = require('../services/positionStack')
 
 const eventController = {
 
@@ -42,7 +43,14 @@ const eventController = {
     create: async (req, res, next) => {
         console.log('--> Create Event: req.body')
         console.table(req.body)
-        const event = new Event(req.body);
+        let data = req.body
+        let adress = data.adress
+        const coordinates = await adressTranslate(adress)
+        data.longitude = coordinates.longitude
+        data.latitude = coordinates.latitude
+        delete data.adress
+        console.log(data)
+        const event = new Event(data);
         try {
             const result = await event.save();
             res.status(201).json(result)

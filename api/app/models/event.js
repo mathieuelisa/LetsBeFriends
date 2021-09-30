@@ -2,6 +2,7 @@ const CoreModel = require('./coremodel');
 const db = require('../database');
 const format = require('../services/formatSearchRequest')
 
+
 /**
  * A entity representing a table event
  * @typedef Event

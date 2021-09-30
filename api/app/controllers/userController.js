@@ -1,5 +1,6 @@
 const { User } = require(`../models`);
 const db = require('../database');
+const jwt = require('../services/jwt')
 
 const userController = {
     findAll: async (req, res) => {
@@ -50,6 +51,9 @@ const userController = {
         const password = req.body.password
         try {
             const user = await User.validByEmailPassword(email, password)
+            // if(user.id){
+            //     res.setHeader('Authorization', jwt.makeToken(user.id));
+            // }
             res.status(user.id ? 200 : 401).json(user)
         } catch (error) {
             console.log(error);
@@ -64,6 +68,7 @@ const userController = {
         if (user.password === user.confirmPassword) {
             try {
                 const result = await user.save();
+                // res.setHeader('Authorization', jwt.makeToken(user.id));
                 res.status(201).json(result)
             } catch (error) {
                 console.log(error);
