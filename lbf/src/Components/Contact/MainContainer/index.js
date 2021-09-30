@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 //Import React components
 import ButtonToggle from "../../Styledcomponents/ButtonToggle"
 import Avatar from "../../Styledcomponents/Avatar"
@@ -16,11 +17,61 @@ import avatarJulien from "../../../assets/Profils/julien.jpg"
 import avatarJordan from "../../../assets/Profils/jordan.jpg"
 import avatarEmmanuel from "../../../assets/Profils/emmanuel.jpg"
 
+import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router';
+
+import { useDispatch, useSelector } from "react-redux"
+
+// import actions types
+import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
+import { useEffect } from "react"
 
 function ContactContainer(){
+    const dispatch = useDispatch()
+    const toggleAction = useSelector((state)=> state.common.toggleAction)
+
+    function handleClick(event){
+        event.preventDefault()
+        console.log("Tu as cliqué sur le bouton")
+        dispatch({type: SET_TOGGLE})
+    }
+
+    // useEffect permettant de remettre le menu hamburger a false a chaque rendu
+    useEffect(()=>{
+        dispatch({type: RESET_TOGGLE})
+    },[])
+
+const history = useHistory()
+
+    function handleLogOut(){
+        localStorage.clear()
+        history.push("/home")
+}
+
+
     return(
         <div className="contact__container">
-        <ButtonToggle className='toggle' name='=' />
+            <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
+                <ButtonToggle 
+                    className='settings__container--toggle' 
+                    name='=' 
+                    handleClick={handleClick}
+                />
+
+                {toggleAction ? 
+                    <div className="header__hamburger">
+                        <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+                        <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
+                        <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
+                        <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
+                        <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
+                        <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
+                            {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} exact to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
+                    </div>
+                    : ""
+                } 
+            </div>
+
             <div className="mainContact__container">
                 <div className="contact__container-text">
                     <h1 className="contact__container-title">LETS WORK TOGETHER</h1>

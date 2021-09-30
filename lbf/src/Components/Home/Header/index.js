@@ -1,12 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './styles.scss';
 import ButtonModal from '../../Styledcomponents';
 import ButtonToggle from '../../Styledcomponents/ButtonToggle';
 import PropTypes from 'prop-types';
 
-import { SET_TOGGLE } from '../../../Redux/actions/common';
+import { NavLink } from 'react-router-dom';
 
-import { useDispatch, useSelector } from "react-redux"
+import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
 
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { useHistory } from 'react-router';
 
 const Header = ({ openModalLogin, openModalSignup }) => {
 
@@ -19,18 +23,53 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
     dispatch({type: SET_TOGGLE})
 }
 
+  // useEffect permettant de remettre le menu hamburger a false a chaque rendu
+  useEffect(()=>{
+    dispatch({type: RESET_TOGGLE})
+  },[])
+
+
+  const history = useHistory()
+
+    function handleLogOut(){
+        localStorage.clear()
+        history.push("/home")
+  }
+
+let myFirstName = useSelector((state)=>state.profil.myName)
+
   return (
     <div className='header'>
       <h1 className='header__logo'>LBF</h1>
       <div className='header__navbar'>
-        <ButtonModal openModal={openModalLogin} className='header__navbar__login' name='LOGIN' />
-        <ButtonModal openModal={openModalSignup} className='header__navbar__signup' name='SIGN UP' />
+      {/* Si un user est stocké dans un localstorage ca affichera son prenom et retirera les boutons login et sign up */}
+        {localStorage.getItem("user") ? <a href className='header__navbar__nameOfUser'>Hi {myFirstName} </a> : 
+        <>
+          <ButtonModal openModal={openModalLogin} className='header__navbar__login' name='LOGIN' /> 
+          <ButtonModal openModal={openModalSignup} className='header__navbar__signup' name='SIGN UP' />
+        </>
+        }
+        
         <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
           <ButtonToggle 
             className='settings__container--toggle' 
             name='=' 
             handleClick={handleClick}
           />
+
+          {/* Lorsque la classe open est active l'ensemble des NavLink sont disponible */}
+         {toggleAction ? 
+         <div className="header__hamburger">
+            <NavLink to="/home" exact className="header__hamburger-titlePage">HOME</NavLink>
+            <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
+            <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
+            <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
+            <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
+            <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
+            {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} to="/home" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
+         </div>
+         : ""} 
+
         </div>
       </div>
     </div>

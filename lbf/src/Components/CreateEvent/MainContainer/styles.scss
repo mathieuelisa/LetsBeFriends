@@ -11,7 +11,6 @@
         display: flex;
         justify-content: center;
         width: 30%;
-        height: 50%;
         margin-left: 55px;
 
         &-location{
@@ -20,7 +19,7 @@
             background: transparent;
             border: none;
             border-bottom: 1px solid white;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             padding-bottom: 10px;
         }
 
@@ -31,6 +30,11 @@
             min-width: 250px;
             padding-bottom: 25px;
             outline: none;
+
+            &-label{
+                width: 140px;
+                text-align: start;
+            }
         }
     }
 
@@ -95,6 +99,13 @@
     color: whitesmoke;
 }
 
+select option{
+        margin: 40px;
+        background: #c54c24;
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
 #registerForm{
     display: flex;
     flex-direction: column;
@@ -104,7 +115,7 @@
 }
 
 
-@media screen and (max-width: 1070px){
+@media screen and (max-width: 1370px){
     .mainCreateEvent__container{
         height: auto;
         flex-direction: column;

@@ -6,7 +6,7 @@ import React from 'react'
 
 //Robz: J'ai rajouté plusieurs props à Button pour qu'il soit configurable. On peut utiliser celles que l'on veut.
 
-const Button = ({ openModal, className, name, url }) => {
+const Button = ({ openModal, className, name, url, type }) => {
     
     let link = '';
 
@@ -22,14 +22,15 @@ const Button = ({ openModal, className, name, url }) => {
 
     return (
         // toujours mettre un href sur un anchor sinon erreur lors de la lecture
-    <a href={link} className={className} onClick={changeModal}>{name}</a>
+    <a href={link} type={type} className={className} onClick={changeModal}>{name}</a>
 );}
 
 Button.propTypes = {
-    openModal: PropTypes.func.isRequired,
+   // openModal: PropTypes.func.isRequired,
     className: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    URL: PropTypes.string,
+    url: PropTypes.string,
+    type: PropTypes.string,
   };
 
 export default Button;

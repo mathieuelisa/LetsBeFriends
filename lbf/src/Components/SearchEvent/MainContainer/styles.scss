@@ -13,6 +13,8 @@
             flex-direction: column;
             width: 20%;
             height: 100%;
+            box-shadow: 5px -5px 18px black;
+            z-index: 12;
         }
 
         &-leaflet{
@@ -26,18 +28,65 @@
         }
 
         &-resultsForm{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             height: 40%;
             overflow-y: scroll;
             scrollbar-color: rebeccapurple green;
+
+                &__searchEvent {
+                    display: flex;
+                    justify-content: space-between;
+                    font-family: "Caviar";
+                    font-size: 0.6em;
+                    width: 92%;
+                    height: 100px;
+                    background: linear-gradient(to top,rgba(247, 11, 3, 0.37), rgba(247, 80, 3, 0.37),rgba(247, 113, 3, 0.37));
+                    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+                    backdrop-filter: blur( 7.5px );
+                    -webkit-backdrop-filter: blur( 7.5px );
+                    border-radius: 10px;
+                    border: 1px solid rgba( 255, 255, 255, 0.18 );
+                    color: whitesmoke;
+                    padding: 10px;
+                    margin-bottom: 0.8rem;
+
+            
+                
+                    &-infos{
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        width: 60%;
+                        padding: 13px;
+                        
+                    }
+                
+                    &-pictures{
+                        display: flex;
+                        width: 40%;
+                    }
+                
+                    &-title{
+                        font-size: 1.1em;
+                        margin-bottom: 0.5rem;
+                    }
+                }
         }
         
-
         &-infosDetails-location{
             display: flex;
             justify-content: space-between;
             border-bottom: 1px solid whitesmoke;
             width: 70%;
             margin: 0 auto;
+
+            &__tag-selected{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
     }
 
     #searchForm{
@@ -140,7 +189,6 @@
     cursor: pointer;
     text-decoration: none;
     color: whitesmoke;
-    //box-shadow: 0 0 7px -1px;
 
     &:hover {
         transform: rotate(90deg);
@@ -149,14 +197,60 @@
         transition: transform 0.5s, background-color 0.5s;
         box-shadow: 0 0 7px -1px;
     }
-
 }
 
+.leaflet-popup-content-wrapper {
+    display: flex;
+    font-family: 'Caviar';
+    font-weight: 700;
+    background: linear-gradient(to top,rgba(247, 11, 3, 0.37), rgba(247, 80, 3, 0.37),rgba(247, 113, 3, 0.37));
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 7.5px );
+    -webkit-backdrop-filter: blur( 7.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: whitesmoke;
+    padding: 0;
+    margin: 0;
+
+    &__searchEvent {
+        display: flex;
+        justify-content: space-between;
+        width: 92%;
+        height: 100px;
+
+    
+        &-infos{
+            display: flex;
+            justify-content: space-between;
+            font-family: "Caviar";
+            flex-direction: column;
+            width: 60%;
+            padding: 13px;
+
+        }
+    
+        &-pictures{
+            display: flex;
+            width: 40%;
+        }
+    
+        &-title{
+            font-size: 1.1em;
+        }
+    }
+}
 .searchEvent-button-menu {
     position: fixed;
     z-index: 99;
     right: 4px;
     top: 4px;
+}
+
+.searchEvent__container-select{
+    background: transparent;
+    border: none;
+    color: whitesmoke;
 }
 
 @media screen and (max-width: 1070px){
@@ -165,6 +259,27 @@
     }
 
     .searchEvent__container-form{
-        width: 90%;
+        width: 80%;
+    }
+
+    .leaflet-container{
+        display: none;
+    }
+
+    .searchEvent__container-form{
+        box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+        border-radius: 10px;
+        height: 85%;
+    }
+
+    .searchEvent-pictures{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 10px;
+        width: 40%;
+    }
+
+    .searchEvent-infos{
+        font-size: 0.9em;
     }
 }
