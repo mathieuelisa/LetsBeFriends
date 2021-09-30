@@ -175,7 +175,12 @@ function SearchEventContainer(){
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Event: </label>
-                                <select name='eventTags' value={fieldsSearch.eventTags} onChange={handleFieldSearchChange} >
+                                <select
+                                    className="searchEvent__container-select" 
+                                    name='eventTags' 
+                                    value={fieldsSearch.eventTags} 
+                                    onChange={handleFieldSearchChange} 
+                                >
                                     <option></option>
                                     <option id='Soirée BBQ'>Soirée BBQ</option>
                                     <option id='Atelier Cuisine'>Atelier Cuisine</option> 
@@ -211,7 +216,12 @@ function SearchEventContainer(){
 
                         <div className="searchEvent__container-infosDetails-location">
                             <label>Language: </label>
-                                <select name='language' value={fieldsSearch.language} onChange={handleFieldSearchChange} >
+                                <select
+                                    className="searchEvent__container-select" 
+                                    name='language' 
+                                    value={fieldsSearch.language} 
+                                    onChange={handleFieldSearchChange} 
+                                >
                                     <option></option>
                                     <option>English</option>
                                     <option>French</option> 

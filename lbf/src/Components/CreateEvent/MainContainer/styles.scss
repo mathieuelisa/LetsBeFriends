@@ -99,6 +99,13 @@
     color: whitesmoke;
 }
 
+select option{
+        margin: 40px;
+        background: #c54c24;
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
 #registerForm{
     display: flex;
     flex-direction: column;
@@ -108,7 +115,7 @@
 }
 
 
-@media screen and (max-width: 1070px){
+@media screen and (max-width: 1370px){
     .mainCreateEvent__container{
         height: auto;
         flex-direction: column;
