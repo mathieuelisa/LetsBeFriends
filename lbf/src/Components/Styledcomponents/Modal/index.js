@@ -1,5 +1,5 @@
 //Import Actions
-import { setPseudo } from '../../../Redux/actions/profil'
+import { setPseudo,setInfosUser } from '../../../Redux/actions/profil'
 //Import Styles
 import './styles.scss';
 //Dependencies
@@ -70,7 +70,8 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
             if(response.data){
                 localStorage.setItem("user", JSON.stringify(response.data))
                 localStorage.setItem("userDate", Date.now())
-                dispatch(setPseudo(response.data.firstname))
+                // dispatch(setPseudo(response.data.firstname))
+                dispatch(setInfosUser(response.data))
             }
         })
     }

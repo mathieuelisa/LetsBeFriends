@@ -53,10 +53,10 @@ export const submitSignUp = () => (
   }
 )
 
-export const SET_PSEUDO = "SET_PSEUDO"
-export const setPseudo = (value) => (
+export const SET_INFOS_USER = "SET_INFOS_USER"
+export const setInfosUser = (value) => (
   {
-    type: SET_PSEUDO,
+    type: SET_INFOS_USER,
     value,
   }
 )

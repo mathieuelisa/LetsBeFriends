@@ -18,7 +18,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
 import { useEffect, useState } from "react";
 
-
 function ProfilContainer(){
     const [fieldsCreateProfil, setFieldsCreateProfil] = useState({
         firstname:"",
@@ -30,6 +29,9 @@ function ProfilContainer(){
         age:"",
         description:""
     })
+
+    const pipo = useSelector((state)=> state.profil.userInfo)
+    console.log("infos page profil: ", pipo)
 
 //  function permettant d'obtenir plusieurs valeurs dans une valeur sous forme de tableau
     function handleFielsProfilChange(e){
