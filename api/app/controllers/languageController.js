@@ -54,10 +54,10 @@ const languageController = {
 
         try {
             const result = await Language.deleteUserSpeakLanguage(user_id, language_id);
-            res.status(200).json(`Relation between user ${user_id} and languageId ${language_id} deleted`);
+            res.status(result.error ? 418 : 200).json(result);
         } catch (error) {
             console.log(error);
-            res.status(500).json(error);
+            res.status(400).json(error);
         }
     },
 
@@ -68,7 +68,7 @@ const languageController = {
 
         try {
             const result = await Language.newUserLearnLanguage(user_id, language_id);
-            res.status(201).json(result)
+            res.status(result.error ? 400 : 200).json(result)
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
@@ -81,7 +81,7 @@ const languageController = {
 
         try {
             const result = await Language.deleteUserLearnLanguage(user_id, language_id);
-            res.status(200).json(`Relation between user ${user_id} and languageId ${language_id} deleted`);
+            res.status(result.error ? 418 : 200).json(result);
         } catch (error) {
             console.log(error);
             res.status(500).json(error);

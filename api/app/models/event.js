@@ -95,7 +95,7 @@ class Event extends CoreModel {
 			if (rows[0]) {
 				return new Event(rows[0]);
 			}
-			return null;
+			return `Event id:${id} not found`;
 		} catch (error) {
 			console.log(error)
 			throw new Error(error.detail)
@@ -105,7 +105,6 @@ class Event extends CoreModel {
 	/**
 	 * add a post to the database
 	 */
-
 
 	static async findAll(limit) {
 		try {
@@ -157,7 +156,7 @@ class Event extends CoreModel {
 			if (rows.length) {
 				return rows.map(row => new Event(row))
 			}
-			return null;
+			return "Events not found";
 		} catch (error) {
 			throw new Error(error.detail)
 		}
