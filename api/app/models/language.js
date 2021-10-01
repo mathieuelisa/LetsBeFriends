@@ -40,8 +40,10 @@ class Language extends CoreModel {
 
     static async newUserSpeakLanguage(user_id, language_id) {
         try {
-            const { rows } = await db.query('INSERT INTO "user_speak_language"(user_id, language_id) VALUES($1, $2) RETURNING user_id AS "userId", language_id AS "languageId"', [user_id, language_id])
-            return new Language(rows[0])
+            const { rows } = await db.query('INSERT INTO "user_speak_language"(user_id, language_id) VALUES($1, $2) RETURNING user_id AS "userId", language_id AS "languageId"', [user_id, language_id]);
+
+            if (rows[0]) return new Language(rows[0]);
+            else return { error: "Couldn't insert data into user_speak_language" };
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -74,7 +76,7 @@ class Language extends CoreModel {
             const { rows } = await db.query('INSERT INTO "user_learn_language"(user_id, language_id) VALUES($1, $2) RETURNING user_id AS "userId", language_id AS "languageId"', [user_id, language_id]);
 
             if (rows[0]) return new Language(rows[0]);
-            else return { error: "Couldn't insert data into user_learn_language" };
+            else return { error: "Couldn't insert data into user_learn_language", user_id, language_id };
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -107,7 +109,7 @@ class Language extends CoreModel {
             const { rows } = await db.query('INSERT INTO "event_has_language"(event_id, language_id) VALUES($1, $2) RETURNING event_id AS "eventId", language_id AS "languageId"', [event_id, language_id])
 
             if (rows[0]) return new Language(rows[0]);
-            else return { error: "Couldn't insert data into event_has_language" };
+            else return { error: "Couldn't insert data into event_has_language", event_id, language_id };
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -120,10 +122,10 @@ class Language extends CoreModel {
 
     static async findAll() {
         try {
-
             const { rows } = await db.query('SELECT * FROM language')
-            return rows.map(row => new Language(row))
 
+            if (rows) return rows.map(row => new Language(row));
+            else return { error: "Couldn't find any data" };
         } catch (error) {
             console.log(error);
             if (error.detail) {
