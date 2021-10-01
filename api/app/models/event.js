@@ -103,10 +103,12 @@ class Event extends CoreModel {
 	}
 
 	/**
-	 * add a post to the database
+	 * fetches all events below on certain limit
+	 * @param {number} limit.query.required
+	 * @returns {Array<Event>}
+	 * @static
+	 * @async
 	 */
-
-
 	static async findAll(limit) {
 		try {
 			const { rows } = await db.query(
@@ -162,7 +164,11 @@ class Event extends CoreModel {
 			throw new Error(error.detail)
 		}
 	}
-
+	/**
+	 * add a new event
+	 * @returns {Array<Event>}
+	 * @async
+	 */
 	async save() {
 		try {
 			if (this.id) {
@@ -203,6 +209,14 @@ class Event extends CoreModel {
 			}
 		}
 	}
+	/**
+	 * Fetches a event with a parameter
+	 * @param {object} obj 
+	 * @returns {Array<Event>}
+	 * @async
+	 * @static
+	}
+	 */
 	static async findByParameters(obj) {
 
 		try {

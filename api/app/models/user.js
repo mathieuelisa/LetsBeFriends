@@ -176,7 +176,13 @@ class User extends CoreModel {
             throw new Error(error)
         }
     }
-
+    /**
+     * Fetches one user with a email
+     * @param {string} email.query.required email user
+     * @returns {User|null} null if no users matches the given email in database
+     * @static
+     * @async
+     */
     static async findOneByEmail(email) {
         try {
             const { rows } = await db.query(`SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
@@ -236,7 +242,14 @@ class User extends CoreModel {
             throw new Error(error)
         }
     }
-
+    /**
+     * Validate a user with email and password
+     * @param {string} email.query.required email user
+     * @param {string} password.query.required password user
+     * @returns {User|null} null if no emeil or password validated
+     * @async
+     * @static
+     */
     static async validByEmailPassword(email, password) {
         try {
             const { rows } = await db.query(`SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".password, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",

@@ -74,15 +74,53 @@ router
 //? --- JOINING REQUEST
 router
     .route('/events/request/:id')
+    /**
+     * Do a request on one event
+     * @route GET /events/request/:id
+     * @group Event
+     * @summary Do a request on one event
+     * @param {number} id.path.required id necessary for search event
+     * @returns {string} 201 - the event finded
+     * @returns {string} 500 - an error server
+     * @returns {string} 404 - A validation error message
+     */
     .get(requestController.findAllJoiningRequest)
 
 router
     .route('/events/request/new')
+    /**
+     * Do a request on new event
+     * @route POST /events
+     * @group Event
+     * @summary Add a new event in database
+     * @param {ReqEventJson.model | Event.model} object.body.required Object containing the properties to insert a event
+     * @returns {Event.model} 201 - The newly created event
+     * @returns {string} 500 - An error message
+     * @returns {string} 400 - A validation error message
+     */
     .post(requestController.makeJoiningRequest)
 
 router
     .route('/events/request/confirm')
+    /**
+     * confirm a new form of event
+     * @route POST /events/request/confirm
+     * @group Event
+     * @summary Add a new event in database
+     * @param {ReqEventJson.model | Event.model} object.body.required Object containing the properties to insert a event
+     * @returns {Event.model} 201 - The newly created event
+     * @returns {string} 500 - An error message
+     * @returns {string} 400 - A validation error message
+     */
     .post(requestController.confirmJoiningRequest)
+    /**
+     * Request of refuse a user on a event
+     * @route DELETE /events/request/confirm
+     * @group Event
+     * @summary Delete a existing event
+     * @param {number} id.path.required id necessary for delete event
+     * @returns {string} 200 - the event deletedss
+     */
     .delete(requestController.refuseJoiningRequest)
 
 
@@ -90,6 +128,14 @@ router
 
 router
     .route('/languages')
+    /**
+     * Responds with all events in database
+     * @route GET /languages
+     * @group Language
+     * @summary Responds with all events in database
+     * @returns {Array<Language>} 200 -An array of events
+     * @returns {string} 500 - An error message
+     */
     .get(languageController.findAll)
 // router
 //     .route('/speak')
@@ -104,6 +150,14 @@ router
 
 router
     .route('/tags')
+     /**
+     * Responds with all events in database
+     * @route GET /tags
+     * @group Tag
+     * @summary Responds with all events in database
+     * @returns {Array<Tag>} 200 -An array of events
+     * @returns {string} 500 - An error message
+     */
     .get(tagController.findAll)
 
 //? --- USER
@@ -155,11 +209,31 @@ router
 
 router
     .route('/imageprofil')
+    /**
+ * Respond with one user from database
+ * @route POST /imageprofil
+ * @group User
+ * @summary Responds with one user from database
+ * @param {number} id.path.required The id of the user to fetch
+ * @param {string}  - email
+ * @param {string}  -password user
+ * @returns {User.model} 200 - A single post identified by its id
+ * @returns {string} 404 - An error message
+ * @returns {string} 500 - An error message
+ */
     .post(imageController.uploadProfil)
 
 router
     .route('/resetpassword')
     .get(userController.findOneByEmail)
+     /**
+     * Modify a user's password with a email
+     * @route GET /resetpassword
+     * @group User
+     * @summary modify a user's password with a email
+     * @returns {Array<User>} 200 -An array of events
+     * @returns {string} 500 - An error message
+     */
     .patch(validateBody(updateUserSecuritySchema), userController.update)
 
 router.post('/users/login', userController.login)

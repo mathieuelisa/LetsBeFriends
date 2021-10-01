@@ -34,7 +34,10 @@ class Language extends CoreModel {
      * Fetches a id of user and id of language
      * @param {number} user_id 
      * @param {number} language_id 
-     * @returns {Array<Language>}
+     * @returns {user|null} null if user not exist
+     * @returns {Language|null} null if language not exist
+     * @static
+     * @async
      */
 
 
@@ -51,8 +54,14 @@ class Language extends CoreModel {
             }
         }
     }
-    
-
+    /**
+     * Delete a id of user and id of language
+     * @param {number} user_id.query.required
+     * @param {number} language_id 
+     * @returns {string}
+     * @static
+     * @async
+     */
     static async deleteUserSpeakLanguage(user_id, language_id) {
         try {
             await db.query('DELETE FROM "user_speak_language" WHERE user_id=$1 AND language_id=$2', [user_id, language_id])
@@ -66,6 +75,14 @@ class Language extends CoreModel {
         }
 
     }
+     /**
+     * Add a new user who want learn a language
+     * @param {number} user_id.path.required user_id
+     * @param {number} language_id.path.required language_id
+     * @returns {language|null} null if no language exist
+     * @async
+     * @static
+     */
 
     static async newUserLearnLanguage(user_id, language_id) {
         try {
@@ -81,6 +98,14 @@ class Language extends CoreModel {
         }
 
     }
+    /**
+     * Delete a id of user and id of language
+     * @param {number} user_id.query.required user_id
+     * @param {number} language_id language_id
+     * @returns {string}
+     * @static
+     * @async
+     */
 
     static async deleteUserLearnLanguage(user_id, language_id) {
         try {
@@ -94,7 +119,14 @@ class Language extends CoreModel {
             }
         }
     }
-
+    /**
+     * Add language in a event
+     * @param {number} event_id.query.required event_id
+     * @param {number} language_id.query.required language_id
+     * @returns {Language|null} null if language is not rxist
+     * @async
+     * @static
+     */
     static async newEventHasLanguage(event_id, language_id) {
         try {
             const { rows } = await db.query('INSERT INTO "event_has_language"(event_id, language_id) VALUES($1, $2) RETURNING event_id AS "eventId", language_id AS "languageId"', [event_id, language_id])
@@ -108,7 +140,12 @@ class Language extends CoreModel {
             }
         }
     }
-
+    /**
+     * Fetches all languages from the database
+     * @returns {Array<Language>}
+     * @static
+     * @async
+     */
     static async findAll(){
         try {
             
