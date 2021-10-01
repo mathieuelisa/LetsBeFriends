@@ -30,8 +30,8 @@ function ProfilContainer(){
         description:""
     })
 
-    const pipo = useSelector((state)=> state.profil.userInfo)
-    console.log("infos page profil: ", pipo)
+    const userInfos = useSelector((state) => state.profil.infosUser)
+    console.log("infos page profil: ", userInfos)
 
 //  function permettant d'obtenir plusieurs valeurs dans une valeur sous forme de tableau
     function handleFielsProfilChange(e){
@@ -49,7 +49,7 @@ function ProfilContainer(){
         }
     }
 
-console.log(fieldsCreateProfil)
+//console.log(fieldsCreateProfil)
 
     function handleSubmit(e){
         e.preventDefault();
@@ -121,6 +121,7 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                                 type="text"
                                 value={fieldsCreateProfil.firstname}
                                 onChange={handleFielsProfilChange}
+                                placeholder={userInfos.firstname}
                             />
                         </div>
 
@@ -132,6 +133,7 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                                 type="text"
                                 value={fieldsCreateProfil.lastname}
                                 onChange={handleFielsProfilChange}
+                                placeholder={userInfos.lastname}
                             />
                         </div>
 
@@ -143,17 +145,19 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                                 type="number"
                                 value={fieldsCreateProfil.age}
                                 onChange={handleFielsProfilChange}
+                                placeholder={userInfos.age}
                             />
                         </div>
 
                         <div className="myInputs-profilPage">
-                            <label className="myInputs-ProfilPage-label">Adress:</label>
+                            <label className="myInputs-ProfilPage-label">City:</label>
                             <input 
                                 className="myInputs-profilPage-input"
                                 name="adress"
                                 type="text"
                                 value={fieldsCreateProfil.adress}
                                 onChange={handleFielsProfilChange}
+                                placeholder={userInfos.city}
                             />
                         </div>
 
@@ -165,6 +169,7 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                                 type="email"
                                 value={fieldsCreateProfil.mail}
                                 onChange={handleFielsProfilChange}
+                                placeholder={userInfos.email}
                             />
                         </div>
 
@@ -213,6 +218,7 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                                         name="description" 
                                         value={fieldsCreateProfil.description}
                                         onChange={handleFielsProfilChange}
+                                        placeholder={userInfos.description}
                                     />
                                 </div>
                         </div>
