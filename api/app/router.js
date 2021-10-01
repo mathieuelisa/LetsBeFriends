@@ -87,16 +87,24 @@ router
 
 
 //? --- LANGUAGE
+
 router
-    .route('/speak')
-    .post(languageController.newUserSpeakLanguage)
-    .delete(languageController.deleteUserSpeakLanguage)
-router
-    .route('/learn')
-    .post(languageController.newUserLearnLanguage)
-    .delete(languageController.deleteUserLearnLanguage)
+    .route('/languages')
+    .get(languageController.findAll)
+// router
+//     .route('/speak')
+//     .post(languageController.newUserSpeakLanguage)
+//     .delete(languageController.deleteUserSpeakLanguage)
+// router
+//     .route('/learn')
+//     .post(languageController.newUserLearnLanguage)
+//     .delete(languageController.deleteUserLearnLanguage)
 
 //? --- TAG
+
+router
+    .route('/tags')
+    .get(tagController.findAll)
 
 //? --- USER
 router

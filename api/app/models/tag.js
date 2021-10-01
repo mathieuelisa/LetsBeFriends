@@ -30,6 +30,22 @@ class Tag extends CoreModel {
         }
     }
 
+    static async findAll(){
+        try {
+            
+            const {rows} = await db.query('SELECT * FROM tag')
+            return rows.map(row => new Tag(row))
+
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            } else {
+                throw error;
+            }
+        }
+    }
+
 
 
 

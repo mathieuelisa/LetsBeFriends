@@ -37,6 +37,7 @@ class Language extends CoreModel {
      * @returns {Array<Language>}
      */
 
+
     static async newUserSpeakLanguage(user_id, language_id) {
         try {
             const { rows } = await db.query('INSERT INTO "user_speak_language"(user_id, language_id) VALUES($1, $2) RETURNING user_id AS "userId", language_id AS "languageId"', [user_id, language_id])
@@ -49,7 +50,6 @@ class Language extends CoreModel {
                 throw error;
             }
         }
-
     }
     
 
@@ -66,6 +66,7 @@ class Language extends CoreModel {
         }
 
     }
+
     static async newUserLearnLanguage(user_id, language_id) {
         try {
             const { rows } = await db.query('INSERT INTO "user_learn_language"(user_id, language_id) VALUES($1, $2) RETURNING user_id AS "userId", language_id AS "languageId"', [user_id, language_id])
@@ -106,8 +107,24 @@ class Language extends CoreModel {
                 throw error;
             }
         }
-
     }
+
+    static async findAll(){
+        try {
+            
+            const {rows} = await db.query('SELECT * FROM language')
+            return rows.map(row => new Language(row))
+
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            } else {
+                throw error;
+            }
+        }
+    }
+
 };
 
 module.exports = Language;
