@@ -216,10 +216,7 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                         </div>
 
                         <div className="profil__myButtons">
-                            <button
-                            type="submit"
-                            className="myButton-validate"
-                            >VALIDATE</button>
+                            <button type="submit" className="myButton-validate">VALIDATE</button>
                             <button className="myButton-deleted">DELETE MY ACCOUNT</button>
                         </div>
 
