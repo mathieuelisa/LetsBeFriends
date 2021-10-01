@@ -29,7 +29,20 @@ class Tag extends CoreModel {
             this[propName] = obj[propName];
         }
     }
-
+    /*
+    static async findAll() {
+        try{
+            const {rows} = await db.query('SELECT * FROM tag')
+            if (rows.length) {
+                return rows.map(row => new Tag(row))
+            }
+            return null;
+        } catch (error) {
+            console.log(error)
+            throw new Error(error)
+        }
+    }
+    */
 
 
 
