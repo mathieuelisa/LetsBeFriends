@@ -70,7 +70,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
             if(response.data){
                 localStorage.setItem("user", JSON.stringify(response.data))
                 localStorage.setItem("userDate", Date.now())
-                // dispatch(setPseudo(response.data.firstname))
+                dispatch(setPseudo(response.data.firstname))
                 dispatch(setInfosUser(response.data))
             }
         })
@@ -94,7 +94,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
 
     // Recuperation de la valeur afin de l'afficher par la suite
         const nameUser = useSelector((state)=>state.profil.myName)
-
+        
     return (
     <div className='modal-container'>
         {(showModalLogin || showModalSignup) ? (

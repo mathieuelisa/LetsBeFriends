@@ -53,6 +53,14 @@ export const submitSignUp = () => (
   }
 )
 
+export const SET_PSEUDO = "SET_PSEUDO";
+export const setPseudo = (value) => (
+  {
+    type: SET_PSEUDO,
+    value,
+  }
+)
+
 export const SET_INFOS_USER = "SET_INFOS_USER"
 export const setInfosUser = (value) => (
   {

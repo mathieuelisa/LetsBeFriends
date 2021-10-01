@@ -1,4 +1,4 @@
-import { SET_FIELD_IDENTIFICATION, SET_CHECKBOX_REMEMBER, SET_CHECKBOX_TERMS, SET_INFOS_USER } from '../actions/profil';
+import { SET_FIELD_IDENTIFICATION, SET_CHECKBOX_REMEMBER, SET_CHECKBOX_TERMS, SET_PSEUDO, SET_INFOS_USER } from '../actions/profil';
 
 export const initialState = {
   //login: {email: 'gertrude.manoukian@gmail.com', password: 'abcd'},
@@ -35,6 +35,11 @@ const reducer = (state = initialState, action = {}) => {
         return {
           ...state,
           termsAccepted: !state.termsAccepted,
+        }
+      case SET_PSEUDO:
+        return{
+          ...state,
+          myName: action.value
         }
       case SET_INFOS_USER: 
       return{

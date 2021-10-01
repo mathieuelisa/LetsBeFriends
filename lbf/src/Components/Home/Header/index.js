@@ -66,7 +66,7 @@ let myFirstName = useSelector((state)=>state.profil.myName)
             <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
             <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
             <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
-            {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} to="/home" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
+            {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
          </div>
          : ""} 
 
