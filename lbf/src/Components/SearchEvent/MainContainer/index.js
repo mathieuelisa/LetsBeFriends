@@ -24,6 +24,7 @@ import { setAllEvents } from '../../../Redux/actions/event';
 function SearchEventContainer() {
     const toggleAction = useSelector((state) => state.common.toggleAction)
     const events = useSelector(state => state.event.events)
+    const allLanguages = useSelector(state => state.common.allLanguages)
 
     const [loading, setLoading] = useState(false)
 
@@ -224,7 +225,7 @@ function SearchEventContainer() {
                                 onClick={displayTags}>
 
                                 <option></option>
-                                {events.map((event) => (<option>{event.languages[0].name}</option>))}
+                                {allLanguages.map(language => <option>{language.name}</option>)}
                                 {/* <option>English</option>
                                     <option>French</option> 
                                     <option>Spanish</option> 

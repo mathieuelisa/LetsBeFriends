@@ -93,7 +93,6 @@
     display: flex;
     justify-content: space-between;
     margin: 5px;
-    color: whitesmoke;
 
     &-label{
         width: 229px;
@@ -103,9 +102,14 @@
         background: transparent;
         width: 60%;
         border: none;
-        color: whitesmoke;
         font-family: "Caviar";
+
+        &::placeholder {
+            color: whitesmoke;
+        }
+        
     }
+    
 }
 
 .profil__myButtons{

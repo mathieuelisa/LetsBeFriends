@@ -9,13 +9,14 @@ import Avatar from "../../Styledcomponents/Avatar"
 
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
-
+import axios from 'axios';
+//Actions
 import avatarMicheline from "../../../assets/Img/micheline.jpg"
 
 import { useDispatch, useSelector } from "react-redux"
 
 // import actions types
-import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
+import { SET_TOGGLE, RESET_TOGGLE, setLanguages } from '../../../Redux/actions/common';
 import { useEffect, useState } from "react";
 
 function ProfilContainer(){
@@ -31,7 +32,10 @@ function ProfilContainer(){
     })
 
     const userInfos = useSelector((state) => state.profil.infosUser)
+    const optionsAxios = useSelector(state => state.common.optionsAxios)
+    const allLanguages = useSelector(state => state.common.allLanguages)
     console.log("infos page profil: ", userInfos)
+    
 
 //  function permettant d'obtenir plusieurs valeurs dans une valeur sous forme de tableau
     function handleFielsProfilChange(e){
@@ -55,8 +59,8 @@ function ProfilContainer(){
         e.preventDefault();
     }
 
-const dispatch = useDispatch()
-const toggleAction = useSelector((state)=> state.common.toggleAction)
+    const dispatch = useDispatch()
+    const toggleAction = useSelector((state)=> state.common.toggleAction)
 
     function handleClick(event){
         event.preventDefault()
@@ -75,6 +79,15 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
         localStorage.clear()
         history.push("/home")
     }
+
+    const getLanguages = () => {
+        axios.get('https://lets-be-friend.herokuapp.com/v1/languages', optionsAxios)
+            .then((response) => {
+                console.log('Voici la réponse de l API les tous Languages :', response.data);
+                dispatch(setLanguages(response.data));
+            }).catch(error => console.log('Error recherche users '));
+    }
+    getLanguages();
 
     return(
         <div className="profil__container">
@@ -181,13 +194,14 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                                     value={fieldsCreateProfil.language_spoken}
                                     onChange={handleFielsProfilChange}>
                                         <option></option>
-                                        <option>English</option>
+                                        {allLanguages.map(language => <option>{language.name}</option>)}
+                                        {/* <option>English</option>
                                         <option>French</option>
                                         <option>Spanish</option>
                                         <option>Japanese</option>
                                         <option>Mandarin</option>
                                         <option>Russian</option>
-                                        <option>Italian</option>
+                                        <option>Italian</option> */}
                                 </select>
                         </div>
 
