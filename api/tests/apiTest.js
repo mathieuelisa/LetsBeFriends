@@ -32,7 +32,7 @@ describe('GET v1/users', function () {
 describe('GET v1/users/:id', function () {
     it('should respond with json containing a single user', function (done) {
         request(app)
-            .get('/v1/users/12')
+            .get('/v1/users/1')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200, done);
@@ -236,7 +236,7 @@ describe('GET /v1/events', function () {
 describe('GET /v1/events/:id', function () {
     it('should respond with json containing a single event', function (done) {
         request(app)
-            .get('/v1/events/12')
+            .get('/v1/events/1')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200, done);

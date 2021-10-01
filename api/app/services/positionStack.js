@@ -1,6 +1,7 @@
 const fetch = require('node-fetch')
 
 const adressTranslate = async(adress)=>{
+
     let dataToReturn = {
         latitude : '',
         longitude : ''
@@ -12,6 +13,8 @@ const adressTranslate = async(adress)=>{
     dataToReturn.latitude = data.data[0].latitude
     return dataToReturn
 }
+
+
 
 
 module.exports = adressTranslate

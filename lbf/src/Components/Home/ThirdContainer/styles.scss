@@ -1,12 +1,12 @@
 .third__container{
-    height: 60vh;
+    height: 700px;
     background: linear-gradient(to top,#141d41,#1a2a6c); 
     font-family: Arial, Helvetica, sans-serif;
 }
 
 
-// @media screen and (max-width: 700px){
-//     .third__container{
-//     //     height: 35vh;
-//     // }
-//   }
+@media screen and (max-width: 700px){
+    .third__container{
+        height: 200px;
+  }
+}

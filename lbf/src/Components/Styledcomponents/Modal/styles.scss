@@ -149,3 +149,29 @@
 .div-input-login {
     border: none;
 }
+
+@media screen and (max-width: 970px){
+    .modal-container__modal{
+        width: 85vw;
+        left: 8%;
+    }
+
+    .modal-container__modal__formsignup{
+        padding: 0;
+        width: 65%;
+    }
+
+    .modal-container__modal__formlogin{
+        padding: 0;
+        width: 65%;
+    }
+
+    .modal-container__modal__formlogin__remember{
+        width: 100%;
+    }
+
+    .modal-container__modal__formsignup__terms{
+        width: 100%;
+    }
+
+}

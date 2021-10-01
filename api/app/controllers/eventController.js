@@ -1,4 +1,4 @@
-const { Event } = require(`../models`);
+const { Event, Language } = require(`../models`);
 const adressTranslate = require('../services/positionStack')
 
 const eventController = {
@@ -37,23 +37,36 @@ const eventController = {
             console.log(error);
             res.status(500).json(error);
         }
-
     },
 
     create: async (req, res, next) => {
         console.log('--> Create Event: req.body')
         console.table(req.body)
+        
         let data = req.body
+        let { eventLanguage } = data
         let adress = data.adress
-        const coordinates = await adressTranslate(adress)
-        data.longitude = coordinates.longitude
-        data.latitude = coordinates.latitude
-        delete data.adress
-        console.log(data)
-        const event = new Event(data);
+        // ! changer d'API
         try {
-            const result = await event.save();
-            res.status(201).json(result)
+            const coordinates = await adressTranslate(adress)
+            data.longitude = coordinates.longitude
+            data.latitude = coordinates.latitude
+            delete data.adress
+            console.log(coordinates)
+            if (eventLanguage) delete data.eventLanguage
+            //Delete de data eventLanguage avant d'en faire une instance de la classe User
+
+            const event = new Event(data);
+            const eventCreated = await event.save();
+            
+            if(eventLanguage){
+                for (let language of eventLanguage) {
+                    await Language.newEventHasLanguage(eventCreated.id,language)
+                };
+            }
+            const newEvent = await Event.findOneById(eventCreated.id)
+
+            res.status(201).json(newEvent)
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
@@ -64,9 +77,21 @@ const eventController = {
         console.log('--> Update Event: req.body')
         console.table(req.body)
         const event = new Event(req.body);
+        
         try {
+            if(req.body.eventLanguage){
+                for (let language of req.body.eventLanguage) {
+                    await Language.newEventHasLanguage(event.id,language)
+                };
+                delete event.eventLanguage
+            }
+
             const result = await event.save();
-            if (result) res.status(200).json(result)
+
+            if (result){
+                const eventResult = await Event.findOneById(event.id)
+                res.status(200).json(eventResult)
+            } 
             else res.status(400).json("data not valid or ressource do not exist")
         } catch (error) {
             console.log(error);
