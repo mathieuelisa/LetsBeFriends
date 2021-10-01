@@ -32,7 +32,9 @@ function SearchEventContainer() {
     const [fieldsSearch, setFieldsSearch] = useState({
         city: '',
         eventTags: [],
+        selectedTags: [],
         languages: [],
+        selectedLanguages: [],
         dateFrom: {
             formatISO: "",
             formatString: ""
@@ -68,12 +70,13 @@ function SearchEventContainer() {
         } else if (e.target.name == 'eventTags') {
             setFieldsSearch({
                 ...fieldsSearch,
-                eventTags: [...fieldsSearch.eventTags, e.target.value]
+                eventTags: [...fieldsSearch.eventTags, e.target.value],
+                selectedTags: [...fieldsSearch.languages, e.target.value]
             })
         } else if (e.target.name == 'languages') {
             setFieldsSearch({
                 ...fieldsSearch,
-                languages: [...fieldsSearch.languages, e.target.value]
+                languages: [...fieldsSearch.languages, e.target.value],
             })
         } else {
             setFieldsSearch({
@@ -89,8 +92,12 @@ function SearchEventContainer() {
         dispatch({ type: SET_TOGGLE })
     }
 
-    const handleClickClosedTag = () => {
-        setTagOpened(false);
+    const handleClickClosedTag = (tag) => {
+
+        setFieldsSearch({
+            ...fieldsSearch,
+            selectedLanguages: [fieldsSearch.selectedLanguages.filter(language => language !== tag)]
+        })    
     }
     const handleSubmitForm = (e) => {
         e.preventDefault();
@@ -110,7 +117,11 @@ function SearchEventContainer() {
 
     const displayTags = (e) => {
         console.log('Tes dans la callback displayTags');
-        setTagOpened(true);
+        setFieldsSearch({
+            ...fieldsSearch,
+            selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value ]
+        })
+        
     }
 
     const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
@@ -222,7 +233,7 @@ function SearchEventContainer() {
                                 name='languages'
                                 value={fieldsSearch.languages}
                                 onChange={handleFieldSearchChange}
-                                onClick={displayTags}>
+                                onClick={(e) => displayTags(e)}>
 
                                 <option></option>
                                 {allLanguages.map(language => <option>{language.name}</option>)}
@@ -236,7 +247,7 @@ function SearchEventContainer() {
                             </select>
                         </div>
                         <div className='searchEvent__container-infosDetails-location__tag-selected'>
-                            {tagOpened && fieldsSearch.languages.map((tag) => (<Tag handleClick={handleClickClosedTag} tag={tag} name={tag} />))}
+                            {fieldsSearch.selectedLanguages.map((tag) => (<Tag handleClick={() => handleClickClosedTag(tag)} tag={tag} name={tag} />))}
                         </div>
                     </form>
 

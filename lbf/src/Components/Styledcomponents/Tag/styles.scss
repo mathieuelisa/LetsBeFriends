@@ -19,5 +19,17 @@
     }
 
     &__exit {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 1.2rem;
+        width: 1.2rem;
+        font-weight: 700;
+        background-color: rgba(255, 0, 0, 0.514);
+        border-radius: 20px;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

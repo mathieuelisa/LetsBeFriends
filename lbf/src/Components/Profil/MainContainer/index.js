@@ -6,6 +6,7 @@ import "./styles.scss"
 //import ReactComponents
 import ButtonToggle from "../../Styledcomponents/ButtonToggle"
 import Avatar from "../../Styledcomponents/Avatar"
+import Tag from '../../Styledcomponents/Tag'
 
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
@@ -53,10 +54,16 @@ function ProfilContainer(){
         }
     }
 
+    useEffect(()=>{
+        dispatch({type: RESET_TOGGLE})
+        getLanguages();
+    },[]);
+
 //console.log(fieldsCreateProfil)
 
     function handleSubmit(e){
         e.preventDefault();
+       // updateProfil();
     }
 
     const dispatch = useDispatch()
@@ -69,9 +76,7 @@ function ProfilContainer(){
     }
     
     // useEffect permettant de remettre le menu hamburger a false a chaque rendu
-    useEffect(()=>{
-        dispatch({type: RESET_TOGGLE})
-    },[]);
+
 
     const history=useHistory()
 
@@ -87,7 +92,16 @@ function ProfilContainer(){
                 dispatch(setLanguages(response.data));
             }).catch(error => console.log('Error recherche users '));
     }
-    getLanguages();
+    // const updateProfil = () => {
+    //     // console.log('tagName', tagName)
+    //     axios.patch('https://lets-be-friend.herokuapp.com/v1/users', {
+    //         "firstname"
+    //     }, optionsAxios)
+    //         .then((response) => {
+    //             console.log('Voici la réponse de l API pour recherche d evenements :', response.data);
+    //             //dispatch(setAllEvents(response.data));
+    //         }).catch(error => console.log('Error recherche event '));
+    //     }
 
     return(
         <div className="profil__container">
@@ -203,6 +217,10 @@ function ProfilContainer(){
                                         <option>Russian</option>
                                         <option>Italian</option> */}
                                 </select>
+                                <div className='searchEvent__container-infosDetails-location__tag-selected'>
+                                    {userInfos.speakingLanguage.map(tag => <Tag key={tag.id} tag={tag.name} />)}
+
+                                </div>
                         </div>
 
                         <div className="myInputs-profilPage">
