@@ -25,6 +25,7 @@ function ProfilContainer(){
         lastname:"",
         adress:"",
         mail:"",
+        tel:"",
         language_spoken:[],
         language_toLearn:[],
         age:"",
@@ -104,11 +105,9 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                         customPics={avatarMicheline}
                     />
                     <h2 className="profil-genre">No binary</h2>
-                    <h2 className="profil-telNumber">Tel: 07 85 11 25 18</h2>
                 </div>
 
-                <form
-                className="profil__container-data" onSubmit={handleSubmit}> 
+                <form className="profil__container-data" onSubmit={handleSubmit}> 
                     <div className="profil__container-data">
 
                         <div className="myInputs-profilPage">
@@ -167,6 +166,17 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                         </div>
 
                         <div className="myInputs-profilPage">
+                            <label className="myInputs-ProfilPage-label">Phone:</label>
+                            <input 
+                                className="myInputs-profilPage-input"
+                                name="tel"
+                                type="tel"
+                                value={fieldsCreateProfil.tel}
+                                onChange={handleFielsProfilChange}
+                            />
+                        </div>
+
+                        <div className="myInputs-profilPage">
                             <label className="myInputs-ProfilPage-label" id="profil__language">Language spoken:</label>           
                                 <select
                                     className="myInputs-profilPage-input"
@@ -216,11 +226,8 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                         </div>
 
                         <div className="profil__myButtons">
-                            <button
-                            type="submit"
-                            className="myButton-validate"
-                            >VALIDATE</button>
-                            <button className="myButton-deleted">DELETE MY ACCOUNT</button>
+                            <button type="submit" className="myButton-validate">VALIDATE</button>
+                            <button type="submit" className="myButton-deleted">DELETE MY ACCOUNT</button>
                         </div>
 
                     </div>

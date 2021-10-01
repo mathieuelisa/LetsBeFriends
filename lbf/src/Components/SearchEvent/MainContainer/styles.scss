@@ -259,6 +259,11 @@
 
 
 @media screen and (max-width: 1070px){
+
+    .searchEvent__container{
+        height: 130vh;
+    }
+
     .searchEvent__container-leaflet{
         display: none;
     }
@@ -290,5 +295,9 @@
 
     .registerForm{
         width: 85%;
+    }
+
+    .searchEvent__container-resultsForm__searchEvent{
+        margin-top: 20px;
     }
 }

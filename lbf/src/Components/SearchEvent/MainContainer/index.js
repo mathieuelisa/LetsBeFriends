@@ -14,6 +14,8 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import "./styles.scss"
 // Import axios
 import axios from 'axios'
+// Import loader
+import Loader from "../../Styledcomponents/Loader";
 
 
 // import actions types
@@ -23,6 +25,8 @@ import { setAllEvents } from '../../../Redux/actions/event';
 function SearchEventContainer(){
     const toggleAction = useSelector((state)=> state.common.toggleAction)
     const events = useSelector(state => state.event.events)
+
+    const [loading, setLoading] = useSelector(false)
     const [tagOpened, setTagOpened] = useState(false);
     const [fieldsSearch, setFieldsSearch] = useState({
         city: '',
@@ -42,13 +46,10 @@ function SearchEventContainer(){
 
     console.log('INitialisation fieldsSearch: ', fieldsSearch)
 
- 
-
     const optionsGet = {
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",
     }
-
 
     function handleFieldSearchChange(e) {
 
