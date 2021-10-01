@@ -181,7 +181,13 @@ function SearchEventContainer(){
                    <form id="searchForm" onSubmit={handleSubmitForm}>
                         <div className="searchEvent__container-infosDetails-location">
                             <label>City: </label>
-                            <input name='city' className="mySearchInputs" type="text" value={fieldsSearch.city} onChange={handleFieldSearchChange} />
+                                <input 
+                                    name='city' 
+                                    className="mySearchInputs" 
+                                    type="text" 
+                                    value={fieldsSearch.city} 
+                                    onChange={handleFieldSearchChange} 
+                                />
                         </div>
 
                         <div className="searchEvent__container-infosDetails-location">
@@ -228,7 +234,7 @@ function SearchEventContainer(){
                         </div>
 
                         <div className="searchEvent__container-infosDetails-location">
-                            <label>languages: </label>
+                            <label>Languages: </label>
                                 <select
                                 className="searchEvent__container-select" 
                                 name='languages' 

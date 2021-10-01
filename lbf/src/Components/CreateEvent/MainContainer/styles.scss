@@ -123,8 +123,17 @@ select option{
         text-align: center;
     }
 
+    .createEvent__container-infosDetails-location{
+        width: 100%;
+    }
+
     .createEvent__container{
         height: auto;
+
+        &-label{
+            width: 40%;
+            text-align: start;
+        }
     }
 
     .createEvent__container-infosDetails{
@@ -144,8 +153,45 @@ select option{
         }
 
     }
+    
+    .createEvent__container-infosDetails-calendar-label{
+        width: 44px;
+    }
+    
+    .myInputs{
+        width: 70%;
+    }
+
+    #registerForm{
+        width: 235px;
+    }
 
     #div-location{
         margin-top: 50px;
+        text-align: start;
+    }
+
+    #createEvent__label{
+        border: none;
+    }
+
+    #profil__description-textArea{
+        display: flex;
+    }
+
+    #createEvent-textArea{
+        display: flex;
+        flex-direction: column;
+        border-bottom: none;
+
+        &-width{
+            width: 100%;
+            border: 1px solid whitesmoke;
+            border-radius: 5px;
+            margin-top: 10px;
+            height: 100px;
+            padding: 10px;
+            font-family: 'Caviar';
+        }
     }
 }

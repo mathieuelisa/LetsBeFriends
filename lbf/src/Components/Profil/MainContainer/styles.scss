@@ -142,31 +142,7 @@
     flex-direction: column;
 }
 
-@media screen and (max-width: 970px){
-    .profil__container{
-        height: auto;
-    }
 
-    // .mainProfil__container{
-    //     height: auto;
-    // }
-
-    .mainProfil__container{
-        flex-direction: column;
-        margin: 60px 0 40px 0;
-        height: auto;
-    }
-
-
-    .profil__container-data{
-        text-align: center;
-        width: 100%;
-    }
-
-    .input__container{
-        margin: 0 auto;
-    }
-}
 
 .settings__container--toggle{
     display: flex;
@@ -192,4 +168,44 @@
 
 .header__navbar__settings-open{
     right: 0;
+}
+
+@media screen and (max-width: 970px){
+    .profil__container{
+        height: auto;
+
+        &-data{
+            text-align: center;
+            width: 105%;
+            padding: 15px;
+        }
+    }
+    
+    .mainProfil__container{
+        flex-direction: column;
+        margin: 60px 0 40px 0;
+        height: auto;
+    }
+
+    .input__container{
+        margin: 0 auto;
+    }
+
+    #profil__language{
+        width: 225px;
+        text-align: start;
+    }
+
+    .myButton-validate{
+        width: 40%;
+    }
+
+    .myButton-deleted{
+        width: 40%;
+    }
+
+    .profil__myButtons{
+        width: auto;
+    }
+
 }

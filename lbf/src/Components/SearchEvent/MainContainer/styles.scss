@@ -27,6 +27,13 @@
             height: 60%;
         }
 
+        &-select{
+            background: transparent;
+            border: none;
+            color: whitesmoke;
+            margin-bottom: 10px;
+        }
+
         &-resultsForm{
             display: flex;
             flex-direction: column;
@@ -34,6 +41,8 @@
             height: 40%;
             overflow-y: scroll;
             scrollbar-color: rebeccapurple green;
+        
+        
 
                 &__searchEvent {
                     display: flex;
@@ -247,11 +256,7 @@
     top: 4px;
 }
 
-.searchEvent__container-select{
-    background: transparent;
-    border: none;
-    color: whitesmoke;
-}
+
 
 @media screen and (max-width: 1070px){
     .searchEvent__container-leaflet{
@@ -281,5 +286,9 @@
 
     .searchEvent-infos{
         font-size: 0.9em;
+    }
+
+    .registerForm{
+        width: 85%;
     }
 }

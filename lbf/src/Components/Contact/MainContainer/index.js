@@ -75,7 +75,7 @@ const history = useHistory()
             <div className="mainContact__container">
                 <div className="contact__container-text">
                     <h1 className="contact__container-title">LETS WORK TOGETHER</h1>
-                        <p className="contact__container-infos">Below are the members of the Lets Be Friends project team.<br/>
+                        <p className="contact__container-infos">Below are the members of the<br/>  Lets Be Friends project team.<br/>
                             For more details, to report any bugs or to simply meet one of the members of the site
                             don't hesitate to contact us on our social networks.
                         </p>
