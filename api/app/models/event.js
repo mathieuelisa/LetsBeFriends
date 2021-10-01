@@ -100,19 +100,15 @@ class Event extends CoreModel {
 
 		} catch (error) {
 
-			console.log(error);
-			if (error.detail) {
-				throw new Error(error.detail)
-			} else {
-				throw error;
-			}
+			if (error.detail) throw new Error(error.detail)
+			else throw error;
+			
 		}
 	}
 
 	/**
 	 * add a post to the database
 	 */
-
 
 	static async findAll(limit) {
 		try {
@@ -163,15 +159,10 @@ class Event extends CoreModel {
 				[limit])
 
 				return rows.map(row => new Event(row))
-
 		} catch (error) {
 
-			console.log(error);
-			if (error.detail) {
-				throw new Error(error.detail)
-			} else {
-				throw error;
-			}
+			if (error.detail) throw new Error(error.detail)
+			else throw error;
 		}
 	}
 
@@ -210,12 +201,8 @@ class Event extends CoreModel {
 			}
 		} catch (error) {
 
-			console.log(error);
-			if (error.detail) {
-				throw new Error(error.detail)
-			} else {
-				throw error;
-			}
+			if (error.detail) throw new Error(error.detail)
+			else throw error;
 		}
 	}
 	static async findByParameters(obj) {
@@ -274,12 +261,8 @@ class Event extends CoreModel {
 
 		} catch (error) {
 
-			console.log(error);
-			if (error.detail) {
-				throw new Error(error.detail)
-			} else {
-				throw error;
-			}
+			if (error.detail) throw new Error(error.detail)
+			else throw error;
 		}
 	}
 
