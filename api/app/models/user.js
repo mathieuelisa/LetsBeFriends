@@ -179,7 +179,54 @@ class User extends CoreModel {
 
     static async findOneByEmail(email) {
         try {
-            const { rows } = await db.query(`SELECT * FROM "user" WHERE email=$1`, [email])
+            const { rows } = await db.query(`SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
+                json_agg(
+					DISTINCT jsonb_strip_nulls(
+                        jsonb_build_object(
+                            'id', speaking_language.id,
+                            'name', speaking_language.name
+					    )
+                    )
+				) AS "speakingLanguage",
+                json_agg(
+					DISTINCT jsonb_strip_nulls(
+                        jsonb_build_object(
+                            'id', learning_language.id,
+                            'name', learning_language.name
+					    )
+                    )
+				) AS "learningLanguage", 
+                json_agg(
+                    DISTINCT jsonb_strip_nulls(
+                        jsonb_build_object(
+                            'id', event.id,
+                            'title', event.title,
+                            'description', event.description,
+                            'startingDate', event.starting_date,
+                            'endingDate', event.ending_date,
+                            'imgUrl', event.img_url,
+                            'placesLeft', event.places_left,
+                            'longitude', event.longitude,
+                            'latitude', event.latitude,
+                            'ownerId', event.user_id,
+                            'createdAt', event.created_at,
+                            'updatedAt', event.updated_at
+                        )
+                    )
+                ) AS event         
+                FROM user_participate_event 
+                RIGHT JOIN "user" ON user_participate_event.user_id = "user".id
+                LEFT JOIN "event" ON user_participate_event.event_id = event.id
+                LEFT JOIN user_speak_language ON "user".id = user_speak_language.user_id
+                LEFT JOIN (
+                    SELECT * FROM "language"
+                ) AS speaking_language ON user_speak_language.language_id = speaking_language.id
+                LEFT JOIN user_learn_language ON "user".id = user_learn_language.user_id
+                LEFT JOIN (
+                    SELECT * FROM "language"
+                ) as learning_language ON user_learn_language.language_id = learning_language.id
+                WHERE "user".email=$1
+                GROUP BY "user".id`, [email])
             if (rows.length) {
                 return new User(rows[0]);
             }
@@ -192,8 +239,56 @@ class User extends CoreModel {
 
     static async validByEmailPassword(email, password) {
         try {
-            const { rows } = await db.query(`SELECT * FROM "user" WHERE email=$1`, [email])
+            const { rows } = await db.query(`SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".password, "user".description AS bio, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
+            json_agg(
+                DISTINCT jsonb_strip_nulls(
+                    jsonb_build_object(
+                        'id', speaking_language.id,
+                        'name', speaking_language.name
+                    )
+                )
+            ) AS "speakingLanguage",
+            json_agg(
+                DISTINCT jsonb_strip_nulls(
+                    jsonb_build_object(
+                        'id', learning_language.id,
+                        'name', learning_language.name
+                    )
+                )
+            ) AS "learningLanguage", 
+            json_agg(
+                DISTINCT jsonb_strip_nulls(
+                    jsonb_build_object(
+                        'id', event.id,
+                        'title', event.title,
+                        'description', event.description,
+                        'startingDate', event.starting_date,
+                        'endingDate', event.ending_date,
+                        'imgUrl', event.img_url,
+                        'placesLeft', event.places_left,
+                        'longitude', event.longitude,
+                        'latitude', event.latitude,
+                        'ownerId', event.user_id,
+                        'createdAt', event.created_at,
+                        'updatedAt', event.updated_at
+                    )
+                )
+            ) AS event         
+            FROM user_participate_event 
+            RIGHT JOIN "user" ON user_participate_event.user_id = "user".id
+            LEFT JOIN "event" ON user_participate_event.event_id = event.id
+            LEFT JOIN user_speak_language ON "user".id = user_speak_language.user_id
+            LEFT JOIN (
+                SELECT * FROM "language"
+            ) AS speaking_language ON user_speak_language.language_id = speaking_language.id
+            LEFT JOIN user_learn_language ON "user".id = user_learn_language.user_id
+            LEFT JOIN (
+                SELECT * FROM "language"
+            ) as learning_language ON user_learn_language.language_id = learning_language.id
+            WHERE "user".email=$1
+            GROUP BY "user".id`, [email])
             if (rows.length) {
+                console.log(rows)
                 const isCorrectPassword = await bcrypt.compare(password, rows[0].password)
                 if (isCorrectPassword) {
                     delete rows[0].password
