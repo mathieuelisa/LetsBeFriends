@@ -22,7 +22,7 @@ const userController = {
             else res.status(404).json("user not found");
         } catch (error) {
             console.log(error);
-            res.status(505).json("error");
+            res.status(500).json("error");
         }
 
     },
