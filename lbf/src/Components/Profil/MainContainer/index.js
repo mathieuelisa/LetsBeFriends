@@ -23,7 +23,7 @@ function ProfilContainer(){
     const [fieldsCreateProfil, setFieldsCreateProfil] = useState({
         firstname:"",
         lastname:"",
-        adress:"",
+        address:"",
         mail:"",
         language_spoken:[],
         language_toLearn:[],
@@ -145,12 +145,12 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
                         </div>
 
                         <div className="myInputs-profilPage">
-                            <label className="myInputs-ProfilPage-label">Adress:</label>
+                            <label className="myInputs-ProfilPage-label">Address:</label>
                             <input 
                                 className="myInputs-profilPage-input"
-                                name="adress"
+                                name="address"
                                 type="text"
-                                value={fieldsCreateProfil.adress}
+                                value={fieldsCreateProfil.address}
                                 onChange={handleFielsProfilChange}
                             />
                         </div>

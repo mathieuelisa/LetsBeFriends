@@ -49,7 +49,7 @@ class Event extends CoreModel {
 		try {
 			const { rows } = await db.query(
 				`SELECT event.id, event.title, event.description, event.starting_date AS "startingDate", event.ending_date AS "endingDate", 
-				event.img_url AS "imgUrl",  event.places_left AS "placesLeft", event.longitude, event.latitude, event.user_id AS "ownerId",
+				event.img_url AS "imgUrl",  event.places_left AS "placesLeft", event.address,event.longitude, event.latitude, event.user_id AS "ownerId",
 				event.created_at AS "createdAt", event.updated_at AS "updatedAt",
 				json_agg(
 					DISTINCT jsonb_strip_nulls(
@@ -111,7 +111,7 @@ class Event extends CoreModel {
 		try {
 			const { rows } = await db.query(
 				`SELECT event.id, event.title, event.description, event.starting_date AS "startingDate", event.ending_date AS "endingDate", 
-				event.img_url AS "imgUrl",  event.places_left AS "placesLeft", event.longitude, event.latitude, event.user_id AS "ownerId",
+				event.img_url AS "imgUrl",  event.places_left AS "placesLeft", event.address,event.longitude, event.latitude, event.user_id AS "ownerId",
 				event.created_at AS "createdAt", event.updated_at AS "updatedAt",
 				json_agg(
 					DISTINCT jsonb_strip_nulls(
@@ -180,7 +180,7 @@ class Event extends CoreModel {
 				return new Event(rows[0])
 
 			} else {
-				const { rows } = await db.query('INSERT INTO event(title, starting_date, ending_date, img_url, places_left, description, longitude, latitude, user_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id', [
+				const { rows } = await db.query('INSERT INTO event(title, starting_date, ending_date, img_url, places_left, description, longitude, latitude, user_id, address) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id', [
 					this.title,
 					this.starting_date,
 					this.ending_date,
@@ -189,7 +189,8 @@ class Event extends CoreModel {
 					this.description,
 					this.longitude,
 					this.latitude,
-					this.user_id
+					this.user_id,
+					this.address
 				]);
 				this.id = rows[0].id;
 				return this
@@ -209,7 +210,7 @@ class Event extends CoreModel {
 			const finalObj = format(obj)
 			console.log(finalObj)
 			const { rows } = await db.query(`SELECT event.id, event.title, event.description, event.starting_date AS "startingDate", event.ending_date AS "endingDate", 
-			event.img_url AS "imgUrl",  event.places_left AS "placesLeft", event.longitude, event.latitude, event.user_id AS "ownerId",
+			event.img_url AS "imgUrl",  event.places_left AS "placesLeft", event.address,event.longitude, event.latitude, event.user_id AS "ownerId",
 			event.created_at AS "createdAt", event.updated_at AS "updatedAt",
 			json_agg(
 				DISTINCT jsonb_strip_nulls(

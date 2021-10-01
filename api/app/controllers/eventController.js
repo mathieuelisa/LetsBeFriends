@@ -1,5 +1,5 @@
 const { Event, Language } = require(`../models`);
-const adressTranslate = require('../services/positionStack')
+const addressTranslate = require('../services/positionStack')
 
 const eventController = {
 
@@ -45,14 +45,11 @@ const eventController = {
         
         let data = req.body
         let { eventLanguage } = data
-        let adress = data.adress
-        // ! changer d'API
+        let address = data.address
         try {
-            const coordinates = await adressTranslate(adress)
-            data.longitude = coordinates.longitude
-            data.latitude = coordinates.latitude
-            delete data.adress
-            console.log(coordinates)
+            const coordinates = await addressTranslate(address)
+            data.longitude = coordinates.lng
+            data.latitude = coordinates.lat
             if (eventLanguage) delete data.eventLanguage
             //Delete de data eventLanguage avant d'en faire une instance de la classe User
 
