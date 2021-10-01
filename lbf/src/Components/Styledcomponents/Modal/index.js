@@ -33,6 +33,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
 
     const [isCheckedLogin,setIsCheckedLogin] = useState(false)
     const [isCheckedSignUp,setIsCheckedSignUp] = useState(false)
+    const infosUser = useSelector(state => state.profil.infosUser)
 
     const dispatch = useDispatch()
 
@@ -102,7 +103,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                     {/* Login Form */}
                     {showModalLogin ? (
                         <form className='modal-container__modal__formlogin' onSubmit={handleSubmitLogin}>
-                            {localStorage.getItem("user")? <h1>Bonjour {nameUser}</h1> : <h1>Login</h1>}
+                            {infosUser.firstname ? <h1>Bonjour {nameUser}</h1> : <h1>Login</h1>}
                             <Input 
                                 type='email'
                                 name='email'

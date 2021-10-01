@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-const-assign */
 /* eslint-disable react-hooks/exhaustive-deps */
 import './styles.scss';
 import ButtonModal from '../../Styledcomponents';
@@ -7,6 +9,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
+import { resetInfosUser } from '../../../Redux/actions/profil';
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
@@ -16,6 +19,7 @@ const Header = ({ openModalLogin, openModalSignup }) => {
 
 const dispatch = useDispatch()
 const toggleAction = useSelector((state)=> state.common.toggleAction)
+const infosUser = useSelector(state => state.profil.infosUser)
 
   function handleClick(event){
     event.preventDefault()
@@ -29,21 +33,22 @@ const toggleAction = useSelector((state)=> state.common.toggleAction)
   },[])
 
 
+
   const history = useHistory()
 
     function handleLogOut(){
-        localStorage.clear()
-        history.push("/home")
+      dispatch(resetInfosUser());
+      history.push("/home")
   }
 
-let myFirstName = useSelector((state)=>state.profil.myName)
+//let myFirstName = useSelector((state)=>state.profil.myName)
 
   return (
     <div className='header'>
       <h1 className='header__logo'>LBF</h1>
       <div className='header__navbar'>
       {/* Si un user est stocké dans un localstorage ca affichera son prenom et retirera les boutons login et sign up */}
-        {localStorage.getItem("user") ? <a href className='header__navbar__nameOfUser'>Hi {myFirstName} </a> : 
+        {infosUser.firstname ? <a href className='header__navbar__nameOfUser'>Hi {infosUser.firstname} </a> : 
         <>
           <ButtonModal openModal={openModalLogin} className='header__navbar__login' name='LOGIN' /> 
           <ButtonModal openModal={openModalSignup} className='header__navbar__signup' name='SIGN UP' />
@@ -66,7 +71,7 @@ let myFirstName = useSelector((state)=>state.profil.myName)
             <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
             <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
             <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
-            {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
+            {infosUser.firstname ? <NavLink onClick={handleLogOut} to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
          </div>
          : ""} 
 
