@@ -81,7 +81,7 @@ router
     .post(requestController.makeJoiningRequest)
 
 router
-    .route('/events/request/confirm')
+    .route('/events/request/status')
     .post(requestController.confirmJoiningRequest)
     .delete(requestController.refuseJoiningRequest)
 
