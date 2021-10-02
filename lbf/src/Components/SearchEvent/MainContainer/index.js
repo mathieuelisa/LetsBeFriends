@@ -25,6 +25,7 @@ function SearchEventContainer() {
     const toggleAction = useSelector((state) => state.common.toggleAction)
     const events = useSelector(state => state.event.events)
     const allLanguages = useSelector(state => state.common.allLanguages)
+    const allEventTags = useSelector(state => state.event.allEventTags)
 
     const [loading, setLoading] = useState(false)
 
@@ -44,9 +45,10 @@ function SearchEventContainer() {
             formatString: ""
         }
     })
-    console.log('selected Languages : ', fieldsSearch.selectedLanguages)
+    console.log('Tous les event Tag : ', allEventTags)
     const dispatch = useDispatch()
     fieldsSearch.languages = allLanguages.map(language => language.name);
+    fieldsSearch.eventTags = allEventTags.map(tag => tag.name);
 
     //console.log('INitialisation fieldsSearch: ', fieldsSearch)
 
@@ -193,7 +195,7 @@ function SearchEventContainer() {
                                 onChange={handleFieldSearchChange}
                             >
                                 <option></option>
-                                {events.map((event) => (<option>{event.tags[0].name}</option>))}
+                                {fieldsSearch.eventTags.map((tag) => (<option>{tag}</option>))}
                                 {/*
                                     <option id='Soirée BBQ'>Soirée BBQ</option>
                                     <option id='Atelier Cuisine'>Atelier Cuisine</option> 

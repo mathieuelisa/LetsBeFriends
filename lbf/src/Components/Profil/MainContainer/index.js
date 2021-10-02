@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE, setLanguages, setLanguagesToLearn } from '../../../Redux/actions/common';
+import { setEventTags } from '../../../Redux/actions/event';
 import { useEffect, useState } from "react";
 
 function ProfilContainer(){
@@ -37,8 +38,10 @@ function ProfilContainer(){
     
     const allLanguages = useSelector(state => state.common.allLanguages)
     const allLanguagesToLearn = useSelector(state=> state.common.allLanguagesToLearn)
-    console.log("infos page profil: ", userInfos)
+    const allEventTags = useSelector(state => state.event.allEventTags)
+    //console.log("infos page profil: ", userInfos)
     
+    console.log('Tous les event Tag : ', allEventTags)
 
 //  function permettant d'obtenir plusieurs valeurs dans une valeur sous forme de tableau
     function handleFielsProfilChange(e){
@@ -59,6 +62,7 @@ function ProfilContainer(){
     useEffect(()=>{
         dispatch({type: RESET_TOGGLE})
         getLanguages();
+        getEventsTags();
     },[]);
 
 //console.log(fieldsCreateProfil)
@@ -93,6 +97,14 @@ function ProfilContainer(){
                 console.log('Voici la réponse de l API les tous Languages :', response.data);
                 dispatch(setLanguages(response.data));
                 dispatch(setLanguagesToLearn(response.data))
+            }).catch(error => console.log('Error recherche users '));
+    }
+
+    const getEventsTags = () => {
+        axios.get('https://lets-be-friend.herokuapp.com/v1/tags', optionsAxios)
+            .then((response) => {
+                console.log('Voici la réponse de l API les tous Event Tags :', response.data);
+                dispatch(setEventTags(response.data));
             }).catch(error => console.log('Error recherche users '));
     }
 
@@ -223,7 +235,7 @@ function ProfilContainer(){
                                 </select>
                         </div>
                         <div className='searchEvent__container-infosDetails-location__tag-selected'>
-                            {userInfos.speakingLanguage.map(tag => <Tag key={tag.id} tag={tag.name} />)}
+                            {userInfos?.speakingLanguage?.map(tag => <Tag key={tag.id} tag={tag.name} />)}
                         </div>
 
                         <div className="myInputs-profilPage">
@@ -245,7 +257,7 @@ function ProfilContainer(){
                                 </select>
                         </div>
                         <div className='searchEvent__container-infosDetails-location__tag-selected'>
-                            {userInfos.learningLanguage.map(tag => <Tag key={tag.id} tag={tag.name} />)}
+                            {userInfos?.learningLanguage?.map(tag => <Tag key={tag.id} tag={tag.name} />)}
                         </div>
 
                         <div className="myInputs-profilPage" id="profil__description-textArea">
