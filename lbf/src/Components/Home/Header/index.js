@@ -19,6 +19,7 @@ const Header = ({ openModalLogin, openModalSignup }) => {
 
 const dispatch = useDispatch()
 const toggleAction = useSelector((state)=> state.common.toggleAction)
+
 const infosUser = useSelector(state => state.profil.infosUser)
 
   function handleClick(event){
@@ -38,7 +39,7 @@ const infosUser = useSelector(state => state.profil.infosUser)
 
     function handleLogOut(){
       dispatch(resetInfosUser());
-      history.push("/home")
+      history.push("/")
   }
 
 //let myFirstName = useSelector((state)=>state.profil.myName)
@@ -65,7 +66,7 @@ const infosUser = useSelector(state => state.profil.infosUser)
           {/* Lorsque la classe open est active l'ensemble des NavLink sont disponible */}
          {toggleAction ? 
          <div className="header__hamburger">
-            <NavLink to="/home" exact className="header__hamburger-titlePage">HOME</NavLink>
+            <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
             <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
             <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
             <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>

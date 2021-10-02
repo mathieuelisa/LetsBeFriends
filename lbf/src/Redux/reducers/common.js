@@ -1,11 +1,12 @@
-import { RESET_TOGGLE, SET_TOGGLE, SET_LANGUAGES } from "../actions/common";
+import { RESET_TOGGLE, SET_TOGGLE, SET_LANGUAGES, SET_LANGUAGES_TO_LEARN } from "../actions/common";
 
 export const initialState = {
   toggleAction: false,
   optionsAxios: {
     'Content-Type': 'application/json',
     "Access-Control-Allow-Origin": "*",
-    allLanguages: []
+    allLanguages: [],
+    allLanguagesToLearn:[]
 }
 
   // myName: ""
@@ -28,6 +29,11 @@ const reducer = (state = initialState, action = {}) => {
             ...state,
             allLanguages: action.value
           }
+        case SET_LANGUAGES_TO_LEARN:
+            return{
+              ...state,
+              allLanguagesToLearn: action.value
+            }
     default:
       return state;
   }

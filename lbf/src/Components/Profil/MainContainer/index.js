@@ -17,7 +17,7 @@ import avatarMicheline from "../../../assets/Img/micheline.jpg"
 import { useDispatch, useSelector } from "react-redux"
 
 // import actions types
-import { SET_TOGGLE, RESET_TOGGLE, setLanguages } from '../../../Redux/actions/common';
+import { SET_TOGGLE, RESET_TOGGLE, setLanguages, setLanguagesToLearn } from '../../../Redux/actions/common';
 import { useEffect, useState } from "react";
 
 function ProfilContainer(){
@@ -34,7 +34,9 @@ function ProfilContainer(){
 
     const userInfos = useSelector((state) => state.profil.infosUser)
     const optionsAxios = useSelector(state => state.common.optionsAxios)
+    
     const allLanguages = useSelector(state => state.common.allLanguages)
+    const allLanguagesToLearn = useSelector(state=> state.common.allLanguagesToLearn)
     console.log("infos page profil: ", userInfos)
     
 
@@ -90,8 +92,10 @@ function ProfilContainer(){
             .then((response) => {
                 console.log('Voici la réponse de l API les tous Languages :', response.data);
                 dispatch(setLanguages(response.data));
+                dispatch(setLanguagesToLearn(response.data))
             }).catch(error => console.log('Error recherche users '));
     }
+
     // const updateProfil = () => {
     //     // console.log('tagName', tagName)
     //     axios.patch('https://lets-be-friend.herokuapp.com/v1/users', {
@@ -218,8 +222,7 @@ function ProfilContainer(){
                                         <option>Italian</option> */}
                                 </select>
                                 <div className='searchEvent__container-infosDetails-location__tag-selected'>
-                                    {userInfos.speakingLanguage.map(tag => <Tag key={tag.id} tag={tag.name} />)}
-
+                                    {/* {userInfos.speakingLanguage.map(tag => <Tag key={tag.id} tag={tag.name} />)} */}
                                 </div>
                         </div>
 
@@ -231,13 +234,14 @@ function ProfilContainer(){
                                     value={fieldsCreateProfil.language_toLearn}
                                     onChange={handleFielsProfilChange}>
                                         <option></option>
-                                        <option>English</option>
+                                        {allLanguagesToLearn.map(languageToLearn => <option>{languageToLearn.name}</option>)}
+                                        {/* <option>English</option>
                                         <option>French</option>
                                         <option>Spanish</option>
                                         <option>Japanese</option>
                                         <option>Mandarin</option>
                                         <option>Russian</option>
-                                        <option>Italian</option>
+                                        <option>Italian</option> */}
                                 </select>
                         </div>
 
