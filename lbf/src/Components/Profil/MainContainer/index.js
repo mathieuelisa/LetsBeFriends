@@ -150,10 +150,10 @@ function ProfilContainer(){
                     />
                     <h2 className="profil-genre">No binary</h2>
                     <h2 className="profil-telNumber">Tel: 07 85 11 25 18</h2>
+                    <button form="myProfilForm" type="submit" className="myButton-deleted" id="deletedButton">DELETE MY ACCOUNT</button>
                 </div>
 
-                <form
-                className="profil__container-data" onSubmit={handleSubmit}> 
+                <form className="profil__container-data" onSubmit={handleSubmit} id="myProfilForm"> 
                     <div className="profil__container-data">
 
                         <div className="myInputs-profilPage">
@@ -276,7 +276,6 @@ function ProfilContainer(){
 
                         <div className="profil__myButtons">
                             <button type="submit" className="myButton-validate">VALIDATE</button>
-                            <button className="myButton-deleted">DELETE MY ACCOUNT</button>
                         </div>
 
                     </div>

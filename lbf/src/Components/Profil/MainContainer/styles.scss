@@ -19,6 +19,7 @@
 
     &-avatars{
         display: flex;
+        align-items: center;
         flex-direction: column;
         height: 60%;
         padding: 40px;
@@ -129,6 +130,13 @@
     cursor: pointer;
     box-shadow: 0 0 7px -1px;
     transition: all 1s ease;
+}
+
+#deletedButton{
+    width: 100px;
+    height: 28px;
+    margin: 15px;
+    font-size: 1em;
 }
 
 .myButton-deleted:hover{
