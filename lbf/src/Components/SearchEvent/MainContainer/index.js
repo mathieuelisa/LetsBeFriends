@@ -25,7 +25,7 @@ function SearchEventContainer() {
     const toggleAction = useSelector((state) => state.common.toggleAction)
     const events = useSelector(state => state.event.events)
     const allLanguages = useSelector(state => state.common.allLanguages)
-    const allEventTags = useSelector(state => state.event.allEventTags)
+    const allEventTags = useSelector(state => state.event.eventTags)
 
     const [loading, setLoading] = useState(false)
 
@@ -45,20 +45,25 @@ function SearchEventContainer() {
             formatString: ""
         }
     })
-    console.log('Tous les event Tag : ', allEventTags)
+
     const dispatch = useDispatch()
+
+    // On liste l'ensemble des langues ainsi que l'ensemble des events
     fieldsSearch.languages = allLanguages.map(language => language.name);
     fieldsSearch.eventTags = allEventTags.map(tag => tag.name);
 
-    //console.log('INitialisation fieldsSearch: ', fieldsSearch)
+
+    console.log("toute les langues:", fieldsSearch.languages)
+    console.log("tout les tags:", fieldsSearch.eventTags )
+    console.log('Initialisation fieldsSearch: ', fieldsSearch)
 
     const optionsGet = {
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",
     }
 
+    // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
     function handleFieldSearchChange(e) {
-
         e.preventDefault()
         if (e.target.name == "dateTo" || e.target.name == "dateFrom") {
             let date = e.target.value
@@ -91,21 +96,25 @@ function SearchEventContainer() {
 
     function handleClick(event) {
         event.preventDefault()
-        console.log("Tu as cliqué sur le bouton")
         dispatch({ type: SET_TOGGLE })
     }
 
+    //Fonction permettant de fermer les tags de l'onglet "languages" et "events"
     const handleClickClosedTag = (tag) => {
         setFieldsSearch({
             ...fieldsSearch,
-            selectedLanguages: [...fieldsSearch.selectedLanguages.filter(language => language !== tag)]
-        })    
+            selectedLanguages: [...fieldsSearch.selectedLanguages.filter(language => language !== tag)],
+            selectedTags: [...fieldsSearch.selectedTags.filter(events => events !== tag)]
+        })
     }
+
+    // Fonction permettant la soumission du formulaire
     const handleSubmitForm = (e) => {
         e.preventDefault();
         searchEvent(fieldsSearch.eventTags, fieldsSearch.languages, fieldsSearch.dateFrom.formatISO, fieldsSearch.dateTo.formatISO);
     }
 
+    // Fonction afin de recuperer l'ensemble des events à partir de l'API
     const GetAllEvents = () => {
         setLoading(true)
         axios.get('https://lets-be-friend.herokuapp.com/v1/events', optionsGet)
@@ -113,22 +122,31 @@ function SearchEventContainer() {
                 dispatch(setAllEvents(response.data));
                 console.log('La liste de tous les events : ', response.data)
             }).catch(
-                (error) => console.log('error'),
-            ).finally(() => setLoading(false));
+                (error) => console.log('error')).finally(() => setLoading(false));
     }
+
 
     const displayTags = (e) => {
         console.log('Tes dans la callback displayTags');
-        if(e.target.value !== null) {
+        if (e.target.value !== null) {
             setFieldsSearch({
                 ...fieldsSearch,
-                selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value ]
+                selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value]
             })
         }
     }
- 
+
+    const displayEvents = (e) => {
+        console.log('Tes dans la callback displayEventsTags');
+        if (e.target.value !== null) {
+            setFieldsSearch({
+                ...fieldsSearch,
+                selectedTags: [...fieldsSearch.selectedTags, e.target.value]
+            })
+        }
+    }
+
     const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
-        // console.log('tagName', tagName)
         axios.post('https://lets-be-friend.herokuapp.com/v1/events/search', {
             "tagName": tagName,
             "languageName": languagesName,
@@ -140,16 +158,15 @@ function SearchEventContainer() {
                 dispatch(setAllEvents(response.data));
             }).catch(error => console.log('Error recherche event '));
     }
-
-    // useEffect permettant de remettre le menu hamburger a false a chaque rendu + Get tous les évènements
-
+    
     const history = useHistory()
     // Function permettant de se logout en reinitialisant le localStorage
     function handleLogOut() {
         localStorage.clear()
         history.push("/home")
     }
-
+    
+    // useEffect permettant de remettre le menu hamburger a false a chaque rendu + Get tous les évènements
     useEffect(() => {
         dispatch({ type: RESET_TOGGLE })
         GetAllEvents()
@@ -193,6 +210,7 @@ function SearchEventContainer() {
                                 name='eventTags'
                                 value={fieldsSearch.eventTags}
                                 onChange={handleFieldSearchChange}
+                                onChange={displayEvents}
                             >
                                 <option></option>
                                 {fieldsSearch.eventTags.map((tag) => (<option>{tag}</option>))}
@@ -205,6 +223,10 @@ function SearchEventContainer() {
                                     <option id='Moment café'>Moment café</option>
                                     <option id='Couisine'>Couisine</option>   */}
                             </select>
+                        </div>
+
+                        <div className='searchEvent__container-infosDetails-location__tag-selected'>
+                            {fieldsSearch.selectedTags.map((tag) => (<Tag handleClick={() => handleClickClosedTag(tag)} name={tag} />))}
                         </div>
                         {/* Date from */}
                         <div className="searchEvent__container-infosDetails-location">
@@ -236,8 +258,8 @@ function SearchEventContainer() {
                                 name='languages'
                                 value={fieldsSearch.languages}
                                 onChange={handleFieldSearchChange}
-                                onChange={displayTags}>
-
+                                onChange={displayTags}
+                            >
                                 <option></option>
                                 {fieldsSearch.languages.map(language => <option>{language}</option>)}
                                 {/* <option>English</option>

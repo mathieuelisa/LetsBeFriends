@@ -70,7 +70,6 @@ export const setInfosUser = (value) => (
 )
 
 export const RESET_INFOS_USER = 'RESET_INFOS_USER';
-
 export const resetInfosUser = () => (
    {
     type: RESET_INFOS_USER,
