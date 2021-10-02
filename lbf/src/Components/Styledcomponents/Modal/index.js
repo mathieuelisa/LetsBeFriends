@@ -74,7 +74,7 @@ const Modal = ({ showModalLogin, showModalSignup  }) => {
                 dispatch(setPseudo(response.data.firstname))
                 dispatch(setInfosUser(response.data))
             }
-        })
+        }).catch(error => console.error(error))
     }
 
     const handleSubmitSignUp = (e) => {
