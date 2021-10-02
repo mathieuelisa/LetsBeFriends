@@ -45,12 +45,11 @@ function SearchEventContainer() {
             formatString: ""
         }
     })
-
     const dispatch = useDispatch()
 
     // On liste l'ensemble des langues ainsi que l'ensemble des events
     fieldsSearch.languages = allLanguages.map(language => language.name);
-    fieldsSearch.eventTags = allEventTags.map(tag => tag.name);
+    //fieldsSearch.eventTags = allEventTags.map(tag => tag.name);
 
 
     console.log("toute les langues:", fieldsSearch.languages)
@@ -81,10 +80,10 @@ function SearchEventContainer() {
                 eventTags: [...fieldsSearch.eventTags, e.target.value],
                 selectedTags: [...fieldsSearch.languages, e.target.value]
             })
-        } else if (e.target.name == 'languages') {
+        } else if (e.target.name == 'languages' &&  e.target.value !== null ) {
             setFieldsSearch({
                 ...fieldsSearch,
-                languages: [...fieldsSearch.languages, e.target.value],
+                selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
             })
         } else {
             setFieldsSearch({
@@ -213,7 +212,7 @@ function SearchEventContainer() {
                                 onChange={displayEvents}
                             >
                                 <option></option>
-                                {fieldsSearch.eventTags.map((tag) => (<option>{tag}</option>))}
+                                {fieldsSearch.eventTags?.map((tag) => (<option>{tag}</option>))}
                                 {/*
                                     <option id='Soirée BBQ'>Soirée BBQ</option>
                                     <option id='Atelier Cuisine'>Atelier Cuisine</option> 
@@ -261,7 +260,7 @@ function SearchEventContainer() {
                                 onChange={displayTags}
                             >
                                 <option></option>
-                                {fieldsSearch.languages.map(language => <option>{language}</option>)}
+                                {fieldsSearch.languages?.map(language => <option>{language}</option>)}
                                 {/* <option>English</option>
                                     <option>French</option> 
                                     <option>Spanish</option> 
