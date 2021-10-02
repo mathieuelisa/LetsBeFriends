@@ -221,9 +221,9 @@ function ProfilContainer(){
                                         <option>Russian</option>
                                         <option>Italian</option> */}
                                 </select>
-                                <div className='searchEvent__container-infosDetails-location__tag-selected'>
-                                    {/* {userInfos.speakingLanguage.map(tag => <Tag key={tag.id} tag={tag.name} />)} */}
-                                </div>
+                        </div>
+                        <div className='searchEvent__container-infosDetails-location__tag-selected'>
+                            {userInfos.speakingLanguage.map(tag => <Tag key={tag.id} tag={tag.name} />)}
                         </div>
 
                         <div className="myInputs-profilPage">
@@ -234,7 +234,7 @@ function ProfilContainer(){
                                     value={fieldsCreateProfil.language_toLearn}
                                     onChange={handleFielsProfilChange}>
                                         <option></option>
-                                        {allLanguagesToLearn.map(languageToLearn => <option>{languageToLearn.name}</option>)}
+                                        {allLanguages.map(languageToLearn => <option>{languageToLearn.name}</option>)}
                                         {/* <option>English</option>
                                         <option>French</option>
                                         <option>Spanish</option>
@@ -243,6 +243,9 @@ function ProfilContainer(){
                                         <option>Russian</option>
                                         <option>Italian</option> */}
                                 </select>
+                        </div>
+                        <div className='searchEvent__container-infosDetails-location__tag-selected'>
+                            {userInfos.learningLanguage.map(tag => <Tag key={tag.id} tag={tag.name} />)}
                         </div>
 
                         <div className="myInputs-profilPage" id="profil__description-textArea">

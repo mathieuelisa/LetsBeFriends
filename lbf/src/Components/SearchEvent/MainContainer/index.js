@@ -28,7 +28,7 @@ function SearchEventContainer() {
 
     const [loading, setLoading] = useState(false)
 
-    const [tagOpened, setTagOpened] = useState(false);
+    //const [tagOpened, setTagOpened] = useState(false);
     const [fieldsSearch, setFieldsSearch] = useState({
         city: '',
         eventTags: [],
@@ -44,10 +44,11 @@ function SearchEventContainer() {
             formatString: ""
         }
     })
-
+    console.log('selected Languages : ', fieldsSearch.selectedLanguages)
     const dispatch = useDispatch()
+    fieldsSearch.languages = allLanguages.map(language => language.name);
 
-    console.log('INitialisation fieldsSearch: ', fieldsSearch)
+    //console.log('INitialisation fieldsSearch: ', fieldsSearch)
 
     const optionsGet = {
         'Content-Type': 'application/json',
@@ -93,10 +94,9 @@ function SearchEventContainer() {
     }
 
     const handleClickClosedTag = (tag) => {
-
         setFieldsSearch({
             ...fieldsSearch,
-            selectedLanguages: [fieldsSearch.selectedLanguages.filter(language => language !== tag)]
+            selectedLanguages: [...fieldsSearch.selectedLanguages.filter(language => language !== tag)]
         })    
     }
     const handleSubmitForm = (e) => {
@@ -117,13 +117,14 @@ function SearchEventContainer() {
 
     const displayTags = (e) => {
         console.log('Tes dans la callback displayTags');
-        setFieldsSearch({
-            ...fieldsSearch,
-            selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value ]
-        })
-        
+        if(e.target.value !== null) {
+            setFieldsSearch({
+                ...fieldsSearch,
+                selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value ]
+            })
+        }
     }
-
+ 
     const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
         // console.log('tagName', tagName)
         axios.post('https://lets-be-friend.herokuapp.com/v1/events/search', {
@@ -233,10 +234,10 @@ function SearchEventContainer() {
                                 name='languages'
                                 value={fieldsSearch.languages}
                                 onChange={handleFieldSearchChange}
-                                onClick={(e) => displayTags(e)}>
+                                onChange={displayTags}>
 
                                 <option></option>
-                                {allLanguages.map(language => <option>{language.name}</option>)}
+                                {fieldsSearch.languages.map(language => <option>{language}</option>)}
                                 {/* <option>English</option>
                                     <option>French</option> 
                                     <option>Spanish</option> 
@@ -247,7 +248,7 @@ function SearchEventContainer() {
                             </select>
                         </div>
                         <div className='searchEvent__container-infosDetails-location__tag-selected'>
-                            {fieldsSearch.selectedLanguages.map((tag) => (<Tag handleClick={() => handleClickClosedTag(tag)} tag={tag} name={tag} />))}
+                            {fieldsSearch.selectedLanguages.map((tag) => (<Tag handleClick={() => handleClickClosedTag(tag)} name={tag} />))}
                         </div>
                     </form>
 
