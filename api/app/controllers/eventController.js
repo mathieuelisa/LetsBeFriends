@@ -13,7 +13,7 @@ const eventController = {
             res.status(200).json(results);
 
         } catch (error) {
-            
+
             console.log(error);
             res.status(400).json(error);
         };
@@ -26,7 +26,7 @@ const eventController = {
             const id = parseInt(req.params.id, 10);
             const result = await Event.findOneById(id);
             res.status(result.error ? 418 : 200).json(result);
-            
+
         } catch (error) {
 
             console.log(error);
@@ -54,7 +54,7 @@ const eventController = {
 
         console.log('--> Create Event: req.body');
         console.table(req.body);
-        
+
         let data = req.body;
         let { eventLanguage } = data;
         let address = data.address;
@@ -69,10 +69,10 @@ const eventController = {
 
             const event = new Event(data);
             const eventCreated = await event.save();
-            
-            if(eventLanguage){
+
+            if (eventLanguage) {
                 for (let language of eventLanguage) {
-                    await Language.newEventHasLanguage(eventCreated.id,language)
+                    await Language.newEventHasLanguage(eventCreated.id, language)
                 };
             };
             const newEvent = await Event.findOneById(eventCreated.id);
@@ -89,24 +89,23 @@ const eventController = {
         console.log('--> Update Event: req.body')
         console.table(req.body)
         const event = new Event(req.body);
-        
+
         try {
 
-            if(req.body.eventLanguage){
+            if (req.body.eventLanguage) {
 
                 for (let language of req.body.eventLanguage) {
-                    await Language.newEventHasLanguage(event.id,language)
+                    await Language.newEventHasLanguage(event.id, language)
                 };
                 delete event.eventLanguage
             }
 
             const result = await event.save();
 
-            if (result){
-
+            if (result) {
                 const eventResult = await Event.findOneById(event.id)
-                res.status(eventResult.error ? 418 : 200).json(result);
-            } 
+                res.status(eventResult.error ? 418 : 200).json(eventResult);
+            }
 
         } catch (error) {
 
