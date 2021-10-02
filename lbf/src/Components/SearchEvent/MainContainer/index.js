@@ -49,7 +49,7 @@ function SearchEventContainer() {
 
     // On liste l'ensemble des langues ainsi que l'ensemble des events
     fieldsSearch.languages = allLanguages.map(language => language.name);
-    //fieldsSearch.eventTags = allEventTags.map(tag => tag.name);
+    fieldsSearch.eventTags = allEventTags.map(tag => tag.name);
 
 
     console.log("toute les langues:", fieldsSearch.languages)
