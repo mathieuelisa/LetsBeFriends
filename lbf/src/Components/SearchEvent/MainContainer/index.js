@@ -25,7 +25,7 @@ function SearchEventContainer() {
     const toggleAction = useSelector((state) => state.common.toggleAction)
     const events = useSelector(state => state.event.events)
     const allLanguages = useSelector(state => state.common.allLanguages)
-    const allEventTags = useSelector(state => state.event.allEventTags)
+   // const allEventTags = useSelector(state => state.event.allEventTags)
 
     const [loading, setLoading] = useState(false)
 
@@ -45,10 +45,10 @@ function SearchEventContainer() {
             formatString: ""
         }
     })
-    console.log('Tous les event Tag : ', allEventTags)
+    //console.log('Tous les event Tag : ', allEventTags)
     const dispatch = useDispatch()
     fieldsSearch.languages = allLanguages.map(language => language.name);
-    fieldsSearch.eventTags = allEventTags.map(tag => tag.name);
+    //fieldsSearch.eventTags = allEventTags.map(tag => tag.name);
 
     //console.log('INitialisation fieldsSearch: ', fieldsSearch)
 
@@ -76,10 +76,10 @@ function SearchEventContainer() {
                 eventTags: [...fieldsSearch.eventTags, e.target.value],
                 selectedTags: [...fieldsSearch.languages, e.target.value]
             })
-        } else if (e.target.name == 'languages') {
+        } else if (e.target.name == 'languages' &&  e.target.value !== null ) {
             setFieldsSearch({
                 ...fieldsSearch,
-                languages: [...fieldsSearch.languages, e.target.value],
+                selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
             })
         } else {
             setFieldsSearch({
@@ -117,15 +117,15 @@ function SearchEventContainer() {
             ).finally(() => setLoading(false));
     }
 
-    const displayTags = (e) => {
-        console.log('Tes dans la callback displayTags');
-        if(e.target.value !== null) {
-            setFieldsSearch({
-                ...fieldsSearch,
-                selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value ]
-            })
-        }
-    }
+    // const displayTags = (e) => {
+    //     console.log('Tes dans la callback displayTags');
+    //     if(e.target.value !== null) {
+    //         setFieldsSearch({
+    //             ...fieldsSearch,
+    //             selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value ]
+    //         })
+    //     }
+    // }
  
     const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
         // console.log('tagName', tagName)
@@ -195,7 +195,7 @@ function SearchEventContainer() {
                                 onChange={handleFieldSearchChange}
                             >
                                 <option></option>
-                                {fieldsSearch.eventTags.map((tag) => (<option>{tag}</option>))}
+                                {fieldsSearch.eventTags?.map((tag) => (<option>{tag}</option>))}
                                 {/*
                                     <option id='Soirée BBQ'>Soirée BBQ</option>
                                     <option id='Atelier Cuisine'>Atelier Cuisine</option> 
@@ -236,10 +236,10 @@ function SearchEventContainer() {
                                 name='languages'
                                 value={fieldsSearch.languages}
                                 onChange={handleFieldSearchChange}
-                                onChange={displayTags}>
+                                >
 
                                 <option></option>
-                                {fieldsSearch.languages.map(language => <option>{language}</option>)}
+                                {fieldsSearch.languages?.map(language => <option>{language}</option>)}
                                 {/* <option>English</option>
                                     <option>French</option> 
                                     <option>Spanish</option> 
