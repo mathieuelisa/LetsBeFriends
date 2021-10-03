@@ -77,8 +77,7 @@ function SearchEventContainer() {
         } else if (e.target.name == 'eventTags') {
             setFieldsSearch({
                 ...fieldsSearch,
-                eventTags: [...fieldsSearch.eventTags, e.target.value],
-                selectedTags: [...fieldsSearch.languages, e.target.value]
+                selectedTags: [...fieldsSearch.selectedTags, e.target.value]
             })
         } else if (e.target.name == 'languages' &&  e.target.value !== null ) {
             setFieldsSearch({
@@ -122,27 +121,6 @@ function SearchEventContainer() {
                 console.log('La liste de tous les events : ', response.data)
             }).catch(
                 (error) => console.log('error')).finally(() => setLoading(false));
-    }
-
-
-    const displayTags = (e) => {
-        console.log('Tes dans la callback displayTags');
-        if (e.target.value !== null) {
-            setFieldsSearch({
-                ...fieldsSearch,
-                selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value]
-            })
-        }
-    }
-
-    const displayEvents = (e) => {
-        console.log('Tes dans la callback displayEventsTags');
-        if (e.target.value !== null) {
-            setFieldsSearch({
-                ...fieldsSearch,
-                selectedTags: [...fieldsSearch.selectedTags, e.target.value]
-            })
-        }
     }
 
     const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
@@ -209,7 +187,6 @@ function SearchEventContainer() {
                                 name='eventTags'
                                 value={fieldsSearch.eventTags}
                                 onChange={handleFieldSearchChange}
-                                onChange={displayEvents}
                             >
                                 <option></option>
                                 {fieldsSearch.eventTags?.map((tag) => (<option>{tag}</option>))}
@@ -257,7 +234,6 @@ function SearchEventContainer() {
                                 name='languages'
                                 value={fieldsSearch.languages}
                                 onChange={handleFieldSearchChange}
-                                onChange={displayTags}
                             >
                                 <option></option>
                                 {fieldsSearch.languages?.map(language => <option>{language}</option>)}
