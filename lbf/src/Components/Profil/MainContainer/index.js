@@ -46,6 +46,8 @@ function ProfilContainer() {
 
   const [myLearningLanguages, setMyLearningLanguages] = useState([]);
   const [myLanguagesSpoken, setMyLanguagesSpoken] = useState([]);
+ //const [myNewLearningLanguagesSelected, setMyNewLearningLanguagesSelected] = useState(myLearningLanguages);
+  //const [myNewLanguagesSpokenSelected, setNewMyLanguagesSpokenSelected] = useState(myLanguagesSpoken);
 
 const initializeMyLanguages = () => {
     setMyLanguagesSpoken(infosUser.speakingLanguage);
@@ -53,6 +55,7 @@ const initializeMyLanguages = () => {
 }
 console.log('myLearningLanguages : ', myLearningLanguages)
 console.log('myLanguagesSpoken : ', myLanguagesSpoken)
+console.log('allLanguages : ', allLanguages)
 
 
   console.log("infos page profil: ", infosUser)
@@ -61,22 +64,20 @@ console.log('myLanguagesSpoken : ', myLanguagesSpoken)
 
   //  function permettant d'obtenir plusieurs valeurs dans une valeur sous forme de tableau
   function handleFielsProfilChange(e) {
-    if (e.target.name == "language_spoken") {
+    if (e.target.name == "language_spoken" && e.target.value !== null) {
       setFieldsCreateProfil({
         ...fieldsCreateProfil,
-        language_spoken: [
-          ...fieldsCreateProfil.language_spoken,
-          e.target.value,
-        ],
+        language_spoken: [...fieldsCreateProfil.language_spoken,  e.target.value],
       });
-    } else if (e.target.name == "language_toLearn") {
+      const newLanguageSpokenAdded = allLanguages.find((language) => (language.name == e.target.value))
+      setMyLanguagesSpoken([...myLanguagesSpoken, newLanguageSpokenAdded]);
+    } else if (e.target.name == "language_toLearn" && e.target.value !== null) {
       setFieldsCreateProfil({
         ...fieldsCreateProfil,
-        language_toLearn: [
-          ...fieldsCreateProfil.language_toLearn,
-          e.target.value,
-        ],
+        language_toLearn: [...fieldsCreateProfil.language_toLearn, e.target.value],
       });
+      const newLearningLanguageAdded = allLanguages.find((language) => (language.name == e.target.value))
+      setMyLearningLanguages([...myLearningLanguages, newLearningLanguageAdded]);
     } else {
       setFieldsCreateProfil({
         ...fieldsCreateProfil,
