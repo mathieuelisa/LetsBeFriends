@@ -55,6 +55,7 @@ function SearchEventContainer() {
     console.log("toute les langues:", fieldsSearch.languages)
     console.log("tout les tags:", fieldsSearch.eventTags )
     console.log('Initialisation fieldsSearch: ', fieldsSearch)
+    console.log('All Events : ', events)
 
     const optionsGet = {
         'Content-Type': 'application/json',
@@ -187,6 +188,7 @@ function SearchEventContainer() {
                                 name='eventTags'
                                 value={fieldsSearch.eventTags}
                                 onChange={handleFieldSearchChange}
+                                
                             >
                                 <option></option>
                                 {fieldsSearch.eventTags?.map((tag) => (<option>{tag}</option>))}
@@ -234,6 +236,7 @@ function SearchEventContainer() {
                                 name='languages'
                                 value={fieldsSearch.languages}
                                 onChange={handleFieldSearchChange}
+                                //onChange={displayTags}
                             >
                                 <option></option>
                                 {fieldsSearch.languages?.map(language => <option>{language}</option>)}
