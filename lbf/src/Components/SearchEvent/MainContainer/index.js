@@ -28,10 +28,9 @@ function SearchEventContainer() {
 
   console.log("Toute les langues:", allLanguages);
   console.log("Tout les tags:", allEventTags);
-  console.log('Tous mes events', events)
+  console.log("Tous mes events", events);
 
   const [loading, setLoading] = useState(false);
-  
 
   //const [tagOpened, setTagOpened] = useState(false);
   const [fieldsSearch, setFieldsSearch] = useState({
@@ -165,10 +164,13 @@ function SearchEventContainer() {
         dispatch(setAllEvents(response.data));
         console.log("La liste de tous les events : ", response.data);
       })
-      .catch((error) => console.log("Je n'arrive pas à recupo les évènements erreur"))
+      .catch((error) =>
+        console.log("Je n'arrive pas à recupo les évènements erreur")
+      )
       .finally(() => setLoading(false));
   };
 
+<<<<<<< HEAD
   
 //   const displayTags = (e) => {
 //     console.log("Tes dans la callback displayTags");
@@ -179,6 +181,17 @@ function SearchEventContainer() {
 //       });
 //     }
 //   };
+=======
+  const displayTags = (e) => {
+    console.log("Tes dans la callback displayTags");
+    if (e.target.value !== null) {
+      setFieldsSearch({
+        ...fieldsSearch,
+        selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
+      });
+    }
+  };
+>>>>>>> 94eb513d44fbeada6b75dae08e762347bf5c3eb2
 
 //   const displayEvents = (e) => {
 //     console.log("Tes dans la callback displayEventsTags");
@@ -239,7 +252,7 @@ function SearchEventContainer() {
           name="="
           handleClick={handleClick}
         />
-​
+        ​
         {toggleAction ? (
           <div className="header__hamburger">
             <NavLink to="/" exact className="header__hamburger-titlePage">
@@ -277,7 +290,7 @@ function SearchEventContainer() {
           ""
         )}
       </div>
-​
+      ​
       <div className="searchEvent__container-form">
         <div className="searchEvent__container-searchForm">
           <form id="searchForm" onSubmit={handleSubmitForm}>
@@ -291,7 +304,7 @@ function SearchEventContainer() {
                 onChange={handleFieldSearchChange}
               />
             </div>
-​
+            ​
             <div className="searchEvent__container-infosDetails-location">
               <label>Event: </label>
               <select
@@ -315,7 +328,7 @@ function SearchEventContainer() {
                                     <option id='Couisine'>Couisine</option>   */}
               </select>
             </div>
-​
+            ​
             <div className="searchEvent__container-infosDetails-location__tag-selected">
               {fieldsSearch.selectedTags.map((tag) => (
                 <Tag handleClick={() => handleClickClosedTag(tag)} name={tag} />
@@ -411,21 +424,16 @@ function SearchEventContainer() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {events.map((event, i) => (
-              <Marker
+          <Marker key={event.id} position={[event.latitude, event.longitude]}>
+            <Popup>
+              <EventCardSearch
                 key={event.id}
-                position={[event.latitude, event.longitude]}
-              >
-                <Popup>
-                  <EventCardSearch
-                    key={event.id}
-                    {...event}
-                    classNameCard="leaflet-popup-content-wrapper__searchEvent"
-                  />
-                </Popup>
-              </Marker>
-            )
-          
-        )}
+                {...event}
+                classNameCard="leaflet-popup-content-wrapper__searchEvent"
+              />
+            </Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </div>
   );
