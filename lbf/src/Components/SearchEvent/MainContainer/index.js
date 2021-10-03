@@ -63,6 +63,36 @@ function SearchEventContainer() {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
   };
+  // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
+  function handleFieldSearchChange(e) {
+    e.preventDefault();
+    if (e.target.name == "dateTo" || e.target.name == "dateFrom") {
+      let date = e.target.value;
+      let formatDate = new Date(date);
+      setFieldsSearch({
+        ...fieldsSearch,
+        [e.target.name]: {
+          formatISO: formatDate.toISOString(),
+          formatString: date,
+        },
+      });
+    } else if (e.target.name == "eventTags") {
+      setFieldsSearch({
+        ...fieldsSearch,
+        selectedTags: [...fieldsSearch.selectedTags, e.target.value],
+      });
+    } else if (e.target.name == "languages" && e.target.value !== null) {
+      setFieldsSearch({
+        ...fieldsSearch,
+        selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
+      });
+    } else {
+      setFieldsSearch({
+        ...fieldsSearch,
+        [e.target.name]: e.target.value,
+      });
+    }
+  }
 
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
   function handleFieldSearchChange(e) {
@@ -328,6 +358,17 @@ function SearchEventContainer() {
                   <option>{language}</option>
                 ))}
                 {/* <option>English</option>
+                        <div className="searchEvent__container-infosDetails-location">
+                            <label>languages: </label>
+                            <select
+                                className="searchEvent__container-select"
+                                name='languages'
+                                value={fieldsSearch.languages}
+                                onChange={handleFieldSearchChange}
+                            >
+                                <option></option>
+                                {fieldsSearch.languages?.map(language => <option>{language}</option>)}
+                                {/* <option>English</option>
                                     <option>French</option> 
                                     <option>Spanish</option> 
                                     <option>Japanese</option>

@@ -9,9 +9,16 @@ import CreateEventPage from "../CreateEvent";
 import SearchEventPage from "../SearchEvent";
 import ListEventPage from "../ListingEvent";
 import ErrorPage from "../Error404";
- 
+
 
 function App() {
+
+    // const commonLoading = useSelector((state)=> state.common.loading) // true when App is first initialized
+    // // en theorie il faut plutot un ENUM qu'un booléen : IS_LOADING/NOT_LOADING/LOADED   (voir documentation REDUX)
+
+    // if(commonLoading) {
+    //     return <LoadingApp />
+    // } else {
   return (
     <div className="App">
     <Switch> 
@@ -46,6 +53,7 @@ function App() {
 
     </div>
   );
+    
 }
 
 export default App;
