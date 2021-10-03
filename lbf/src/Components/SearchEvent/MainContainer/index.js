@@ -16,7 +16,6 @@ import "./styles.scss";
 import axios from "axios";
 // Import loading icons
 import Loader from "../../Styledcomponents/Loader";
-
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { setAllEvents } from "../../../Redux/actions/event";
@@ -24,14 +23,15 @@ import { setAllEvents } from "../../../Redux/actions/event";
 function SearchEventContainer() {
   const toggleAction = useSelector((state) => state.common.toggleAction);
   const events = useSelector((state) => state.event.events);
-
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allEventTags = useSelector((state) => state.event.eventTags);
 
-  console.log("Toute mes fuckin langues:", allLanguages);
-  console.log("Tout mes fuckin tags:", allEventTags);
+  console.log("Toute les langues:", allLanguages);
+  console.log("Tout les tags:", allEventTags);
+  console.log('Tous mes events', events)
 
   const [loading, setLoading] = useState(false);
+  
 
   //const [tagOpened, setTagOpened] = useState(false);
   const [fieldsSearch, setFieldsSearch] = useState({
@@ -166,10 +166,11 @@ function SearchEventContainer() {
         dispatch(setAllEvents(response.data));
         console.log("La liste de tous les events : ", response.data);
       })
-      .catch((error) => console.log("error"))
+      .catch((error) => console.log("Je n'arrive pas à recupo les évènements erreur"))
       .finally(() => setLoading(false));
   };
 
+  
   const displayTags = (e) => {
     console.log("Tes dans la callback displayTags");
     if (e.target.value !== null) {
@@ -225,20 +226,6 @@ function SearchEventContainer() {
     GetAllEvents();
   }, []);
 
-<<<<<<< HEAD
-                        <div className="searchEvent__container-infosDetails-location">
-                            <label>Event: </label>
-                            <select
-                                className="searchEvent__container-select"
-                                name='eventTags'
-                                value={fieldsSearch.eventTags}
-                                onChange={handleFieldSearchChange}
-                                
-                            >
-                                <option></option>
-                                {fieldsSearch.eventTags?.map((tag) => (<option>{tag}</option>))}
-                                {/*
-=======
   return (
     <div className="searchEvent__container">
       <div
@@ -253,7 +240,7 @@ function SearchEventContainer() {
           name="="
           handleClick={handleClick}
         />
-
+​
         {toggleAction ? (
           <div className="header__hamburger">
             <NavLink to="/" exact className="header__hamburger-titlePage">
@@ -291,7 +278,7 @@ function SearchEventContainer() {
           ""
         )}
       </div>
-
+​
       <div className="searchEvent__container-form">
         <div className="searchEvent__container-searchForm">
           <form id="searchForm" onSubmit={handleSubmitForm}>
@@ -305,7 +292,7 @@ function SearchEventContainer() {
                 onChange={handleFieldSearchChange}
               />
             </div>
-
+​
             <div className="searchEvent__container-infosDetails-location">
               <label>Event: </label>
               <select
@@ -320,7 +307,6 @@ function SearchEventContainer() {
                   <option>{tag}</option>
                 ))}
                 {/*
->>>>>>> 16328c83189b508297b12af33f955defa3af955b
                                     <option id='Soirée BBQ'>Soirée BBQ</option>
                                     <option id='Atelier Cuisine'>Atelier Cuisine</option> 
                                     <option id='Soirée jeux'>Soirée jeux</option> 
@@ -330,7 +316,7 @@ function SearchEventContainer() {
                                     <option id='Couisine'>Couisine</option>   */}
               </select>
             </div>
-
+​
             <div className="searchEvent__container-infosDetails-location__tag-selected">
               {fieldsSearch.selectedTags.map((tag) => (
                 <Tag handleClick={() => handleClickClosedTag(tag)} name={tag} />
@@ -358,7 +344,6 @@ function SearchEventContainer() {
                 onChange={handleFieldSearchChange}
               />
             </div>
-
             <div className="searchEvent__container-infosDetails-location">
               <label>languages: </label>
               <select
@@ -380,7 +365,6 @@ function SearchEventContainer() {
                                 name='languages'
                                 value={fieldsSearch.languages}
                                 onChange={handleFieldSearchChange}
-                                //onChange={displayTags}
                             >
                                 <option></option>
                                 {fieldsSearch.languages?.map(language => <option>{language}</option>)}
@@ -399,14 +383,12 @@ function SearchEventContainer() {
               ))}
             </div>
           </form>
-
           <div className="createEvent__container-eventTitle-button">
             <button type="submit" form="searchForm" className="myButton">
               LETS GO
             </button>
           </div>
         </div>
-
         {loading && <Loader />}
         <div className="searchEvent__container-resultsForm">
           {/* Cards for searchPage */}
@@ -429,14 +411,7 @@ function SearchEventContainer() {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {events.map((event, i) => {
-          if (
-            event.latitude > 0 &&
-            event.latitude < 84 &&
-            event.longitude > 0 &&
-            event.longitude < 150
-          ) {
-            return (
+        {events.map((event, i) => (
               <Marker
                 key={event.id}
                 position={[event.latitude, event.longitude]}
@@ -449,12 +424,11 @@ function SearchEventContainer() {
                   />
                 </Popup>
               </Marker>
-            );
-          }
-        })}
+            )
+          
+        )}
       </MapContainer>
     </div>
   );
 }
-
 export default SearchEventContainer;
