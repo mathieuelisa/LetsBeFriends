@@ -32,7 +32,6 @@ function SearchEventContainer() {
 
   const [loading, setLoading] = useState(false);
 
-  //const [tagOpened, setTagOpened] = useState(false);
   const [fieldsSearch, setFieldsSearch] = useState({
     city: "",
     eventTags: [],

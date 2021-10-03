@@ -2,8 +2,7 @@
 import { setPseudo, setInfosUser } from "../../../Redux/actions/profil";
 //Import Styles
 import "./styles.scss";
-//Dependencies
-import PropTypes from "prop-types";
+// Import Axios
 import axios from "axios";
 //React Components
 import Input from "../Input";
@@ -20,7 +19,7 @@ const getData = () => {
   }
 };
 
-const Modal = ({ showModalLogin, showModalSignup }) => {
+const Modal = ({ openModale }) => {
   const [login, setLogin] = useState(getData());
   const [signUp, setSignUp] = useState({
     firstname: "",
@@ -30,6 +29,8 @@ const Modal = ({ showModalLogin, showModalSignup }) => {
     confirmedPassword: "",
     gender: "",
   });
+
+  console.log("modal:", openModale);
 
   const [isCheckedLogin, setIsCheckedLogin] = useState(false);
   const [isCheckedSignUp, setIsCheckedSignUp] = useState(false);
@@ -109,10 +110,10 @@ const Modal = ({ showModalLogin, showModalSignup }) => {
 
   return (
     <div className="modal-container">
-      {showModalLogin || showModalSignup ? (
+      {openModale ? (
         <div className="modal-container__modal">
           {/* Login Form */}
-          {showModalLogin ? (
+          {openModale === "login" ? (
             <form
               className="modal-container__modal__formlogin"
               onSubmit={handleSubmitLogin}
@@ -256,11 +257,6 @@ const Modal = ({ showModalLogin, showModalSignup }) => {
       ) : null}
     </div>
   );
-};
-
-Modal.propTypes = {
-  showModalLogin: PropTypes.bool.isRequired,
-  showModalSignup: PropTypes.bool.isRequired,
 };
 
 export default Modal;
