@@ -16,7 +16,6 @@ import "./styles.scss";
 import axios from "axios";
 // Import loading icons
 import Loader from "../../Styledcomponents/Loader";
-
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { setAllEvents } from "../../../Redux/actions/event";
@@ -414,12 +413,7 @@ function SearchEventContainer() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {events.map((event, i) => {
-          if (
-            event.latitude > 0 &&
-            event.latitude < 84 &&
-            event.longitude > 0 &&
-            event.longitude < 150
-          ) {
+          {
             return (
               <Marker
                 key={event.id}
