@@ -38,17 +38,26 @@ function ProfilContainer() {
     description: "",
   });
 
-  const userInfos = useSelector((state) => state.profil.infosUser);
+  const infosUser = useSelector((state) => state.profil.infosUser);
   const optionsAxios = useSelector((state) => state.common.optionsAxios);
-
   const allLanguages = useSelector((state) => state.common.allLanguages);
-  const allLanguagesToLearn = useSelector(
-    (state) => state.common.allLanguagesToLearn
-  );
+  const allLanguagesToLearn = useSelector((state) => state.common.allLanguagesToLearn);
   const allEventTags = useSelector((state) => state.event.allEventTags);
-  //console.log("infos page profil: ", userInfos)
 
-  console.log("Tous les event Tag : ", allEventTags);
+  const [myLearningLanguages, setMyLearningLanguages] = useState([]);
+  const [myLanguagesSpoken, setMyLanguagesSpoken] = useState([]);
+
+const initializeMyLanguages = () => {
+    setMyLanguagesSpoken(infosUser.speakingLanguage);
+    setMyLearningLanguages(infosUser.learningLanguage);
+}
+console.log('myLearningLanguages : ', myLearningLanguages)
+console.log('myLanguagesSpoken : ', myLanguagesSpoken)
+
+
+  console.log("infos page profil: ", infosUser)
+
+  //console.log("Tous les event Tag : ", allEventTags);
 
   //  function permettant d'obtenir plusieurs valeurs dans une valeur sous forme de tableau
   function handleFielsProfilChange(e) {
@@ -80,6 +89,7 @@ function ProfilContainer() {
     dispatch({ type: RESET_TOGGLE });
     getLanguages();
     getEventsTags();
+    initializeMyLanguages();
   }, []);
 
   //console.log(fieldsCreateProfil)
@@ -94,7 +104,7 @@ function ProfilContainer() {
 
   function handleClick(event) {
     event.preventDefault();
-    console.log("Tu as cliqué sur le bouton");
+    //console.log("Tu as cliqué sur le bouton");
     dispatch({ type: SET_TOGGLE });
   }
 
@@ -125,10 +135,10 @@ function ProfilContainer() {
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/tags", optionsAxios)
       .then((response) => {
-        console.log(
-          "Voici la réponse de l API les tous Event Tags :",
-          response.data
-        );
+        // console.log(
+        //   "Voici la réponse de l API les tous Event Tags :",
+        //   response.data
+        // );
         dispatch(setEventTags(response.data));
       })
       .catch((error) => console.log("Error recherche users "));
@@ -231,7 +241,7 @@ function ProfilContainer() {
                 type="text"
                 value={fieldsCreateProfil.firstname}
                 onChange={handleFielsProfilChange}
-                placeholder={userInfos.firstname}
+                placeholder={infosUser.firstname}
               />
             </div>
 
@@ -243,7 +253,7 @@ function ProfilContainer() {
                 type="text"
                 value={fieldsCreateProfil.lastname}
                 onChange={handleFielsProfilChange}
-                placeholder={userInfos.lastname}
+                placeholder={infosUser.lastname}
               />
             </div>
 
@@ -255,7 +265,7 @@ function ProfilContainer() {
                 type="number"
                 value={fieldsCreateProfil.age}
                 onChange={handleFielsProfilChange}
-                placeholder={userInfos.age}
+                placeholder={infosUser.age}
               />
             </div>
 
@@ -267,7 +277,7 @@ function ProfilContainer() {
                 type="text"
                 value={fieldsCreateProfil.adress}
                 onChange={handleFielsProfilChange}
-                placeholder={userInfos.city}
+                placeholder={infosUser.city}
               />
             </div>
 
@@ -279,7 +289,7 @@ function ProfilContainer() {
                 type="email"
                 value={fieldsCreateProfil.mail}
                 onChange={handleFielsProfilChange}
-                placeholder={userInfos.email}
+                placeholder={infosUser.email}
               />
             </div>
 
@@ -307,8 +317,8 @@ function ProfilContainer() {
               </select>
             </div>
             <div className="searchEvent__container-infosDetails-location__tag-selected">
-              {userInfos?.speakingLanguage?.map((tag) => (
-                <Tag key={tag.id} tag={tag.name} />
+              {myLanguagesSpoken.map((language) => (
+                <Tag key={language.id} name={language.name} />
               ))}
             </div>
 
@@ -323,8 +333,8 @@ function ProfilContainer() {
                 onChange={handleFielsProfilChange}
               >
                 <option></option>
-                {allLanguages.map((languageToLearn) => (
-                  <option>{languageToLearn.name}</option>
+                {allLanguages.map((language) => (
+                  <option>{language.name}</option>
                 ))}
                 {/* <option>English</option>
                                         <option>French</option>
@@ -336,8 +346,8 @@ function ProfilContainer() {
               </select>
             </div>
             <div className="searchEvent__container-infosDetails-location__tag-selected">
-              {userInfos?.learningLanguage?.map((tag) => (
-                <Tag key={tag.id} tag={tag.name} />
+              {myLearningLanguages.map((language) => (
+                <Tag key={language.id} name={language.name} />
               ))}
             </div>
 
@@ -353,7 +363,7 @@ function ProfilContainer() {
                   name="description"
                   value={fieldsCreateProfil.description}
                   onChange={handleFielsProfilChange}
-                  placeholder={userInfos.description}
+                  placeholder={infosUser.description}
                 />
               </div>
             </div>

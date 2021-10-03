@@ -170,7 +170,6 @@ function SearchEventContainer() {
       .finally(() => setLoading(false));
   };
 
-<<<<<<< HEAD
   
 //   const displayTags = (e) => {
 //     console.log("Tes dans la callback displayTags");
@@ -181,17 +180,6 @@ function SearchEventContainer() {
 //       });
 //     }
 //   };
-=======
-  const displayTags = (e) => {
-    console.log("Tes dans la callback displayTags");
-    if (e.target.value !== null) {
-      setFieldsSearch({
-        ...fieldsSearch,
-        selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
-      });
-    }
-  };
->>>>>>> 94eb513d44fbeada6b75dae08e762347bf5c3eb2
 
 //   const displayEvents = (e) => {
 //     console.log("Tes dans la callback displayEventsTags");
