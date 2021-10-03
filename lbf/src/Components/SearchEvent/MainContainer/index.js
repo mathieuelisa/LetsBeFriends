@@ -32,7 +32,6 @@ function SearchEventContainer() {
 
   const [loading, setLoading] = useState(false);
 
-  //const [tagOpened, setTagOpened] = useState(false);
   const [fieldsSearch, setFieldsSearch] = useState({
     city: "",
     eventTags: [],
@@ -106,16 +105,16 @@ function SearchEventContainer() {
           formatString: date,
         },
       });
-    } else if (e.target.name == "eventTags" && e.target.value !== null) { 
-        setFieldsSearch({
-            ...fieldsSearch,
-            selectedTags: [...fieldsSearch.selectedTags, e.target.value],
-        });
+    } else if (e.target.name == "eventTags" && e.target.value !== null) {
+      setFieldsSearch({
+        ...fieldsSearch,
+        selectedTags: [...fieldsSearch.selectedTags, e.target.value],
+      });
     } else if (e.target.name == "languages" && e.target.value !== null) {
-        setFieldsSearch({
-            ...fieldsSearch,
-            selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
-        });
+      setFieldsSearch({
+        ...fieldsSearch,
+        selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
+      });
     } else {
       setFieldsSearch({
         ...fieldsSearch,
@@ -170,6 +169,7 @@ function SearchEventContainer() {
       .finally(() => setLoading(false));
   };
 
+<<<<<<< HEAD
   
 //   const displayTags = (e) => {
 //     console.log("Tes dans la callback displayTags");
@@ -180,16 +180,27 @@ function SearchEventContainer() {
 //       });
 //     }
 //   };
+=======
+  const displayTags = (e) => {
+    console.log("Tes dans la callback displayTags");
+    if (e.target.value !== null) {
+      setFieldsSearch({
+        ...fieldsSearch,
+        selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
+      });
+    }
+  };
+>>>>>>> 3074bc7012f969ea9385c0e1715cdc43bb88d2a7
 
-//   const displayEvents = (e) => {
-//     console.log("Tes dans la callback displayEventsTags");
-//     if (e.target.value !== null) {
-//       setFieldsSearch({
-//         ...fieldsSearch,
-//         selectedTags: [...fieldsSearch.selectedTags, e.target.value],
-//       });
-//     }
-//   };
+  //   const displayEvents = (e) => {
+  //     console.log("Tes dans la callback displayEventsTags");
+  //     if (e.target.value !== null) {
+  //       setFieldsSearch({
+  //         ...fieldsSearch,
+  //         selectedTags: [...fieldsSearch.selectedTags, e.target.value],
+  //       })
+  //     }
+  //   };
 
   const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
     axios
@@ -300,7 +311,6 @@ function SearchEventContainer() {
                 name="eventTags"
                 value={fieldsSearch.eventTags}
                 onChange={handleFieldSearchChange}
-                
               >
                 <option></option>
                 {fieldsSearch.eventTags?.map((tag) => (
@@ -351,7 +361,6 @@ function SearchEventContainer() {
                 name="languages"
                 value={fieldsSearch.languages}
                 onChange={handleFieldSearchChange}
-              
               >
                 <option></option>
                 {fieldsSearch.languages?.map((language) => (
