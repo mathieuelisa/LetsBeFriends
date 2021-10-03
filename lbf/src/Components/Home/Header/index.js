@@ -33,7 +33,10 @@ const infosUser = useSelector(state => state.profil.infosUser)
     dispatch({type: RESET_TOGGLE})
   },[])
 
-
+  // useEffect permettant d'avoir le titre de l'application dans le navigateur
+  useEffect(() => {
+    document.title = "Let's Be Friends | Website for having fun while learning a new language..." 
+  }, []);
 
   const history = useHistory()
 
@@ -41,6 +44,7 @@ const infosUser = useSelector(state => state.profil.infosUser)
       dispatch(resetInfosUser());
       history.push("/")
   }
+
 
 //let myFirstName = useSelector((state)=>state.profil.myName)
 
