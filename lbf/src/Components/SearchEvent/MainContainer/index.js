@@ -105,16 +105,16 @@ function SearchEventContainer() {
           formatString: date,
         },
       });
-    } else if (e.target.name == "eventTags" && e.target.value !== null) { 
-        setFieldsSearch({
-            ...fieldsSearch,
-            selectedTags: [...fieldsSearch.selectedTags, e.target.value],
-        });
+    } else if (e.target.name == "eventTags" && e.target.value !== null) {
+      setFieldsSearch({
+        ...fieldsSearch,
+        selectedTags: [...fieldsSearch.selectedTags, e.target.value],
+      });
     } else if (e.target.name == "languages" && e.target.value !== null) {
-        setFieldsSearch({
-            ...fieldsSearch,
-            selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
-        });
+      setFieldsSearch({
+        ...fieldsSearch,
+        selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
+      });
     } else {
       setFieldsSearch({
         ...fieldsSearch,
@@ -169,18 +169,6 @@ function SearchEventContainer() {
       .finally(() => setLoading(false));
   };
 
-<<<<<<< HEAD
-  
-//   const displayTags = (e) => {
-//     console.log("Tes dans la callback displayTags");
-//     if (e.target.value !== null) {
-//       setFieldsSearch({
-//         ...fieldsSearch,
-//         selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
-//       });
-//     }
-//   };
-=======
   const displayTags = (e) => {
     console.log("Tes dans la callback displayTags");
     if (e.target.value !== null) {
@@ -190,17 +178,16 @@ function SearchEventContainer() {
       });
     }
   };
->>>>>>> 94eb513d44fbeada6b75dae08e762347bf5c3eb2
 
-//   const displayEvents = (e) => {
-//     console.log("Tes dans la callback displayEventsTags");
-//     if (e.target.value !== null) {
-//       setFieldsSearch({
-//         ...fieldsSearch,
-//         selectedTags: [...fieldsSearch.selectedTags, e.target.value],
-//       });
-//     }
-//   };
+  //   const displayEvents = (e) => {
+  //     console.log("Tes dans la callback displayEventsTags");
+  //     if (e.target.value !== null) {
+  //       setFieldsSearch({
+  //         ...fieldsSearch,
+  //         selectedTags: [...fieldsSearch.selectedTags, e.target.value],
+  //       })
+  //     }
+  //   };
 
   const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
     axios
@@ -311,7 +298,6 @@ function SearchEventContainer() {
                 name="eventTags"
                 value={fieldsSearch.eventTags}
                 onChange={handleFieldSearchChange}
-                
               >
                 <option></option>
                 {fieldsSearch.eventTags?.map((tag) => (
@@ -362,7 +348,6 @@ function SearchEventContainer() {
                 name="languages"
                 value={fieldsSearch.languages}
                 onChange={handleFieldSearchChange}
-              
               >
                 <option></option>
                 {fieldsSearch.languages?.map((language) => (
