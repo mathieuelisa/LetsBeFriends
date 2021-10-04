@@ -118,3 +118,12 @@ Content-Type: application/json
     "userId": 5,
     "languageId": 2
 }
+###
+
+DELETE  {{baseUrl}}/tags
+Content-Type: application/json
+
+{
+    "eventId": 5,
+    "tagId": 2
+}

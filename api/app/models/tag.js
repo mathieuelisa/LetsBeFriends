@@ -46,11 +46,27 @@ class Tag extends CoreModel {
         }
     }
 
-    static async deleteEventHasTag(event_id, language_id) {
+    static async newEventHasTag(event_id, tag_id) {
         try {
-            const { rowCount } = await db.query('DELETE FROM "event_has_tag" WHERE event_id=$1 AND language_id=$2', [event_id, language_id])
+            const { rows } = await db.query('INSERT INTO "event_has_tag"(event_id, tag_id) VALUES($1, $2) RETURNING event_id AS "eventId", tag_id AS "tagId"', [event_id, tag_id]);
 
-            if (rowCount >= 1) return { rowsDeleted: rowCount, event_id, language_id }
+            if (rows[0]) return new Tag(rows[0]);
+            else return { error: "Couldn't insert data into event_has_tag" };
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    static async deleteEventHasTag(event_id, tag_id) {
+        try {
+            const { rowCount } = await db.query('DELETE FROM "event_has_tag" WHERE event_id=$1 AND tag_id=$2', [event_id, tag_id])
+
+            if (rowCount >= 1) return { rowsDeleted: rowCount, event_id, tag_id }
             else return { error: "Relation not found" }
         } catch (error) {
             console.log(error);

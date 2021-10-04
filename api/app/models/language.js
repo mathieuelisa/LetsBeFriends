@@ -11,7 +11,6 @@ const db = require('../database');
  * @property {Date} updated_at
 */
 
-
 /**
  * a model representing a class language
  * @class Language
