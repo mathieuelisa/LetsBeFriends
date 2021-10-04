@@ -12,7 +12,10 @@ import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
+import { map } from "leaflet";
+
 function CreateEventContainer() {
+  const allLanguages = useSelector((state)=>state.common.allLanguages)
   const [fieldsCreate, setFieldsCreate] = useState({
     location: "",
     zipCode: "",
@@ -31,8 +34,14 @@ function CreateEventContainer() {
       formatString: "",
     },
   });
+
+  fieldsCreate.language = allLanguages.map((language) => language.name)
+
+  console.log("pipo", fieldsCreate.language)
+
   function handleFieldsCreateChange(e) {
     e.preventDefault();
+
     if (e.target.name == "dateTo" || e.target.name == "dateFrom") {
       let date = e.target.value;
       let formatDate = new Date(date);
@@ -44,6 +53,7 @@ function CreateEventContainer() {
         },
       });
       console.log("test", fieldsCreate.eventTags);
+
     } else if (e.target.name == "eventTags") {
       setFieldsCreate({
         ...fieldsCreate,
@@ -61,22 +71,28 @@ function CreateEventContainer() {
       });
     }
   }
+
   console.log(fieldsCreate);
+
   const dispatch = useDispatch();
   const toggleAction = useSelector((state) => state.common.toggleAction);
+  
   function handleClick(event) {
     event.preventDefault();
     dispatch({ type: SET_TOGGLE });
   }
+
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu
   useEffect(() => {
     dispatch({ type: RESET_TOGGLE });
   }, []);
+
   const history = useHistory();
   function handleLogOut() {
     localStorage.clear();
     history.push("/home");
   }
+
   return (
     <div className="createEvent__container">
       <div
@@ -234,13 +250,9 @@ function CreateEventContainer() {
                 onChange={handleFieldsCreateChange}
               >
                 <option></option>
-                <option>English</option>
-                <option>French</option>
-                <option>Spanish</option>
-                <option>Japanese</option>
-                <option>Mandarin</option>
-                <option>Russian</option>
-                <option>Italian</option>
+                {fieldsCreate.language?.map((language)=>(
+                  <option>{language}</option>
+                ))}
               </select>
             </div>
             <div className="createEvent__container-infosDetails-location">
