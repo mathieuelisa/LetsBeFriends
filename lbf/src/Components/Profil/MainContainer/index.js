@@ -41,7 +41,7 @@ function ProfilContainer() {
   const [myLearningLanguages, setMyLearningLanguages] = useState([]);
   const [myLanguagesSpoken, setMyLanguagesSpoken] = useState([]);
  //const [myNewLearningLanguagesSelected, setMyNewLearningLanguagesSelected] = useState(myLearningLanguages);
-  //const [myNewLanguagesSpokenSelected, setNewMyLanguagesSpokenSelected] = useState(myLanguagesSpoken);
+//const [myNewLanguagesSpokenSelected, setNewMyLanguagesSpokenSelected] = useState(myLanguagesSpoken);
   //test
 const initializeMyLanguages = () => {
     setMyLanguagesSpoken(infosUser.speakingLanguage);
