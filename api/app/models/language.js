@@ -11,7 +11,6 @@ const db = require('../database');
  * @property {Date} updated_at
 */
 
-
 /**
  * a model representing a class language
  * @class Language
@@ -54,11 +53,11 @@ class Language extends CoreModel {
         }
     }
 
-    static async deleteUserSpeakLanguage(user_id, language_id) {
+    static async deleteUserSpeakLanguage(user_id) {
         try {
-            const { rowCount } = await db.query('DELETE FROM "user_speak_language" WHERE user_id=$1 AND language_id=$2', [user_id, language_id])
+            const { rowCount } = await db.query('DELETE FROM "user_speak_language" WHERE user_id=$1', [user_id])
 
-            if (rowCount >= 1) return { rowsDeleted: rowCount, user_id, language_id }
+            if (rowCount >= 1) return { rowsDeleted: rowCount, user_id }
             else return { error: "Relation not found" }
         } catch (error) {
             console.log(error);
@@ -88,11 +87,11 @@ class Language extends CoreModel {
 
     }
 
-    static async deleteUserLearnLanguage(user_id, language_id) {
+    static async deleteUserLearnLanguage(user_id) {
         try {
-            const { rowCount } = await db.query('DELETE FROM "user_learn_language" WHERE user_id=$1 AND language_id=$2', [user_id, language_id]);
-
-            if (rowCount >= 1) return { rowsDeleted: rowCount, user_id, language_id }
+            console.log(user_id)
+            const { rowCount } = await db.query('DELETE FROM "user_learn_language" WHERE user_id=$1', [user_id]);
+            if (rowCount >= 1) return { rowsDeleted: rowCount, user_id }
             else return { error: "Relation not found" }
         } catch (error) {
             console.log(error);
@@ -110,6 +109,22 @@ class Language extends CoreModel {
 
             if (rows[0]) return new Language(rows[0]);
             else return { error: "Couldn't insert data into event_has_language", event_id, language_id };
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    static async deleteEventHasLanguage(event_id) {
+        try {
+            const { rowCount } = await db.query('DELETE FROM "event_has_language" WHERE event_id=$1', [event_id]);
+
+            if (rowCount >= 1) return { rowsDeleted: rowCount, event_id }
+            else return { error: "Relation not found" }
         } catch (error) {
             console.log(error);
             if (error.detail) {

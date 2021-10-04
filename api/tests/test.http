@@ -1,4 +1,4 @@
-@baseUrl=http://localhost:3001/v1
+@baseUrl=http://localhost:3000/v1
 
 GET {{baseUrl}}/users
 
@@ -117,4 +117,13 @@ Content-Type: application/json
 {
     "userId": 5,
     "languageId": 2
+}
+###
+
+DELETE  {{baseUrl}}/tags
+Content-Type: application/json
+
+{
+    "eventId": 5,
+    "tagId": 2
 }
