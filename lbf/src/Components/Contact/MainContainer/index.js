@@ -2,6 +2,7 @@
 //Import React components
 import ButtonToggle from "../../Styledcomponents/ButtonToggle"
 import Avatar from "../../Styledcomponents/Avatar"
+import { resetInfosUser } from "../../../Redux/actions/profil"
 //Import styles
 import "./styles.scss"
 //Import fonts
@@ -44,7 +45,7 @@ function ContactContainer(){
 const history = useHistory()
 
     function handleLogOut(){
-        localStorage.clear()
+        dispatch(resetInfosUser());
         history.push("/home")
 }
 
