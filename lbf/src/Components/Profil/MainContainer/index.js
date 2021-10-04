@@ -1,11 +1,12 @@
 //eslint-disable react-hooks/exhaustive-deps
 // Import styles
 import "./styles.scss";
-// import Input from "../Input"
 //import ReactComponents
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
 import Avatar from "../../Styledcomponents/Avatar";
 import Tag from "../../Styledcomponents/Tag";
+import { resetInfosUser } from "../../../Redux/actions/profil";
+// Import Modules
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
 import axios from "axios";
@@ -76,6 +77,13 @@ function ProfilContainer() {
     }
   }
 
+  useEffect(() => {
+    dispatch({ type: RESET_TOGGLE });
+    getLanguages();
+    getEventsTags();
+    initializeMyLanguages();
+  }, []);
+
   //console.log(fieldsCreateProfil)
   function handleSubmit(e) {
     e.preventDefault();
@@ -101,10 +109,12 @@ function ProfilContainer() {
 
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu
   const history = useHistory();
+
   function handleLogOut() {
-    localStorage.clear();
-    history.push("/home");
+    dispatch(resetInfosUser());
+    history.push("/");
   }
+
   const getLanguages = () => {
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/languages", optionsAxios)
@@ -118,8 +128,7 @@ function ProfilContainer() {
       })
       .catch((error) => console.log("Error recherche users "));
   };
-
-
+  
   const getEventsTags = () => {
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/tags", optionsAxios)

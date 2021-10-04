@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Tag from "../../Styledcomponents/Tag";
 // import Input from "../../Profil/Input"
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
+import { resetInfosUser } from "../../../Redux/actions/profil";
 // Import styles
 import "./styles.scss";
 // Import pictures
@@ -14,7 +15,6 @@ import { useHistory } from "react-router";
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 // import Axios
 import axios from "axios";
-import { number } from "prop-types";
 
 
 function CreateEventContainer() {
@@ -93,8 +93,8 @@ function CreateEventContainer() {
   const history = useHistory();
 
   function handleLogOut() {
-    localStorage.clear();
-    history.push("/home");
+    dispatch(resetInfosUser());
+    history.push("/");
   }
 
   const handleClickClosedLanguage = (language) => {
