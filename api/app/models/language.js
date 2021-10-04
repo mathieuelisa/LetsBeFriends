@@ -137,7 +137,7 @@ class Language extends CoreModel {
 
     static async findAll() {
         try {
-            const { rows } = await db.query('SELECT * FROM language')
+            const { rows } = await db.query('SELECT language.id, language.name FROM language')
 
             if (rows) return rows.map(row => new Language(row));
             else return { error: "Couldn't find any data" };
