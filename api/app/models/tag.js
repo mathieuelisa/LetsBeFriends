@@ -33,7 +33,7 @@ class Tag extends CoreModel {
     static async findAll() {
         try {
 
-            const { rows } = await db.query('SELECT * FROM tag')
+            const { rows } = await db.query('SELECT tag.id, tag.name FROM tag')
             return rows.map(row => new Tag(row))
 
         } catch (error) {
