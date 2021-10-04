@@ -52,6 +52,11 @@ function SearchEventContainer() {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
   };
+
+  useEffect(() => {
+    dispatch({ type: RESET_TOGGLE });
+    GetAllEvents();
+  }, []);
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
   function handleFieldSearchChange(e) {
     e.preventDefault();
@@ -120,7 +125,7 @@ function SearchEventContainer() {
         console.log("La liste de tous les events : ", response.data);
       })
       .catch((error) =>
-        console.log("Je n'arrive pas à recupo les évènements erreur")
+        console.log("ERREUR : Je n'arrive pas à recuperer les evenements")
       )
       .finally(() => setLoading(false));
   };
@@ -171,10 +176,7 @@ function SearchEventContainer() {
     history.push("/home");
   }
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu + Get tous les évènements
-  useEffect(() => {
-    dispatch({ type: RESET_TOGGLE });
-    GetAllEvents();
-  }, []);
+
 return (
     <div className="searchEvent__container">
       <div
