@@ -1,5 +1,3 @@
-/* eslint-disable eqeqeq */
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, React } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
