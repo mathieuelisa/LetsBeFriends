@@ -23,17 +23,19 @@ import { setEventTags } from "../../../Redux/actions/event";
 import { useEffect, useState } from "react";
 
 function ProfilContainer() {
+  const infosUser = useSelector((state) => state.profil.infosUser);
+  
   const [fieldsCreateProfil, setFieldsCreateProfil] = useState({
-    firstname: "",
-    lastname: "",
-    adress: "",
-    mail: "",
+    firstname: infosUser.firstname,
+    lastname: infosUser.lastname,
+    city: infosUser.city,
+    mail: infosUser.email,
     language_spoken: [],
     language_toLearn: [],
-    age: "",
-    description: "",
+    age: infosUser.age,
+    description: infosUser.description,
   });
-  const infosUser = useSelector((state) => state.profil.infosUser);
+  
   const optionsAxios = useSelector((state) => state.common.optionsAxios);
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const [myLearningLanguages, setMyLearningLanguages] = useState([]);
@@ -44,6 +46,7 @@ function ProfilContainer() {
       setMyLanguagesSpoken(infosUser.speakingLanguage);
       setMyLearningLanguages(infosUser.learningLanguage);
   }
+  console.log('user Infos : ', infosUser)
   console.log('myLearningLanguages : ', myLearningLanguages)
   //console.log('myLanguagesSpoken : ', myLanguagesSpoken)
   //console.log('allLanguages : ', allLanguages)
@@ -76,7 +79,7 @@ function ProfilContainer() {
   //console.log(fieldsCreateProfil)
   function handleSubmit(e) {
     e.preventDefault();
-    // updateProfil();
+    updateProfil();
   }
   const dispatch = useDispatch();
   const toggleAction = useSelector((state) => state.common.toggleAction);
@@ -95,6 +98,7 @@ function ProfilContainer() {
     console.log('newLanguageSpokenCanceled : ', language)
        setMyLanguagesSpoken(myLanguagesSpoken.filter(languageSpoken => languageSpoken.name !== language.name))
    };
+
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu
   const history = useHistory();
   function handleLogOut() {
@@ -114,6 +118,8 @@ function ProfilContainer() {
       })
       .catch((error) => console.log("Error recherche users "));
   };
+
+
   const getEventsTags = () => {
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/tags", optionsAxios)
@@ -122,16 +128,37 @@ function ProfilContainer() {
       })
       .catch((error) => console.log("Error recherche users "));
   };
-  // const updateProfil = () => {
-  //     // console.log('tagName', tagName)
-  //     axios.patch('https://lets-be-friend.herokuapp.com/v1/users', {
-  //         "firstname"
-  //     }, optionsAxios)
-  //         .then((response) => {
-  //             console.log('Voici la réponse de l API pour recherche d evenements :', response.data);
-  //             //dispatch(setAllEvents(response.data));
-  //         }).catch(error => console.log('Error recherche event '));
-  //     }
+
+
+  const updateProfil = () => {
+      console.log('Body de la Request : ', {
+        "id": infosUser.id,
+        "firstname": fieldsCreateProfil.firstname,
+        "lastname": fieldsCreateProfil.lastname,
+        "email": fieldsCreateProfil.mail,
+        "bio": fieldsCreateProfil.description,
+        "age": fieldsCreateProfil.age,
+        "learningLanguage": myLearningLanguages.map(language => language.id),
+        "speakingLanguage": myLanguagesSpoken.map(language => language.id),
+        "city": fieldsCreateProfil.city,
+    })
+      axios.patch('https://lets-be-friend.herokuapp.com/v1/users', {
+          "id": infosUser.id,
+          "firstname": fieldsCreateProfil.firstname,
+          "lastname": fieldsCreateProfil.lastname,
+          "gender": fieldsCreateProfil.gender,
+          "email": fieldsCreateProfil.mail,
+          "description": fieldsCreateProfil.description,
+          "age": fieldsCreateProfil.age,
+          "learningLanguage": myLearningLanguages.map(language => language.id),
+          "speakingLanguage": myLanguagesSpoken.map(language => language.id),
+          "city": fieldsCreateProfil.city
+      }, optionsAxios)
+          .then((response) => {
+              console.log('Voici la réponse de l API pour l update du profil :', response.data);
+              //dispatch(setAllEvents(response.data));
+          }).catch(error => console.log('Error recherche event '));
+      }
 
   useEffect(() => {
     dispatch({ type: RESET_TOGGLE });
@@ -196,7 +223,7 @@ function ProfilContainer() {
           <Avatar
             customDiv={"profil__container-avatar"}
             customImg={"profil__container-pictures"}
-            customPics={avatarMicheline}
+            customPics={infosUser.imgUrl}
           />
           <h2 className="profil-genre">No binary</h2>
           <h2 className="profil-telNumber">Tel: 07 85 11 25 18</h2>
@@ -211,8 +238,8 @@ function ProfilContainer() {
         </div>
         <form
           className="profil__container-data"
-          onSubmit={handleSubmit}
           id="myProfilForm"
+          onSubmit={handleSubmit}
         >
           <div className="profil__container-data">
             <div className="myInputs-profilPage">
@@ -223,7 +250,7 @@ function ProfilContainer() {
                 type="text"
                 value={fieldsCreateProfil.firstname}
                 onChange={handleFielsProfilChange}
-                placeholder={infosUser.firstname}
+                placeholder={fieldsCreateProfil.firstname}
               />
             </div>
             <div className="myInputs-profilPage">
@@ -234,7 +261,7 @@ function ProfilContainer() {
                 type="text"
                 value={fieldsCreateProfil.lastname}
                 onChange={handleFielsProfilChange}
-                placeholder={infosUser.lastname}
+                placeholder={fieldsCreateProfil.lastname}
               />
             </div>
             <div className="myInputs-profilPage">
@@ -245,7 +272,7 @@ function ProfilContainer() {
                 type="number"
                 value={fieldsCreateProfil.age}
                 onChange={handleFielsProfilChange}
-                placeholder={infosUser.age}
+                placeholder={fieldsCreateProfil.age}
               />
             </div>
             <div className="myInputs-profilPage">
@@ -254,9 +281,9 @@ function ProfilContainer() {
                 className="myInputs-profilPage-input"
                 name="adress"
                 type="text"
-                value={fieldsCreateProfil.adress}
+                value={fieldsCreateProfil.city}
                 onChange={handleFielsProfilChange}
-                placeholder={infosUser.city}
+                placeholder={fieldsCreateProfil.city}
               />
             </div>
             <div className="myInputs-profilPage">
@@ -265,9 +292,9 @@ function ProfilContainer() {
                 className="myInputs-profilPage-input"
                 name="mail"
                 type="email"
-                value={fieldsCreateProfil.mail}
+                value={fieldsCreateProfil.email}
                 onChange={handleFielsProfilChange}
-                placeholder={infosUser.email}
+                placeholder={fieldsCreateProfil.email}
               />
             </div>
             <div className="myInputs-profilPage">
@@ -338,12 +365,12 @@ function ProfilContainer() {
                   name="description"
                   value={fieldsCreateProfil.description}
                   onChange={handleFielsProfilChange}
-                  placeholder={infosUser.description}
+                  placeholder={fieldsCreateProfil.description}
                 />
               </div>
             </div>
             <div className="profil__myButtons">
-              <button type="submit" className="myButton-validate">
+              <button type="submit" className="myButton-validate" >
                 VALIDATE
               </button>
             </div>
