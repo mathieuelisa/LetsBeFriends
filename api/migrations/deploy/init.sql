@@ -41,6 +41,7 @@ CREATE TABLE event (
     img_url TEXT,
     places_left places_left_domain NOT NULL,
     description TEXT NOT NULL,
+    address TEXT,
     longitude longitude_domain NOT NULL,
     latitude latitude_domain NOT NULL,
     user_id INT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,

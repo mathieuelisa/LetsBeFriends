@@ -112,6 +112,7 @@ router
      * @returns {string} 500 - An error message
      * @returns {string} 400 - A validation error message
      */
+    .route('/events/request/status')
     .post(requestController.confirmJoiningRequest)
     /**
      * Request of refuse a user on a event
@@ -137,14 +138,14 @@ router
      * @returns {string} 500 - An error message
      */
     .get(languageController.findAll)
-// router
-//     .route('/speak')
-//     .post(languageController.newUserSpeakLanguage)
-//     .delete(languageController.deleteUserSpeakLanguage)
-// router
-//     .route('/learn')
-//     .post(languageController.newUserLearnLanguage)
-//     .delete(languageController.deleteUserLearnLanguage)
+router
+    .route('/speak')
+    .post(languageController.newUserSpeakLanguage)
+    .delete(languageController.deleteUserSpeakLanguage)
+router
+    .route('/learn')
+    .post(languageController.newUserLearnLanguage)
+    .delete(languageController.deleteUserLearnLanguage)
 
 //? --- TAG
 

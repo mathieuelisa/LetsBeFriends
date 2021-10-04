@@ -273,7 +273,7 @@ describe('POST /events', function () {
         "img_url": "http://dummyimage.com/103x100.png/5fa2dd/ffffff",
         "places_left": 6,
         "description": "V, tempus sit amet, sem.",
-        "adress": "11 rue du parc, bron",
+        "address": "11 rue du parc, bron",
         "user_id": 1
     }
     it('respond with 201 created', function (done) {

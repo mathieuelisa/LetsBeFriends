@@ -43,8 +43,10 @@ class Language extends CoreModel {
 
     static async newUserSpeakLanguage(user_id, language_id) {
         try {
-            const { rows } = await db.query('INSERT INTO "user_speak_language"(user_id, language_id) VALUES($1, $2) RETURNING user_id AS "userId", language_id AS "languageId"', [user_id, language_id])
-            return new Language(rows[0])
+            const { rows } = await db.query('INSERT INTO "user_speak_language"(user_id, language_id) VALUES($1, $2) RETURNING user_id AS "userId", language_id AS "languageId"', [user_id, language_id]);
+
+            if (rows[0]) return new Language(rows[0]);
+            else return { error: "Couldn't insert data into user_speak_language" };
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -62,9 +64,13 @@ class Language extends CoreModel {
      * @static
      * @async
      */
+
     static async deleteUserSpeakLanguage(user_id, language_id) {
         try {
-            await db.query('DELETE FROM "user_speak_language" WHERE user_id=$1 AND language_id=$2', [user_id, language_id])
+            const { rowCount } = await db.query('DELETE FROM "user_speak_language" WHERE user_id=$1 AND language_id=$2', [user_id, language_id])
+
+            if (rowCount >= 1) return { rowsDeleted: rowCount, user_id, language_id }
+            else return { error: "Relation not found" }
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -86,8 +92,10 @@ class Language extends CoreModel {
 
     static async newUserLearnLanguage(user_id, language_id) {
         try {
-            const { rows } = await db.query('INSERT INTO "user_learn_language"(user_id, language_id) VALUES($1, $2) RETURNING user_id AS "userId", language_id AS "languageId"', [user_id, language_id])
-            return new Language(rows[0])
+            const { rows } = await db.query('INSERT INTO "user_learn_language"(user_id, language_id) VALUES($1, $2) RETURNING user_id AS "userId", language_id AS "languageId"', [user_id, language_id]);
+
+            if (rows[0]) return new Language(rows[0]);
+            else return { error: "Couldn't insert data into user_learn_language", user_id, language_id };
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -109,7 +117,10 @@ class Language extends CoreModel {
 
     static async deleteUserLearnLanguage(user_id, language_id) {
         try {
-            await db.query('DELETE FROM "user_learn_language" WHERE user_id=$1 AND language_id=$2', [user_id, language_id])
+            const { rowCount } = await db.query('DELETE FROM "user_learn_language" WHERE user_id=$1 AND language_id=$2', [user_id, language_id]);
+
+            if (rowCount >= 1) return { rowsDeleted: rowCount, user_id, language_id }
+            else return { error: "Relation not found" }
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -130,7 +141,9 @@ class Language extends CoreModel {
     static async newEventHasLanguage(event_id, language_id) {
         try {
             const { rows } = await db.query('INSERT INTO "event_has_language"(event_id, language_id) VALUES($1, $2) RETURNING event_id AS "eventId", language_id AS "languageId"', [event_id, language_id])
-            return new Language(rows[0])
+
+            if (rows[0]) return new Language(rows[0]);
+            else return { error: "Couldn't insert data into event_has_language", event_id, language_id };
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -146,12 +159,13 @@ class Language extends CoreModel {
      * @static
      * @async
      */
-    static async findAll(){
-        try {
-            
-            const {rows} = await db.query('SELECT * FROM language')
-            return rows.map(row => new Language(row))
 
+    static async findAll() {
+        try {
+            const { rows } = await db.query('SELECT * FROM language')
+
+            if (rows) return rows.map(row => new Language(row));
+            else return { error: "Couldn't find any data" };
         } catch (error) {
             console.log(error);
             if (error.detail) {
