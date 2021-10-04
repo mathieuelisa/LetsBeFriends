@@ -14,6 +14,7 @@ import { useHistory } from "react-router";
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 // import Axios
 import axios from "axios";
+import { number } from "prop-types";
 
 
 function CreateEventContainer() {
@@ -60,10 +61,10 @@ function CreateEventContainer() {
         },
       });
 
-    } else if (e.target.name == "eventTags") {
+    } else if (e.target.name == "eventTags" && e.target.value !== null) {
       const newTagsAdded = allEvents.find((events)=> (events.name  == e.target.value))
         setSelectedEventTags([...selectedEventTags, newTagsAdded])
-    } else if (e.target.name == "language") {
+    } else if (e.target.name == "language" && e.target.value !== null) {
       const newLanguageAdded = allLanguages.find((language) => (language.name == e.target.value))
         setSelectedLanguages([...selectedLanguages, newLanguageAdded])
     } else {
@@ -74,7 +75,7 @@ function CreateEventContainer() {
     }
   }
 
-  console.log(fieldsCreate);
+  // console.log(fieldsCreate);
 
   const dispatch = useDispatch();
   const toggleAction = useSelector((state) => state.common.toggleAction);
@@ -115,18 +116,21 @@ function CreateEventContainer() {
   }
 
   const createEvent = () => {
-    console.log('Le body de la requete create event : ', {"title": fieldsCreate.title,
+    console.log('Le body de la requete create event : ', {
+    "title": fieldsCreate.title,
+    "starting_date": fieldsCreate.dateFrom.formatISO,
+    "ending_date": fieldsCreate.dateTo.formatISO,
+    "places_left":  Number(fieldsCreate.participants),
+    "description": fieldsCreate.description,
     "city": fieldsCreate.city,
     "country": fieldsCreate.country,
+    "zipCode": fieldsCreate.zipCode,
     "location": fieldsCreate.location,
     "user_id": infosUser.id,
-    "zipCode": fieldsCreate.zipCode,
-    "description": fieldsCreate.description,
     "eventLanguage": selectedLanguages.map(language => language.id),
-    "tagId": selectedEventTags.map(tag => tag.id),
-    "startingDate": fieldsCreate.dateFrom.formatISO,
-    "endingDate": fieldsCreate.dateTo.formatISO,
-    "places_left": fieldsCreate.participants})
+    "tagId": selectedEventTags.map(tag => tag.id)
+    
+  })
     axios
       .post(
         "https://lets-be-friend.herokuapp.com/v1/events",
@@ -140,9 +144,9 @@ function CreateEventContainer() {
           "description": fieldsCreate.description,
           "eventLanguage": selectedLanguages.map(language => language.id),
           "tagId": selectedEventTags.map(tag => tag.id),
-          "startingDate": fieldsCreate.dateFrom.formatISO,
-          "endingDate": fieldsCreate.dateTo.formatISO,
-          "places_left": fieldsCreate.participants
+          "starting_date": fieldsCreate.dateFrom.formatISO,
+          "ending_date": fieldsCreate.dateTo.formatISO,
+          "places_left": Number(fieldsCreate.participants) 
         },
         optionsGet
       )
