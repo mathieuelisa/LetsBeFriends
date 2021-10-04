@@ -9,10 +9,8 @@ import "./styles.scss";
 import imgEvent from "../../../assets/Img/sport.png";
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
-
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
-
 function CreateEventContainer() {
   const [fieldsCreate, setFieldsCreate] = useState({
     location: "",
@@ -32,7 +30,6 @@ function CreateEventContainer() {
       formatString: "",
     },
   });
-
   function handleFieldsCreateChange(e) {
     e.preventDefault();
     if (e.target.name == "dateTo" || e.target.name == "dateFrom") {
@@ -45,7 +42,6 @@ function CreateEventContainer() {
           formatString: date,
         },
       });
-
       console.log("test", fieldsCreate.eventTags);
     } else if (e.target.name == "eventTags") {
       setFieldsCreate({
@@ -64,29 +60,22 @@ function CreateEventContainer() {
       });
     }
   }
-
   console.log(fieldsCreate);
-
   const dispatch = useDispatch();
   const toggleAction = useSelector((state) => state.common.toggleAction);
-
   function handleClick(event) {
     event.preventDefault();
     dispatch({ type: SET_TOGGLE });
   }
-
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu
   useEffect(() => {
     dispatch({ type: RESET_TOGGLE });
   }, []);
-
   const history = useHistory();
-
   function handleLogOut() {
     localStorage.clear();
     history.push("/home");
   }
-
   return (
     <div className="createEvent__container">
       <div
@@ -101,127 +90,158 @@ function CreateEventContainer() {
           name="="
           handleClick={handleClick}
         />
-
-                    <form id="registerForm">
-                        <div className="createEvent__container-infosDetails-location" id="div-location">
-                            <label className="createEvent__container-label">Location: </label>
-                            <input
-                                name="location"
-                                className="myInputs"
-                                type="text"
-                                value={fieldsCreate.location}
-                                onChange={handleFieldsCreateChange}
-                            />
-                        </div>
-
-                        <div className="createEvent__container-infosDetails-location" id="div-location">
-                            <label className="createEvent__container-label">ZipCode: </label>
-                            <input
-                                name="zipCode"
-                                className="myInputs"
-                                type="number"
-                                value={fieldsCreate.zipCode}
-                                onChange={handleFieldsCreateChange}
-                            />
-                        </div>
-
-                        <div className="createEvent__container-infosDetails-location" id="div-location">
-                            <label className="createEvent__container-label">City: </label>
-                            <input
-                                name="city"
-                                className="myInputs"
-                                type="text"
-                                value={fieldsCreate.city}
-                                onChange={handleFieldsCreateChange}
-                            />
-                        </div>
-
-                        <div className="createEvent__container-infosDetails-location" id="div-location">
-                            <label className="createEvent__container-label">Country: </label>
-                            <input
-                                name="country"
-                                className="myInputs"
-                                type="text"
-                                value={fieldsCreate.country}
-                                onChange={handleFieldsCreateChange}
-                            />
-                        </div>
-
-                        <div className="createEvent__container-infosDetails-calendar">
-                            <label className="createEvent__container-infosDetails-calendar-label" >From: </label>
-                            <input 
-                                type="datetime-local"
-                                name="dateFrom"
-                                className="myInputs"
-                                value={fieldsCreate.dateFrom.formatString}
-                                onChange={handleFieldsCreateChange}
-                            />
-                        </div>
-
-                        <div className="createEvent__container-infosDetails-calendar">
-                            <label className="createEvent__container-infosDetails-calendar-label">To: </label>
-                            <input 
-                                type="datetime-local"
-                                name="dateTo"
-                                className="myInputs"
-                                value={fieldsCreate.dateTo.formatString}
-                                onChange={handleFieldsCreateChange}
-                            />
-                        </div>
-
-                        <div className="createEvent__container-infosDetails-location" id="createEvent__label">
-                            <label className="createEvent__container-label">Theme: </label>
-                            <select 
-                                className="myInputs"
-                                name='eventTags' 
-                                value={fieldsCreate.eventTags} 
-                                onChange={handleFieldsCreateChange} >
-                                    <option></option>
-                                    <option >Soirée BBQ</option>
-                                    <option >Atelier Cuisine</option>
-                                    <option >Soirée jeux</option>
-                                    <option >Sortie culturelle</option>
-                                    <option >Sortie Cinéma</option>
-                                    <option >Moment café</option>
-                                    <option >Couisine</option>
-                                </select>
-                        </div>
-
-                        <div className="createEvent__container-infosDetails-location" id="createEvent__label">
-                            <label className="createEvent__container-label">Language: </label>
-                            <select
-                                className="myInputs"
-                                id="createEvent__label"
-                                name='language'
-                                value={fieldsCreate.language}
-                                onChange={handleFieldsCreateChange}>
-                                    <option></option>
-                                    <option>English</option>
-                                    <option>French</option>
-                                    <option>Spanish</option>
-                                    <option>Japanese</option>
-                                    <option>Mandarin</option>
-                                    <option>Russian</option>
-                                    <option>Italian</option>
-                            </select>
-                        </div>
-
-                        <div className="createEvent__container-infosDetails-location" id="createEvent__label" >
-                            <label className="createEvent__container-label">Nombre de participants: </label>
-                            <select
-                                className="createEvent__container-infosDetails-location"
-                                id="createEvent__label"
-                                name='participants'
-                                value={fieldsCreate.participants}
-                                onChange={handleFieldsCreateChange}>
-                                    <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-
+        {toggleAction ? (
+          <div className="header__hamburger">
+            <NavLink to="/" exact className="header__hamburger-titlePage">
+              HOME
+            </NavLink>
+            <NavLink to="/searchEvent" className="header__hamburger-titlePage">
+              SEARCH EVENT
+            </NavLink>
+            <NavLink to="/createEvent" className="header__hamburger-titlePage">
+              CREATE EVENT
+            </NavLink>
+            <NavLink to="/listEvent" className="header__hamburger-titlePage">
+              MY EVENTS
+            </NavLink>
+            <NavLink to="/profil" className="header__hamburger-titlePage">
+              PROFIL
+            </NavLink>
+            <NavLink to="/contact" className="header__hamburger-titlePage">
+              CONTACT
+            </NavLink>
+            {localStorage.getItem("user") ? (
+              <NavLink
+                onClick={handleLogOut}
+                exact
+                to="/"
+                className="header__hamburger-disconnect"
+              >
+                DISCONNECT
+              </NavLink>
+            ) : (
+              ""
+            )}
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+      <div className="mainCreateEvent__container">
+        <div className="createEvent__container-infosDetails">
+          <form id="registerForm">
+            <div
+              className="createEvent__container-infosDetails-location"
+              id="div-location"
+            >
+              <label>Location: </label>
+              <input
+                name="location"
+                className="myInputs"
+                type="text"
+                value={fieldsCreate.location}
+                onChange={handleFieldsCreateChange}
+              />
+            </div>
+            <div
+              className="createEvent__container-infosDetails-location"
+              id="div-location"
+            >
+              <label>Zip code: </label>
+              <input
+                name="zipCode"
+                className="myInputs"
+                type="number"
+                value={fieldsCreate.zipCode}
+                onChange={handleFieldsCreateChange}
+              />
+            </div>
+            <div
+              className="createEvent__container-infosDetails-location"
+              id="div-location"
+            >
+              <label>City: </label>
+              <input
+                name="city"
+                className="myInputs"
+                type="text"
+                value={fieldsCreate.city}
+                onChange={handleFieldsCreateChange}
+              />
+            </div>
+            <div
+              className="createEvent__container-infosDetails-location"
+              id="div-location"
+            >
+              <label>Country: </label>
+              <input
+                name="country"
+                className="myInputs"
+                type="text"
+                value={fieldsCreate.country}
+                onChange={handleFieldsCreateChange}
+              />
+            </div>
+            <div className="createEvent__container-infosDetails-calendar">
+              <label className="createEvent__container-infosDetails-calendar-label">
+                Date from:{" "}
+              </label>
+              <input
+                type="datetime-local"
+                name="dateFrom"
+                className="myInputs"
+                value={fieldsCreate.dateFrom.formatString}
+                onChange={handleFieldsCreateChange}
+              />
+            </div>
+            <div className="createEvent__container-infosDetails-calendar">
+              <label className="createEvent__container-infosDetails-calendar-label">
+                Date to:{" "}
+              </label>
+              <input
+                type="datetime-local"
+                name="dateTo"
+                className="myInputs"
+                value={fieldsCreate.dateTo.formatString}
+                onChange={handleFieldsCreateChange}
+              />
+            </div>
+            <div className="createEvent__container-infosDetails-location">
+              <label>Theme: </label>
+              <select
+                className="myInputs"
+                name="eventTags"
+                value={fieldsCreate.eventTags}
+                onChange={handleFieldsCreateChange}
+              >
+                <option></option>
+                <option>Soirée BBQ</option>
+                <option>Atelier Cuisine</option>
+                <option>Soirée jeux</option>
+                <option>Sortie culturelle</option>
+                <option>Sortie Cinéma</option>
+                <option>Moment café</option>
+                <option>Couisine</option>
+              </select>
+            </div>
+            <div className="createEvent__container-infosDetails-location">
+              <label>Language: </label>
+              <select
+                className="myInputs"
+                name="language"
+                value={fieldsCreate.language}
+                onChange={handleFieldsCreateChange}
+              >
+                <option></option>
+                <option>English</option>
+                <option>French</option>
+                <option>Spanish</option>
+                <option>Japanese</option>
+                <option>Mandarin</option>
+                <option>Russian</option>
+                <option>Italian</option>
+              </select>
+            </div>
             <div className="createEvent__container-infosDetails-location">
               <label>Nombre de participants: </label>
               <select
@@ -239,29 +259,25 @@ function CreateEventContainer() {
                 <option>6</option>
               </select>
             </div>
-
-                        <div className="createEvent__container-infosDetails-location" id="createEvent-textArea">
-                            <label>Description:</label>
-                            <textarea
-                                name="description"
-                                className="myInputs"
-                                id="createEvent-textArea-width"
-                                type="text"
-                                value={fieldsCreate.description}
-                                onChange={handleFieldsCreateChange}
-                            />
-                        </div>
-                    </form>
-                </div>
-                <div className="createEvent__container-eventTitle">
-                    <div className="createEvent__container-eventTitle-title">
-                        <h1>Journée biking</h1>
-                    </div>
-
+            <div className="createEvent__container-infosDetails-location">
+              <label>Description:</label>
+              <textarea
+                name="description"
+                className="myInputs"
+                type="text"
+                value={fieldsCreate.description}
+                onChange={handleFieldsCreateChange}
+              />
+            </div>
+          </form>
+        </div>
+        <div className="createEvent__container-eventTitle">
+          <div className="createEvent__container-eventTitle-title">
+            <h1>Journée biking</h1>
+          </div>
           <div className="createEvent__container-eventTitle-img">
             <img className="createEvent-img" src={imgEvent} alt="imageEvent" />
           </div>
-
           <div className="createEvent__container-eventTitle-button">
             <button type="submit" form="registerForm" className="myButton">
               LETS GO
@@ -272,5 +288,4 @@ function CreateEventContainer() {
     </div>
   );
 }
-
 export default CreateEventContainer;

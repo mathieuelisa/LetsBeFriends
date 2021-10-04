@@ -1,5 +1,3 @@
-/* eslint-disable eqeqeq */
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, React } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -19,19 +17,15 @@ import Loader from "../../Styledcomponents/Loader";
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { setAllEvents } from "../../../Redux/actions/event";
-
 function SearchEventContainer() {
   const toggleAction = useSelector((state) => state.common.toggleAction);
   const events = useSelector((state) => state.event.events);
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allEventTags = useSelector((state) => state.event.eventTags);
-
   console.log("Toute les langues:", allLanguages);
   console.log("Tout les tags:", allEventTags);
   console.log("Tous mes events", events);
-
   const [loading, setLoading] = useState(false);
-
   const [fieldsSearch, setFieldsSearch] = useState({
     city: "",
     eventTags: [],
@@ -48,21 +42,16 @@ function SearchEventContainer() {
     },
   });
   const dispatch = useDispatch();
-
   // On liste l'ensemble des langues ainsi que l'ensemble des events
   fieldsSearch.languages = allLanguages.map((language) => language.name);
   fieldsSearch.eventTags = allEventTags.map((tag) => tag.name);
-
   console.log("toute les langues:", fieldsSearch.languages);
   console.log("tout les tags:", fieldsSearch.eventTags);
   console.log("Initialisation fieldsSearch: ", fieldsSearch);
-
   const optionsGet = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
   };
-
-
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
   function handleFieldSearchChange(e) {
     e.preventDefault();
@@ -93,12 +82,10 @@ function SearchEventContainer() {
       });
     }
   }
-
   function handleClick(event) {
     event.preventDefault();
     dispatch({ type: SET_TOGGLE });
   }
-
   //Fonction permettant de fermer les tags de l'onglet "languages" et "events"
   const handleClickClosedTag = (tag) => {
     setFieldsSearch({
@@ -113,7 +100,6 @@ function SearchEventContainer() {
       ],
     });
   };
-
   // Fonction permettant la soumission du formulaire
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -124,7 +110,6 @@ function SearchEventContainer() {
       fieldsSearch.dateTo.formatISO
     );
   };
-
   // Fonction afin de recuperer l'ensemble des events à partir de l'API
   const GetAllEvents = () => {
     setLoading(true);
@@ -139,8 +124,6 @@ function SearchEventContainer() {
       )
       .finally(() => setLoading(false));
   };
-
-  
 //   const displayTags = (e) => {
 //     console.log("Tes dans la callback displayTags");
 //     if (e.target.value !== null) {
@@ -150,7 +133,6 @@ function SearchEventContainer() {
 //       });
 //     }
 //   };
-
   //   const displayEvents = (e) => {
   //     console.log("Tes dans la callback displayEventsTags");
   //     if (e.target.value !== null) {
@@ -160,7 +142,6 @@ function SearchEventContainer() {
   //       })
   //     }
   //   };
-
   const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
     axios
       .post(
@@ -182,21 +163,18 @@ function SearchEventContainer() {
       })
       .catch((error) => console.log("Error recherche event "));
   };
-
   const history = useHistory();
   // Function permettant de se logout en reinitialisant le localStorage
   function handleLogOut() {
     localStorage.clear();
     history.push("/home");
   }
-
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu + Get tous les évènements
   useEffect(() => {
     dispatch({ type: RESET_TOGGLE });
     GetAllEvents();
   }, []);
-
-  return (
+return (
     <div className="searchEvent__container">
       <div
         className={
@@ -210,7 +188,6 @@ function SearchEventContainer() {
           name="="
           handleClick={handleClick}
         />
-        ​
         {toggleAction ? (
           <div className="header__hamburger">
             <NavLink to="/" exact className="header__hamburger-titlePage">
@@ -248,7 +225,6 @@ function SearchEventContainer() {
           ""
         )}
       </div>
-      ​
       <div className="searchEvent__container-form">
         <div className="searchEvent__container-searchForm">
           <form id="searchForm" onSubmit={handleSubmitForm}>
@@ -262,7 +238,6 @@ function SearchEventContainer() {
                 onChange={handleFieldSearchChange}
               />
             </div>
-            ​
             <div className="searchEvent__container-infosDetails-location">
               <label>Event: </label>
               <select
@@ -277,15 +252,14 @@ function SearchEventContainer() {
                 ))}
                 {/*
                                     <option id='Soirée BBQ'>Soirée BBQ</option>
-                                    <option id='Atelier Cuisine'>Atelier Cuisine</option> 
-                                    <option id='Soirée jeux'>Soirée jeux</option> 
+                                    <option id='Atelier Cuisine'>Atelier Cuisine</option>
+                                    <option id='Soirée jeux'>Soirée jeux</option>
                                     <option id='Sortie culturelle'>Sortie culturelle</option>
                                     <option id='Sortie Cinéma'>Sortie Cinéma</option>
                                     <option id='Moment café'>Moment café</option>
                                     <option id='Couisine'>Couisine</option>   */}
               </select>
             </div>
-            ​
             <div className="searchEvent__container-infosDetails-location__tag-selected">
               {fieldsSearch.selectedTags.map((tag) => (
                 <Tag handleClick={() => handleClickClosedTag(tag)} name={tag} />
@@ -327,19 +301,18 @@ function SearchEventContainer() {
                 ))}
                 {/* <option>English</option>
                         <div className="searchEvent__container-infosDetails-location">
-                            <label>Languages: </label>
-                                <select
-                                className="searchEvent__container-select" 
-                                name='languages' 
-                                value={fieldsSearch.languages} 
-                                onChange={handleFieldSearchChange} 
-                                onClick={displayTags}>
-                                    
-                                    <option></option>
-                                    {events.map((event) => (<option>{event.languages[0].name}</option>))}
-                                    {/* <option>English</option>
-                                    <option>French</option> 
-                                    <option>Spanish</option> 
+                            <label>languages: </label>
+                            <select
+                                className="searchEvent__container-select"
+                                name='languages'
+                                value={fieldsSearch.languages}
+                                onChange={handleFieldSearchChange}
+                            >
+                                <option></option>
+                                {fieldsSearch.languages?.map(language => <option>{language}</option>)}
+                                {/* <option>English</option>
+                                    <option>French</option>
+                                    <option>Spanish</option>
                                     <option>Japanese</option>
                                     <option>Mandarin</option>
                                     <option>Russian</option>
