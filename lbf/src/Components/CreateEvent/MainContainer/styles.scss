@@ -10,8 +10,7 @@
     &-infosDetails{
         display: flex;
         justify-content: center;
-        width: 30%;
-        margin-left: 55px;
+        width: 55%;
 
         &-location{
             display: flex;
@@ -19,7 +18,17 @@
             background: transparent;
             border: none;
             border-bottom: 1px solid white;
+            color: whitesmoke;
             margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+
+        &-participants{
+            display: flex;
+            justify-content: space-between;
+            background: transparent;
+            border: none;
+            border-bottom: none;
             padding-bottom: 10px;
         }
 

@@ -1,7 +1,7 @@
+//Import React components
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//Import React components
-// test math
+import Tag from "../../Styledcomponents/Tag";
 // import Input from "../../Profil/Input"
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
 // Import styles
@@ -12,18 +12,21 @@ import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
-import { map } from "leaflet";
+
 
 function CreateEventContainer() {
   const allLanguages = useSelector((state)=>state.common.allLanguages)
+  const allEvents = useSelector((state)=>state.event.eventTags)
+  const [selectedLanguages, setSelectedLanguages] = useState([])
+  const [selectedEventTags, setSelectedEventTags] = useState([])
+  
   const [fieldsCreate, setFieldsCreate] = useState({
+    title:"",
     location: "",
     zipCode: "",
     city: "",
     country: "",
     description: "",
-    eventTags: [],
-    language: [],
     participants: "",
     dateFrom: {
       formatISO: "",
@@ -35,9 +38,9 @@ function CreateEventContainer() {
     },
   });
 
-  fieldsCreate.language = allLanguages.map((language) => language.name)
+  fieldsCreate.eventTags = allEvents.map((event)=>event.name)
 
-  console.log("pipo", fieldsCreate.language)
+  console.log("pipoi", selectedLanguages);
 
   function handleFieldsCreateChange(e) {
     e.preventDefault();
@@ -52,7 +55,6 @@ function CreateEventContainer() {
           formatString: date,
         },
       });
-      console.log("test", fieldsCreate.eventTags);
 
     } else if (e.target.name == "eventTags") {
       setFieldsCreate({
@@ -60,10 +62,8 @@ function CreateEventContainer() {
         eventTags: [...fieldsCreate.eventTags, e.target.value],
       });
     } else if (e.target.name == "language") {
-      setFieldsCreate({
-        ...fieldsCreate,
-        language: [...fieldsCreate.language, e.target.value],
-      });
+      const newLanguageAdded = allLanguages.find((language) => (language.name == e.target.value))
+      setSelectedLanguages([...selectedLanguages, newLanguageAdded])
     } else {
       setFieldsCreate({
         ...fieldsCreate,
@@ -79,7 +79,7 @@ function CreateEventContainer() {
   
   function handleClick(event) {
     event.preventDefault();
-    dispatch({ type: SET_TOGGLE });
+      dispatch({ type: SET_TOGGLE });
   }
 
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu
@@ -88,10 +88,16 @@ function CreateEventContainer() {
   }, []);
 
   const history = useHistory();
+
   function handleLogOut() {
     localStorage.clear();
     history.push("/home");
   }
+
+  const handleClickClosedLanguage = (language) => {
+    console.log('T es dans la callback Close Language')
+    setSelectedLanguages(selectedLanguages.filter(selectedlanguage => selectedlanguage.name !== language.name))
+  };
 
   return (
     <div className="createEvent__container">
@@ -147,6 +153,21 @@ function CreateEventContainer() {
       <div className="mainCreateEvent__container">
         <div className="createEvent__container-infosDetails">
           <form id="registerForm">
+
+          <div
+              className="createEvent__container-infosDetails-location"
+              id="div-location"
+            >
+              <label>Title: </label>
+              <input
+                name="title"
+                className="myInputs"
+                type="text"
+                value={fieldsCreate.title}
+                onChange={handleFieldsCreateChange}
+              />
+            </div>
+
             <div
               className="createEvent__container-infosDetails-location"
               id="div-location"
@@ -225,37 +246,40 @@ function CreateEventContainer() {
             </div>
             <div className="createEvent__container-infosDetails-location">
               <label>Theme: </label>
-              <select
-                className="myInputs"
-                name="eventTags"
-                value={fieldsCreate.eventTags}
-                onChange={handleFieldsCreateChange}
-              >
-                <option></option>
-                <option>Soirée BBQ</option>
-                <option>Atelier Cuisine</option>
-                <option>Soirée jeux</option>
-                <option>Sortie culturelle</option>
-                <option>Sortie Cinéma</option>
-                <option>Moment café</option>
-                <option>Couisine</option>
-              </select>
+                <select
+                  className="myInputs"
+                  name="eventTags"
+                  value={fieldsCreate.eventTags}
+                  onChange={handleFieldsCreateChange}
+                >
+                  <option></option>
+                    {fieldsCreate.eventTags?.map((event)=>(
+                        <option>{event}</option>
+                    ))}
+                </select>
             </div>
             <div className="createEvent__container-infosDetails-location">
               <label>Language: </label>
-              <select
-                className="myInputs"
-                name="language"
-                value={fieldsCreate.language}
-                onChange={handleFieldsCreateChange}
-              >
-                <option></option>
-                {fieldsCreate.language?.map((language)=>(
-                  <option>{language}</option>
-                ))}
-              </select>
+                <select
+                  className="myInputs"
+                  name="language"
+                  value={selectedLanguages}
+                  onChange={handleFieldsCreateChange}
+                >
+                  <option></option>
+                    {allLanguages.map((language)=>(
+                      <option>{language.name}</option>
+                    ))}
+                </select>
             </div>
-            <div className="createEvent__container-infosDetails-location">
+
+            <div className="searchEvent__container-infosDetails-location__tag-selected">
+              {selectedLanguages.map((language) => (
+                <Tag handleClick={() =>handleClickClosedLanguage(language)} name={language.name} />
+              ))}
+            </div>
+
+            <div className="createEvent__container-infosDetails-participants">
               <label>Nombre de participants: </label>
               <select
                 className="createEvent__container-infosDetails-location"
@@ -285,9 +309,6 @@ function CreateEventContainer() {
           </form>
         </div>
         <div className="createEvent__container-eventTitle">
-          <div className="createEvent__container-eventTitle-title">
-            <h1>Journée biking</h1>
-          </div>
           <div className="createEvent__container-eventTitle-img">
             <img className="createEvent-img" src={imgEvent} alt="imageEvent" />
           </div>
