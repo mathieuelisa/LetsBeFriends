@@ -32,7 +32,7 @@ const Modal = ({ openModale }) => {
 
   console.log("modal:", openModale);
 
-  const [isCheckedLogin, setIsCheckedLogin] = useState(false);
+  // const [isCheckedLogin, setIsCheckedLogin] = useState(false);
   const [isCheckedSignUp, setIsCheckedSignUp] = useState(false);
   const infosUser = useSelector((state) => state.profil.infosUser);
 
@@ -143,7 +143,7 @@ const Modal = ({ openModale }) => {
                 classNameInput="modal-container__modal__formlogin__input-login"
                 classNameDiv="div-input-login"
               />
-              <div className="modal-container__modal__formlogin__remember">
+              {/* <div className="modal-container__modal__formlogin__remember">
                 <input
                   type="checkbox"
                   id="remember"
@@ -158,7 +158,7 @@ const Modal = ({ openModale }) => {
                 >
                   Remember Me
                 </label>
-              </div>
+              </div> */}
               <button
                 type="submit"
                 className="modal-container__modal__formlogin__button--login"
@@ -234,7 +234,7 @@ const Modal = ({ openModale }) => {
                 onChange={handleChangeSignup}
               />
 
-              <div className="modal-container__modal__formsignup__terms">
+              {/* <div className="modal-container__modal__formsignup__terms">
                 <input
                   type="checkbox"
                   id="terms"
@@ -249,7 +249,7 @@ const Modal = ({ openModale }) => {
                 >
                   I accept the Term of Use & Privacy Policy
                 </label>
-              </div>
+              </div> */}
               <button type="submit" className="button-sign" name="Sign" />
             </form>
           )}

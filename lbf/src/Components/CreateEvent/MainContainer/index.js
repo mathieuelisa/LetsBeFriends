@@ -12,6 +12,8 @@ import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
+// import Axios
+import axios from "axios";
 
 
 function CreateEventContainer() {
@@ -19,6 +21,9 @@ function CreateEventContainer() {
   const allEvents = useSelector((state)=>state.event.eventTags)
   const [selectedLanguages, setSelectedLanguages] = useState([])
   const [selectedEventTags, setSelectedEventTags] = useState([])
+  const infosUser = useSelector((state)=>state.profil.infosUser)
+
+  console.log("pipipipip", infosUser)
   
   const [fieldsCreate, setFieldsCreate] = useState({
     title:"",
@@ -38,9 +43,8 @@ function CreateEventContainer() {
     },
   });
 
-  fieldsCreate.eventTags = allEvents.map((event)=>event.name)
-
-  console.log("pipoi", selectedLanguages);
+  console.log("Languages in Profil Page:", selectedLanguages);
+  console.log("Events in Profil Page: ", selectedEventTags);
 
   function handleFieldsCreateChange(e) {
     e.preventDefault();
@@ -57,13 +61,11 @@ function CreateEventContainer() {
       });
 
     } else if (e.target.name == "eventTags") {
-      setFieldsCreate({
-        ...fieldsCreate,
-        eventTags: [...fieldsCreate.eventTags, e.target.value],
-      });
+      const newTagsAdded = allEvents.find((events)=> (events.name  == e.target.value))
+        setSelectedEventTags([...selectedEventTags, newTagsAdded])
     } else if (e.target.name == "language") {
       const newLanguageAdded = allLanguages.find((language) => (language.name == e.target.value))
-      setSelectedLanguages([...selectedLanguages, newLanguageAdded])
+        setSelectedLanguages([...selectedLanguages, newLanguageAdded])
     } else {
       setFieldsCreate({
         ...fieldsCreate,
@@ -95,8 +97,59 @@ function CreateEventContainer() {
   }
 
   const handleClickClosedLanguage = (language) => {
-    console.log('T es dans la callback Close Language')
     setSelectedLanguages(selectedLanguages.filter(selectedlanguage => selectedlanguage.name !== language.name))
+  };
+
+  const handleClickClosedEvents = (events) => {
+    setSelectedEventTags(selectedEventTags.filter(selectedEventTags => selectedEventTags.name !== events.name))
+  };
+
+  const optionsGet = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  };
+
+  const handleSubmitForm = (e) =>{
+    e.preventDefault()
+    createEvent()
+  }
+
+  const createEvent = () => {
+    console.log('Le body de la requete create event : ', {"title": fieldsCreate.title,
+    "city": fieldsCreate.city,
+    "country": fieldsCreate.country,
+    "location": fieldsCreate.location,
+    "user_id": infosUser.id,
+    "zipCode": fieldsCreate.zipCode,
+    "description": fieldsCreate.description,
+    "eventLanguage": selectedLanguages.map(language => language.id),
+    "tagId": selectedEventTags.map(tag => tag.id),
+    "startingDate": fieldsCreate.dateFrom.formatISO,
+    "endingDate": fieldsCreate.dateTo.formatISO,
+    "places_left": fieldsCreate.participants})
+    axios
+      .post(
+        "https://lets-be-friend.herokuapp.com/v1/events",
+        {
+          "title": fieldsCreate.title,
+          "city": fieldsCreate.city,
+          "country": fieldsCreate.country,
+          "location": fieldsCreate.location,
+          "user_id": infosUser.id,
+          "zipCode": fieldsCreate.zipCode,
+          "description": fieldsCreate.description,
+          "eventLanguage": selectedLanguages.map(language => language.id),
+          "tagId": selectedEventTags.map(tag => tag.id),
+          "startingDate": fieldsCreate.dateFrom.formatISO,
+          "endingDate": fieldsCreate.dateTo.formatISO,
+          "places_left": fieldsCreate.participants
+        },
+        optionsGet
+      )
+      .then((response) => {
+        console.log("API CREATE:", response.data)
+      })
+      .catch((error) => console.log("Error de create event"));
   };
 
   return (
@@ -115,24 +168,12 @@ function CreateEventContainer() {
         />
         {toggleAction ? (
           <div className="header__hamburger">
-            <NavLink to="/" exact className="header__hamburger-titlePage">
-              HOME
-            </NavLink>
-            <NavLink to="/searchEvent" className="header__hamburger-titlePage">
-              SEARCH EVENT
-            </NavLink>
-            <NavLink to="/createEvent" className="header__hamburger-titlePage">
-              CREATE EVENT
-            </NavLink>
-            <NavLink to="/listEvent" className="header__hamburger-titlePage">
-              MY EVENTS
-            </NavLink>
-            <NavLink to="/profil" className="header__hamburger-titlePage">
-              PROFIL
-            </NavLink>
-            <NavLink to="/contact" className="header__hamburger-titlePage">
-              CONTACT
-            </NavLink>
+            <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+            <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
+            <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
+            <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
+            <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
+            <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
             {localStorage.getItem("user") ? (
               <NavLink
                 onClick={handleLogOut}
@@ -152,7 +193,7 @@ function CreateEventContainer() {
       </div>
       <div className="mainCreateEvent__container">
         <div className="createEvent__container-infosDetails">
-          <form id="registerForm">
+          <form id="registerForm" onSubmit={handleSubmitForm}>
 
           <div
               className="createEvent__container-infosDetails-location"
@@ -253,11 +294,18 @@ function CreateEventContainer() {
                   onChange={handleFieldsCreateChange}
                 >
                   <option></option>
-                    {fieldsCreate.eventTags?.map((event)=>(
-                        <option>{event}</option>
+                    {allEvents.map((event)=>(
+                        <option>{event.name}</option>
                     ))}
                 </select>
             </div>
+            
+            <div className="searchEvent__container-infosDetails-location__tag-selected">
+              {selectedEventTags.map((events) => (
+                <Tag handleClick={() =>handleClickClosedEvents(events)} name={events.name} />
+              ))}
+            </div>
+
             <div className="createEvent__container-infosDetails-location">
               <label>Language: </label>
                 <select
