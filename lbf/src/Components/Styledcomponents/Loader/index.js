@@ -1,6 +1,6 @@
 //Import styles
 import "./styles.scss"
-//commentaire test
+//commentaire test 2 
 const Loader = ({ size = 50, alternative = false }) => {
     return alternative ? (
       <svg
