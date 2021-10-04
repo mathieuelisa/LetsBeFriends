@@ -87,40 +87,21 @@ const Header = ({ openModalLogin, openModalSignup }) => {
           {/* Lorsque la classe open est active l'ensemble des NavLink sont disponible */}
           {toggleAction ? (
             <div className="header__hamburger">
-              <NavLink to="/" exact className="header__hamburger-titlePage">
-                HOME
-              </NavLink>
-              <NavLink
-                to="/searchEvent"
-                className="header__hamburger-titlePage"
-              >
-                SEARCH EVENT
-              </NavLink>
-              <NavLink
-                to="/createEvent"
-                className="header__hamburger-titlePage"
-              >
-                CREATE EVENT
-              </NavLink>
-              <NavLink to="/listEvent" className="header__hamburger-titlePage">
-                MY EVENTS
-              </NavLink>
-              <NavLink to="/profil" className="header__hamburger-titlePage">
-                PROFIL
-              </NavLink>
-              <NavLink to="/contact" className="header__hamburger-titlePage">
-                CONTACT
-              </NavLink>
               {infosUser.firstname ? (
-                <NavLink
-                  onClick={handleLogOut}
-                  to="/"
-                  className="header__hamburger-disconnect"
-                >
-                  DISCONNECT
-                </NavLink>
+                <>
+                  <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+                  <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
+                  <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
+                  <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
+                  <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
+                  <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
+                  <NavLink onClick={handleLogOut} to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>
+                </>
               ) : (
-                ""
+                <>
+                  <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+                  <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
+                </>
               )}
             </div>
           ) : (

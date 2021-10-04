@@ -1,11 +1,12 @@
 //eslint-disable react-hooks/exhaustive-deps
 // Import styles
 import "./styles.scss";
-// import Input from "../Input"
 //import ReactComponents
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
 import Avatar from "../../Styledcomponents/Avatar";
 import Tag from "../../Styledcomponents/Tag";
+import { resetInfosUser } from "../../../Redux/actions/profil";
+// Import Modules
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
 import axios from "axios";
@@ -38,19 +39,20 @@ function ProfilContainer() {
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allLanguagesToLearn = useSelector((state) => state.common.allLanguagesToLearn);
   const allEventTags = useSelector((state) => state.event.allEventTags);
+
   const [myLearningLanguages, setMyLearningLanguages] = useState([]);
   const [myLanguagesSpoken, setMyLanguagesSpoken] = useState([]);
- //const [myNewLearningLanguagesSelected, setMyNewLearningLanguagesSelected] = useState(myLearningLanguages);
-  //const [myNewLanguagesSpokenSelected, setNewMyLanguagesSpokenSelected] = useState(myLanguagesSpoken);
+
 const initializeMyLanguages = () => {
     setMyLanguagesSpoken(infosUser.speakingLanguage);
     setMyLearningLanguages(infosUser.learningLanguage);
 }
+
 console.log('myLearningLanguages : ', myLearningLanguages)
 console.log('myLanguagesSpoken : ', myLanguagesSpoken)
 console.log('allLanguages : ', allLanguages)
-  console.log("infos page profil: ", infosUser)
-  //console.log("Tous les event Tag : ", allEventTags);
+console.log("infos page profil: ", infosUser)
+
   //  function permettant d'obtenir plusieurs valeurs dans une valeur sous forme de tableau
   function handleFielsProfilChange(e) {
     if (e.target.name == "language_spoken" && e.target.value !== null) {
@@ -74,12 +76,14 @@ console.log('allLanguages : ', allLanguages)
       });
     }
   }
+
   useEffect(() => {
     dispatch({ type: RESET_TOGGLE });
     getLanguages();
     getEventsTags();
     initializeMyLanguages();
   }, []);
+
   //console.log(fieldsCreateProfil)
   function handleSubmit(e) {
     e.preventDefault();
@@ -92,16 +96,19 @@ console.log('allLanguages : ', allLanguages)
     //console.log("Tu as cliqué sur le bouton");
     dispatch({ type: SET_TOGGLE });
   }
+
 //Fonction permettant de fermer les tags de l'onglet "languages" et "events"
 const handleClickClosedTag = (name) => {
     setMyLearningLanguages([myLearningLanguages, myLearningLanguages.filter(language => language.name !== name)])
     };
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu
   const history = useHistory();
+
   function handleLogOut() {
-    localStorage.clear();
-    history.push("/home");
+    dispatch(resetInfosUser());
+    history.push("/");
   }
+
   const getLanguages = () => {
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/languages", optionsAxios)
@@ -115,6 +122,7 @@ const handleClickClosedTag = (name) => {
       })
       .catch((error) => console.log("Error recherche users "));
   };
+  
   const getEventsTags = () => {
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/tags", optionsAxios)

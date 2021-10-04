@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 import EventCardSearch from "../../Styledcomponents/EventCardSearch";
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
 import Tag from "../../Styledcomponents/Tag";
+import { resetInfosUser } from "../../../Redux/actions/profil";
 //Import Tools
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 //Import styles
@@ -17,14 +18,18 @@ import Loader from "../../Styledcomponents/Loader";
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { setAllEvents } from "../../../Redux/actions/event";
+
 function SearchEventContainer() {
   const toggleAction = useSelector((state) => state.common.toggleAction);
   const events = useSelector((state) => state.event.events);
+
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allEventTags = useSelector((state) => state.event.eventTags);
+
   console.log("Toute les langues:", allLanguages);
   console.log("Tout les tags:", allEventTags);
   console.log("Tous mes events", events);
+
   const [loading, setLoading] = useState(false);
   const [fieldsSearch, setFieldsSearch] = useState({
     city: "",
@@ -42,12 +47,15 @@ function SearchEventContainer() {
     },
   });
   const dispatch = useDispatch();
+
   // On liste l'ensemble des langues ainsi que l'ensemble des events
   fieldsSearch.languages = allLanguages.map((language) => language.name);
   fieldsSearch.eventTags = allEventTags.map((tag) => tag.name);
+
   console.log("toute les langues:", fieldsSearch.languages);
   console.log("tout les tags:", fieldsSearch.eventTags);
   console.log("Initialisation fieldsSearch: ", fieldsSearch);
+
   const optionsGet = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -57,6 +65,7 @@ function SearchEventContainer() {
     dispatch({ type: RESET_TOGGLE });
     GetAllEvents();
   }, []);
+
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
   function handleFieldSearchChange(e) {
     e.preventDefault();
@@ -87,10 +96,12 @@ function SearchEventContainer() {
       });
     }
   }
+
   function handleClick(event) {
     event.preventDefault();
     dispatch({ type: SET_TOGGLE });
   }
+
   //Fonction permettant de fermer les tags de l'onglet "languages" et "events"
   const handleClickClosedTag = (tag) => {
     setFieldsSearch({
@@ -115,6 +126,7 @@ function SearchEventContainer() {
       fieldsSearch.dateTo.formatISO
     );
   };
+
   // Fonction afin de recuperer l'ensemble des events à partir de l'API
   const GetAllEvents = () => {
     setLoading(true);
@@ -172,10 +184,9 @@ function SearchEventContainer() {
   const history = useHistory();
   // Function permettant de se logout en reinitialisant le localStorage
   function handleLogOut() {
-    localStorage.clear();
-    history.push("/home");
+    dispatch(resetInfosUser());
+    history.push("/");
   }
-  // useEffect permettant de remettre le menu hamburger a false a chaque rendu + Get tous les évènements
 
 return (
     <div className="searchEvent__container">

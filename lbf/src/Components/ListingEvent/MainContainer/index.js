@@ -8,6 +8,7 @@ import { useEffect } from "react"
 import Avatar from "../../Styledcomponents/Avatar"
 import ButtonToggle from "../../Styledcomponents/ButtonToggle"
 import EventCardSearch from "../../Styledcomponents/EventCardSearch"
+import { resetInfosUser } from "../../../Redux/actions/profil"
 
 // import pictures
 import avatarMicheline from "../../../assets/Img/micheline.jpg"
@@ -38,8 +39,8 @@ function ListEventContainer(){
 
     // Fonction permettant de se logout
     function handleLogOut(){
-    localStorage.clear()
-    history.push("/home")
+    dispatch(resetInfosUser());
+    history.push("/")
 }
 
     return(

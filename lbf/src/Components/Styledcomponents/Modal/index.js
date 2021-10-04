@@ -33,7 +33,7 @@ const Modal = ({ openModale }) => {
   console.log("modal:", openModale);
 
   // const [isCheckedLogin, setIsCheckedLogin] = useState(false);
-  const [isCheckedSignUp, setIsCheckedSignUp] = useState(false);
+  // const [isCheckedSignUp, setIsCheckedSignUp] = useState(false);
   const infosUser = useSelector((state) => state.profil.infosUser);
 
   const dispatch = useDispatch();
@@ -143,22 +143,6 @@ const Modal = ({ openModale }) => {
                 classNameInput="modal-container__modal__formlogin__input-login"
                 classNameDiv="div-input-login"
               />
-              {/* <div className="modal-container__modal__formlogin__remember">
-                <input
-                  type="checkbox"
-                  id="remember"
-                  checked={isCheckedLogin}
-                  onChange={(e) => {
-                    setIsCheckedLogin(e.target.checked);
-                  }}
-                />
-                <label
-                  className="modal-container__modal__formlogin__remember--label"
-                  htmlFor="remember"
-                >
-                  Remember Me
-                </label>
-              </div> */}
               <button
                 type="submit"
                 className="modal-container__modal__formlogin__button--login"
