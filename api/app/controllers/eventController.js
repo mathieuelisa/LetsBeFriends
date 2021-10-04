@@ -99,8 +99,9 @@ const eventController = {
                 };
                 delete event.eventLanguage
             }
-
+            console.log(event)
             const result = await event.save();
+            console.log(result)
 
             if (result) {
                 const eventResult = await Event.findOneById(event.id)
