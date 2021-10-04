@@ -124,6 +124,7 @@ function SearchEventContainer() {
       )
       .finally(() => setLoading(false));
   };
+  
 //   const displayTags = (e) => {
 //     console.log("Tes dans la callback displayTags");
 //     if (e.target.value !== null) {

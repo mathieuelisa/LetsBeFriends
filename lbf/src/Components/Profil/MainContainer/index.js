@@ -21,6 +21,7 @@ import {
 } from "../../../Redux/actions/common";
 import { setEventTags } from "../../../Redux/actions/event";
 import { useEffect, useState } from "react";
+
 function ProfilContainer() {
   const [fieldsCreateProfil, setFieldsCreateProfil] = useState({
     firstname: "",
