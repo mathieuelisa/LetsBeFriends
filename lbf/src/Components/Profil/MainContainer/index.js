@@ -109,6 +109,11 @@ console.log('allLanguages : ', allLanguages)
     dispatch({ type: SET_TOGGLE });
   }
 
+//Fonction permettant de fermer les tags de l'onglet "languages" et "events"
+const handleClickClosedTag = (name) => {
+    setMyLearningLanguages([myLearningLanguages, myLearningLanguages.filter(language => language.name !== name)])
+    };
+
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu
 
   const history = useHistory();
@@ -348,7 +353,7 @@ console.log('allLanguages : ', allLanguages)
             </div>
             <div className="searchEvent__container-infosDetails-location__tag-selected">
               {myLearningLanguages.map((language) => (
-                <Tag key={language.id} name={language.name} />
+                <Tag handleClick={(e) => handleClickClosedTag(e)} key={language.id} name={language.name} />
               ))}
             </div>
 
