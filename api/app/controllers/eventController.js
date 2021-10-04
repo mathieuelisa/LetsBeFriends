@@ -1,5 +1,6 @@
 const { Event, Language, Tag } = require(`../models`);
 const addressTranslate = require('../services/positionStack');
+const formatAdress = require('../services/formatAddress')
 
 const eventController = {
 
@@ -57,7 +58,7 @@ const eventController = {
 
         let data = req.body;
         let { eventLanguage, tagId } = data;
-        let address = data.address;
+        let address = formatAdress(data.location, data.zipCode, data.city, data.country)
 
         try {
             // Ici on translate l'adresse en string en coordonées
