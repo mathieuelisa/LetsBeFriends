@@ -109,7 +109,7 @@ function CreateEventContainer() {
             <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
             <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
             <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
-            <NavLink to="/contact" className="header__hamburger-titlePage">CONTACTS</NavLink>
+            <NavLink to="/contact" className="header__hamburger-titlePage">CONTACTSSS</NavLink>
             {localStorage.getItem("user") ? (
               <NavLink
                 onClick={handleLogOut}
