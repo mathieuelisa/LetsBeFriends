@@ -1,6 +1,7 @@
+//Import React components
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//Import React components
+import Tag from "../../Styledcomponents/Tag";
 // import Input from "../../Profil/Input"
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
 // Import styles
@@ -11,15 +12,27 @@ import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
+// import Axios
+import axios from "axios";
+import { number } from "prop-types";
+
+
 function CreateEventContainer() {
+  const allLanguages = useSelector((state)=>state.common.allLanguages)
+  const allEvents = useSelector((state)=>state.event.eventTags)
+  const [selectedLanguages, setSelectedLanguages] = useState([])
+  const [selectedEventTags, setSelectedEventTags] = useState([])
+  const infosUser = useSelector((state)=>state.profil.infosUser)
+
+  console.log("pipipipip", infosUser)
+  
   const [fieldsCreate, setFieldsCreate] = useState({
+    title:"",
     location: "",
     zipCode: "",
     city: "",
     country: "",
     description: "",
-    eventTags: [],
-    language: [],
     participants: "",
     dateFrom: {
       formatISO: "",
@@ -30,8 +43,13 @@ function CreateEventContainer() {
       formatString: "",
     },
   });
+
+  console.log("Languages in Profil Page:", selectedLanguages);
+  console.log("Events in Profil Page: ", selectedEventTags);
+
   function handleFieldsCreateChange(e) {
     e.preventDefault();
+
     if (e.target.name == "dateTo" || e.target.name == "dateFrom") {
       let date = e.target.value;
       let formatDate = new Date(date);
@@ -42,17 +60,13 @@ function CreateEventContainer() {
           formatString: date,
         },
       });
-      console.log("test", fieldsCreate.eventTags);
-    } else if (e.target.name == "eventTags") {
-      setFieldsCreate({
-        ...fieldsCreate,
-        eventTags: [...fieldsCreate.eventTags, e.target.value],
-      });
-    } else if (e.target.name == "language") {
-      setFieldsCreate({
-        ...fieldsCreate,
-        language: [...fieldsCreate.language, e.target.value],
-      });
+
+    } else if (e.target.name == "eventTags" && e.target.value !== null) {
+      const newTagsAdded = allEvents.find((events)=> (events.name  == e.target.value))
+        setSelectedEventTags([...selectedEventTags, newTagsAdded])
+    } else if (e.target.name == "language" && e.target.value !== null) {
+      const newLanguageAdded = allLanguages.find((language) => (language.name == e.target.value))
+        setSelectedLanguages([...selectedLanguages, newLanguageAdded])
     } else {
       setFieldsCreate({
         ...fieldsCreate,
@@ -60,22 +74,88 @@ function CreateEventContainer() {
       });
     }
   }
-  console.log(fieldsCreate);
+
+  // console.log(fieldsCreate);
+
   const dispatch = useDispatch();
   const toggleAction = useSelector((state) => state.common.toggleAction);
+  
   function handleClick(event) {
     event.preventDefault();
-    dispatch({ type: SET_TOGGLE });
+      dispatch({ type: SET_TOGGLE });
   }
+
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu
   useEffect(() => {
     dispatch({ type: RESET_TOGGLE });
   }, []);
+
   const history = useHistory();
+
   function handleLogOut() {
     localStorage.clear();
     history.push("/home");
   }
+
+  const handleClickClosedLanguage = (language) => {
+    setSelectedLanguages(selectedLanguages.filter(selectedlanguage => selectedlanguage.name !== language.name))
+  };
+
+  const handleClickClosedEvents = (events) => {
+    setSelectedEventTags(selectedEventTags.filter(selectedEventTags => selectedEventTags.name !== events.name))
+  };
+
+  const optionsGet = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  };
+
+  const handleSubmitForm = (e) =>{
+    e.preventDefault()
+    createEvent()
+  }
+
+  const createEvent = () => {
+    console.log('Le body de la requete create event : ', {
+    "title": fieldsCreate.title,
+    "starting_date": fieldsCreate.dateFrom.formatISO,
+    "ending_date": fieldsCreate.dateTo.formatISO,
+    "places_left":  Number(fieldsCreate.participants),
+    "description": fieldsCreate.description,
+    "city": fieldsCreate.city,
+    "country": fieldsCreate.country,
+    "zipCode": fieldsCreate.zipCode,
+    "location": fieldsCreate.location,
+    "user_id": infosUser.id,
+    "eventLanguage": selectedLanguages.map(language => language.id),
+    "tagId": selectedEventTags.map(tag => tag.id)
+    
+  })
+    axios
+      .post(
+        "https://lets-be-friend.herokuapp.com/v1/events",
+        {
+          "title": fieldsCreate.title,
+          "city": fieldsCreate.city,
+          "country": fieldsCreate.country,
+          "location": fieldsCreate.location,
+          "user_id": infosUser.id,
+          "zipCode": fieldsCreate.zipCode,
+          "description": fieldsCreate.description,
+          "eventLanguage": selectedLanguages.map(language => language.id),
+          "tagId": selectedEventTags.map(tag => tag.id),
+          "starting_date": fieldsCreate.dateFrom.formatISO,
+          "ending_date": fieldsCreate.dateTo.formatISO,
+          "places_left": Number(fieldsCreate.participants) 
+        },
+        optionsGet
+      )
+      .then((response) => {
+        console.log("API CREATE:", response.data)
+      })
+      .catch((error) => console.log("Error de create event"));
+  };
+
   return (
     <div className="createEvent__container">
       <div
@@ -117,8 +197,26 @@ function CreateEventContainer() {
       </div>
       <div className="mainCreateEvent__container">
         <div className="createEvent__container-infosDetails">
-          <form id="registerForm">
-            <div className="createEvent__container-infosDetails-location" id="div-location">
+          <form id="registerForm" onSubmit={handleSubmitForm}>
+
+          <div
+              className="createEvent__container-infosDetails-location"
+              id="div-location"
+            >
+              <label>Title: </label>
+              <input
+                name="title"
+                className="myInputs"
+                type="text"
+                value={fieldsCreate.title}
+                onChange={handleFieldsCreateChange}
+              />
+            </div>
+
+            <div
+              className="createEvent__container-infosDetails-location"
+              id="div-location"
+            >
               <label>Location: </label>
               <input
                 name="location"
@@ -193,41 +291,47 @@ function CreateEventContainer() {
             </div>
             <div className="createEvent__container-infosDetails-location">
               <label>Theme: </label>
-              <select
-                className="myInputs"
-                name="eventTags"
-                value={fieldsCreate.eventTags}
-                onChange={handleFieldsCreateChange}
-              >
-                <option></option>
-                <option>Soirée BBQ</option>
-                <option>Atelier Cuisine</option>
-                <option>Soirée jeux</option>
-                <option>Sortie culturelle</option>
-                <option>Sortie Cinéma</option>
-                <option>Moment café</option>
-                <option>Couisine</option>
-              </select>
+                <select
+                  className="myInputs"
+                  name="eventTags"
+                  value={fieldsCreate.eventTags}
+                  onChange={handleFieldsCreateChange}
+                >
+                  <option></option>
+                    {allEvents.map((event)=>(
+                        <option>{event.name}</option>
+                    ))}
+                </select>
             </div>
+            
+            <div className="searchEvent__container-infosDetails-location__tag-selected">
+              {selectedEventTags.map((events) => (
+                <Tag handleClick={() =>handleClickClosedEvents(events)} name={events.name} />
+              ))}
+            </div>
+
             <div className="createEvent__container-infosDetails-location">
               <label>Language: </label>
-              <select
-                className="myInputs"
-                name="language"
-                value={fieldsCreate.language}
-                onChange={handleFieldsCreateChange}
-              >
-                <option></option>
-                <option>English</option>
-                <option>French</option>
-                <option>Spanish</option>
-                <option>Japanese</option>
-                <option>Mandarin</option>
-                <option>Russian</option>
-                <option>Italian</option>
-              </select>
+                <select
+                  className="myInputs"
+                  name="language"
+                  value={selectedLanguages}
+                  onChange={handleFieldsCreateChange}
+                >
+                  <option></option>
+                    {allLanguages.map((language)=>(
+                      <option>{language.name}</option>
+                    ))}
+                </select>
             </div>
-            <div className="createEvent__container-infosDetails-location">
+
+            <div className="searchEvent__container-infosDetails-location__tag-selected">
+              {selectedLanguages.map((language) => (
+                <Tag handleClick={() =>handleClickClosedLanguage(language)} name={language.name} />
+              ))}
+            </div>
+
+            <div className="createEvent__container-infosDetails-participants">
               <label>Nombre de participants: </label>
               <select
                 className="createEvent__container-infosDetails-location"
@@ -257,9 +361,6 @@ function CreateEventContainer() {
           </form>
         </div>
         <div className="createEvent__container-eventTitle">
-          <div className="createEvent__container-eventTitle-title">
-            <h1>Journée biking</h1>
-          </div>
           <div className="createEvent__container-eventTitle-img">
             <img className="createEvent-img" src={imgEvent} alt="imageEvent" />
           </div>
