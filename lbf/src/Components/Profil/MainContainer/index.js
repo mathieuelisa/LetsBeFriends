@@ -36,21 +36,18 @@ function ProfilContainer() {
   const infosUser = useSelector((state) => state.profil.infosUser);
   const optionsAxios = useSelector((state) => state.common.optionsAxios);
   const allLanguages = useSelector((state) => state.common.allLanguages);
-  const allLanguagesToLearn = useSelector((state) => state.common.allLanguagesToLearn);
-  const allEventTags = useSelector((state) => state.event.allEventTags);
   const [myLearningLanguages, setMyLearningLanguages] = useState([]);
   const [myLanguagesSpoken, setMyLanguagesSpoken] = useState([]);
  //const [myNewLearningLanguagesSelected, setMyNewLearningLanguagesSelected] = useState(myLearningLanguages);
   //const [myNewLanguagesSpokenSelected, setNewMyLanguagesSpokenSelected] = useState(myLanguagesSpoken);
-  //test
-const initializeMyLanguages = () => {
-    setMyLanguagesSpoken(infosUser.speakingLanguage);
-    setMyLearningLanguages(infosUser.learningLanguage);
-}
-console.log('myLearningLanguages : ', myLearningLanguages)
-console.log('myLanguagesSpoken : ', myLanguagesSpoken)
-console.log('allLanguages : ', allLanguages)
-  console.log("infos page profil: ", infosUser)
+  const initializeMyLanguages = () => {
+      setMyLanguagesSpoken(infosUser.speakingLanguage);
+      setMyLearningLanguages(infosUser.learningLanguage);
+  }
+  console.log('myLearningLanguages : ', myLearningLanguages)
+  //console.log('myLanguagesSpoken : ', myLanguagesSpoken)
+  //console.log('allLanguages : ', allLanguages)
+  //console.log("infos page profil: ", infosUser)
   //console.log("Tous les event Tag : ", allEventTags);
   //  function permettant d'obtenir plusieurs valeurs dans une valeur sous forme de tableau
   function handleFielsProfilChange(e) {
@@ -62,10 +59,10 @@ console.log('allLanguages : ', allLanguages)
       const newLanguageSpokenAdded = allLanguages.find((language) => (language.name == e.target.value))
       setMyLanguagesSpoken([...myLanguagesSpoken, newLanguageSpokenAdded]);
     } else if (e.target.name == "language_toLearn" && e.target.value !== null) {
-      setFieldsCreateProfil({
-        ...fieldsCreateProfil,
-        language_toLearn: [...fieldsCreateProfil.language_toLearn, e.target.value],
-      });
+      // setFieldsCreateProfil({
+      //   ...fieldsCreateProfil,
+      //   language_toLearn: [...fieldsCreateProfil.language_toLearn, e.target.value],
+      // });
       const newLearningLanguageAdded = allLanguages.find((language) => (language.name == e.target.value))
       setMyLearningLanguages([...myLearningLanguages, newLearningLanguageAdded]);
     } else {
@@ -75,12 +72,7 @@ console.log('allLanguages : ', allLanguages)
       });
     }
   }
-  useEffect(() => {
-    dispatch({ type: RESET_TOGGLE });
-    getLanguages();
-    getEventsTags();
-    initializeMyLanguages();
-  }, []);
+
   //console.log(fieldsCreateProfil)
   function handleSubmit(e) {
     e.preventDefault();
@@ -93,10 +85,16 @@ console.log('allLanguages : ', allLanguages)
     //console.log("Tu as cliqué sur le bouton");
     dispatch({ type: SET_TOGGLE });
   }
-//Fonction permettant de fermer les tags de l'onglet "languages" et "events"
-const handleClickClosedTag = (name) => {
-    setMyLearningLanguages([myLearningLanguages, myLearningLanguages.filter(language => language.name !== name)])
-    };
+//Fonction permettant de fermer les tags de l'onglet "learning languages" 
+  const handleClickClosedTagLearningLanguage = (language) => {
+   console.log('newLearningLanguageCanceled : ', language)
+      setMyLearningLanguages(myLearningLanguages.filter(learningLanguage => learningLanguage.name !== language.name))
+  };
+  //Fonction permettant de fermer les tags de l'onglet " languages spoken" 
+  const handleClickClosedTagLanguageSpoken = (language) => {
+    console.log('newLanguageSpokenCanceled : ', language)
+       setMyLanguagesSpoken(myLanguagesSpoken.filter(languageSpoken => languageSpoken.name !== language.name))
+   };
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu
   const history = useHistory();
   function handleLogOut() {
@@ -120,10 +118,6 @@ const handleClickClosedTag = (name) => {
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/tags", optionsAxios)
       .then((response) => {
-        // console.log(
-        //   "Voici la réponse de l API les tous Event Tags :",
-        //   response.data
-        // );
         dispatch(setEventTags(response.data));
       })
       .catch((error) => console.log("Error recherche users "));
@@ -138,7 +132,15 @@ const handleClickClosedTag = (name) => {
   //             //dispatch(setAllEvents(response.data));
   //         }).catch(error => console.log('Error recherche event '));
   //     }
-return (
+
+  useEffect(() => {
+    dispatch({ type: RESET_TOGGLE });
+    getLanguages();
+    getEventsTags();
+    initializeMyLanguages();
+  }, []);
+
+  return (
     <div className="profil__container">
       <div
         className={
@@ -293,7 +295,7 @@ return (
             </div>
             <div className="searchEvent__container-infosDetails-location__tag-selected">
               {myLanguagesSpoken.map((language) => (
-                <Tag key={language.id} name={language.name} />
+                <Tag handleClick={() => handleClickClosedTagLanguageSpoken(language)} key={language.id} name={language.name} />
               ))}
             </div>
             <div className="myInputs-profilPage">
@@ -303,7 +305,7 @@ return (
               <select
                 className="myInputs-profilPage-input"
                 name="language_toLearn"
-                value={fieldsCreateProfil.language_toLearn}
+                value={myLearningLanguages}
                 onChange={handleFielsProfilChange}
               >
                 <option></option>
@@ -321,7 +323,7 @@ return (
             </div>
             <div className="searchEvent__container-infosDetails-location__tag-selected">
               {myLearningLanguages.map((language) => (
-                <Tag handleClick={(e) => handleClickClosedTag(e)} key={language.id} name={language.name} />
+                <Tag handleClick={() => handleClickClosedTagLearningLanguage(language)} key={language.id} name={language.name} />
               ))}
             </div>
             <div
