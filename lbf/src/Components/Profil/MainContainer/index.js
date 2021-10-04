@@ -91,6 +91,7 @@ console.log("infos page profil: ", infosUser)
   }
   const dispatch = useDispatch();
   const toggleAction = useSelector((state) => state.common.toggleAction);
+  
   function handleClick(event) {
     event.preventDefault();
     //console.log("Tu as cliqué sur le bouton");
