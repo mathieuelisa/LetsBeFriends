@@ -12,6 +12,7 @@ const newEventSchema = Joi.object({
     address: Joi.string().required(),
     user_id: Joi.number().required(),
     eventLanguage: Joi.array(),
+    tagId: Joi.array(),
 })
 
 const updateEventSchema = Joi.object({
@@ -25,6 +26,7 @@ const updateEventSchema = Joi.object({
     address: Joi.string(),
     user_id: Joi.number(),
     eventLanguage: Joi.array(),
+    tagId: Joi.array()
 })
 
 module.exports = { newEventSchema, updateEventSchema }

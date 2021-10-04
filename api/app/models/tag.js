@@ -64,9 +64,9 @@ class Tag extends CoreModel {
 
     static async deleteEventHasTag(event_id, tag_id) {
         try {
-            const { rowCount } = await db.query('DELETE FROM "event_has_tag" WHERE event_id=$1 AND tag_id=$2', [event_id, tag_id])
+            const { rowCount } = await db.query('DELETE FROM "event_has_tag" WHERE event_id=$1', [event_id])
 
-            if (rowCount >= 1) return { rowsDeleted: rowCount, event_id, tag_id }
+            if (rowCount >= 1) return { rowsDeleted: rowCount, event_id }
             else return { error: "Relation not found" }
         } catch (error) {
             console.log(error);

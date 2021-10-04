@@ -63,6 +63,7 @@ class Event extends CoreModel {
 				json_agg(
 					DISTINCT jsonb_strip_nulls(
 						jsonb_build_object(
+						'id', tag.id,
 						'name', tag.name,
 						'color', tag.color
 					))
@@ -126,6 +127,7 @@ class Event extends CoreModel {
 				json_agg(
 					DISTINCT jsonb_strip_nulls(
 						jsonb_build_object(
+						'id', tag.id,
 						'name', tag.name,
 						'color', tag.color
 					))
