@@ -5,11 +5,11 @@ const requestController = {
     findAllJoiningRequest: async (req, res, next) => {
         const event_id = req.params.id
         try {
-            const requests = await Request.findAllJoiningRequest(event_id);
-            res.status(200).json({ requests })
+            const result = await Request.findAllJoiningRequest(event_id);
+            res.status(result.error ? 418 : 200).json(result);
         } catch (error) {
             console.log(error);
-            res.status(500).json(error);
+            res.status(400).json(error);
         }
     },
 
@@ -19,10 +19,10 @@ const requestController = {
 
         try {
             const result = await Request.newUserAskEvent(user_id, event_id);
-            res.status(201).json({ msg: "Joining request made succesfully", result })
+            res.status(result.error ? 418 : 200).json(result);
         } catch (error) {
             console.log(error);
-            res.status(500).json(error);
+            res.status(400).json(error);
         }
     },
 
@@ -31,12 +31,12 @@ const requestController = {
         const event_id = req.body.eventId;
 
         try {
-            await Request.deleteUserAskEvent(user_id, event_id);
-            await Request.newUserInEvent(user_id, event_id)
-            res.status(200).json(`Request confirmed, relation between user ${user_id} and EventId ${event_id} deleted in db, User ${user_id} added to the event`);
+            const { rowCount } = await Request.deleteUserAskEvent(user_id, event_id);
+            const result = await Request.newUserInEvent(user_id, event_id)
+            res.status(result.error ? 418 : 200).json({ rowCount, result });
         } catch (error) {
             console.log(error);
-            res.status(500).json(error);
+            res.status(400).json(error);
         }
     },
 
@@ -45,11 +45,11 @@ const requestController = {
         const event_id = req.body.eventId;
 
         try {
-            await Request.deleteUserAskEvent(user_id, event_id);
-            res.status(200).json(`Request refused, relation between user ${user_id} and EventId ${event_id} deleted in db, ${user_id} not added to the event`);
+            const result = await Request.deleteUserAskEvent(user_id, event_id);
+            res.status(result.error ? 418 : 200).json(result);
         } catch (error) {
             console.log(error);
-            res.status(500).json(error);
+            res.status(400).json(error);
         }
     },
 }

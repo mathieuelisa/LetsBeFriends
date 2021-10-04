@@ -1,21 +1,19 @@
 const fetch = require('node-fetch')
 
-const adressTranslate = async(adress)=>{
+const addressTranslate = async(address)=>{
 
-    let dataToReturn = {
-        latitude : '',
-        longitude : ''
-    }
-    const key = 'db2ddc86090e275a86436590ff5f65bb'
-    const response  = await fetch(`http://api.positionstack.com/v1/forward?access_key=${key}&query=${adress}`)
-    const data = await response.json()
-    dataToReturn.longitude = data.data[0].longitude
-    dataToReturn.latitude = data.data[0].latitude
-    return dataToReturn
+
+    const key = '14771fdc2464471897ce2d0bd89b50ca'
+    const response  = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${address}&key=${key}`)
+    const {results} = await response.json()
+    console.log(results[0].geometry)
+    return results[0].geometry
 }
 
+// 130 chemin des amandier, 83560 vinon sur verdon, france
 
 
 
-module.exports = adressTranslate
+
+module.exports = addressTranslate
 
