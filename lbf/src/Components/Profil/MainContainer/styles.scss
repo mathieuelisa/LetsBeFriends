@@ -19,6 +19,7 @@
 
     &-avatars{
         display: flex;
+        align-items: center;
         flex-direction: column;
         height: 60%;
         padding: 40px;
@@ -102,9 +103,14 @@
         background: transparent;
         width: 60%;
         border: none;
-        color: whitesmoke;
         font-family: "Caviar";
+
+        &::placeholder {
+            color: whitesmoke;
+        }
+        
     }
+    
 }
 
 .profil__myButtons{
@@ -126,16 +132,25 @@
     transition: all 1s ease;
 }
 
+#deletedButton{
+    width: 100px;
+    height: 28px;
+    margin: 15px;
+    font-size: 1em;
+}
+
 .myButton-deleted:hover{
     border: 1px solid rgb(192, 28, 28);
     color: rgb(192, 28, 28);
     box-shadow: 0 0 19px 0.2px;
+    background-color: honeydew;
 }
 
 .myButton-validate:hover{
     border: 1px solid rgb(35, 131, 32);
     color: rgb(35, 131, 32);
     box-shadow: 0 0 19px 0.2px;
+    background-color: honeydew;
 }
 
 #profil__description-textArea{

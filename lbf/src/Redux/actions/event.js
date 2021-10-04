@@ -6,3 +6,12 @@ export const setAllEvents = (value) => (
     value,
   }
 );
+
+export const SET_EVENT_TAGS = 'SET_EVENT_TAGS';
+
+export const setEventTags = (value) => (
+   {
+    type: SET_EVENT_TAGS,
+    value,    
+  }
+);
