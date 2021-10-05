@@ -10,11 +10,9 @@ export const initialState = {
   optionsAxios: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
-    allLanguages: [],
-    allLanguagesToLearn: [],
   },
-
-  // myName: ""
+  allLanguages: [],
+  allLanguagesToLearn: [],
 };
 
 const reducer = (state = initialState, action = {}) => {

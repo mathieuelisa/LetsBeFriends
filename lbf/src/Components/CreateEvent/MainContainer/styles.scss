@@ -89,6 +89,12 @@
     backdrop-filter: blur( 5px );
     -webkit-backdrop-filter: blur( 5px );
     border-radius: 10px;
+
+    &-success{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
 }
 
 .myButton{
