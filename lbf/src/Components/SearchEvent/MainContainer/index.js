@@ -234,7 +234,7 @@ return (
         )}
       </div>
       <div className="searchEvent__container-form">
-        <div className="searchEvent__container-searchForm">
+        <div className={openResults ? "searchEvent__container-searchForm" : 'searchEvent__container-searchForm--closed'}>
           <form id="searchForm" onSubmit={handleSubmitForm}>
             <div className="searchEvent__container-infosDetails-location">
               <label>City: </label>
@@ -315,7 +315,7 @@ return (
         </div>
         <ButtonToggleResult name='^' className={openResults ? 'display-result' : 'display-result--open'} handleClick={handleClickResults} />
         {loading && <Loader />}
-        <div className="searchEvent__container-resultsForm">
+        <div className={openResults ? "searchEvent__container-resultsForm" : "searchEvent__container-resultsForm--open"}>
           {/* Cards for searchPage */}
           {events.map((event) => (
             <EventCardSearch key={event.id} {...event} classNameCard="searchEvent__container-resultsForm__searchEvent"/>

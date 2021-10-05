@@ -25,6 +25,17 @@
 
         &-searchForm{
             height: 60%;
+            transition: 0.3s;
+
+            &--closed {
+                text-indent: -99999px;
+                white-space: nowrap;
+                overflow: hidden;
+                border: none;
+                height: 0px;
+                width: 0px;
+                transition: all 1.5s ease;
+            }
         }
 
         &-select{
@@ -41,6 +52,16 @@
             height: 40%;
             overflow-y: scroll;
             scrollbar-color: rebeccapurple green;
+
+            &--open {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 90%;
+                overflow-y: scroll;
+                scrollbar-color: rebeccapurple green;
+                
+            }
 
                 &__searchEvent {
                     display: flex;
@@ -425,9 +446,9 @@
 
 .display-result{
     text-align: center;
-    height: 1em;
-    width: 1em;
-    font-size: 3rem;
+    height: 1.0em;
+    width: 1.0em;
+    font-size: 2rem;
     color: purple;
     font-weight: 700;
     background: rgba( 255, 255, 255, 0.25 );
@@ -446,9 +467,9 @@
 
     &--open {
         text-align: center;
-        height: 1em;
-        width: 1em;
-        font-size: 3rem;
+        height: 1.0em;
+        width: 1.0em;
+        font-size: 2rem;
         color: purple;
         font-weight: 700;
         background: rgba( 255, 255, 255, 0.25 );
@@ -460,6 +481,7 @@
         margin-bottom: 0.5em;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 0.5em;
         transform: rotate(180deg);
 
         &:hover {
