@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 import EventCardSearch from "../../Styledcomponents/EventCardSearch";
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
 import Tag from "../../Styledcomponents/Tag";
+import Button from '../../Styledcomponents/index'
 import { resetInfosUser } from "../../../Redux/actions/profil";
 //Import Tools
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -383,6 +384,10 @@ return (
                 {...event}
                 classNameCard="leaflet-popup-content-wrapper__searchEvent"
               />
+              <div className='leaflet-popup-content-wrapper__searchEvent__description'>
+                {event.description}
+              </div>
+              <Button className='leaflet-popup-content-wrapper__searchEvent__button' name="I would like to Participate"/>
             </Popup>
           </Marker>
         ))}

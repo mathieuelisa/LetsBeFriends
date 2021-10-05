@@ -7,13 +7,12 @@ import avatarMicheline from "../../../assets/Img/micheline.jpg"
 //Tools
 import PropTypes from 'prop-types'
 
-
-function EventCardSearch({classNameCard, infos, pictures, title, titleConfig, language, placesLeft}){
+function EventCardSearch({classNameCard, infos, pictures, title, titleConfig, languages, placesLeft}){
     return(
         <div className={classNameCard}>
             <div className={infos}>
                 <h2 className={titleConfig}>{title}</h2>
-                <p>{language}</p>
+                <p>{languages.map(language => language.name)}</p>
                 <p>{placesLeft} spot left</p>
             </div>
 
@@ -23,7 +22,7 @@ function EventCardSearch({classNameCard, infos, pictures, title, titleConfig, la
                     customImg={"search__container-pictures"}  
                     customPics={avatarMicheline}
                 />
-            </div>     
+            </div>  
         </div>
     )
 }
