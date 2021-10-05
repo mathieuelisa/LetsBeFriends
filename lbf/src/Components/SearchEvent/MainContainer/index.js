@@ -62,6 +62,7 @@ function SearchEventContainer() {
     "Access-Control-Allow-Origin": "*",
   };
   
+  
   useEffect(() => {
     GetAllEvents();
     dispatch({ type: RESET_TOGGLE });
@@ -120,6 +121,10 @@ function SearchEventContainer() {
   // Fonction permettant la soumission du formulaire
   const handleSubmitForm = (e) => {
     e.preventDefault();
+
+    if(fieldsSearch.selectedTags !== null && fieldsSearch.selectedLanguages !== null && fieldsSearch.dateFrom.formatISO !== null && fieldsSearch.dateTo.formatISO !== null) {
+      GetAllEvents();
+    }
     searchEvent(
       fieldsSearch.selectedTags,
       fieldsSearch.selectedLanguages,
@@ -142,6 +147,7 @@ function SearchEventContainer() {
       )
       .finally(() => setLoading(false));
   };
+  
   
 //   const displayTags = (e) => {
 //     console.log("Tes dans la callback displayTags");
