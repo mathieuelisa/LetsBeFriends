@@ -39,6 +39,7 @@ function ProfilContainer() {
   
   const optionsAxios = useSelector((state) => state.common.optionsAxios);
   const allLanguages = useSelector((state) => state.common.allLanguages);
+  
   const [myLearningLanguages, setMyLearningLanguages] = useState([]);
   const [myLanguagesSpoken, setMyLanguagesSpoken] = useState([]);
  //const [myNewLearningLanguagesSelected, setMyNewLearningLanguagesSelected] = useState(myLearningLanguages);
@@ -48,6 +49,7 @@ function ProfilContainer() {
       setMyLearningLanguages(infosUser.learningLanguage);
   }
   console.log('user Infos : ', infosUser)
+
   console.log('myLearningLanguages : ', myLearningLanguages)
   //console.log('myLanguagesSpoken : ', myLanguagesSpoken)
   //console.log('allLanguages : ', allLanguages)
@@ -90,6 +92,7 @@ function ProfilContainer() {
     updateProfil();
   }
   const dispatch = useDispatch();
+
   const toggleAction = useSelector((state) => state.common.toggleAction);
   
   function handleClick(event) {
@@ -169,13 +172,6 @@ function ProfilContainer() {
               //dispatch(setAllEvents(response.data));
           }).catch(error => console.log('Error recherche event '));
       }
-
-  useEffect(() => {
-    dispatch({ type: RESET_TOGGLE });
-    getLanguages();
-    getEventsTags();
-    initializeMyLanguages();
-  }, []);
 
   return (
     <div className="profil__container">
