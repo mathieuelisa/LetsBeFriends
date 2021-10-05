@@ -21,13 +21,34 @@
     from(rgb(60, 151, 83)),
     to(rgba(240, 17, 17, 0.651))
   );
+
+  &-image{
+    width: 370px;
+  }
+
+  &-image1{
+
+    width: 500px;
+
+    &-title{
+      width: 100%;
+    }
+  }
+
+  &-image2{
+    width: 80vw;
+  }
+
+  &-image3{
+    display: none;
+  }
 }
 
 .main__container-text {
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 200px;
+  top: 160px;
   opacity: 0.9;
 }
 
@@ -54,6 +75,18 @@
 .main__container--secondTitle {
   color: whitesmoke;
   // font-family: "Surfing2";
+}
+
+@media screen and (max-width: 1000px){
+  .main__container-image2{
+    display: none;
+  }
+
+  .main__container-image3{
+    display: block;
+    width: 80vw;
+    margin: 0 auto;
+  }
 }
 
 @media screen and (max-width: 700px) {
