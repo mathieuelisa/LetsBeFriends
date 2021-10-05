@@ -135,6 +135,7 @@ function SearchEventContainer() {
 
   // Fonction afin de recuperer l'ensemble des events à partir de l'API
   const GetAllEvents = () => {
+    console.log('Le loading dans GetAllEvents est à : ', loading )
     setLoading(true);
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/events", optionsGet)
@@ -374,7 +375,7 @@ return (
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {events.map((event, i) => (
+        {events.map((event) => (
           <Marker key={event.id} position={[event.latitude, event.longitude]}>
             <Popup>
               <EventCardSearch
