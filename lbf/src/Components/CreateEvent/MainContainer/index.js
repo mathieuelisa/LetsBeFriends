@@ -20,8 +20,14 @@ import axios from "axios";
 function CreateEventContainer() {
   const allLanguages = useSelector((state)=>state.common.allLanguages)
   const allEvents = useSelector((state)=>state.event.eventTags)
+
   const [selectedLanguages, setSelectedLanguages] = useState([])
   const [selectedEventTags, setSelectedEventTags] = useState([])
+  // Message a la suite de la creation d'un event
+  const [messageAfterSubmitted, setMessageAfterSubmitted] = useState("")
+  // Condition en fonction de la creation et la soumission d"un event
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
   const infosUser = useSelector((state)=>state.profil.infosUser)
 
   console.log("pipipipip", infosUser)
@@ -113,6 +119,8 @@ function CreateEventContainer() {
   const handleSubmitForm = (e) =>{
     e.preventDefault()
     createEvent()
+    setMessageAfterSubmitted("Thank you your event has been created")
+    setIsSubmitted(true)
   }
 
   const createEvent = () => {
@@ -158,18 +166,9 @@ function CreateEventContainer() {
 
   return (
     <div className="createEvent__container">
-      <div
-        className={
-          toggleAction
-            ? "header__navbar__settings-open"
-            : "header__navbar__settings"
-        }
-      >
-        <ButtonToggle
-          className="settings__container--toggle"
-          name="="
-          handleClick={handleClick}
-        />
+
+    <div className={toggleAction? "header__navbar__settings-open": "header__navbar__settings"}>
+        <ButtonToggle className="settings__container--toggle" name="=" handleClick={handleClick}/>
         {toggleAction ? (
           <div className="header__hamburger">
             <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
@@ -178,31 +177,22 @@ function CreateEventContainer() {
             <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
             <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
             <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
-            {localStorage.getItem("user") ? (
-              <NavLink
-                onClick={handleLogOut}
-                exact
-                to="/"
-                className="header__hamburger-disconnect"
-              >
-                DISCONNECT
-              </NavLink>
-            ) : (
-              ""
-            )}
+              {localStorage.getItem("user") ? (
+                <NavLink onClick={handleLogOut} exact to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>
+              ) : ("")}
           </div>
-        ) : (
-          ""
-        )}
+        ) : ("")}
+
       </div>
       <div className="mainCreateEvent__container">
+        {/* {message} */}
+
+        {!isSubmitted ? 
+        <>
         <div className="createEvent__container-infosDetails">
           <form id="registerForm" onSubmit={handleSubmitForm}>
 
-          <div
-              className="createEvent__container-infosDetails-location"
-              id="div-location"
-            >
+          <div className="createEvent__container-infosDetails-location" id="div-location">
               <label>Title: </label>
               <input
                 name="title"
@@ -358,18 +348,32 @@ function CreateEventContainer() {
                 onChange={handleFieldsCreateChange}
               />
             </div>
+
           </form>
+
+        
         </div>
+          
         <div className="createEvent__container-eventTitle">
           <div className="createEvent__container-eventTitle-img">
             <img className="createEvent-img" src={imgEvent} alt="imageEvent" />
           </div>
+          
           <div className="createEvent__container-eventTitle-button">
-            <button type="submit" form="registerForm" className="myButton">
-              LETS GO
-            </button>
+            <button type="submit" form="registerForm" className="myButton">LETS GO</button>
           </div>
         </div>
+          </>
+           : 
+        <>
+            {/* <div className="createEvent__container-success"> */}
+              <div className="mainCreateEvent__container-success">
+                {messageAfterSubmitted}
+              </div>
+            {/* </div>  */}
+
+        </>
+        }
       </div>
     </div>
   );

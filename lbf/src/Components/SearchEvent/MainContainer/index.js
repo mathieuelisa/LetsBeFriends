@@ -46,26 +46,28 @@ function SearchEventContainer() {
       formatString: "",
     },
   });
-  const dispatch = useDispatch();
 
+
+  const dispatch = useDispatch();
+  
   // On liste l'ensemble des langues ainsi que l'ensemble des events
   fieldsSearch.languages = allLanguages.map((language) => language.name);
   fieldsSearch.eventTags = allEventTags.map((tag) => tag.name);
-
+  
   console.log("toute les langues:", fieldsSearch.languages);
   console.log("tout les tags:", fieldsSearch.eventTags);
   console.log("Initialisation fieldsSearch: ", fieldsSearch);
-
+  
   const optionsGet = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
   };
-
+  
   useEffect(() => {
-    dispatch({ type: RESET_TOGGLE });
     GetAllEvents();
+    dispatch({ type: RESET_TOGGLE });
   }, []);
-
+  
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
   function handleFieldSearchChange(e) {
     e.preventDefault();
