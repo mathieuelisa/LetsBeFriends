@@ -23,7 +23,6 @@ const Header = ({ openModalLogin, openModalSignup }) => {
 
   function handleClick(event) {
     event.preventDefault();
-    console.log("Tu as cliqué sur le bouton");
     dispatch({ type: SET_TOGGLE });
   }
 

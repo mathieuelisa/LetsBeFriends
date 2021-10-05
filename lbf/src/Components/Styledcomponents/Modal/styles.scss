@@ -43,7 +43,7 @@
             &__input-login {
                 width: 100%;
                 border: transparent;
-                //border-bottom: 2px solid red;
+                font-size: 1em;
                 padding: 10px;
                 border-bottom: 1px solid #E66630 ;
                 background-color: rgba($color: #fff, $alpha: 0.0); ;
@@ -94,7 +94,7 @@
                     &--firstname, &--lastname {
                         width: 70%;
                         border: transparent;
-                        //border-bottom: 2px solid red;
+                        font-size: 1em;
                         padding: 10px;
                         border-bottom: 1px solid #E66630 ;
                         background-color: rgba($color: #fff, $alpha: 0.0); ;

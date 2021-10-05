@@ -41,8 +41,6 @@
             height: 40%;
             overflow-y: scroll;
             scrollbar-color: rebeccapurple green;
-        
-        
 
                 &__searchEvent {
                     display: flex;
@@ -60,16 +58,13 @@
                     color: whitesmoke;
                     padding: 10px;
                     margin-bottom: 0.8rem;
-
-            
                 
                     &-infos{
                         display: flex;
                         justify-content: space-between;
                         flex-direction: column;
                         width: 60%;
-                        padding: 13px;
-                        
+                        padding: 13px;                     
                     }
                 
                     &-pictures{
@@ -94,7 +89,6 @@
             &__tag-selected{
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: space-around;
             }
     }
 
@@ -236,7 +230,6 @@
             flex-direction: column;
             width: 60%;
             padding: 13px;
-
         }
     
         &-pictures{
@@ -305,20 +298,93 @@
 
 // BARRE DE RECHERCHE LEAFLET
 
+.leaflet-left{
+    display: none;
+}
+
+.leaflet-bar a{
+    border: none;
+}
+
+.results.active{
+    cursor: pointer;
+}
+
+.leaflet-popup-content p{
+    margin: 0;
+    color: rgb(177, 37, 142);
+    font-style: italic;
+}
+
+.leaflet-popup-content-wrapper__searchEvent__description{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.leaflet-popup-content-wrapper__searchEvent__button{
+    display: flex;
+    justify-content: end;
+    color: #f5f5f5;
+    text-decoration: none;
+}
+
+.leaflet-container a{
+    color: whitesmoke;
+    transition: all 0.4s ease-in;
+
+    &:hover{
+        color:rgb(75, 75, 204)
+    }
+}
+
+.leaflet-popup-content-wrapper__searchEvent h2{
+    width: 150px;
+}
+
+.leaflet-popup-content p:last-child{
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+
+
+.leaflet-touch .leaflet-bar a {
+    border: none;
+}
+
+.leaflet-touch .leaflet-bar a:first-child,
+.leaflet-touch .leaflet-bar a:last-child {
+    background: transparent;
+    color: whitesmoke;
+    transition: all 0.3s ease-in;
+    border: none;
+
+    &:hover{
+        color: orange;
+    }
+}
+
+.leaflet-popup-content{
+    width: 300px;
+}
+
+.glass{
+    width: 300px;
+}
+
  .leaflet-left, .leaflet-top {
     display: flex;
+    width: 400px;
     font-family: 'Caviar';
-    font-weight: 700;
+    // background: rgba(247, 113, 3, 0.9);
     background: linear-gradient(to top,rgba(247, 11, 3, 0.37), rgba(247, 80, 3, 0.37),rgba(247, 113, 3, 0.37));
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 7.5px );
     -webkit-backdrop-filter: blur( 7.5px );
-    border-radius: 10px;
+    border-radius: 0px 5px 5px 0;
     //border: 1px solid rgba( 255, 255, 255, 0.18 );
     color: whitesmoke;
     border-color: whitesmoke;
-    padding: 30px;
-    margin: 0;
 
     .geosearch, .leaflet-bar, .leaflet-control, .leaflet-control-geosearch, .leaflet-geosearch-button {
         border: none;
@@ -326,9 +392,9 @@
     }
     input {
         font-family: 'Caviar';
-        border-radius: 10px;
+        border-radius: 5px;
         padding: 10px;
-        font-size: 1.0rem;
+        font-size: 1em;
         font-weight: 700;;
         background-color: rgba($color: #fff, $alpha: 0.0);
         border: 1px solid whitesmoke;
@@ -340,10 +406,17 @@
         }
     }
 
-    .reset {
-        width: 30px;
-        height: 30px;
-        background-color: rgba($color: #fff, $alpha: 0.0);
+    .reset{
+        font-size: 2em;
+        background-color: transparent;
+        color: whitesmoke;
+        border: none;
+
+        &:hover{
+            color: orange;
+            background: transparent;
+        }
+
     }
 }
 .glass {

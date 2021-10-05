@@ -11,7 +11,8 @@ import Button from '../../Styledcomponents/index'
 import { resetInfosUser } from "../../../Redux/actions/profil";
 //Import Tools
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import { GeoSearchControl, MapBoxProvider, OpenStreetMapProvider } from 'leaflet-geosearch'
+import { GeoSearchControl, MapBoxProvider, OpenStreetMapProvider } from 'leaflet-geosearch';
+
 //Import styles
 import "./styles.scss";
 // Import axios
@@ -29,6 +30,7 @@ function SearchEventContainer() {
   const events = useSelector((state) => state.event.events);
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allEventTags = useSelector((state) => state.event.eventTags);
+
   const [loading, setLoading] = useState(false);
   const [openResults, setOpenResults] = useState(false)
   const [fieldsSearch, setFieldsSearch] = useState({
@@ -63,17 +65,19 @@ function SearchEventContainer() {
     }, []);
     return null;
   };
+
   const dispatch = useDispatch();
   
   //Fonctionnalité, Cliquez pour rediriger vers la carte
   //const eventRedirection = useRef(null);
+
   // On liste l'ensemble des langues ainsi que l'ensemble des events
   fieldsSearch.languages = allLanguages.map((language) => language.name);
   fieldsSearch.eventTags = allEventTags.map((tag) => tag.name);
   
-  console.log("toute les langues:", fieldsSearch.languages);
-  console.log("tout les tags:", fieldsSearch.eventTags);
-  console.log("Initialisation fieldsSearch: ", fieldsSearch);
+  // console.log("toute les langues:", fieldsSearch.languages);
+  // console.log("tout les tags:", fieldsSearch.eventTags);
+  // console.log("Initialisation fieldsSearch: ", fieldsSearch);
   
   const optionsGet = {
     "Content-Type": "application/json",
@@ -147,6 +151,7 @@ function SearchEventContainer() {
       ],
     });
   };
+
   // Fonction permettant la soumission du formulaire
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -161,10 +166,6 @@ function SearchEventContainer() {
       fieldsSearch.dateTo.formatISO
     );
   };
-
-  // const handleClickRedirection = (event) => {
-  //   console.log('Vous avez cliqué sur l évènement n° : ', event.id )
-  // }
 
   // Fonction afin de recuperer l'ensemble des events à partir de l'API
   const GetAllEvents = () => {
@@ -182,25 +183,6 @@ function SearchEventContainer() {
       .finally(() => setLoading(false));
   };
   
-  
-//   const displayTags = (e) => {
-//     console.log("Tes dans la callback displayTags");
-//     if (e.target.value !== null) {
-//       setFieldsSearch({
-//         ...fieldsSearch,
-//         selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
-//       });
-//     }
-//   };
-  //   const displayEvents = (e) => {
-  //     console.log("Tes dans la callback displayEventsTags");
-  //     if (e.target.value !== null) {
-  //       setFieldsSearch({
-  //         ...fieldsSearch,
-  //         selectedTags: [...fieldsSearch.selectedTags, e.target.value],
-  //       })
-  //     }
-  //   };
   const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
     axios
       .post(
@@ -231,47 +213,18 @@ function SearchEventContainer() {
 
 return (
     <div className="searchEvent__container">
-      <div
-        className={
-          toggleAction
-            ? "header__navbar__settings-open"
-            : "header__navbar__settings"
-        }
-      >
-        <ButtonToggle
-          className="settings__container--toggle"
-          name="="
-          handleClick={handleClick}
-        />
+      <div className={toggleAction? "header__navbar__settings-open": "header__navbar__settings"}>
+        <ButtonToggle className="settings__container--toggle" name="=" handleClick={handleClick}/>
         {toggleAction ? (
           <div className="header__hamburger">
-            <NavLink to="/" exact className="header__hamburger-titlePage">
-              HOME
-            </NavLink>
-            <NavLink to="/searchEvent" className="header__hamburger-titlePage">
-              SEARCH EVENT
-            </NavLink>
-            <NavLink to="/createEvent" className="header__hamburger-titlePage">
-              CREATE EVENT
-            </NavLink>
-            <NavLink to="/listEvent" className="header__hamburger-titlePage">
-              MY EVENTS
-            </NavLink>
-            <NavLink to="/profil" className="header__hamburger-titlePage">
-              PROFIL
-            </NavLink>
-            <NavLink to="/contact" className="header__hamburger-titlePage">
-              CONTACT
-            </NavLink>
+            <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+            <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
+            <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
+            <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
+            <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
+            <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
             {localStorage.getItem("user") ? (
-              <NavLink
-                onClick={handleLogOut}
-                exact
-                to="/"
-                className="header__hamburger-disconnect"
-              >
-                DISCONNECT
-              </NavLink>
+              <NavLink onClick={handleLogOut} exact to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>
             ) : (
               ""
             )}
@@ -305,14 +258,6 @@ return (
                 {fieldsSearch.eventTags?.map((tag) => (
                   <option>{tag}</option>
                 ))}
-                {/*
-                                    <option id='Soirée BBQ'>Soirée BBQ</option>
-                                    <option id='Atelier Cuisine'>Atelier Cuisine</option>
-                                    <option id='Soirée jeux'>Soirée jeux</option>
-                                    <option id='Sortie culturelle'>Sortie culturelle</option>
-                                    <option id='Sortie Cinéma'>Sortie Cinéma</option>
-                                    <option id='Moment café'>Moment café</option>
-                                    <option id='Couisine'>Couisine</option>   */}
               </select>
             </div>
             <div className="searchEvent__container-infosDetails-location__tag-selected">
@@ -354,24 +299,6 @@ return (
                 {fieldsSearch.languages?.map((language) => (
                   <option>{language}</option>
                 ))}
-                {/* <option>English</option>
-                        <div className="searchEvent__container-infosDetails-location">
-                            <label>languages: </label>
-                            <select
-                                className="searchEvent__container-select"
-                                name='languages'
-                                value={fieldsSearch.languages}
-                                onChange={handleFieldSearchChange}
-                            >
-                                <option></option>
-                                {fieldsSearch.languages?.map(language => <option>{language}</option>)}
-                                {/* <option>English</option>
-                                    <option>French</option>
-                                    <option>Spanish</option>
-                                    <option>Japanese</option>
-                                    <option>Mandarin</option>
-                                    <option>Russian</option>
-                                    <option>Italian</option>   */}
               </select>
             </div>
             <div className="searchEvent__container-infosDetails-location__tag-selected">
@@ -391,21 +318,12 @@ return (
         <div className="searchEvent__container-resultsForm">
           {/* Cards for searchPage */}
           {events.map((event) => (
-            <EventCardSearch
-              key={event.id}
-              {...event}
-              classNameCard="searchEvent__container-resultsForm__searchEvent"
-            />
+            <EventCardSearch key={event.id} {...event} classNameCard="searchEvent__container-resultsForm__searchEvent"/>
           ))}
         </div>
       </div>
       {/* Component Leaflet  */}
-      <MapContainer
-        center={[48.85837, 2.294481]}
-        zoom={6}
-        scrollWheelZoom={true}
-      >
-
+      <MapContainer center={[48.85837, 2.294481]} zoom={6} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -414,14 +332,8 @@ return (
         {events.map((event) => (
           <Marker key={event.id} position={[event.latitude, event.longitude]}>
             <Popup>
-              <EventCardSearch
-                key={event.id}
-                {...event}
-                classNameCard="leaflet-popup-content-wrapper__searchEvent"
-              />
-              <div className='leaflet-popup-content-wrapper__searchEvent__description'>
-                {event.description}
-              </div>
+              <EventCardSearch key={event.id} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
+              <div className='leaflet-popup-content-wrapper__searchEvent__description'>{event.description}</div>
               <Button className='leaflet-popup-content-wrapper__searchEvent__button' name="I would like to Participate"/>
             </Popup>
           </Marker>
