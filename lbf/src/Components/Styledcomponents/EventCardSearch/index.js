@@ -7,9 +7,9 @@ import avatarMicheline from "../../../assets/Img/micheline.jpg"
 //Tools
 import PropTypes from 'prop-types'
 
-function EventCardSearch({classNameCard, infos, pictures, title, titleConfig, languages, placesLeft}){
+function EventCardSearch({classNameCard, infos, pictures, title, titleConfig, languages, placesLeft, handleClick}){
     return(
-        <div className={classNameCard}>
+        <div onClick={handleClick} className={classNameCard}>
             <div className={infos}>
                 <h2 className={titleConfig}>{title}</h2>
                 <p>{languages.map(language => language.name)}</p>

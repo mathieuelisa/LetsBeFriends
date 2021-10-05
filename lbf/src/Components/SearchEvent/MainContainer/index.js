@@ -1,4 +1,5 @@
-import { useEffect, useState, React } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState, React, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
@@ -9,7 +10,8 @@ import Tag from "../../Styledcomponents/Tag";
 import Button from '../../Styledcomponents/index'
 import { resetInfosUser } from "../../../Redux/actions/profil";
 //Import Tools
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { GeoSearchControl, MapBoxProvider, OpenStreetMapProvider } from 'leaflet-geosearch'
 //Import styles
 import "./styles.scss";
 // Import axios
@@ -19,18 +21,13 @@ import Loader from "../../Styledcomponents/Loader";
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { setAllEvents } from "../../../Redux/actions/event";
+import { Map } from "leaflet";
 
 function SearchEventContainer() {
   const toggleAction = useSelector((state) => state.common.toggleAction);
   const events = useSelector((state) => state.event.events);
-
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allEventTags = useSelector((state) => state.event.eventTags);
-
-  console.log("Toute les langues:", allLanguages);
-  console.log("Tout les tags:", allEventTags);
-  console.log("Tous mes events", events);
-
   const [loading, setLoading] = useState(false);
   const [fieldsSearch, setFieldsSearch] = useState({
     city: "",
@@ -47,9 +44,32 @@ function SearchEventContainer() {
       formatString: "",
     },
   });
+  const provider = new OpenStreetMapProvider();
+  const apiKey = '';
 
+
+
+
+  const SearchField = () => {
+    const map = useMap();
+    const searchControl = new GeoSearchControl({
+      provider: provider,
+      autoComplete: true,
+    }).addTo(map)
+
+    
+    useEffect(() => {
+      map.addControl(searchControl);
+      return () => {
+        map.removeControl(searchControl);
+      }
+    }, []);
+    return null;
+  };
   const dispatch = useDispatch();
   
+  //Fonctionnalité, Cliquez pour rediriger vers la carte
+  const eventRedirection = useRef(null);
   // On liste l'ensemble des langues ainsi que l'ensemble des events
   fieldsSearch.languages = allLanguages.map((language) => language.name);
   fieldsSearch.eventTags = allEventTags.map((tag) => tag.name);
@@ -92,6 +112,12 @@ function SearchEventContainer() {
         ...fieldsSearch,
         selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
       });
+    }  else if (e.target.name == "city" && e.target.value !== null) {
+      setFieldsSearch({
+        ...fieldsSearch,
+        [e.target.name]: e.target.value,
+      });
+
     } else {
       setFieldsSearch({
         ...fieldsSearch,
@@ -133,6 +159,10 @@ function SearchEventContainer() {
       fieldsSearch.dateTo.formatISO
     );
   };
+
+  const handleClickRedirection = (event) => {
+    console.log('Vous avez cliqué sur l évènement n° : ', event.id )
+  }
 
   // Fonction afin de recuperer l'ensemble des events à partir de l'API
   const GetAllEvents = () => {
@@ -362,6 +392,7 @@ return (
               key={event.id}
               {...event}
               classNameCard="searchEvent__container-resultsForm__searchEvent"
+              handleClick={handleClickRedirection(event)}
             />
           ))}
         </div>
@@ -372,10 +403,12 @@ return (
         zoom={13}
         scrollWheelZoom={true}
       >
+
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+         <SearchField value={fieldsSearch.city} name= 'city'/>
         {events.map((event) => (
           <Marker key={event.id} position={[event.latitude, event.longitude]}>
             <Popup>
