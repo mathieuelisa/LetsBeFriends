@@ -42,8 +42,13 @@ function ProfilContainer() {
   
   const [myLearningLanguages, setMyLearningLanguages] = useState([]);
   const [myLanguagesSpoken, setMyLanguagesSpoken] = useState([]);
- //const [myNewLearningLanguagesSelected, setMyNewLearningLanguagesSelected] = useState(myLearningLanguages);
-  //const [myNewLanguagesSpokenSelected, setNewMyLanguagesSpokenSelected] = useState(myLanguagesSpoken);
+
+  // Message a la suite de la creation d'un event
+  const [messageAfterSubmitted, setMessageAfterSubmitted] = useState("")
+  // Condition en fonction de la creation et la soumission d"un event
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+
   const initializeMyLanguages = () => {
       setMyLanguagesSpoken(infosUser.speakingLanguage);
       setMyLearningLanguages(infosUser.learningLanguage);
@@ -90,6 +95,8 @@ function ProfilContainer() {
   function handleSubmit(e) {
     e.preventDefault();
     updateProfil();
+    setMessageAfterSubmitted("Your profil have been updated")
+    setIsSubmitted(true)
   }
   const dispatch = useDispatch();
 
@@ -175,56 +182,28 @@ function ProfilContainer() {
 
   return (
     <div className="profil__container">
-      <div
-        className={
-          toggleAction
-            ? "header__navbar__settings-open"
-            : "header__navbar__settings"
-        }
-      >
-        <ButtonToggle
-          className="settings__container--toggle"
-          name="="
-          handleClick={handleClick}
-        />
+
+      <div className={toggleAction? "header__navbar__settings-open": "header__navbar__settings"}>
+        <ButtonToggle className="settings__container--toggle" name="=" handleClick={handleClick}/>
         {toggleAction ? (
           <div className="header__hamburger">
-            <NavLink to="/" exact className="header__hamburger-titlePage">
-              HOME
-            </NavLink>
-            <NavLink to="/searchEvent" className="header__hamburger-titlePage">
-              SEARCH EVENT
-            </NavLink>
-            <NavLink to="/createEvent" className="header__hamburger-titlePage">
-              CREATE EVENT
-            </NavLink>
-            <NavLink to="/listEvent" className="header__hamburger-titlePage">
-              MY EVENTS
-            </NavLink>
-            <NavLink to="/profil" className="header__hamburger-titlePage">
-              PROFIL
-            </NavLink>
-            <NavLink to="/contact" className="header__hamburger-titlePage">
-              CONTACT
-            </NavLink>
+            <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+            <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
+            <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
+            <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
+            <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
+            <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
             {localStorage.getItem("user") ? (
-              <NavLink
-                onClick={handleLogOut}
-                exact
-                to="/"
-                className="header__hamburger-disconnect"
-              >
-                DISCONNECT
-              </NavLink>
-            ) : (
-              ""
-            )}
+              <NavLink onClick={handleLogOut} exact to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>
+            ) : ("")}
           </div>
         ) : (
           ""
         )}
       </div>
       <div className="mainProfil__container">
+      {!isSubmitted ? 
+        <>
         <div className="profil__container-avatars">
           <Avatar
             customDiv={"profil__container-avatar"}
@@ -242,11 +221,7 @@ function ProfilContainer() {
             DELETE MY ACCOUNT
           </button>
         </div>
-        <form
-          className="profil__container-data"
-          id="myProfilForm"
-          onSubmit={handleSubmit}
-        >
+        <form className="profil__container-data" id="myProfilForm" onSubmit={handleSubmit}>
           <div className="profil__container-data">
             <div className="myInputs-profilPage">
               <label className="myInputs-ProfilPage-label">Firstname:</label>
@@ -382,6 +357,14 @@ function ProfilContainer() {
             </div>
           </div>
         </form>
+        </>
+        :
+        <>
+            <div className="mainCreateEvent__container-success">
+                {messageAfterSubmitted}
+            </div>
+        </>
+        }
       </div>
     </div>
   );

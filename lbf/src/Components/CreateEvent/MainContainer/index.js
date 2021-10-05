@@ -366,12 +366,9 @@ function CreateEventContainer() {
           </>
            : 
         <>
-            {/* <div className="createEvent__container-success"> */}
               <div className="mainCreateEvent__container-success">
                 {messageAfterSubmitted}
               </div>
-            {/* </div>  */}
-
         </>
         }
       </div>
