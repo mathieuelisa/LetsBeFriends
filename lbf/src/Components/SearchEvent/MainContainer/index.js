@@ -22,6 +22,7 @@ import Loader from "../../Styledcomponents/Loader";
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { setAllEvents } from "../../../Redux/actions/event";
 import { Map } from "leaflet";
+import ButtonToggleResult from "../../Styledcomponents/ButtonToggleResult";
 
 function SearchEventContainer() {
   const toggleAction = useSelector((state) => state.common.toggleAction);
@@ -29,6 +30,7 @@ function SearchEventContainer() {
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allEventTags = useSelector((state) => state.event.eventTags);
   const [loading, setLoading] = useState(false);
+  const [openResults, setOpenResults] = useState(false)
   const [fieldsSearch, setFieldsSearch] = useState({
     city: "",
     eventTags: [],
@@ -45,12 +47,7 @@ function SearchEventContainer() {
     },
   });
   const provider = new OpenStreetMapProvider();
-  const apiKey = '';
-
-
-
-
-  const SearchField = () => {
+    const SearchField = () => {
     const map = useMap();
     const searchControl = new GeoSearchControl({
       provider: provider,
@@ -69,7 +66,7 @@ function SearchEventContainer() {
   const dispatch = useDispatch();
   
   //Fonctionnalité, Cliquez pour rediriger vers la carte
-  const eventRedirection = useRef(null);
+  //const eventRedirection = useRef(null);
   // On liste l'ensemble des langues ainsi que l'ensemble des events
   fieldsSearch.languages = allLanguages.map((language) => language.name);
   fieldsSearch.eventTags = allEventTags.map((tag) => tag.name);
@@ -131,6 +128,11 @@ function SearchEventContainer() {
     dispatch({ type: SET_TOGGLE });
   }
 
+  const handleClickResults = (e) => {
+    e.preventDefault();
+    setOpenResults(!openResults)
+  }
+
   //Fonction permettant de fermer les tags de l'onglet "languages" et "events"
   const handleClickClosedTag = (tag) => {
     setFieldsSearch({
@@ -160,9 +162,9 @@ function SearchEventContainer() {
     );
   };
 
-  const handleClickRedirection = (event) => {
-    console.log('Vous avez cliqué sur l évènement n° : ', event.id )
-  }
+  // const handleClickRedirection = (event) => {
+  //   console.log('Vous avez cliqué sur l évènement n° : ', event.id )
+  // }
 
   // Fonction afin de recuperer l'ensemble des events à partir de l'API
   const GetAllEvents = () => {
@@ -384,6 +386,7 @@ return (
             </button>
           </div>
         </div>
+        <ButtonToggleResult name='^' className={openResults ? 'display-result' : 'display-result--open'} handleClick={handleClickResults} />
         {loading && <Loader />}
         <div className="searchEvent__container-resultsForm">
           {/* Cards for searchPage */}
@@ -392,7 +395,6 @@ return (
               key={event.id}
               {...event}
               classNameCard="searchEvent__container-resultsForm__searchEvent"
-              handleClick={handleClickRedirection(event)}
             />
           ))}
         </div>
@@ -400,7 +402,7 @@ return (
       {/* Component Leaflet  */}
       <MapContainer
         center={[48.85837, 2.294481]}
-        zoom={13}
+        zoom={6}
         scrollWheelZoom={true}
       >
 

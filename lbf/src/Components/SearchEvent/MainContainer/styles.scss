@@ -302,9 +302,9 @@
     }
 }
 
-// .geosearch, .leaflet-bar, .leaflet-control, .leaflet-control-geosearch, .leaflet-geosearch-button {
-//     background-color: red;
-// }
+
+// BARRE DE RECHERCHE LEAFLET
+
  .leaflet-left, .leaflet-top {
     display: flex;
     font-family: 'Caviar';
@@ -348,4 +348,49 @@
 }
 .glass {
     background-color: linear-gradient(to top,rgba(247, 11, 3, 0.37), rgba(247, 80, 3, 0.37),rgba(247, 113, 3, 0.37));
+}
+
+.display-result{
+    text-align: center;
+    height: 1em;
+    width: 1em;
+    font-size: 3rem;
+    color: purple;
+    font-weight: 700;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 7px );
+    -webkit-backdrop-filter: blur( 7px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &--open {
+        text-align: center;
+        height: 1em;
+        width: 1em;
+        font-size: 3rem;
+        color: purple;
+        font-weight: 700;
+        background: rgba( 255, 255, 255, 0.25 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 7px );
+        -webkit-backdrop-filter: blur( 7px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        transform: rotate(180deg);
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
