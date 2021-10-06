@@ -27,17 +27,14 @@ import ButtonToggleResult from "../../Styledcomponents/ButtonToggleResult";
 function SearchEventContainer() {
   const toggleAction = useSelector((state) => state.common.toggleAction);
   const events = useSelector((state) => state.event.events);
-
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allEventTags = useSelector((state) => state.event.eventTags);
   const infosUser = useSelector((state) => state.profil.infosUser);
-
   const eventCardRef = useRef(null);
 
   const [loading, setLoading] = useState(false);
   const [openSearch, setOpenSearch] = useState(true)
   const [openResults, setOpenResults] = useState(true)
-
   const [fieldsSearch, setFieldsSearch] = useState({
     city: "",
     eventTags: [],
@@ -72,26 +69,22 @@ function SearchEventContainer() {
   };
 
   const dispatch = useDispatch();
-  
-  //Fonctionnalité, Cliquez pour rediriger vers la carte
-  //const eventRedirection = useRef(null);
-  
-  console.log("Tous les events:", events);
-  // console.log("tout les tags:", fieldsSearch.eventTags);
-  // console.log("Initialisation fieldsSearch: ", fieldsSearch);
-  
   const optionsGet = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
   };
-
+  
+  //Fonctionnalité, Cliquez pour rediriger vers la carte
+  //const eventRedirection = useRef(null);
+  
+  //console.log("Tous les events:", events);
+  // console.log("tout les tags:", fieldsSearch.eventTags);
+  // console.log("Initialisation fieldsSearch: ", fieldsSearch);
+  
   // useEffect pour recuperer tout les evenements a chaque refresh de la page
   useEffect(() => {
-    GetAllEvents();
     dispatch({ type: RESET_TOGGLE });
   }, []);
-  
-  console.log("allLanguages apres useEffect :", allLanguages)
   
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
   function handleFieldSearchChange(e) {
@@ -195,13 +188,11 @@ function SearchEventContainer() {
   } 
   // Fonction afin de recuperer l'ensemble des events à partir de l'API
   const GetAllEvents = () => {
-    // console.log('Le loading dans GetAllEvents est à : ', loading )
     setLoading(true);
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/events", optionsGet)
       .then((response) => {
         dispatch(setAllEvents(response.data));
-        // console.log("La liste de tous les events : ", response.data);
       })
       .catch((error) =>
         console.log("ERREUR : Je n'arrive pas à recuperer les evenements")
@@ -240,7 +231,7 @@ function SearchEventContainer() {
     history.push("/");
   }
 
-    console.log("test asynchrone")
+    //console.log("test asynchrone")
 return (
     <div className="searchEvent__container">
       <div className={toggleAction? "header__navbar__settings-open": "header__navbar__settings"}>
@@ -366,7 +357,7 @@ return (
             <Popup>
               <EventCardSearch key={event.id} ref={eventCardRef} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
               <div className='leaflet-popup-content-wrapper__searchEvent__description'>{event.description}</div>
-              <Button className='leaflet-popup-content-wrapper__searchEvent__button' name="I would like to Participate" onClick={handleClickParticipate} />
+              <button className='leaflet-popup-content-wrapper__searchEvent__button' onClick={handleClickParticipate} >I would like to Participate</button>
             </Popup>
           </Marker>
         ))}

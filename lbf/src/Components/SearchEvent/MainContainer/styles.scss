@@ -275,6 +275,17 @@ border-radius: 10px;
         &-title{
             font-size: 1.1em;
         }
+        &__button {
+            background-color: rgba($color: #fff, $alpha: 0.0);
+            border: none;
+            font-family: 'Caviar';
+
+            &:hover {
+                cursor: pointer;
+                color: blue;
+                transition: 0.3s ease;
+            }
+        }
     }
 }
 .searchEvent-button-menu {

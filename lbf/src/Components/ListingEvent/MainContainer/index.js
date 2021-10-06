@@ -18,8 +18,6 @@ import { useHistory } from 'react-router';
 
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
-import { setUserEventsById } from "../../../Redux/actions/event"
-import axios from "axios"
 
 function ListEventContainer(){
     const dispatch = useDispatch()
@@ -33,7 +31,7 @@ function ListEventContainer(){
 
     const toggleAction = useSelector((state)=> state.common.toggleAction)
     const infosUser = useSelector((state)=>state.profil.infosUser)
-    const idUser = useSelector((state)=>state.profil.infosUser.id)
+    
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
 
     // let nowDays = 
@@ -44,11 +42,6 @@ function ListEventContainer(){
     // const userDataEventsPast = dataEvents.filter(element => element.endingDate < )
     
     console.log("myResult:", userDataEvents)
-
-useEffect(() => {
-    GetUserEventsById()
-  }, []);
-
 
     function handleClick(event){
         event.preventDefault()
@@ -73,18 +66,6 @@ const optionsGet = {
     "Access-Control-Allow-Origin": "*",
   };
 
-const GetUserEventsById = () => {
-    // console.log('Le loading dans GetAllEvents est à : ', loading )
-    axios
-      .get(`https://lets-be-friend.herokuapp.com/v1/users/${idUser}`, optionsGet)
-      .then((response) => {
-        dispatch(setUserEventsById(response.data.event));
-        console.log("coucou voici ta reponse de ton API:", response.data.event)
-      })
-      .catch((error) =>
-        console.log(`ERREUR : I can't all the data form the user ${idUser}`)
-      )
-  };
 
   const handleClickPast = () =>{
         setPastEvents(!pastEvents)

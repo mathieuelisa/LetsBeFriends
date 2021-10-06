@@ -2,8 +2,9 @@ import { Route, Switch } from "react-router-dom"
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { setAllEvents, setEventTags } from "../../Redux/actions/event"
+import { setAllEvents, setEventTags, setUserEventsById } from "../../Redux/actions/event"
 import { setLanguages, setLanguagesToLearn } from "../../Redux/actions/common"
+
 // Import styles
 import './app.scss';
 // Components
@@ -24,13 +25,14 @@ function App() {
     const allLanguages = useSelector((state) => state.common.allLanguages);
     const allEventTags = useSelector((state) => state.event.eventTags);
     const optionsAxios = useSelector((state) => state.common.optionsAxios);
+    const idUser = useSelector((state)=>state.profil.infosUser.id)
 
     const GetAllEvents = () => {
         axios
           .get("https://lets-be-friend.herokuapp.com/v1/events", optionsAxios)
           .then((response) => {
             dispatch(setAllEvents(response.data));
-            console.log("La liste de tous les events : ", response.data);
+            //console.log("La liste de tous les events : ", response.data);
           })
           .catch((error) =>
             console.log("ERREUR : Je n'arrive pas à recuperer les evenements")
@@ -41,10 +43,7 @@ function App() {
         axios
           .get("https://lets-be-friend.herokuapp.com/v1/languages", optionsAxios)
           .then((response) => {
-            console.log(
-              "Voici la réponse de l API les tous Languages :",
-              response.data
-            );
+            //console.log("Voici la réponse de l API les tous Languages :", response.data);
             dispatch(setLanguages(response.data));
             dispatch(setLanguagesToLearn(response.data));
           })
@@ -60,20 +59,28 @@ function App() {
           .catch((error) => console.log("Error recherche users "));
       };
 
+      const GetUserEventsById = () => {
+        axios
+          .get(`https://lets-be-friend.herokuapp.com/v1/users/${idUser}`, optionsAxios)
+          .then((response) => {
+            dispatch(setUserEventsById(response.data.event));
+            //console.log("coucou voici ta reponse de ton API:", response.data.event)
+          })
+          .catch((error) =>
+            console.log(`ERREUR : I can't all the data form the user ${idUser}`)
+          )
+      };
+
        useEffect(() => {
          GetAllEvents();
          getLanguages();
          getEventsTags();
+         GetUserEventsById();
         }, [])
 
       if(events !== null && allLanguages !== null && allEventTags !== null && loader == false) {
            setLoader(!loader);
        }
-
-
-
-
-
   return (
     {loader} && <div className="App">
     <Switch> 
