@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, React, useRef } from "react";
+import { useEffect, useState, React } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
@@ -7,7 +7,6 @@ import { useHistory } from "react-router";
 import EventCardSearch from "../../Styledcomponents/EventCardSearch";
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
 import Tag from "../../Styledcomponents/Tag";
-import Button from '../../Styledcomponents/index'
 import { resetInfosUser } from "../../../Redux/actions/profil";
 //Import Tools
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
@@ -30,7 +29,6 @@ function SearchEventContainer() {
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allEventTags = useSelector((state) => state.event.eventTags);
   const infosUser = useSelector((state) => state.profil.infosUser);
-  const eventCardRef = useRef(null);
 
   const [loading, setLoading] = useState(false);
   const [openSearch, setOpenSearch] = useState(true)
@@ -162,8 +160,8 @@ function SearchEventContainer() {
     );
   };
 
-  const handleClickParticipate = () => {
-    console.log('Vous avez recup l event avec l id : ', eventCardRef.current.value)
+  const handleClickParticipate = (event) => {
+    console.log('Vous avez recup l event avec l id : ', event.id)
     //userWantToParticipate();
   }
 
@@ -355,9 +353,9 @@ return (
         {{openSearch} && events?.map((event) => (
           <Marker key={event.id} position={[event.latitude, event.longitude]}>
             <Popup>
-              <EventCardSearch key={event.id} ref={eventCardRef} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
+              <EventCardSearch key={event.id} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
               <div className='leaflet-popup-content-wrapper__searchEvent__description'>{event.description}</div>
-              <button className='leaflet-popup-content-wrapper__searchEvent__button' onClick={handleClickParticipate} >I would like to Participate</button>
+              <ButtonToggleResult className='leaflet-popup-content-wrapper__searchEvent__button' handleClick={() => handleClickParticipate(event)} name='I would like to Participate' />
             </Popup>
           </Marker>
         ))}
