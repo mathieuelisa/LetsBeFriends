@@ -317,7 +317,7 @@ return (
         {loading && <Loader />}
         <div className={openResults ? "searchEvent__container-resultsForm" : "searchEvent__container-resultsForm--open"}>
           {/* Cards for searchPage */}
-          {events.map((event) => (
+          {events?.map((event) => (
             <EventCardSearch key={event.id} {...event} classNameCard="searchEvent__container-resultsForm__searchEvent"/>
           ))}
         </div>
@@ -329,7 +329,7 @@ return (
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
          <SearchField value={fieldsSearch.city} name= 'city'/>
-        {events.map((event) => (
+        {events?.map((event) => (
           <Marker key={event.id} position={[event.latitude, event.longitude]}>
             <Popup>
               <EventCardSearch key={event.id} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
