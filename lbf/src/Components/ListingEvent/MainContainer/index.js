@@ -34,6 +34,8 @@ function ListEventContainer(){
     
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
 
+    console.log("popo",dataEvents)
+
     // Recherche des events du user
     const userDataEvents = dataEvents.filter(element => element.ownerId === infosUser.id)
     

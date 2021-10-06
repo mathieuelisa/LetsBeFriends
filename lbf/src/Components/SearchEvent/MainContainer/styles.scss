@@ -296,52 +296,6 @@ border-radius: 10px;
 }
 
 
-
-@media screen and (max-width: 1070px){
-
-    .searchEvent__container{
-        height: 130vh;
-    }
-
-    .searchEvent__container-leaflet{
-        display: none;
-    }
-
-    .searchEvent__container-form{
-        width: 80%;
-    }
-
-    .leaflet-container{
-        display: none;
-    }
-
-    .searchEvent__container-form{
-        box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
-        border-radius: 10px;
-        height: 85%;
-    }
-
-    .searchEvent-pictures{
-        display: flex;
-        justify-content: flex-end;
-        margin-right: 10px;
-        width: 40%;
-    }
-
-    .searchEvent-infos{
-        font-size: 0.9em;
-    }
-
-    .registerForm{
-        width: 85%;
-    }
-
-    .searchEvent__container-resultsForm__searchEvent{
-        margin-top: 20px;
-    }
-}
-
-
 // BARRE DE RECHERCHE LEAFLET
 
 .leaflet-left{
@@ -482,8 +436,25 @@ border-radius: 10px;
     -webkit-backdrop-filter: blur(7px);
     border-radius: 10px;
 
+    @keyframes movingCursor {
+        0%{
+            transform: translateY(0px);
+        }
+
+        50%{
+            transform: translateY(-10px);
+        }
+
+        100%{
+            transform: translateY(0px);
+        }
+    }
+
     &:hover {
         cursor: pointer;
+        // transform: translateY(-10px);
+        animation: movingCursor 1.5s infinite
+     
     }
 
     &--open {
@@ -505,3 +476,50 @@ border-radius: 10px;
         }
     }
 }
+
+
+
+@media screen and (max-width: 1070px){
+
+    .searchEvent__container{
+        height: 130vh;
+    }
+
+    .searchEvent__container-leaflet{
+        display: none;
+    }
+
+    .searchEvent__container-form{
+        width: 80%;
+    }
+
+    .leaflet-container{
+        display: none;
+    }
+
+    .searchEvent__container-form{
+        box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+        border-radius: 10px;
+        height: 85%;
+    }
+
+    .searchEvent-pictures{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 10px;
+        width: 40%;
+    }
+
+    .searchEvent-infos{
+        font-size: 0.9em;
+    }
+
+    .registerForm{
+        width: 85%;
+    }
+
+    .searchEvent__container-resultsForm__searchEvent{
+        margin-top: 20px;
+    }
+}
+

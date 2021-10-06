@@ -86,8 +86,8 @@
     width: 80%;
     background: rgba( 255, 255, 255, 0.1 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 5px );
-    -webkit-backdrop-filter: blur( 5px );
+    backdrop-filter: blur( 3px );
+    -webkit-backdrop-filter: blur( 3px );
     border-radius: 10px;
 
     &-success{
@@ -98,7 +98,6 @@
         color: whitesmoke;
     }
 }
-
 .myButton{
     width: 145px;
     height: 41px;
@@ -108,19 +107,21 @@
     color: whitesmoke;
     cursor: pointer;
     box-shadow: 0 0 7px -1px;
+    
 }
 
 .myInputs{
     border: none;
     background: transparent;
     color: whitesmoke;
+    font-family: "Caviar";
 }
 
 select option{
-        margin: 40px;
-        background: #c54c24;
-        color: #fff;
-        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    margin: 40px;
+    background: #c54c24;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
 #registerForm{

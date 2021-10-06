@@ -84,7 +84,7 @@ function SearchEventContainer() {
   // useEffect pour recuperer tout les evenements a chaque refresh de la page
   useEffect(() => {
     dispatch({ type: RESET_TOGGLE });
-  }, []);
+  },[]);
   
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
   function handleFieldSearchChange(e) {
@@ -336,7 +336,7 @@ return (
             </button>
           </div>
         </div>
-        <ButtonToggleResult name='^' className={openResults ? 'display-result' : 'display-result--open'} handleClick={handleClickResults} />
+        <ButtonToggleResult name='⇳' className={openResults ? 'display-result' : 'display-result--open'} handleClick={handleClickResults} />
         {loading && <Loader />}
         <div className={openResults ? "searchEvent__container-resultsForm" : "searchEvent__container-resultsForm--open"}>
           {/* Cards for searchPage */}
