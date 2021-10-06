@@ -29,7 +29,6 @@ function SearchEventContainer() {
   const events = useSelector((state) => state.event.events);
 
   const allLanguages = useSelector((state) => state.common.allLanguages);
-  console.log("allLanguages apres useSelector :", allLanguages)
   const allEventTags = useSelector((state) => state.event.eventTags);
   const infosUser = useSelector((state) => state.profil.infosUser);
   const eventCardRef = useRef(null);
@@ -86,9 +85,10 @@ function SearchEventContainer() {
   // useEffect pour recuperer tout les evenements a chaque refresh de la page
   useEffect(() => {
     GetAllEvents();
+    console.log("passage de test dans le useEffect", test)
     dispatch({ type: RESET_TOGGLE });
   }, []);
-
+  
   console.log("allLanguages apres useEffect :", allLanguages)
   
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
@@ -119,7 +119,7 @@ function SearchEventContainer() {
         ...fieldsSearch,
         [e.target.name]: e.target.value,
       });
-
+      
     } else {
       setFieldsSearch({
         ...fieldsSearch,
@@ -128,6 +128,7 @@ function SearchEventContainer() {
     }
   }
 
+  
   function handleClick(event) {
     event.preventDefault();
     dispatch({ type: SET_TOGGLE });
@@ -193,16 +194,19 @@ function SearchEventContainer() {
   } 
   // Fonction afin de recuperer l'ensemble des events à partir de l'API
   const GetAllEvents = () => {
+    // console.log('Le loading dans GetAllEvents est à : ', loading )
+    setLoading(true);
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/events", optionsGet)
       .then((response) => {
         dispatch(setAllEvents(response.data));
-        console.log("La liste de tous les events : ", response.data);
+        // console.log("La liste de tous les events : ", response.data);
       })
       .catch((error) =>
         console.log("ERREUR : Je n'arrive pas à recuperer les evenements")
       )};
   
+
   const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
     setLoading(true);
     axios
@@ -235,6 +239,7 @@ function SearchEventContainer() {
     history.push("/");
   }
 
+    console.log("test asynchrone")
 return (
     <div className="searchEvent__container">
       <div className={toggleAction? "header__navbar__settings-open": "header__navbar__settings"}>
@@ -322,7 +327,7 @@ return (
               >
                 <option></option>
 
-                {allLanguages.map((language) => (
+                {test && allLanguages.map((language) => (
                   <option>{language.name}</option>
                 ))}
               </select>
