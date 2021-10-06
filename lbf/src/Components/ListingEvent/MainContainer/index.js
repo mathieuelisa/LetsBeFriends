@@ -34,12 +34,8 @@ function ListEventContainer(){
     
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
 
-    // let nowDays = 
-
     // Recherche des events du user
     const userDataEvents = dataEvents.filter(element => element.ownerId === infosUser.id)
-
-    // const userDataEventsPast = dataEvents.filter(element => element.endingDate < )
     
     console.log("myResult:", userDataEvents)
 
@@ -60,12 +56,6 @@ function ListEventContainer(){
     dispatch(resetInfosUser());
     history.push("/")
 }
-
-const optionsGet = {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-  };
-
 
   const handleClickPast = () =>{
         setPastEvents(!pastEvents)
