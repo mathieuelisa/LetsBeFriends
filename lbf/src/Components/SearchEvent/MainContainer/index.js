@@ -70,10 +70,6 @@ function SearchEventContainer() {
   
   //Fonctionnalité, Cliquez pour rediriger vers la carte
   //const eventRedirection = useRef(null);
-
-  // On liste l'ensemble des langues ainsi que l'ensemble des events
-  fieldsSearch.languages = allLanguages.map((language) => language.name);
-  fieldsSearch.eventTags = allEventTags.map((tag) => tag.name);
   
   // console.log("toute les langues:", fieldsSearch.languages);
   // console.log("tout les tags:", fieldsSearch.eventTags);
@@ -255,8 +251,9 @@ return (
                 onChange={handleFieldSearchChange}
               >
                 <option></option>
-                {fieldsSearch.eventTags?.map((tag) => (
-                  <option>{tag}</option>
+
+                {allEventTags.map((tag) => (
+                  <option>{tag.name}</option>
                 ))}
               </select>
             </div>
@@ -296,8 +293,9 @@ return (
                 onChange={handleFieldSearchChange}
               >
                 <option></option>
-                {fieldsSearch.languages?.map((language) => (
-                  <option>{language}</option>
+
+                {allLanguages.map((language) => (
+                  <option>{language.name}</option>
                 ))}
               </select>
             </div>
