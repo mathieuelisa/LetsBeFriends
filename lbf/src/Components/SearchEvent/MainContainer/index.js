@@ -28,7 +28,9 @@ import ButtonToggleResult from "../../Styledcomponents/ButtonToggleResult";
 function SearchEventContainer() {
   const toggleAction = useSelector((state) => state.common.toggleAction);
   const events = useSelector((state) => state.event.events);
+
   const allLanguages = useSelector((state) => state.common.allLanguages);
+  console.log("allLanguages apres useSelector :", allLanguages)
   const allEventTags = useSelector((state) => state.event.eventTags);
 
   const [loading, setLoading] = useState(false);
@@ -70,10 +72,6 @@ function SearchEventContainer() {
   
   //Fonctionnalité, Cliquez pour rediriger vers la carte
   //const eventRedirection = useRef(null);
-
-  // On liste l'ensemble des langues ainsi que l'ensemble des events
-  fieldsSearch.languages = allLanguages.map((language) => language.name);
-  fieldsSearch.eventTags = allEventTags.map((tag) => tag.name);
   
   // console.log("toute les langues:", fieldsSearch.languages);
   // console.log("tout les tags:", fieldsSearch.eventTags);
@@ -84,11 +82,13 @@ function SearchEventContainer() {
     "Access-Control-Allow-Origin": "*",
   };
   
-  
+  // useEffect pour recuperer tout les evenements a chaque refresh de la page
   useEffect(() => {
     GetAllEvents();
     dispatch({ type: RESET_TOGGLE });
   }, []);
+
+  console.log("allLanguages apres useEffect :", allLanguages)
   
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
   function handleFieldSearchChange(e) {
@@ -255,8 +255,9 @@ return (
                 onChange={handleFieldSearchChange}
               >
                 <option></option>
-                {fieldsSearch.eventTags?.map((tag) => (
-                  <option>{tag}</option>
+
+                {allEventTags.map((tag) => (
+                  <option>{tag.name}</option>
                 ))}
               </select>
             </div>
@@ -296,8 +297,9 @@ return (
                 onChange={handleFieldSearchChange}
               >
                 <option></option>
-                {fieldsSearch.languages?.map((language) => (
-                  <option>{language}</option>
+
+                {allLanguages.map((language) => (
+                  <option>{language.name}</option>
                 ))}
               </select>
             </div>
@@ -317,7 +319,7 @@ return (
         {loading && <Loader />}
         <div className={openResults ? "searchEvent__container-resultsForm" : "searchEvent__container-resultsForm--open"}>
           {/* Cards for searchPage */}
-          {events.map((event) => (
+          {events?.map((event) => (
             <EventCardSearch key={event.id} {...event} classNameCard="searchEvent__container-resultsForm__searchEvent"/>
           ))}
         </div>
@@ -329,7 +331,7 @@ return (
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
          <SearchField value={fieldsSearch.city} name= 'city'/>
-        {events.map((event) => (
+        {events?.map((event) => (
           <Marker key={event.id} position={[event.latitude, event.longitude]}>
             <Popup>
               <EventCardSearch key={event.id} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>

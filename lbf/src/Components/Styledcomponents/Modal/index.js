@@ -143,11 +143,12 @@ const Modal = ({ openModale }) => {
                 classNameInput="modal-container__modal__formlogin__input-login"
                 classNameDiv="div-input-login"
               />
-              <button
+              <button 
                 type="submit"
                 className="modal-container__modal__formlogin__button--login"
                 name="Login"
-              />
+              >Let'go</button>
+
             </form>
           ) : (
             <form
@@ -234,7 +235,7 @@ const Modal = ({ openModale }) => {
                   I accept the Term of Use & Privacy Policy
                 </label>
               </div> */}
-              <button type="submit" className="button-sign" name="Sign" />
+              <button type="submit" className="button-sign" name="Sign">Let's go</button>
             </form>
           )}
         </div>
