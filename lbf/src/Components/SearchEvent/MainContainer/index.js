@@ -88,7 +88,6 @@ function SearchEventContainer() {
   // useEffect pour recuperer tout les evenements a chaque refresh de la page
   useEffect(() => {
     GetAllEvents();
-    console.log("passage de test dans le useEffect", test)
     dispatch({ type: RESET_TOGGLE });
   }, []);
   
@@ -329,7 +328,7 @@ return (
               >
                 <option></option>
 
-                {test && allLanguages.map((language) => (
+                {allLanguages.map((language) => (
                   <option>{language.name}</option>
                 ))}
               </select>
