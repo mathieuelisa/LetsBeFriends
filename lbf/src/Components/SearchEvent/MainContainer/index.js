@@ -31,10 +31,13 @@ function SearchEventContainer() {
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allEventTags = useSelector((state) => state.event.eventTags);
   const infosUser = useSelector((state) => state.profil.infosUser);
+
   const eventCardRef = useRef(null);
+
   const [loading, setLoading] = useState(false);
   const [openSearch, setOpenSearch] = useState(true)
   const [openResults, setOpenResults] = useState(true)
+
   const [fieldsSearch, setFieldsSearch] = useState({
     city: "",
     eventTags: [],
@@ -81,7 +84,7 @@ function SearchEventContainer() {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
   };
-  
+
   // useEffect pour recuperer tout les evenements a chaque refresh de la page
   useEffect(() => {
     GetAllEvents();
@@ -128,7 +131,6 @@ function SearchEventContainer() {
     }
   }
 
-  
   function handleClick(event) {
     event.preventDefault();
     dispatch({ type: SET_TOGGLE });
@@ -204,7 +206,7 @@ function SearchEventContainer() {
       })
       .catch((error) =>
         console.log("ERREUR : Je n'arrive pas à recuperer les evenements")
-      )};
+      ).finally(setLoading(false))};
   
 
   const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
