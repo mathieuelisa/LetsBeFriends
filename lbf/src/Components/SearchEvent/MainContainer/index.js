@@ -11,7 +11,7 @@ import Button from '../../Styledcomponents/index'
 import { resetInfosUser } from "../../../Redux/actions/profil";
 //Import Tools
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import { GeoSearchControl, MapBoxProvider, OpenStreetMapProvider } from 'leaflet-geosearch';
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 
 //Import styles
 import "./styles.scss";
@@ -22,7 +22,6 @@ import Loader from "../../Styledcomponents/Loader";
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { setAllEvents } from "../../../Redux/actions/event";
-import { Map } from "leaflet";
 import ButtonToggleResult from "../../Styledcomponents/ButtonToggleResult";
 
 function SearchEventContainer() {
@@ -33,6 +32,7 @@ function SearchEventContainer() {
   const infosUser = useSelector((state) => state.profil.infosUser);
   const eventCardRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [openSearch, setOpenSearch] = useState(true)
   const [openResults, setOpenResults] = useState(true)
   const [fieldsSearch, setFieldsSearch] = useState({
     city: "",
@@ -152,7 +152,7 @@ function SearchEventContainer() {
   // Fonction permettant la soumission du formulaire
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    if(fieldsSearch.selectedTags !== null && fieldsSearch.selectedLanguages !== null && fieldsSearch.dateFrom.formatISO !== null && fieldsSearch.dateTo.formatISO !== null) {
+    if(fieldsSearch.selectedTags == null && fieldsSearch.selectedLanguages == null && fieldsSearch.dateFrom.formatISO == null && fieldsSearch.dateTo.formatISO == null) {
       GetAllEvents();
     }
     searchEvent(
@@ -189,8 +189,6 @@ function SearchEventContainer() {
   } 
   // Fonction afin de recuperer l'ensemble des events à partir de l'API
   const GetAllEvents = () => {
-    console.log('Le loading dans GetAllEvents est à : ', loading )
-    setLoading(true);
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/events", optionsGet)
       .then((response) => {
@@ -199,11 +197,10 @@ function SearchEventContainer() {
       })
       .catch((error) =>
         console.log("ERREUR : Je n'arrive pas à recuperer les evenements")
-      )
-      .finally(() => setLoading(false));
-  };
+      )};
   
   const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
+    setLoading(true);
     axios
       .post(
         "https://lets-be-friend.herokuapp.com/v1/events/search",
@@ -216,15 +213,16 @@ function SearchEventContainer() {
         optionsGet
       )
       .then((response) => {
-        console.log(
-          "Voici la réponse de l API pour recherche d evenements :",
-          response.data
-        );
-        if(response.data !== null) {
+        console.log("Voici la réponse de l API pour recherche d evenements :",  response.data);
+        if(!response.data[0].id) { 
+          setOpenSearch(false)
+          console.log('Aucun évènements ne correspond à votre recherche !')
+        } else {
         dispatch(setAllEvents(response.data));
-      }
-      })
-      .catch((error) => console.log("Error recherche event "));
+      }})
+      .catch((error) => console.log("Error recherche event "))
+      .finally(setLoading(false))
+    
   };
   const history = useHistory();
   // Function permettant de se logout en reinitialisant le localStorage
@@ -341,7 +339,7 @@ return (
         {loading && <Loader />}
         <div className={openResults ? "searchEvent__container-resultsForm" : "searchEvent__container-resultsForm--open"}>
           {/* Cards for searchPage */}
-          {events?.map((event) => (
+          {{openSearch} && events?.map((event) => (
             <EventCardSearch key={event.id} {...event} classNameCard="searchEvent__container-resultsForm__searchEvent"/>
           ))}
         </div>
@@ -353,7 +351,7 @@ return (
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
          <SearchField value={fieldsSearch.city} name= 'city'/>
-        {events?.map((event) => (
+        {{openSearch} && events?.map((event) => (
           <Marker key={event.id} position={[event.latitude, event.longitude]}>
             <Popup>
               <EventCardSearch key={event.id} ref={eventCardRef} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
