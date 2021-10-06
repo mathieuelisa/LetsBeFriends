@@ -459,43 +459,34 @@ border-radius: 10px;
 }
 
 .display-result{
+    align-content: center;
+    margin: 0 auto;
+    width: 55px;
     text-align: center;
-    height: 1.0em;
-    width: 1.0em;
     font-size: 2rem;
-    color: purple;
+    color: whitesmoke;
     font-weight: 700;
-    background: rgba( 255, 255, 255, 0.25 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 7px );
-    -webkit-backdrop-filter: blur( 7px );
+    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
 
     &:hover {
         cursor: pointer;
     }
 
     &--open {
+        align-content: center;
+        margin: 0 auto;
+        width: 55px;
         text-align: center;
-        height: 1.0em;
-        width: 1.0em;
         font-size: 2rem;
-        color: purple;
+        color: whitesmoke;
         font-weight: 700;
-        background: rgba( 255, 255, 255, 0.25 );
-        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-        backdrop-filter: blur( 7px );
-        -webkit-backdrop-filter: blur( 7px );
+        box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
         border-radius: 10px;
-        border: 1px solid rgba( 255, 255, 255, 0.18 );
-        margin-bottom: 0.5em;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 0.5em;
         transform: rotate(180deg);
 
         &:hover {
