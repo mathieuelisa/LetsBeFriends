@@ -162,25 +162,22 @@ function SearchEventContainer() {
 
   const handleClickParticipate = (event) => {
     console.log('Vous avez recup l event avec l id : ', event.id)
-    //userWantToParticipate();
+    const eventId = event.id
+    userWantToParticipate(eventId);
   }
 
-  const userWantToParticipate = () => {
+  const userWantToParticipate = (eventId) => {
     axios
     .post(
-      "https://lets-be-friend.herokuapp.com/v1/events/search",
+      "https://lets-be-friend.herokuapp.com/v1/events/request/new",
       {
         "user_id": infosUser.id,
-        //"event_id": ,
+        "event_id": eventId,
       },
-      optionsGet
+      optionsGet,
     )
     .then((response) => {
-      console.log(
-        "Voici la réponse de l API pour recherche d evenements :",
-        response.data
-      );
-      dispatch(setAllEvents(response.data));
+      console.log("Voici la réponse de l API pour la demande participation:", response.data);
     })
     .catch((error) => console.log("Error recherche event "));
   } 
