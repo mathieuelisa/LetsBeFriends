@@ -28,7 +28,9 @@ import ButtonToggleResult from "../../Styledcomponents/ButtonToggleResult";
 function SearchEventContainer() {
   const toggleAction = useSelector((state) => state.common.toggleAction);
   const events = useSelector((state) => state.event.events);
+
   const allLanguages = useSelector((state) => state.common.allLanguages);
+  console.log("allLanguages apres useSelector :", allLanguages)
   const allEventTags = useSelector((state) => state.event.eventTags);
 
   const [loading, setLoading] = useState(false);
@@ -85,6 +87,8 @@ function SearchEventContainer() {
     GetAllEvents();
     dispatch({ type: RESET_TOGGLE });
   }, []);
+
+  console.log("allLanguages apres useEffect :", allLanguages)
   
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
   function handleFieldSearchChange(e) {
