@@ -112,7 +112,6 @@ router
      * @returns {string} 500 - An error message
      * @returns {string} 400 - A validation error message
      */
-    .route('/events/request/status')
     .post(requestController.confirmJoiningRequest)
     /**
      * Request of refuse a user on a event
@@ -140,11 +139,49 @@ router
     .get(languageController.findAll)
 router
     .route('/speak')
+    /**
+     * Add a form for a new user who speak a language
+     * @route POST /speak
+     * @group Language
+     * @summary Add a form for a new user who speak a language
+     * @param {ReqUserJson.model | User.model} object.body.required Object containing the properties of user
+     * @param {ReqLanguageJson.model | Language.model} object.body.requird Object containing the properties of language
+     * @returns {Array<Language>} 200 - An array of language
+     * @returns {string} 500 - An error message
+     */
     .post(languageController.newUserSpeakLanguage)
+     /**
+     * Delete a user who learn a language
+     * @route DELETE /speak
+     * @group Language
+     * @summary Delete a user who learn a language
+     * @param {number} id.path.required the id of user who deleted
+     * @returns {string} 200 - An user is deleted
+     * @returns {string} 500 - an error message
+     */
     .delete(languageController.deleteUserSpeakLanguage)
 router
     .route('/learn')
+    /**
+     * Add a form for a new user who speak a language
+     * @route POST /speak
+     * @group Language
+     * @summary Add a form for a new user who speak a language
+     * @param {ReqUserJson.model | User.model} object.body.required Object containing the properties of user
+     * @param {ReqLanguageJson.model | Language.model} object.body.requird Object containing the properties of language
+     * @returns {Array<Language>} 200 - An array of language
+     * @returns {string} 500 - An error message
+     */
     .post(languageController.newUserLearnLanguage)
+    /**
+     * Delete a user who learn a language
+     * @route DELETE /learn
+     * @group Language
+     * @summary Delete a user who learn a language
+     * @param {number} id.path.required the id of user who deleted
+     * @returns {string} 200 - An user is deleted
+     * @returns {string} 500 - an error message
+     */
     .delete(languageController.deleteUserLearnLanguage)
 
 //? --- TAG
@@ -229,9 +266,11 @@ router
     .get(userController.findOneByEmail)
      /**
      * Modify a user's password with a email
-     * @route GET /resetpassword
+     * @route PUT /resetpassword
      * @group User
      * @summary modify a user's password with a email
+     * @param {number} id.path.required The id of user
+     * @param {string} email.query.required the email of the user for modify password
      * @returns {Array<User>} 200 -An array of events
      * @returns {string} 500 - An error message
      */
