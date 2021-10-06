@@ -74,8 +74,8 @@ function SearchEventContainer() {
   
   //Fonctionnalité, Cliquez pour rediriger vers la carte
   //const eventRedirection = useRef(null);
-  
-  //console.log("Tous les events:", events);
+  console.log("Tous les infos user:", infosUser);
+  console.log("Tous les events:", events);
   // console.log("tout les tags:", fieldsSearch.eventTags);
   // console.log("Initialisation fieldsSearch: ", fieldsSearch);
   
@@ -172,7 +172,7 @@ function SearchEventContainer() {
       "https://lets-be-friend.herokuapp.com/v1/events/request/new",
       {
         "user_id": infosUser.id,
-        "event_id": eventId,
+        "event_id": eventId
       },
       optionsGet,
     )
