@@ -1,4 +1,4 @@
-const { Event, Language, Tag } = require(`../models`);
+const { Event, Language, Tag, Request } = require(`../models`);
 const addressTranslate = require('../services/positionStack');
 const formatAdress = require('../services/formatAddress')
 
@@ -86,7 +86,7 @@ const eventController = {
             }
 
             const newEvent = await Event.findOneById(eventCreated.id);
-
+            await Request.newUserInEvent(data.user_id, newEvent.id)
             res.status(201).json(newEvent);
         } catch (error) {
             console.log(error);

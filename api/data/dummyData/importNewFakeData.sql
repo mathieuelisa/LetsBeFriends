@@ -104,13 +104,21 @@ insert into "user_learn_language" (user_id, language_id) values
 
 insert into "user_participate_event" (user_id, event_id) values 
 (1, 3),
+(1, 5),
+(2, 1),
 (2, 6),
 (3, 4),
+(3, 7),
 (4, 5),
+(4, 8),
 (5, 1),
+(5, 3),
 (6, 2),
+(6, 6),
 (7, 8),
-(8, 7);
+(7, 4),
+(8, 7),
+(8, 2);
 
 
 insert into "user_speak_language" (user_id, language_id) values
