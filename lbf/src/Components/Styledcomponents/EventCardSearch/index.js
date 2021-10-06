@@ -33,7 +33,7 @@ EventCardSearch.propTypes = {
     pictures: PropTypes.string,
     title:  PropTypes.string,
     titleConfig: PropTypes.string,
-    language: PropTypes.string,
+    languages: PropTypes.array,
     placesLeft: PropTypes.number,
 }
 

@@ -30,9 +30,10 @@ function SearchEventContainer() {
   const events = useSelector((state) => state.event.events);
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allEventTags = useSelector((state) => state.event.eventTags);
-
+  const infosUser = useSelector((state) => state.profil.infosUser);
+  const eventCardRef = useRef(null);
   const [loading, setLoading] = useState(false);
-  const [openResults, setOpenResults] = useState(false)
+  const [openResults, setOpenResults] = useState(true)
   const [fieldsSearch, setFieldsSearch] = useState({
     city: "",
     eventTags: [],
@@ -71,7 +72,7 @@ function SearchEventContainer() {
   //Fonctionnalité, Cliquez pour rediriger vers la carte
   //const eventRedirection = useRef(null);
   
-  // console.log("toute les langues:", fieldsSearch.languages);
+  console.log("Tous les events:", events);
   // console.log("tout les tags:", fieldsSearch.eventTags);
   // console.log("Initialisation fieldsSearch: ", fieldsSearch);
   
@@ -151,7 +152,6 @@ function SearchEventContainer() {
   // Fonction permettant la soumission du formulaire
   const handleSubmitForm = (e) => {
     e.preventDefault();
-
     if(fieldsSearch.selectedTags !== null && fieldsSearch.selectedLanguages !== null && fieldsSearch.dateFrom.formatISO !== null && fieldsSearch.dateTo.formatISO !== null) {
       GetAllEvents();
     }
@@ -163,6 +163,30 @@ function SearchEventContainer() {
     );
   };
 
+  const handleClickParticipate = () => {
+    console.log('Vous avez recup l event avec l id : ', eventCardRef.current.value)
+    //userWantToParticipate();
+  }
+
+  const userWantToParticipate = () => {
+    axios
+    .post(
+      "https://lets-be-friend.herokuapp.com/v1/events/search",
+      {
+        "user_id": infosUser.id,
+        //"event_id": ,
+      },
+      optionsGet
+    )
+    .then((response) => {
+      console.log(
+        "Voici la réponse de l API pour recherche d evenements :",
+        response.data
+      );
+      dispatch(setAllEvents(response.data));
+    })
+    .catch((error) => console.log("Error recherche event "));
+  } 
   // Fonction afin de recuperer l'ensemble des events à partir de l'API
   const GetAllEvents = () => {
     console.log('Le loading dans GetAllEvents est à : ', loading )
@@ -196,7 +220,9 @@ function SearchEventContainer() {
           "Voici la réponse de l API pour recherche d evenements :",
           response.data
         );
+        if(response.data !== null) {
         dispatch(setAllEvents(response.data));
+      }
       })
       .catch((error) => console.log("Error recherche event "));
   };
@@ -330,9 +356,9 @@ return (
         {events?.map((event) => (
           <Marker key={event.id} position={[event.latitude, event.longitude]}>
             <Popup>
-              <EventCardSearch key={event.id} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
+              <EventCardSearch key={event.id} ref={eventCardRef} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
               <div className='leaflet-popup-content-wrapper__searchEvent__description'>{event.description}</div>
-              <Button className='leaflet-popup-content-wrapper__searchEvent__button' name="I would like to Participate"/>
+              <Button className='leaflet-popup-content-wrapper__searchEvent__button' name="I would like to Participate" onClick={handleClickParticipate} />
             </Popup>
           </Marker>
         ))}
