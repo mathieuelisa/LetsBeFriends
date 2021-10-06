@@ -7,12 +7,11 @@ import { useHistory } from "react-router";
 import EventCardSearch from "../../Styledcomponents/EventCardSearch";
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
 import Tag from "../../Styledcomponents/Tag";
-import Button from '../../Styledcomponents/index'
 import { resetInfosUser } from "../../../Redux/actions/profil";
 //Import Tools
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
-
+import L from "leaflet"
 //Import styles
 import "./styles.scss";
 // Import axios
@@ -24,6 +23,9 @@ import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { setAllEvents } from "../../../Redux/actions/event";
 import ButtonToggleResult from "../../Styledcomponents/ButtonToggleResult";
 
+import mapPin from "../../../assets/Img/flag.svg"
+
+
 function SearchEventContainer() {
   const toggleAction = useSelector((state) => state.common.toggleAction);
   const events = useSelector((state) => state.event.events);
@@ -31,6 +33,12 @@ function SearchEventContainer() {
   const allEventTags = useSelector((state) => state.event.eventTags);
   const infosUser = useSelector((state) => state.profil.infosUser);
   const eventCardRef = useRef(null);
+
+  const positionIcon = new L.Icon({
+    iconUrl:mapPin,
+    iconRetinaUrl: mapPin,
+    iconSize: [35,35]
+  })
 
   const [loading, setLoading] = useState(false);
   const [openSearch, setOpenSearch] = useState(true)
@@ -353,7 +361,7 @@ return (
         />
          <SearchField value={fieldsSearch.city} name= 'city'/>
         {{openSearch} && events?.map((event) => (
-          <Marker key={event.id} position={[event.latitude, event.longitude]}>
+          <Marker key={event.id} icon={positionIcon} position={[event.latitude, event.longitude]}>
             <Popup>
               <EventCardSearch key={event.id} ref={eventCardRef} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
               <div className='leaflet-popup-content-wrapper__searchEvent__description'>{event.description}</div>

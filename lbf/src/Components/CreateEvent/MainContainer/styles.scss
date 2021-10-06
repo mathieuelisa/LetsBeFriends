@@ -107,7 +107,6 @@
     color: whitesmoke;
     cursor: pointer;
     box-shadow: 0 0 7px -1px;
-    
 }
 
 .myInputs{
@@ -139,6 +138,7 @@ select option{
         flex-direction: column;
         margin: 60px 0 90px 0;
         text-align: center;
+        z-index: 1;
     }
 
     .createEvent__container-infosDetails-location{

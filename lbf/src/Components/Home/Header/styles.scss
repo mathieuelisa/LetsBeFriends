@@ -81,7 +81,7 @@
         cursor: pointer;
         text-decoration: none;
         color: whitesmoke;
-        z-index: 0;
+        z-index: 5;
 
         &:hover {
           transform: rotate(90deg);
@@ -176,5 +176,9 @@
 @media screen and (max-width: 1070px) {
   .header__navbar__settings .settings__container--toggle:hover {
     transform: rotate(-0deg);
+  }
+
+  .header__navbar__settings .settings__container--toggle{
+    z-index: 1;
   }
 }
