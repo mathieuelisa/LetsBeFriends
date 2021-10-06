@@ -27,7 +27,9 @@ import ButtonToggleResult from "../../Styledcomponents/ButtonToggleResult";
 function SearchEventContainer() {
   const toggleAction = useSelector((state) => state.common.toggleAction);
   const events = useSelector((state) => state.event.events);
+
   const allLanguages = useSelector((state) => state.common.allLanguages);
+  console.log("allLanguages apres useSelector :", allLanguages)
   const allEventTags = useSelector((state) => state.event.eventTags);
   const infosUser = useSelector((state) => state.profil.infosUser);
   const eventCardRef = useRef(null);
@@ -81,11 +83,13 @@ function SearchEventContainer() {
     "Access-Control-Allow-Origin": "*",
   };
   
-  
+  // useEffect pour recuperer tout les evenements a chaque refresh de la page
   useEffect(() => {
     GetAllEvents();
     dispatch({ type: RESET_TOGGLE });
   }, []);
+
+  console.log("allLanguages apres useEffect :", allLanguages)
   
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
   function handleFieldSearchChange(e) {
