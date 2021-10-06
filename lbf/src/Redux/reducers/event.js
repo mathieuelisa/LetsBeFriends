@@ -1,8 +1,9 @@
-import { SET_ALL_EVENTS, SET_EVENT_TAGS } from "../actions/event";
+import { SET_ALL_EVENTS, SET_EVENT_TAGS, SET_USER_EVENTS_BY_ID } from "../actions/event";
 
 export const initialState = {
   events: [],
   eventTags: [],
+  eventUserEvents: [],
   // fieldsSearch: {city: 'Paris', eventTag: 'Soirée BBQ', dateBegin: '27-09-2021', dateEnd: '10-10-2021', language: 'English'},
 };
 
@@ -18,6 +19,11 @@ const reducer = (state = initialState, action = {}) => {
       return{
         ...state,
         eventTags: action.value,
+      }
+    case SET_USER_EVENTS_BY_ID:
+      return{
+        ...state,
+        eventUserEvents: action.value,
       }
     default:
       return state;

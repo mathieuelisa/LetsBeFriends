@@ -7,20 +7,32 @@ import avatarMicheline from "../../../assets/Img/micheline.jpg"
 //Tools
 import PropTypes from 'prop-types'
 
-function EventCardSearch({classNameCard, infos, pictures, title, titleConfig, languages, placesLeft, handleClick, imgUrl}){
+function EventCardSearch({
+    classNameCard, 
+    infos, 
+    pictures, 
+    title, 
+    titleConfig, 
+    textConfig, 
+    languages, 
+    placesLeft, 
+    handleClick, 
+    imgUrl
+}){
     return(
         <div onClick={handleClick} className={classNameCard}>
             <div className={infos}>
                 <h2 className={titleConfig}>{title}</h2>
-                <p>{languages.map(language => language.name)}</p>
-                <p>{placesLeft} spot left</p>
+                {/* Commenter afin de pouvoir bosser sur les autres pages */}
+                {/* <p>{languages.map(language => language.name)}</p> */}
+                <p className={textConfig}>{placesLeft} spot left</p>
             </div>
 
             <div className={pictures}>
                 <Avatar 
                     customDiv={"search__container-avatar"} 
                     customImg={"search__container-pictures"}  
-                    customPics={avatarMicheline}
+                    customPics={imgUrl}
                 />
             </div>  
         </div>

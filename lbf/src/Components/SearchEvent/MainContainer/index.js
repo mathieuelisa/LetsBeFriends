@@ -22,7 +22,6 @@ import Loader from "../../Styledcomponents/Loader";
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { setAllEvents } from "../../../Redux/actions/event";
-import { Map } from "leaflet";
 import ButtonToggleResult from "../../Styledcomponents/ButtonToggleResult";
 
 function SearchEventContainer() {
@@ -30,10 +29,13 @@ function SearchEventContainer() {
   const events = useSelector((state) => state.event.events);
 
   const allLanguages = useSelector((state) => state.common.allLanguages);
-  console.log("allLanguages apres useSelector :", allLanguages)
   const allEventTags = useSelector((state) => state.event.eventTags);
 
   const [loading, setLoading] = useState(false);
+
+    // Test debbug
+  const [test, setTest] = useState(false)
+
   const [openResults, setOpenResults] = useState(false)
   const [fieldsSearch, setFieldsSearch] = useState({
     city: "",
@@ -81,13 +83,15 @@ function SearchEventContainer() {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
   };
-  
+  console.log("passage de test avant le useEffect", test)
   // useEffect pour recuperer tout les evenements a chaque refresh de la page
   useEffect(() => {
+    setTest(!test)
     GetAllEvents();
+    console.log("passage de test dans le useEffect", test)
     dispatch({ type: RESET_TOGGLE });
   }, []);
-
+  
   console.log("allLanguages apres useEffect :", allLanguages)
   
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
@@ -118,7 +122,7 @@ function SearchEventContainer() {
         ...fieldsSearch,
         [e.target.name]: e.target.value,
       });
-
+      
     } else {
       setFieldsSearch({
         ...fieldsSearch,
@@ -127,6 +131,7 @@ function SearchEventContainer() {
     }
   }
 
+  
   function handleClick(event) {
     event.preventDefault();
     dispatch({ type: SET_TOGGLE });
@@ -169,13 +174,13 @@ function SearchEventContainer() {
 
   // Fonction afin de recuperer l'ensemble des events à partir de l'API
   const GetAllEvents = () => {
-    console.log('Le loading dans GetAllEvents est à : ', loading )
+    // console.log('Le loading dans GetAllEvents est à : ', loading )
     setLoading(true);
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/events", optionsGet)
       .then((response) => {
         dispatch(setAllEvents(response.data));
-        console.log("La liste de tous les events : ", response.data);
+        // console.log("La liste de tous les events : ", response.data);
       })
       .catch((error) =>
         console.log("ERREUR : Je n'arrive pas à recuperer les evenements")
@@ -183,6 +188,7 @@ function SearchEventContainer() {
       .finally(() => setLoading(false));
   };
   
+
   const searchEvent = (tagName, languagesName, startingDate, endingDate) => {
     axios
       .post(
@@ -211,6 +217,7 @@ function SearchEventContainer() {
     history.push("/");
   }
 
+    console.log("test asynchrone")
 return (
     <div className="searchEvent__container">
       <div className={toggleAction? "header__navbar__settings-open": "header__navbar__settings"}>
@@ -298,7 +305,7 @@ return (
               >
                 <option></option>
 
-                {allLanguages.map((language) => (
+                {test && allLanguages.map((language) => (
                   <option>{language.name}</option>
                 ))}
               </select>
