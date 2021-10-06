@@ -235,7 +235,7 @@ function SearchEventContainer() {
     
   };
   const history = useHistory();
-  // Function permettant de se logout en reinitialisant le localStorage
+  // Function permettant de se logout en reinitialisant le localStorages
   function handleLogOut() {
     dispatch(resetInfosUser());
     history.push("/");
