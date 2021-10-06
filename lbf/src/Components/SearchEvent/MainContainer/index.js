@@ -80,7 +80,7 @@ function SearchEventContainer() {
     "Access-Control-Allow-Origin": "*",
   };
   
-  
+  // useEffect pour recuperer tout les evenements a chaque refresh de la page
   useEffect(() => {
     GetAllEvents();
     dispatch({ type: RESET_TOGGLE });
