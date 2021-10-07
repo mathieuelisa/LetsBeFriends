@@ -89,10 +89,8 @@ function App() {
          getLanguages();
          getEventsTags();
          GetUserEventsById();
-         //getAskingRequestToMyEvents();
+         getAskingRequestToMyEvents();
         }, [])
-
-        getAskingRequestToMyEvents();
 
       if(events !== null && allLanguages !== null && allEventTags !== null && !askingList && loader == false) {
            setLoader(!loader);
