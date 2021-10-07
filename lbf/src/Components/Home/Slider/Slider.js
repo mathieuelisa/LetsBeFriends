@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import './styles.scss'
 import BtnSlider from './BtnSlider'
 import EventCard from '../../Styledcomponents/EventCard'
 import { useSelector } from 'react-redux'
+import './styles.scss'
 
 export default function Slider() {
 
@@ -10,10 +10,11 @@ export default function Slider() {
     const events = useSelector(state => state.event.events)
 
     const nextSlide = () => {
-        if(slideIndex !== events.length){
+        if(slideIndex !==5){
+            // events.length
             setSlideIndex(slideIndex + 1)
         } 
-        else if (slideIndex === events.length){
+        else if (slideIndex === 5){
             setSlideIndex(1)
         }
     }
@@ -32,13 +33,12 @@ export default function Slider() {
     }
 
     return (
+        <>
+        
         <div className="container-slider">
             {events.map((obj, index) => {
                 return (
-                    <div
-                    key={obj.id}
-                    className={slideIndex === index + 1 ? "slide active-anim" : "slide"}
-                    >
+                    <div key={obj.id} className={slideIndex === index + 1 ? "slide active-anim" : "slide"}>
                         <EventCard {...obj}/>
                     </div>
                 )
@@ -55,5 +55,6 @@ export default function Slider() {
                 ))}
             </div>
         </div>
+        </>
     )
 }

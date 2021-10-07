@@ -37,6 +37,8 @@ function ListEventContainer(){
     const events = useSelector((state)=>state.event.events)
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
 
+    console.log("dataEvents", dataEvents)
+    
     console.log(" Events",events)
     console.log(' data events : ', dataEvents);
     console.log('La liste des askings request : ', askingList)

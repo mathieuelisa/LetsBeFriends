@@ -165,6 +165,7 @@ function ProfilContainer() {
         "learningLanguage": myLearningLanguages.map(language => language.id),
         "speakingLanguage": myLanguagesSpoken.map(language => language.id),
         "city": fieldsCreateProfil.city,
+        // "imgUrl": imageUrl
     })
       axios.patch('https://lets-be-friend.herokuapp.com/v1/users', {
           "id": infosUser.id,
@@ -176,7 +177,9 @@ function ProfilContainer() {
           "age": fieldsCreateProfil.age,
           "learningLanguage": myLearningLanguages.map(language => language.id),
           "speakingLanguage": myLanguagesSpoken.map(language => language.id),
-          "city": fieldsCreateProfil.city
+          "city": fieldsCreateProfil.city,
+          // "imgUrl": imageUrl,
+
       }, optionsAxios)
           .then((response) => {
               console.log('Voici la réponse de l API pour l update du profil :', response.data);
@@ -194,10 +197,6 @@ function ProfilContainer() {
             "https://api.cloudinary.com/v1_1/lbfcloud/image/upload",formData)
             .then(res=>setImageUrl(res.data.secure_url))
             .catch((err)=>console.log(err))
-        }
-
-        const refreshPage = () =>{
-          window.location.reload()
         }
 
   return (
