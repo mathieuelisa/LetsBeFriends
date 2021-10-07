@@ -2,6 +2,7 @@
 //Import React components
 import ButtonToggle from "../../Styledcomponents/ButtonToggle"
 import Avatar from "../../Styledcomponents/Avatar"
+import { resetInfosUser } from "../../../Redux/actions/profil"
 //Import styles
 import "./styles.scss"
 //Import fonts
@@ -44,8 +45,8 @@ function ContactContainer(){
 const history = useHistory()
 
     function handleLogOut(){
-        localStorage.clear()
-        history.push("/home")
+        dispatch(resetInfosUser());
+        history.push("/")
 }
 
 
@@ -60,13 +61,21 @@ const history = useHistory()
 
                 {toggleAction ? 
                     <div className="header__hamburger">
-                        <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
-                        <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
-                        <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
-                        <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
-                        <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
-                        <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
-                            {localStorage.getItem("user") ? <NavLink onClick={handleLogOut} exact to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>: ""}
+                            {localStorage.getItem("user") ? 
+                            <>
+                                <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+                                <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
+                                <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
+                                <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
+                                <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
+                                <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
+                                <NavLink onClick={handleLogOut} exact to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>
+                            </>
+                             : 
+                            <>
+                                <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
+                                <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
+                            </>}
                     </div>
                     : ""
                 } 

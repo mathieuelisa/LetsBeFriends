@@ -88,27 +88,31 @@ const userController = {
         try {
 
             if (req.body.learningLanguage) {
+                var result1 = await Language.deleteUserLearnLanguage(user.id);
                 for (let language of req.body.learningLanguage) {
-                    await Language.newUserLearnLanguage(user.id,language)
+                    await Language.newUserLearnLanguage(user.id, language)
                 };
                 delete user.learningLanguage
             }
 
             if (req.body.speakingLanguage) {
+                var result2 = await Language.deleteUserSpeakLanguage(user.id);
                 for (let language of req.body.speakingLanguage) {
-                    await Language.newUserSpeakLanguage(user.id,language)
+                    await Language.newUserSpeakLanguage(user.id, language)
                 };
                 delete user.speakingLanguage
             }
 
             if (user.confirmPassword) delete user.confirmPassword
-            
-            const result = await user.save();
-            if (result){
+
+            if (Object.keys(user).length > 1) {
+                var result = await user.save();
+            }
+
+            if (result || result1 || result2) {
                 const userResult = await User.findOneById(user.id)
-                res.status(200).json(userResult)
-            } 
-            else res.status(400).json("data not valid or ressource do not exist")
+                res.status(result1?.error || result2?.error || result?.error ? 418 : 200).json((userResult || "data not valid or ressource do not exist"))
+            }
 
         } catch (error) {
             console.log(error);

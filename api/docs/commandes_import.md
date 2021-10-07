@@ -11,6 +11,13 @@ psql -U postgres -d lbf -f ./data/dummyData/importUserLearnLanguage.sql &&
 psql -U postgres -d lbf -f ./data/dummyData/importUserSpeakLanguage.sql && 
 psql -U postgres -d lbf -f ./data/dummyData/importUserParticipateEvent.sql
 ```
+```
+dropdb &&
+createdb &&
+sqitch deploy &&
+psql -U postgres -d lbf -f ./data/dummyData/importNewFakeData.sql
+```
+
 
 psql -d postgres://voajukmwjczukq:83f22c219d3b52f048a634267d609618703e992366207fec358b580a3b516de5@ec2-54-228-139-34.eu-west-1.compute.amazonaws.com:5432/de29ouuaa0inj3 -f ./data/importFakeData.sql && 
 psql -d postgres://voajukmwjczukq:83f22c219d3b52f048a634267d609618703e992366207fec358b580a3b516de5@ec2-54-228-139-34.eu-west-1.compute.amazonaws.com:5432/de29ouuaa0inj3 -f ./data/dummyData/importUser.sql && 

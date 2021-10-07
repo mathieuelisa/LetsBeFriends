@@ -125,7 +125,6 @@ router
 
 
 //? --- LANGUAGE
-
 router
     .route('/languages')
     /**
@@ -137,6 +136,7 @@ router
      * @returns {string} 500 - An error message
      */
     .get(languageController.findAll)
+<<<<<<< HEAD
 router
     .route('/speak')
     /**
@@ -183,9 +183,20 @@ router
      * @returns {string} 500 - an error message
      */
     .delete(languageController.deleteUserLearnLanguage)
+=======
+>>>>>>> developpement
+
+// router
+//     .route('/speak')
+//     .post(languageController.newUserSpeakLanguage)
+//     .delete(languageController.deleteUserSpeakLanguage)
+
+// router
+//     .route('/learn')
+//     .post(languageController.newUserLearnLanguage)
+//     .delete(languageController.deleteUserLearnLanguage)
 
 //? --- TAG
-
 router
     .route('/tags')
      /**
@@ -197,6 +208,8 @@ router
      * @returns {string} 500 - An error message
      */
     .get(tagController.findAll)
+    .delete(tagController.deleteEventHasTag)
+
 
 //? --- USER
 router

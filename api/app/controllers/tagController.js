@@ -17,10 +17,10 @@ const tagController = {
 
         } catch (error) {
             console.log(error);
-            res.status(500).json(error);
+            res.status(400).json(error);
         }
-
     },
+
     findOneByName: async (req, res) => {
         try {
             const name = req.params.name;
@@ -28,10 +28,35 @@ const tagController = {
             res.json(tag);
         } catch (error) {
             console.log(error);
-            res.status(500).json(error);
+            res.status(400).json(error);
         }
-
     },
+
+    newEventHasTag: async (req, res, next) => {
+        const event_id = req.body.eventId;
+        const tag_id = req.body.tagId;
+
+        try {
+            const result = await Tag.newEventHasTag(event_id, tag_id);
+            res.status(result.error ? 418 : 200).json(result);
+        } catch (error) {
+            console.log(error);
+            res.status(400).json(error);
+        }
+    },
+
+    deleteEventHasTag: async (req, res) => {
+        const event_id = req.body.eventId;
+        const tag_id = req.body.tagId;
+
+        try {
+            const result = await Tag.deleteEventHasTag(event_id, tag_id);
+            res.status(result.error ? 418 : 200).json(result);
+        } catch (error) {
+            console.log(error);
+            res.status(400).json(error);
+        }
+    }
 }
 
 module.exports = tagController;

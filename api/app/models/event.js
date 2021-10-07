@@ -63,6 +63,7 @@ class Event extends CoreModel {
 				json_agg(
 					DISTINCT jsonb_strip_nulls(
 						jsonb_build_object(
+						'id', tag.id,
 						'name', tag.name,
 						'color', tag.color
 					))
@@ -96,13 +97,13 @@ class Event extends CoreModel {
 				[id]);
 
 			if (rows[0]) return new Event(rows[0]);
-			return {error: `Event with id ${id} doesn't exist`};
+			return { error: `Event with id ${id} doesn't exist` };
 
 		} catch (error) {
 
 			if (error.detail) throw new Error(error.detail)
 			else throw error;
-			
+
 		}
 	}
 
@@ -129,6 +130,7 @@ class Event extends CoreModel {
 				json_agg(
 					DISTINCT jsonb_strip_nulls(
 						jsonb_build_object(
+						'id', tag.id,
 						'name', tag.name,
 						'color', tag.color
 					))
@@ -161,7 +163,7 @@ class Event extends CoreModel {
 				LIMIT $1`,
 				[limit])
 
-				return rows.map(row => new Event(row))
+			return rows.map(row => new Event(row))
 		} catch (error) {
 
 			if (error.detail) throw new Error(error.detail)
@@ -187,8 +189,8 @@ class Event extends CoreModel {
 				}
 
 				const { rows } = await db.query(`UPDATE "event" SET ${properties} WHERE id=$1 RETURNING *`, values)
-				if (rows.length) new Event(rows[0])
-				else return { error: `Event with id ${this.id} doesn't exist`}
+				if (rows.length) return new Event(rows[0])
+				else return { error: `Event with id ${this.id} doesn't exist` }
 
 			} else {
 				const { rows } = await db.query('INSERT INTO event(title, starting_date, ending_date, img_url, places_left, description, longitude, latitude, user_id, address) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id', [
@@ -272,7 +274,7 @@ class Event extends CoreModel {
 
 			if (rows.length) return rows.map(row => new Event(row));
 
-			else return { error: `Event with doesn't exist`}
+			else return { error: `Event with doesn't exist` }
 
 		} catch (error) {
 

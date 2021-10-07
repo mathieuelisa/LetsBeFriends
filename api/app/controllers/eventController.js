@@ -1,5 +1,6 @@
-const { Event, Language } = require(`../models`);
+const { Event, Language, Tag, Request } = require(`../models`);
 const addressTranslate = require('../services/positionStack');
+const formatAdress = require('../services/formatAddress')
 
 const eventController = {
 
@@ -13,7 +14,7 @@ const eventController = {
             res.status(200).json(results);
 
         } catch (error) {
-            
+
             console.log(error);
             res.status(400).json(error);
         };
@@ -26,7 +27,7 @@ const eventController = {
             const id = parseInt(req.params.id, 10);
             const result = await Event.findOneById(id);
             res.status(result.error ? 418 : 200).json(result);
-            
+
         } catch (error) {
 
             console.log(error);
@@ -54,10 +55,10 @@ const eventController = {
 
         console.log('--> Create Event: req.body');
         console.table(req.body);
-        
+
         let data = req.body;
-        let { eventLanguage } = data;
-        let address = data.address;
+        let { eventLanguage, tagId } = data;
+        let address = formatAdress(data.location, data.zipCode, data.city, data.country)
 
         try {
             // Ici on translate l'adresse en string en coordonées
@@ -66,17 +67,26 @@ const eventController = {
             data.latitude = coordinates.lat;
 
             if (eventLanguage) delete data.eventLanguage;
+            if (tagId) delete data.tagId;
 
             const event = new Event(data);
             const eventCreated = await event.save();
-            
-            if(eventLanguage){
+
+            if (eventLanguage) {
                 for (let language of eventLanguage) {
-                    await Language.newEventHasLanguage(eventCreated.id,language)
+                    await Language.newEventHasLanguage(eventCreated.id, language)
                 };
             };
-            const newEvent = await Event.findOneById(eventCreated.id);
 
+            if (tagId) {
+                for (let tag of tagId) {
+                    let tag_id = tag;
+                    await Tag.newEventHasTag(eventCreated.id, tag_id)
+                };
+            }
+
+            const newEvent = await Event.findOneById(eventCreated.id);
+            await Request.newUserInEvent(data.user_id, newEvent.id)
             res.status(201).json(newEvent);
         } catch (error) {
             console.log(error);
@@ -88,28 +98,44 @@ const eventController = {
 
         console.log('--> Update Event: req.body')
         console.table(req.body)
-        const event = new Event(req.body);
-        
+
         try {
 
-            if(req.body.eventLanguage){
 
+            const event = new Event(req.body);
+
+            if (req.body.address) {
+                const coordinates = await addressTranslate(req.body.address);
+                event.longitude = coordinates.lng;
+                event.latitude = coordinates.lat;
+            }
+
+            if (req.body.eventLanguage) {
+                var result1 = await Language.deleteEventHasLanguage(event.id);
                 for (let language of req.body.eventLanguage) {
-                    await Language.newEventHasLanguage(event.id,language)
+                    await Language.newEventHasLanguage(event.id, language)
                 };
                 delete event.eventLanguage
             }
 
-            const result = await event.save();
+            if (req.body.tagId) {
+                var result2 = await Tag.deleteEventHasTag(event.id)
+                for (let tag of req.body.tagId) {
+                    await Tag.newEventHasTag(event.id, tag)
+                };
+                delete event.tagId
+            }
 
-            if (result){
+            if (Object.keys(event).length > 1) {
+                var result = await event.save();
+            }
 
+            if (result || result1 || result2) {
                 const eventResult = await Event.findOneById(event.id)
-                res.status(eventResult.error ? 418 : 200).json(result);
-            } 
+                res.status(result1?.error || result2?.error || result?.error ? 418 : 200).json(eventResult);
+            }
 
         } catch (error) {
-
             console.log(error);
             res.status(400).json(error);
         }
