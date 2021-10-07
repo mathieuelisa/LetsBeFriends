@@ -28,6 +28,7 @@ function App() {
     const idUser = useSelector((state)=>state.profil.infosUser.id)
     const infosUser = useSelector((state)=>state.profil.infosUser)
     const askingList = useSelector(state => state.event.askingList)
+    const dataEvents  = useSelector(state => state.event.dataEvents)
 
     const GetAllEvents = () => {
         axios
@@ -66,7 +67,7 @@ function App() {
           .get(`https://lets-be-friend.herokuapp.com/v1/users/${idUser}`, optionsAxios)
           .then((response) => {
             dispatch(setUserEventsById(response.data.event));
-            //console.log("coucou voici ta reponse de ton API:", response.data.event)
+            console.log("coucou voici ta reponse de ton API:", response.data.event)
           })
           .catch((error) =>
             console.log(`ERREUR : I can't all the data form the user ${idUser}`)
@@ -93,7 +94,7 @@ function App() {
          getAskingRequestToMyEvents();
         }, [])
 
-      if(events !== null && allLanguages !== null && allEventTags !== null && !askingList && loader == false && !askingList) {
+      if(events !== null && allLanguages !== null && allEventTags !== null && !askingList && loader == false && askingList !== undefined && dataEvents !== null) {
            setLoader(!loader);
        }
   return (

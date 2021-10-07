@@ -83,7 +83,7 @@ function SearchEventContainer() {
   
   //Fonctionnalité, Cliquez pour rediriger vers la carte
   //const eventRedirection = useRef(null);
-  console.log("Tous les infos user:", infosUser);
+  //console.log("Tous les infos user:", infosUser);
   console.log("Tous les events:", events);
   // console.log("tout les tags:", fieldsSearch.eventTags);
   // console.log("Initialisation fieldsSearch: ", fieldsSearch);
@@ -315,7 +315,7 @@ return (
               />
             </div>
             <div className="searchEvent__container-infosDetails-location">
-              <label>Languages: </label>
+              <label>languages: </label>
               <select
                 className="searchEvent__container-select"
                 name="languages"
@@ -346,7 +346,7 @@ return (
         <div className={openResults ? "searchEvent__container-resultsForm" : "searchEvent__container-resultsForm--open"}>
           {/* Cards for searchPage */}
           {{openSearch} && events?.map((event) => (
-            <EventCardSearch key={event.id} {...event} classNameCard="searchEvent__container-resultsForm__searchEvent" />
+            <EventCardSearch key={event.id} {...event} classNameCard="searchEvent__container-resultsForm__searchEvent"/>
           ))}
         </div>
       </div>

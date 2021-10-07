@@ -6,6 +6,7 @@ import "./styles.scss"
 import avatarMicheline from "../../../assets/Img/micheline.jpg"
 //Tools
 import PropTypes from 'prop-types'
+import { useState } from "react"
 
 function EventCardSearch({
     classNameCard, 
@@ -19,13 +20,19 @@ function EventCardSearch({
     handleClick, 
     imgUrl
 }){
+    const [loaderLanguages, setLoaderLanguages] = useState(false)
+
+    if (languages) {
+        setLoaderLanguages(true);
+    }
     return(
         <div onClick={handleClick} className={classNameCard}>
             <div className={infos}>
                 <h2 className={titleConfig}>{title}</h2>
                 {/* Commenter afin de pouvoir bosser sur les autres pages */}
-                <p>{languages.map(language => language.name)}</p>
-                <p className={textConfig}>{placesLeft} spot left</p>
+                {loaderLanguages ? <p>{languages.map(language => language.name)}</p> : ""}
+                {loaderLanguages ? <p className={textConfig}>{placesLeft} spot left</p> : ""}
+                
             </div>
 
             <div className={pictures}>

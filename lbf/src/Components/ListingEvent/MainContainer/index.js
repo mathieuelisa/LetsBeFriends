@@ -18,6 +18,7 @@ import { useHistory } from 'react-router';
 
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
+import ParticipateRequest from "../../Styledcomponents/ParticipateRequest"
 
 function ListEventContainer(){
     const dispatch = useDispatch()
@@ -27,20 +28,19 @@ function ListEventContainer(){
     const [comingSoonEvents, setComingSoonEvents] = useState("")
     const [myEvents, setMyEvents] = useState("")
     const [askings, setAskings] = useState("")
+    
 
-
+    const askingList = useSelector(state => state.event.askingList)
     const toggleAction = useSelector((state)=> state.common.toggleAction)
     const infosUser = useSelector((state)=>state.profil.infosUser)
     const events = useSelector((state)=>state.event.events)
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
 
     console.log(" Events",events)
+    console.log('Use data events : ', dataEvents);
+    console.log('La liste des askings request : ', askingList)
 
     // Recherche des events du user
-    const userDataEvents = dataEvents.filter(element => element.ownerId === infosUser.id)
-    
-    console.log("myResult:", userDataEvents)
-
     function handleClick(event){
         event.preventDefault()
         console.log("Tu as cliqué sur le bouton")
@@ -87,6 +87,9 @@ function ListEventContainer(){
         setMyEvents("")
   }
 
+  const displayAskingRequests = () => {
+
+  } 
 
     return(
         <div className="list__container">
@@ -140,7 +143,7 @@ function ListEventContainer(){
 
                             </div>
 
-                            {myEvents && userDataEvents?.map((event) => (
+                            {myEvents && dataEvents?.map((event) => (
                                             <EventCardSearch 
                                                 key={event.id} 
                                                 title={event.title}
@@ -152,18 +155,19 @@ function ListEventContainer(){
 
                                     }
 
-                            {comingSoonEvents && userDataEvents?.map((event) => (
+                            {comingSoonEvents && dataEvents?.map((event) => (
                                             <EventCardSearch 
                                                 key={event.id} 
                                                 title={"Coming soon events"}
                                                 imgUrl={event.imgUrl}
                                                 textConfig="profil__container-resultsForm-text"
                                                 classNameCard="profil__container-resultsForm"
+
                                             />
                                         ))
                                     }
 
-                            {pastEvents && userDataEvents?.map((event) => (
+                            {pastEvents && dataEvents?.map((event) => (
                                             <EventCardSearch 
                                                 key={event.id} 
                                                 title={"Pasts events"}
@@ -174,11 +178,15 @@ function ListEventContainer(){
                                         ))
                                     }
 
-                            {askings && userDataEvents?.map((event) => (
-                                    <EventCardSearch 
-                                        key={event.id} 
-                                        title={"Askings events"}
-                                        imgUrl={event.imgUrl}
+                            {askings && askingList[0].participants.map((participant) => (
+                                    <ParticipateRequest 
+                                        key={participant.id} 
+                                        firstname={participant.firstname}
+                                        lastname={participant.lastname}
+                                        age={participant.age}
+                                        title={dataEvents.find(event => event.id == askingList[0].eventId).title}
+                                        placesLeft={dataEvents.find(event => event.id == askingList[0].eventId).placesLeft}
+                                        imgUrl={participant.imgUrl}
                                         textConfig="profil__container-resultsForm-text"
                                         classNameCard="profil__container-resultsForm"
                                     />
