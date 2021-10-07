@@ -19,6 +19,7 @@ import { useHistory } from 'react-router';
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
 import ParticipateRequest from "../../Styledcomponents/ParticipateRequest"
+import EventCardMyEvents from "../../Styledcomponents/EventCardMyEvents"
 
 function ListEventContainer(){
     const dispatch = useDispatch()
@@ -37,7 +38,7 @@ function ListEventContainer(){
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
 
     console.log(" Events",events)
-    console.log('Use data events : ', dataEvents);
+    console.log(' data events : ', dataEvents);
     console.log('La liste des askings request : ', askingList)
 
     // Recherche des events du user
@@ -59,28 +60,32 @@ function ListEventContainer(){
     history.push("/")
 }
 
-  const handleClickPast = () =>{
+  const handleClickPast = (e) =>{
+      e.preventDefault();
         setPastEvents(!pastEvents)
         setMyEvents("")
         setComingSoonEvents("")
         setAskings("")
   }
 
-  const handleClickComingSoon = () =>{
+  const handleClickComingSoon = (e) =>{
+    e.preventDefault();
         setComingSoonEvents(!comingSoonEvents)
         setPastEvents("")
         setMyEvents("")
         setAskings("")
   }
 
-  const handleClickEvents = () =>{
+  const handleClickEvents = (e) =>{
+    e.preventDefault();
         setMyEvents(!myEvents)
         setComingSoonEvents("")
         setPastEvents("")
         setAskings("")
   }
 
-  const handleClickAsking = () =>{
+  const handleClickAsking = (e) =>{
+      e.preventDefault();
         setAskings(!askings)
         setComingSoonEvents("")
         setPastEvents("")
@@ -144,7 +149,7 @@ function ListEventContainer(){
                             </div>
 
                             {myEvents && dataEvents?.map((event) => (
-                                            <EventCardSearch 
+                                            <EventCardMyEvents 
                                                 key={event.id} 
                                                 title={event.title}
                                                 imgUrl={event.imgUrl}
@@ -156,7 +161,7 @@ function ListEventContainer(){
                                     }
 
                             {comingSoonEvents && dataEvents?.map((event) => (
-                                            <EventCardSearch 
+                                            <EventCardMyEvents 
                                                 key={event.id} 
                                                 title={"Coming soon events"}
                                                 imgUrl={event.imgUrl}
@@ -168,7 +173,7 @@ function ListEventContainer(){
                                     }
 
                             {pastEvents && dataEvents?.map((event) => (
-                                            <EventCardSearch 
+                                            <EventCardMyEvents 
                                                 key={event.id} 
                                                 title={"Pasts events"}
                                                 imgUrl={event.imgUrl}
@@ -190,6 +195,7 @@ function ListEventContainer(){
                                         textConfig="profil__container-resultsForm-text"
                                         classNameCard="profil__container-resultsForm"
                                     />
+                                    
                                 ))
                             }
                         </div> 

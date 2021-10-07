@@ -5,7 +5,7 @@ import "./styles.scss"
 //Tools
 import PropTypes from 'prop-types'
 
-function EventCardSearch({
+function EventCardMyEvents({
     classNameCard, 
     infos, 
     pictures, 
@@ -21,8 +21,6 @@ function EventCardSearch({
         <div onClick={handleClick} className={classNameCard}>
             <div className={infos}>
                 <h2 className={titleConfig}>{title}</h2>
-                {/* Commenter afin de pouvoir bosser sur les autres pages */}
-                <p>{languages.map(language => language.name)}</p> 
                 <p className={textConfig}>{placesLeft} spot left</p>
                 
             </div>
@@ -38,7 +36,7 @@ function EventCardSearch({
     )
 }
 
-EventCardSearch.propTypes = {
+EventCardMyEvents.propTypes = {
     classNameCard: PropTypes.string,
     infos: PropTypes.string,
     pictures: PropTypes.string,
@@ -48,4 +46,4 @@ EventCardSearch.propTypes = {
     placesLeft: PropTypes.number,
 }
 
-export default EventCardSearch
+export default EventCardMyEvents

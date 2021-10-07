@@ -62,7 +62,8 @@ ParticipateRequest.propTypes = {
     classNameCard: PropTypes.string,
     classNameInfos: PropTypes.string,
     titleConfig: PropTypes.string,
-    ClassNamePicturesDiv: PropTypes.string
+    ClassNamePicturesDiv: PropTypes.string,
+    title: PropTypes.string
 }
 
 export default ParticipateRequest
