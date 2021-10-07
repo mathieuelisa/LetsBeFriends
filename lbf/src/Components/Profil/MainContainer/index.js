@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
 import axios from "axios";
 //Actions
-import avatarMicheline from "../../../assets/Img/micheline.jpg";
+// import avatarMicheline from "../../../assets/Img/micheline.jpg";
 import { useDispatch, useSelector } from "react-redux";
 // import actions types
 import {

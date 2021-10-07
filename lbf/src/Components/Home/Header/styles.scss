@@ -29,6 +29,7 @@
       cursor: pointer;
       text-decoration: none;
       font-family: "Caviar";
+      font-weight: bold;
     }
 
     &__nameOfUser {
@@ -54,6 +55,7 @@
       text-decoration: none;
       transition: all 0.4s linear 0s;
       font-family: "Caviar";
+      font-weight: bold;
 
       &:hover {
         color: whitesmoke;
@@ -79,6 +81,7 @@
         cursor: pointer;
         text-decoration: none;
         color: whitesmoke;
+        z-index: 5;
 
         &:hover {
           transform: rotate(90deg);
@@ -173,5 +176,9 @@
 @media screen and (max-width: 1070px) {
   .header__navbar__settings .settings__container--toggle:hover {
     transform: rotate(-0deg);
+  }
+
+  .header__navbar__settings .settings__container--toggle{
+    z-index: 1;
   }
 }
