@@ -157,16 +157,21 @@ function SearchEventContainer() {
 
   // Fonction permettant la soumission du formulaire
   const handleSubmitForm = (e) => {
+    console.log('Voivi vos critères de recherche : ',       fieldsSearch.selectedTags,
+    fieldsSearch.selectedLanguages,
+    fieldsSearch.dateFrom.formatISO,
+    fieldsSearch.dateTo.formatISO)
     e.preventDefault();
     if(fieldsSearch.selectedTags == null && fieldsSearch.selectedLanguages == null && fieldsSearch.dateFrom.formatISO == null && fieldsSearch.dateTo.formatISO == null) {
-      GetAllEvents();
-    }
+
+    } else {
     searchEvent(
       fieldsSearch.selectedTags,
       fieldsSearch.selectedLanguages,
       fieldsSearch.dateFrom.formatISO,
       fieldsSearch.dateTo.formatISO
     );
+  }
   };
 
   const handleClickParticipate = (event) => {
@@ -224,8 +229,11 @@ function SearchEventContainer() {
         } else {
         dispatch(setAllEvents(response.data));
       }})
-      .catch((error) => console.log("Error recherche event "))
-      .finally(setLoading(false))
+      .catch((error) => {console.log("Error recherche event ");
+      GetAllEvents()})
+     
+      setLoading(false);
+      
     
   };
   const history = useHistory();
