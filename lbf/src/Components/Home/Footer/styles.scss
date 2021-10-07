@@ -1,3 +1,14 @@
+
+.styles {
+    overflow: hidden;
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
 .mentions {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.7em;

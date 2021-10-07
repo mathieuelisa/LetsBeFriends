@@ -157,21 +157,14 @@ function SearchEventContainer() {
 
   // Fonction permettant la soumission du formulaire
   const handleSubmitForm = (e) => {
-    console.log('Voivi vos critères de recherche : ',       fieldsSearch.selectedTags,
-    fieldsSearch.selectedLanguages,
-    fieldsSearch.dateFrom.formatISO,
-    fieldsSearch.dateTo.formatISO)
     e.preventDefault();
-    if(fieldsSearch.selectedTags == null && fieldsSearch.selectedLanguages == null && fieldsSearch.dateFrom.formatISO == null && fieldsSearch.dateTo.formatISO == null) {
-
-    } else {
     searchEvent(
       fieldsSearch.selectedTags,
       fieldsSearch.selectedLanguages,
       fieldsSearch.dateFrom.formatISO,
       fieldsSearch.dateTo.formatISO
     );
-  }
+  
   };
 
   const handleClickParticipate = (event) => {

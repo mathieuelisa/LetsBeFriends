@@ -1,7 +1,7 @@
 import './styles.scss';
 
 //import React Composants
-import Caroussel from '../Caroussel';
+import Caroussel from '../Slider/Slider';
 
 const Footer = () => (
   <div className='styles'>

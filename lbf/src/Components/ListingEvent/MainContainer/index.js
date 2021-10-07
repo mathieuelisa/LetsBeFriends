@@ -31,10 +31,10 @@ function ListEventContainer(){
 
     const toggleAction = useSelector((state)=> state.common.toggleAction)
     const infosUser = useSelector((state)=>state.profil.infosUser)
-    
+    const events = useSelector((state)=>state.event.events)
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
 
-    console.log("popo",dataEvents)
+    console.log(" Events",events)
 
     // Recherche des events du user
     const userDataEvents = dataEvents.filter(element => element.ownerId === infosUser.id)
@@ -86,6 +86,8 @@ function ListEventContainer(){
         setPastEvents("")
         setMyEvents("")
   }
+
+
     return(
         <div className="list__container">
             <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
@@ -108,78 +110,83 @@ function ListEventContainer(){
                 } 
             </div>
 
-            <div className="mainListEvent__container">
-                <div className="profil__container-avatars">
-                        <Avatar 
-                            customDiv={"profil__container-avatar"} 
-                            customImg={"profil__container-pictures"} 
-                            customPics={infosUser.imgUrl}
-                        />
-                </div>
-
-                <div className="profil__container-data">
-                    <div className="title__listContainer">
-                        <div className="choice__listContainer">
-                            <a onClick={handleClickPast} href className="choice__listContainer-link"><h2>PAST</h2></a>
-                        </div>
-                        <div className="choice__listContainer">
-                            <a onClick={handleClickComingSoon} href className="choice__listContainer-link"><h2>COMING SOON</h2></a>
-                        </div>
-                        <div className="choice__listContainer">
-                            <a onClick={handleClickEvents} href className="choice__listContainer-link"><h2>MY EVENT</h2></a>  
-                        </div>
-                        {/* Partie qui sera visible uniquement pour l'organisateur */}
-                        <div className="choice__listContainer">
-                            <a onClick={handleClickAsking} href className="choice__listContainer-link"><h2>ASKING</h2></a>
+            <div className="mainListEvent__precontainer">
+                <div className='mainListEvent__precontainer__container'>
+                    <div className='mainListEvent__precontainer__container-presentation'>Hallo {infosUser.firstname}, you can find below your events calendar. If you are organizing events, check the asking section to accept/decline the other people participation request </div>
+                    <div className='mainListEvent__precontainer__container__display'>
+                        <div className="profil__container-avatars">
+                                <Avatar 
+                                    customDiv={"profil__container-avatar"} 
+                                    customImg={"profil__container-pictures"} 
+                                    customPics={infosUser.imgUrl}
+                                />
                         </div>
 
-                    </div>
+                        <div className="profil__container-data">
+                            <div className="title__listContainer">
+                                <div className="choice__listContainer">
+                                    <a onClick={handleClickPast} href className="choice__listContainer-link"><h2>PAST</h2></a>
+                                </div>
+                                <div className="choice__listContainer">
+                                    <a onClick={handleClickComingSoon} href className="choice__listContainer-link"><h2>COMING SOON</h2></a>
+                                </div>
+                                <div className="choice__listContainer">
+                                    <a onClick={handleClickEvents} href className="choice__listContainer-link"><h2>MY EVENT</h2></a>  
+                                </div>
+                                {/* Partie qui sera visible uniquement pour l'organisateur */}
+                                <div className="choice__listContainer">
+                                    <a onClick={handleClickAsking} href className="choice__listContainer-link"><h2>ASKING</h2></a>
+                                </div>
 
-                    {myEvents && userDataEvents?.map((event) => (
+                            </div>
+
+                            {myEvents && userDataEvents?.map((event) => (
+                                            <EventCardSearch 
+                                                key={event.id} 
+                                                title={event.title}
+                                                imgUrl={event.imgUrl}
+                                                textConfig="profil__container-resultsForm-text"
+                                                classNameCard="profil__container-resultsForm"
+                                            />
+                                        ))
+
+                                    }
+
+                            {comingSoonEvents && userDataEvents?.map((event) => (
+                                            <EventCardSearch 
+                                                key={event.id} 
+                                                title={"Coming soon events"}
+                                                imgUrl={event.imgUrl}
+                                                textConfig="profil__container-resultsForm-text"
+                                                classNameCard="profil__container-resultsForm"
+                                            />
+                                        ))
+                                    }
+
+                            {pastEvents && userDataEvents?.map((event) => (
+                                            <EventCardSearch 
+                                                key={event.id} 
+                                                title={"Pasts events"}
+                                                imgUrl={event.imgUrl}
+                                                textConfig="profil__container-resultsForm-text"
+                                                classNameCard="profil__container-resultsForm"
+                                            />
+                                        ))
+                                    }
+
+                            {askings && userDataEvents?.map((event) => (
                                     <EventCardSearch 
                                         key={event.id} 
-                                        title={event.title}
+                                        title={"Askings events"}
                                         imgUrl={event.imgUrl}
                                         textConfig="profil__container-resultsForm-text"
                                         classNameCard="profil__container-resultsForm"
                                     />
                                 ))
-
                             }
-
-                    {comingSoonEvents && userDataEvents?.map((event) => (
-                                    <EventCardSearch 
-                                        key={event.id} 
-                                        title={"Coming soon events"}
-                                        imgUrl={event.imgUrl}
-                                        textConfig="profil__container-resultsForm-text"
-                                        classNameCard="profil__container-resultsForm"
-                                    />
-                                ))
-                            }
-
-                    {pastEvents && userDataEvents?.map((event) => (
-                                    <EventCardSearch 
-                                        key={event.id} 
-                                        title={"Pasts events"}
-                                        imgUrl={event.imgUrl}
-                                        textConfig="profil__container-resultsForm-text"
-                                        classNameCard="profil__container-resultsForm"
-                                    />
-                                ))
-                            }
-
-                    {askings && userDataEvents?.map((event) => (
-                            <EventCardSearch 
-                                key={event.id} 
-                                title={"Askings events"}
-                                imgUrl={event.imgUrl}
-                                textConfig="profil__container-resultsForm-text"
-                                classNameCard="profil__container-resultsForm"
-                            />
-                        ))
-                    }
-                </div>        
+                        </div> 
+                    </div>    
+                </div>           
             </div>
         </div>
     )
