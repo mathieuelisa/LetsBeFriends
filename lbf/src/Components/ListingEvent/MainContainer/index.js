@@ -18,6 +18,7 @@ import { useHistory } from 'react-router';
 
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
+import { checkPropTypes } from "prop-types"
 
 function ListEventContainer(){
     const dispatch = useDispatch()
@@ -34,10 +35,13 @@ function ListEventContainer(){
     const events = useSelector((state)=>state.event.events)
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
 
+    console.log("dataEvents", dataEvents)
+    
     console.log(" Events",events)
-
+    
     // Recherche des events du user
     const userDataEvents = dataEvents.filter(element => element.ownerId === infosUser.id)
+    console.log("userDataEvents", userDataEvents)
     
     console.log("myResult:", userDataEvents)
 

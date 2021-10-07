@@ -1,6 +1,6 @@
 .container-slider {
-  max-width: 700px;
-  height: 500px;
+  max-width: 648px;
+  height: 450px;
   margin: 100px auto 0;
   position: relative;
   overflow: hidden;
@@ -28,11 +28,10 @@
 }
 
 .btn-slide {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: #f1f1f1;
-  border: 1px solid rgba(34, 34, 34, 0.287);
+  background: transparent;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -46,13 +45,15 @@
   pointer-events: none;
 }
 .prev {
-  top: 50%;
+  top: 92%;
   left: 20px;
+  background-color: #2b2b57;
   transform: translateY(-60%);
 }
 .next {
-  top: 50%;
+  top: 92%;
   right: 20px;
+  background-color: #2b2b57;
   transform: translateY(-60%);
 }
 
@@ -65,13 +66,13 @@
   display: flex;
 }
 .dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 3px solid #f1f1f1;
-  margin: 0 5px;
-  background: #f1f1f1;
+  width: 15px;
+    border-radius: 5%;
+    border: 3px solid #f1f1f1;
+    margin: 0 7px;
+    background: #f1f1f1;
+    transition: all ease-in-out 0.4s;
 }
 .dot.active {
-  background: rgb(32, 32, 32);
+  width: 70px;
 }
