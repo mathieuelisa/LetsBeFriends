@@ -171,8 +171,8 @@ function SearchEventContainer() {
     .post(
       "https://lets-be-friend.herokuapp.com/v1/events/request/new",
       {
-        "user_id": infosUser.id,
-        "event_id": eventId
+        "userId": infosUser.id,
+        "eventId": eventId
       },
       optionsGet,
     )
