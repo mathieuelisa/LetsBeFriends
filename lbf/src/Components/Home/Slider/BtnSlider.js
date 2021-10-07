@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.scss";
-import leftArrow from '../../../assets/Icons/left-arrow.svg'
-import rightArrow from '../../../assets/Icons/right-arrow.svg' 
+import leftArrow from '../../../assets/Icons/previous.png'
+import rightArrow from '../../../assets/Icons/next.png' 
 
 export default function BtnSlider({ direction, moveSlide }) {
   return (

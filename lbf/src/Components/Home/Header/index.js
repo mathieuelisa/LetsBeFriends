@@ -15,6 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
+import Logo from "../../../assets/Logo/LOGO_LBF3.png"
+
 const Header = ({ openModalLogin, openModalSignup }) => {
   const dispatch = useDispatch();
   const toggleAction = useSelector((state) => state.common.toggleAction);
@@ -45,7 +47,10 @@ const Header = ({ openModalLogin, openModalSignup }) => {
  
   return (
     <div className="header">
-      <h1 className="header__logo">LBF</h1>
+      {/* <h1 className="header__logo">LBF</h1> */}
+      <div className="header__container">
+        <img className="header__container-logo" alt="logo" src={Logo}/>
+      </div>
       <div className="header__navbar">
         {/* Si un user est stocké dans un localstorage ca affichera son prenom et retirera les boutons login et sign up */}
         {infosUser.firstname ? (

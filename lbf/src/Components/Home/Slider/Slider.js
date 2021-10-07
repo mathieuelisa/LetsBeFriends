@@ -24,7 +24,7 @@ export default function Slider() {
             setSlideIndex(slideIndex - 1)
         }
         else if (slideIndex === 1){
-            setSlideIndex(events.length)
+            setSlideIndex(6)
         }
     }
 

@@ -1,6 +1,7 @@
 
 .styles {
     overflow: hidden;
+    height: 670px;
 }
 
 *, ::before, ::after {
@@ -21,11 +22,15 @@
     margin: 0 auto;
 
     
-    
     &__legales, &__contact {
         color: whitesmoke;
         text-decoration: none;
         margin-right: 20px;
+        transition: all 0.5s ease-in;
+
+        &:hover{
+            color: rgb(190, 187, 187);
+        }
     }
 }
 
