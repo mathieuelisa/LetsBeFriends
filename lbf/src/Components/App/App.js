@@ -26,6 +26,7 @@ function App() {
     const allEventTags = useSelector((state) => state.event.eventTags);
     const optionsAxios = useSelector((state) => state.common.optionsAxios);
     const idUser = useSelector((state)=>state.profil.infosUser.id)
+    const infosUser = useSelector((state)=>state.profil.infosUser)
     const askingList = useSelector(state => state.event.askingList)
 
     const GetAllEvents = () => {
@@ -74,13 +75,13 @@ function App() {
 
       const getAskingRequestToMyEvents = () => {
         axios
-        .get(`https://lets-be-friend.herokuapp.com/v1/events/request/${idUser}`, optionsAxios)
+        .get(`https://lets-be-friend.herokuapp.com/v1/events/request/${2}`, optionsAxios)
         .then((response) => {
           console.log("La liste des demandes de  participation à tes events:", response.data)
-          dispatch(setAskingList(response.data.event));
+          dispatch(setAskingList(response.data));
         })
         .catch((error) =>
-          console.log(`ERREUR : I can't catch all the data from the user ${idUser}`)
+          console.log(`ERREUR : I can't catch all the data from the user ${infosUser.id}`)
         )
       }
 
@@ -92,7 +93,7 @@ function App() {
          getAskingRequestToMyEvents();
         }, [])
 
-      if(events !== null && allLanguages !== null && allEventTags !== null && !askingList && loader == false) {
+      if(events !== null && allLanguages !== null && allEventTags !== null && !askingList && loader == false && !askingList) {
            setLoader(!loader);
        }
   return (
