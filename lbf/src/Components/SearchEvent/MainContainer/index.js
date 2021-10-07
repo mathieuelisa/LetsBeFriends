@@ -162,12 +162,19 @@ function SearchEventContainer() {
     fieldsSearch.dateFrom.formatISO,
     fieldsSearch.dateTo.formatISO)
     e.preventDefault();
+<<<<<<< HEAD
+=======
+    if(fieldsSearch.selectedTags == null && fieldsSearch.selectedLanguages == null && fieldsSearch.dateFrom.formatISO == null && fieldsSearch.dateTo.formatISO == null) {
+
+    } else {
+>>>>>>> developpement
     searchEvent(
       fieldsSearch.selectedTags,
       fieldsSearch.selectedLanguages,
       fieldsSearch.dateFrom.formatISO,
       fieldsSearch.dateTo.formatISO
     );
+  }
   };
 
   const handleClickParticipate = (event) => {

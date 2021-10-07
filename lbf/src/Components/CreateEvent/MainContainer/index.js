@@ -185,183 +185,186 @@ function CreateEventContainer() {
 
       </div>
       <div className="mainCreateEvent__container">
-        {/* {message} */}
 
         {!isSubmitted ? 
         <>
         <div className="createEvent__container-infosDetails">
           <form id="registerForm" onSubmit={handleSubmitForm}>
+            <div className="globale">
 
-          <div className="createEvent__container-infosDetails-location" id="div-location">
-              <label>Title: </label>
-              <input
-                name="title"
-                className="myInputs"
-                type="text"
-                value={fieldsCreate.title}
-                onChange={handleFieldsCreateChange}
-              />
-            </div>
+{/* Left part of the form */}
+              <div className="first">
+                  <div className="createEvent__container-infosDetails-location" id="div-location">
+                      <label>Title: </label>
+                      <input
+                        name="title"
+                        className="myInputs"
+                        type="text"
+                        value={fieldsCreate.title}
+                        onChange={handleFieldsCreateChange}
+                      />
+                    </div>
 
-            <div
-              className="createEvent__container-infosDetails-location"
-              id="div-location"
-            >
-              <label>Location: </label>
-              <input
-                name="location"
-                className="myInputs"
-                type="text"
-                value={fieldsCreate.location}
-                onChange={handleFieldsCreateChange}
-              />
-            </div>
-            <div
-              className="createEvent__container-infosDetails-location"
-              id="div-location"
-            >
-              <label>Zip code: </label>
-              <input
-                name="zipCode"
-                className="myInputs"
-                type="number"
-                value={fieldsCreate.zipCode}
-                onChange={handleFieldsCreateChange}
-              />
-            </div>
-            <div
-              className="createEvent__container-infosDetails-location"
-              id="div-location"
-            >
-              <label>City: </label>
-              <input
-                name="city"
-                className="myInputs"
-                type="text"
-                value={fieldsCreate.city}
-                onChange={handleFieldsCreateChange}
-              />
-            </div>
-            <div
-              className="createEvent__container-infosDetails-location"
-              id="div-location"
-            >
-              <label>Country: </label>
-              <input
-                name="country"
-                className="myInputs"
-                type="text"
-                value={fieldsCreate.country}
-                onChange={handleFieldsCreateChange}
-              />
-            </div>
-            <div className="createEvent__container-infosDetails-calendar">
-              <label className="createEvent__container-infosDetails-calendar-label">
-                Date from:{" "}
-              </label>
-              <input
-                type="datetime-local"
-                name="dateFrom"
-                className="myInputs"
-                value={fieldsCreate.dateFrom.formatString}
-                onChange={handleFieldsCreateChange}
-              />
-            </div>
-            <div className="createEvent__container-infosDetails-calendar">
-              <label className="createEvent__container-infosDetails-calendar-label">
-                Date to:{" "}
-              </label>
-              <input
-                type="datetime-local"
-                name="dateTo"
-                className="myInputs"
-                value={fieldsCreate.dateTo.formatString}
-                onChange={handleFieldsCreateChange}
-              />
-            </div>
-            <div className="createEvent__container-infosDetails-location">
-              <label>Theme: </label>
-                <select
-                  className="myInputs"
-                  name="eventTags"
-                  value={fieldsCreate.eventTags}
-                  onChange={handleFieldsCreateChange}
-                >
-                  <option></option>
-                    {allEvents.map((event)=>(
-                        <option>{event.name}</option>
-                    ))}
-                </select>
-            </div>
-            
-            <div className="searchEvent__container-infosDetails-location__tag-selected">
-              {selectedEventTags.map((events) => (
-                <Tag handleClick={() =>handleClickClosedEvents(events)} name={events.name} />
-              ))}
-            </div>
+                    <div
+                      className="createEvent__container-infosDetails-location"
+                      id="div-location"
+                    >
+                      <label>Location: </label>
+                      <input
+                        name="location"
+                        className="myInputs"
+                        type="text"
+                        value={fieldsCreate.location}
+                        onChange={handleFieldsCreateChange}
+                      />
+                    </div>
+                    <div
+                      className="createEvent__container-infosDetails-location"
+                      id="div-location"
+                    >
+                      <label>Zip code: </label>
+                      <input
+                        name="zipCode"
+                        className="myInputs"
+                        type="number"
+                        value={fieldsCreate.zipCode}
+                        onChange={handleFieldsCreateChange}
+                      />
+                    </div>
+                    <div
+                      className="createEvent__container-infosDetails-location"
+                      id="div-location"
+                    >
+                      <label>City: </label>
+                      <input
+                        name="city"
+                        className="myInputs"
+                        type="text"
+                        value={fieldsCreate.city}
+                        onChange={handleFieldsCreateChange}
+                      />
+                    </div>
+                    <div
+                      className="createEvent__container-infosDetails-location"
+                      id="div-location"
+                    >
+                      <label>Country: </label>
+                      <input
+                        name="country"
+                        className="myInputs"
+                        type="text"
+                        value={fieldsCreate.country}
+                        onChange={handleFieldsCreateChange}
+                      />
+                    </div>
+                    <div className="createEvent__container-infosDetails-calendar">
+                      <label className="createEvent__container-infosDetails-calendar-label">
+                        Date from:{" "}
+                      </label>
+                      <input
+                        type="datetime-local"
+                        name="dateFrom"
+                        className="myInputs"
+                        value={fieldsCreate.dateFrom.formatString}
+                        onChange={handleFieldsCreateChange}
+                      />
+                    </div>
+                    <div className="createEvent__container-infosDetails-calendar">
+                      <label className="createEvent__container-infosDetails-calendar-label">
+                        Date to:{" "}
+                      </label>
+                      <input
+                        type="datetime-local"
+                        name="dateTo"
+                        className="myInputs"
+                        value={fieldsCreate.dateTo.formatString}
+                        onChange={handleFieldsCreateChange}
+                      />
+                    </div>
+                    <div className="createEvent__container-infosDetails-location">
+                      <label>Theme: </label>
+                        <select
+                          className="myInputs"
+                          name="eventTags"
+                          value={fieldsCreate.eventTags}
+                          onChange={handleFieldsCreateChange}
+                        >
+                          <option></option>
+                            {allEvents.map((event)=>(
+                                <option>{event.name}</option>
+                            ))}
+                        </select>
+                    </div>
+                    
+                    <div className="searchEvent__container-infosDetails-location__tag-selected">
+                      {selectedEventTags.map((events) => (
+                        <Tag handleClick={() =>handleClickClosedEvents(events)} name={events.name} />
+                      ))}
+                    </div>
 
-            <div className="createEvent__container-infosDetails-location">
-              <label>Language: </label>
-                <select
-                  className="myInputs"
-                  name="language"
-                  value={selectedLanguages}
-                  onChange={handleFieldsCreateChange}
-                >
-                  <option></option>
-                    {allLanguages.map((language)=>(
-                      <option>{language.name}</option>
-                    ))}
-                </select>
-            </div>
+                    <div className="createEvent__container-infosDetails-location">
+                      <label>Language: </label>
+                        <select
+                          className="myInputs"
+                          name="language"
+                          value={selectedLanguages}
+                          onChange={handleFieldsCreateChange}
+                        >
+                          <option></option>
+                            {allLanguages.map((language)=>(
+                              <option>{language.name}</option>
+                            ))}
+                        </select>
+                    </div>
 
-            <div className="searchEvent__container-infosDetails-location__tag-selected">
-              {selectedLanguages.map((language) => (
-                <Tag handleClick={() =>handleClickClosedLanguage(language)} name={language.name} />
-              ))}
-            </div>
+                    <div className="searchEvent__container-infosDetails-location__tag-selected">
+                      {selectedLanguages.map((language) => (
+                        <Tag handleClick={() =>handleClickClosedLanguage(language)} name={language.name} />
+                      ))}
+                    </div>
 
-            <div className="createEvent__container-infosDetails-participants">
-              <label>Nombre de participants: </label>
-              <select
-                className="createEvent__container-infosDetails-location"
-                name="participants"
-                value={fieldsCreate.participants}
-                onChange={handleFieldsCreateChange}
-              >
-                <option></option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-              </select>
-            </div>
-            <div className="createEvent__container-infosDetails-location">
-              <label>Description:</label>
-              <textarea
-                name="description"
-                className="myInputs"
-                type="text"
-                value={fieldsCreate.description}
-                onChange={handleFieldsCreateChange}
-              />
-            </div>
+                    <div className="createEvent__container-infosDetails-participants">
+                      <label>Nombre de participants: </label>
+                      <select
+                        className="createEvent__container-infosDetails-location"
+                        name="participants"
+                        value={fieldsCreate.participants}
+                        onChange={handleFieldsCreateChange}
+                      >
+                        <option></option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                      </select>
+                    </div>
+                    <div className="createEvent__container-infosDetails-location">
+                      <label>Description:</label>
+                      <textarea
+                        name="description"
+                        className="myInputs"
+                        type="text"
+                        value={fieldsCreate.description}
+                        onChange={handleFieldsCreateChange}
+                      />
+                    </div>
+                  </div>
 
+{/* Right part of the form */}
+                  <div className="second">
+                      <div className="createEvent__container-eventTitle-img">
+                        <img className="createEvent-img" src={imgEvent} alt="imageEvent" />
+                      </div>
+
+                      <div className="createEvent__container-eventTitle-button">
+                          <button type="submit" form="registerForm" className="myButton">LETS GO</button>
+                      </div>
+                  </div>
+
+            </div>
           </form>
-
-        
-        </div>
-          
-        <div className="createEvent__container-eventTitle">
-          <div className="createEvent__container-eventTitle-img">
-            <img className="createEvent-img" src={imgEvent} alt="imageEvent" />
-          </div>
-          
-          <div className="createEvent__container-eventTitle-button">
-            <button type="submit" form="registerForm" className="myButton">LETS GO</button>
-          </div>
         </div>
           </>
            : 
