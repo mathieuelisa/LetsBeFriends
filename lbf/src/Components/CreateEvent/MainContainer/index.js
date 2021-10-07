@@ -9,10 +9,12 @@ import { resetInfosUser } from "../../../Redux/actions/profil";
 import "./styles.scss";
 // Import pictures
 import imgEvent from "../../../assets/Img/sport.png";
+// Import loading icons
+import Loader from "../../Styledcomponents/Loader";
 
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
-import { Image } from "cloudinary-react"
+
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 // import Axios
@@ -23,10 +25,9 @@ function CreateEventContainer() {
   const allLanguages = useSelector((state)=>state.common.allLanguages)
   const allEvents = useSelector((state)=>state.event.eventTags)
 
-
-
   // Pictures post cloudinary
-  const [imageSelected, setImageSelected] = useState("")
+  const [imageUrl, setImageUrl] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const [selectedLanguages, setSelectedLanguages] = useState([])
   const [selectedEventTags, setSelectedEventTags] = useState([])
@@ -36,8 +37,6 @@ function CreateEventContainer() {
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const infosUser = useSelector((state)=>state.profil.infosUser)
-
-  console.log("pipipipip", infosUser)
   
   const [fieldsCreate, setFieldsCreate] = useState({
     title:"",
@@ -56,9 +55,6 @@ function CreateEventContainer() {
       formatString: "",
     },
   });
-
-  console.log("Languages in Profil Page:", selectedLanguages);
-  console.log("Events in Profil Page: ", selectedEventTags);
 
   function handleFieldsCreateChange(e) {
     e.preventDefault();
@@ -87,8 +83,6 @@ function CreateEventContainer() {
       });
     }
   }
-
-  // console.log(fieldsCreate);
 
   const dispatch = useDispatch();
   const toggleAction = useSelector((state) => state.common.toggleAction);
@@ -143,8 +137,8 @@ function CreateEventContainer() {
     "location": fieldsCreate.location,
     "user_id": infosUser.id,
     "eventLanguage": selectedLanguages.map(language => language.id),
-    "tagId": selectedEventTags.map(tag => tag.id)
-    
+    "tagId": selectedEventTags.map(tag => tag.id),
+    "imgUrl": imageUrl
   })
     axios
       .post(
@@ -161,19 +155,16 @@ function CreateEventContainer() {
           "tagId": selectedEventTags.map(tag => tag.id),
           "starting_date": fieldsCreate.dateFrom.formatISO,
           "ending_date": fieldsCreate.dateTo.formatISO,
-          "places_left": Number(fieldsCreate.participants) 
+          "places_left": Number(fieldsCreate.participants),
+          "imgUrl": imageUrl
         },
         optionsGet
       )
       .then((response) => {
-        console.log("API CREATE:", response.data)
+        console.log("API DATA CREATE:", response.data)
       })
       .catch((error) => console.log("Error de create event"));
   };
-
-  
-  const [imageUrl, setImageUrl] = useState("")
-  const [loading, setLoading] = useState(false)
 
   const uploadImage = (e) =>{
     const files = e.target.files[0]    
@@ -185,8 +176,8 @@ function CreateEventContainer() {
       axios.post(
         "https://api.cloudinary.com/v1_1/lbfcloud/image/upload",formData)
         .then(res=>setImageUrl(res.data.secure_url))
-        .then(setLoading(false))
         .catch((err)=>console.log(err))
+        .finally(setLoading(false))
     }
 
   return (
@@ -380,8 +371,9 @@ function CreateEventContainer() {
 
 {/* Right part of the form */}
                   <div className="second">
+                  {loading && <Loader />}
                       <div className="createEvent__container-eventTitle-img">
-                          {loading ? <h1>...</h1> : <img className="createEvent-img" src={imageUrl} alt="imageEvent" />}
+                          <img className="createEvent-img" src={imageUrl} alt="imageEvent" />
                       </div>
  
                           <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/> 
