@@ -318,7 +318,7 @@ return (
               />
             </div>
             <div className="searchEvent__container-infosDetails-location">
-              <label>languages: </label>
+              <label>Languages: </label>
               <select
                 className="searchEvent__container-select"
                 name="languages"

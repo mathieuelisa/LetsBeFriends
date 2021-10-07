@@ -1,16 +1,18 @@
 //Import React components
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Tag from "../../Styledcomponents/Tag";
 // import Input from "../../Profil/Input"
+import Tag from "../../Styledcomponents/Tag";
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
 import { resetInfosUser } from "../../../Redux/actions/profil";
 // Import styles
 import "./styles.scss";
 // Import pictures
 import imgEvent from "../../../assets/Img/sport.png";
+
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
+import { Image } from "cloudinary-react"
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 // import Axios
@@ -20,6 +22,11 @@ import axios from "axios";
 function CreateEventContainer() {
   const allLanguages = useSelector((state)=>state.common.allLanguages)
   const allEvents = useSelector((state)=>state.event.eventTags)
+
+
+
+  // Pictures post cloudinary
+  const [imageSelected, setImageSelected] = useState("")
 
   const [selectedLanguages, setSelectedLanguages] = useState([])
   const [selectedEventTags, setSelectedEventTags] = useState([])
@@ -164,7 +171,26 @@ function CreateEventContainer() {
       .catch((error) => console.log("Error de create event"));
   };
 
+  
+  const [imageUrl, setImageUrl] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  const uploadImage = (e) =>{
+    const files = e.target.files[0]    
+    const formData = new FormData();
+          formData.append("file", files)
+          formData.append("upload_preset", "dev_setups")
+          setLoading(true)
+
+      axios.post(
+        "https://api.cloudinary.com/v1_1/lbfcloud/image/upload",formData)
+        .then(res=>setImageUrl(res.data.secure_url))
+        .then(setLoading(false))
+        .catch((err)=>console.log(err))
+    }
+
   return (
+
     <div className="createEvent__container">
 
     <div className={toggleAction? "header__navbar__settings-open": "header__navbar__settings"}>
@@ -355,8 +381,10 @@ function CreateEventContainer() {
 {/* Right part of the form */}
                   <div className="second">
                       <div className="createEvent__container-eventTitle-img">
-                        <img className="createEvent-img" src={imgEvent} alt="imageEvent" />
+                          {loading ? <h1>...</h1> : <img className="createEvent-img" src={imageUrl} alt="imageEvent" />}
                       </div>
+ 
+                          <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/> 
 
                       <div className="createEvent__container-eventTitle-button">
                           <button type="submit" form="registerForm" className="myButton">LETS GO</button>
@@ -369,9 +397,9 @@ function CreateEventContainer() {
           </>
            : 
         <>
-              <div className="mainCreateEvent__container-success">
-                {messageAfterSubmitted}
-              </div>
+            <div className="mainCreateEvent__container-success">
+              {messageAfterSubmitted}
+            </div>
         </>
         }
       </div>
