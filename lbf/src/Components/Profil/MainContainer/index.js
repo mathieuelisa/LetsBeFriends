@@ -24,6 +24,10 @@ import { setEventTags } from "../../../Redux/actions/event";
 import { useEffect, useState } from "react";
 
 function ProfilContainer() {
+
+  // Pictures post cloudinary
+  const [imageUrl, setImageUrl] = useState("")
+
   const infosUser = useSelector((state) => state.profil.infosUser);
   
   const [fieldsCreateProfil, setFieldsCreateProfil] = useState({
@@ -180,6 +184,22 @@ function ProfilContainer() {
           }).catch(error => console.log('Error recherche event '));
       }
 
+      const uploadImage = (e) =>{
+        const files = e.target.files[0]    
+        const formData = new FormData();
+              formData.append("file", files)
+              formData.append("upload_preset", "dev_setups")
+    
+          axios.post(
+            "https://api.cloudinary.com/v1_1/lbfcloud/image/upload",formData)
+            .then(res=>setImageUrl(res.data.secure_url))
+            .catch((err)=>console.log(err))
+        }
+
+        const refreshPage = () =>{
+          window.location.reload()
+        }
+
   return (
     <div className="profil__container">
 
@@ -209,9 +229,11 @@ function ProfilContainer() {
             customDiv={"profil__container-avatar"}
             customImg={"profil__container-pictures"}
             customPics={infosUser.imgUrl}
+            // customPics={imageUrl}
           />
-          <h2 className="profil-genre">No binary</h2>
-          <h2 className="profil-telNumber">Tel: 07 85 11 25 18</h2>
+            <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/> 
+              <h2 className="profil-genre">No binary</h2>
+              <h2 className="profil-telNumber">Tel: 07 85 11 25 18</h2>
           <button
             form="myProfilForm"
             type="submit"

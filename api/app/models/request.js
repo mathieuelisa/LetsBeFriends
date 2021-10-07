@@ -72,6 +72,37 @@ class Request extends CoreModel {
             }
         }
     }
+
+    static async findAllJoiningRequestByOwnerID(user_id) {
+        try {
+            console.log("debut de la requete", user_id)
+            const { rows } = await db.query(`SELECT user_ask_event.event_id AS "eventId", json_agg(DISTINCT event.title) AS "title",
+            json_agg(
+                DISTINCT jsonb_build_object(
+                    'id', "user".id,
+                    'firstname', "user".firstname,
+                    'lastname', "user".lastname,
+                    'age', "user".age,
+                    'imgUrl', "user".img_url
+                )
+            ) AS "participants"
+            FROM user_ask_event
+            LEFT JOIN "event" ON user_ask_event.event_id = event.id
+            LEFT JOIN "user" ON user_ask_event.user_id = "user".id
+            WHERE event.user_id = $1
+            GROUP BY user_ask_event.event_id`
+                , [user_id])
+            if (rows[0]) return rows.map(row => new Request(row));
+            else return { error: `No request for event owned by the user ${user_id}` };
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            } else {
+                throw error;
+            }
+        }
+    }
 };
 
 module.exports = Request;
