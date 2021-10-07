@@ -8,9 +8,9 @@
     background: linear-gradient(to top,rgb(178 31 31) 0%, rgba(178, 31, 31,1) 0%, rgba(253, 187, 45, .5));
 
     &-infosDetails{
-        display: flex;
-        justify-content: center;
-        width: 55%;
+        // display: flex;
+        // justify-content: center;
+        // width: 55%;
 
         &-location{
             display: flex;
@@ -74,7 +74,7 @@
 }
 
 .createEvent-img{
-    width: 80%;
+    width: 300%;
     max-width: 500px;
     border-radius: 15px;
 }
@@ -82,6 +82,7 @@
 .mainCreateEvent__container{
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 700px;
     width: 80%;
     background: rgba( 255, 255, 255, 0.1 );
@@ -131,14 +132,55 @@ select option{
     font-family: 'Caviar';
 }
 
+.globale{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}
 
-@media screen and (max-width: 1370px){
+.first{
+    width: 30%;
+    margin-left: 40px;
+}
+
+.second{
+    width: 70%;
+}
+
+
+@media screen and (max-width: 1050px){
     .mainCreateEvent__container{
         height: auto;
         flex-direction: column;
         margin: 60px 0 90px 0;
         text-align: center;
         z-index: 1;
+    }
+
+    .globale{
+        flex-direction: column;
+        width: 85%;
+        margin: 0 auto;
+    }
+
+    .first{
+        width: 100%;
+        margin: 0;
+    }
+
+    .second{
+        width: 100%;
+        flex-direction: column;
+        display: flex;
+    
+    }
+
+    .createEvent__container-eventTitle-img{
+        width: 175px;
+    }
+
+    .createEvent-img{
+        width: 100%;
     }
 
     .createEvent__container-infosDetails-location{
@@ -175,14 +217,7 @@ select option{
     .createEvent__container-infosDetails-calendar-label{
         width: 44px;
     }
-    
-    .myInputs{
-        width: 70%;
-    }
 
-    #registerForm{
-        width: 450px;
-    }
 
     #div-location{
         margin-top: 50px;
