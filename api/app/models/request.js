@@ -92,9 +92,8 @@ class Request extends CoreModel {
             WHERE event.user_id = $1
             GROUP BY user_ask_event.event_id`
                 , [user_id])
-            console.log(rows)
-            if (rows) return rows.map(row => new Request(row));
-            else return { error: `No request for event ${event_id}` };
+            if (rows[0]) return rows.map(row => new Request(row));
+            else return { error: `No request for event owned by the user ${user_id}` };
         } catch (error) {
             console.log(error);
             if (error.detail) {

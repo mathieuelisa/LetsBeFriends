@@ -73,7 +73,7 @@ router
 
 //? --- JOINING REQUEST
 router
-    .route('/events/request/:id')
+    .route('/events/request/:ownerId')
     .get(requestController.findAllJoiningRequestByOwner)
 
 router
