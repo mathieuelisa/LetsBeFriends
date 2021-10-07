@@ -11,7 +11,7 @@ import { resetInfosUser } from "../../../Redux/actions/profil";
 //Import Tools
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
-
+import L from "leaflet"
 //Import styles
 import "./styles.scss";
 // Import axios
@@ -23,12 +23,21 @@ import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { setAllEvents } from "../../../Redux/actions/event";
 import ButtonToggleResult from "../../Styledcomponents/ButtonToggleResult";
 
+import mapPin from "../../../assets/Img/flag.svg"
+
+
 function SearchEventContainer() {
   const toggleAction = useSelector((state) => state.common.toggleAction);
   const events = useSelector((state) => state.event.events);
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allEventTags = useSelector((state) => state.event.eventTags);
   const infosUser = useSelector((state) => state.profil.infosUser);
+
+  const positionIcon = new L.Icon({
+    iconUrl:mapPin,
+    iconRetinaUrl: mapPin,
+    iconSize: [35,35]
+  })
 
   const [loading, setLoading] = useState(false);
   const [openSearch, setOpenSearch] = useState(true)
@@ -82,7 +91,7 @@ function SearchEventContainer() {
   // useEffect pour recuperer tout les evenements a chaque refresh de la page
   useEffect(() => {
     dispatch({ type: RESET_TOGGLE });
-  }, []);
+  },[]);
   
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
   function handleFieldSearchChange(e) {
@@ -148,10 +157,11 @@ function SearchEventContainer() {
 
   // Fonction permettant la soumission du formulaire
   const handleSubmitForm = (e) => {
+    console.log('Voivi vos critères de recherche : ',       fieldsSearch.selectedTags,
+    fieldsSearch.selectedLanguages,
+    fieldsSearch.dateFrom.formatISO,
+    fieldsSearch.dateTo.formatISO)
     e.preventDefault();
-    if(fieldsSearch.selectedTags == null && fieldsSearch.selectedLanguages == null && fieldsSearch.dateFrom.formatISO == null && fieldsSearch.dateTo.formatISO == null) {
-      GetAllEvents();
-    }
     searchEvent(
       fieldsSearch.selectedTags,
       fieldsSearch.selectedLanguages,
@@ -171,8 +181,8 @@ function SearchEventContainer() {
     .post(
       "https://lets-be-friend.herokuapp.com/v1/events/request/new",
       {
-        "user_id": infosUser.id,
-        "event_id": eventId
+        "userId": infosUser.id,
+        "eventId": eventId
       },
       optionsGet,
     )
@@ -215,8 +225,11 @@ function SearchEventContainer() {
         } else {
         dispatch(setAllEvents(response.data));
       }})
-      .catch((error) => console.log("Error recherche event "))
-      .finally(setLoading(false))
+      .catch((error) => {console.log("Error recherche event ");
+      GetAllEvents()})
+     
+      setLoading(false);
+      
     
   };
   const history = useHistory();
@@ -331,7 +344,7 @@ return (
             </button>
           </div>
         </div>
-        <ButtonToggleResult name='^' className={openResults ? 'display-result' : 'display-result--open'} handleClick={handleClickResults} />
+        <ButtonToggleResult name='⇳' className={openResults ? 'display-result' : 'display-result--open'} handleClick={handleClickResults} />
         {loading && <Loader />}
         <div className={openResults ? "searchEvent__container-resultsForm" : "searchEvent__container-resultsForm--open"}>
           {/* Cards for searchPage */}
@@ -348,7 +361,7 @@ return (
         />
          <SearchField value={fieldsSearch.city} name= 'city'/>
         {{openSearch} && events?.map((event) => (
-          <Marker key={event.id} position={[event.latitude, event.longitude]}>
+          <Marker key={event.id} icon={positionIcon} position={[event.latitude, event.longitude]}>
             <Popup>
               <EventCardSearch key={event.id} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
               <div className='leaflet-popup-content-wrapper__searchEvent__description'>{event.description}</div>
