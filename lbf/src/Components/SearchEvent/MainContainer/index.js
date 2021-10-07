@@ -315,7 +315,7 @@ return (
               />
             </div>
             <div className="searchEvent__container-infosDetails-location">
-              <label>languages: </label>
+              <label>Languages: </label>
               <select
                 className="searchEvent__container-select"
                 name="languages"
@@ -346,7 +346,7 @@ return (
         <div className={openResults ? "searchEvent__container-resultsForm" : "searchEvent__container-resultsForm--open"}>
           {/* Cards for searchPage */}
           {{openSearch} && events?.map((event) => (
-            <EventCardSearch key={event.id} {...event} classNameCard="searchEvent__container-resultsForm__searchEvent"/>
+            <EventCardSearch key={event.id} {...event} classNameCard="searchEvent__container-resultsForm__searchEvent" />
           ))}
         </div>
       </div>

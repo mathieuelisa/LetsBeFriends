@@ -12,7 +12,7 @@ import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { resetInfosUser } from "../../../Redux/actions/profil";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
 const Header = ({ openModalLogin, openModalSignup }) => {
@@ -33,8 +33,7 @@ const Header = ({ openModalLogin, openModalSignup }) => {
 
   // useEffect permettant d'avoir le titre de l'application dans le navigateur
   useEffect(() => {
-    document.title =
-      "Let's Be Friends | Website for having fun while learning a new language...";
+    document.title ="Let's Be Friends | Website for having fun while learning a new language...";
   }, []);
 
   const history = useHistory();
@@ -43,9 +42,7 @@ const Header = ({ openModalLogin, openModalSignup }) => {
     dispatch(resetInfosUser());
     history.push("/");
   }
-
-  //let myFirstName = useSelector((state)=>state.profil.myName)
-
+ 
   return (
     <div className="header">
       <h1 className="header__logo">LBF</h1>
@@ -53,7 +50,7 @@ const Header = ({ openModalLogin, openModalSignup }) => {
         {/* Si un user est stocké dans un localstorage ca affichera son prenom et retirera les boutons login et sign up */}
         {infosUser.firstname ? (
           <a href className="header__navbar__nameOfUser">
-            Hi {infosUser.firstname}{" "}
+              Hi {infosUser.firstname}{" "}
           </a>
         ) : (
           <>

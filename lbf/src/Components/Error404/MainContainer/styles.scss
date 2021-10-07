@@ -1,0 +1,10 @@
+.errorContainer__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+    background: linear-gradient(to top,rgb(178 31 31) 0%, rgb(153, 10, 10) 0%, rgba(18, 75, 160, 0.5))
+}
