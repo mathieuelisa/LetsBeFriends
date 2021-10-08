@@ -1,21 +1,20 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-const-assign */
-/* eslint-disable react-hooks/exhaustive-deps */
 import "./styles.scss";
+// Import components
 import ButtonModal from "../../Styledcomponents";
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
+
 import PropTypes from "prop-types";
-
+// Import modules
 import { NavLink } from "react-router-dom";
-
+// Import actions
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { resetInfosUser } from "../../../Redux/actions/profil";
-
+// Import modules
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router";
 
-import Logo from "../../../assets/Logo/LOGO_LBF3.png"
+import Logo from "../../../assets/Logo/LOGO_LBF.png"
 
 const Header = ({ openModalLogin, openModalSignup }) => {
   const dispatch = useDispatch();

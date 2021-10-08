@@ -20,6 +20,7 @@ import ErrorPage from "../Error404";
 function App() {
 
     const [loader, setLoader] = useState(false)
+    
     const dispatch = useDispatch()
     const events = useSelector((state) => state.event.events);
     const allLanguages = useSelector((state) => state.common.allLanguages);
