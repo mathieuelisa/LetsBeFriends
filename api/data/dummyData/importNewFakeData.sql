@@ -169,7 +169,6 @@ insert into "user_participate_event" (user_id, event_id) values
 (6, 2),
 (6, 6),
 (7, 8),
-<<<<<<< HEAD
 (8, 19),
 (9, 16),
 (10, 11),
@@ -178,11 +177,6 @@ insert into "user_participate_event" (user_id, event_id) values
 (13, 12),
 (14, 11),
 (15, 17);
-=======
-(7, 4),
-(8, 7),
-(8, 2);
->>>>>>> developpement
 
 
 insert into "user_speak_language" (user_id, language_id) values
