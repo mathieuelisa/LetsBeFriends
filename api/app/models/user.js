@@ -50,7 +50,7 @@ class User extends CoreModel {
     static async findOneById(id) {
         try {
             const { rows } = await db.query(
-                `SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".description AS description, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
+                `SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".description AS description, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "img_url", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
                 json_agg(
 					DISTINCT jsonb_strip_nulls(
                         jsonb_build_object(
@@ -118,7 +118,7 @@ class User extends CoreModel {
     static async findAll(limit) {
         try {
             const { rows } = await db.query(
-                `SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".description AS description, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
+                `SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".description AS description, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "img_url", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
                 json_agg(
 					DISTINCT jsonb_strip_nulls(
                         jsonb_build_object(
@@ -185,7 +185,7 @@ class User extends CoreModel {
      */
     static async findOneByEmail(email) {
         try {
-            const { rows } = await db.query(`SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".description AS description, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "imgUrl", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
+            const { rows } = await db.query(`SELECT "user".id, "user".firstname, "user".lastname, "user".gender, "user".email, "user".description AS description, "user".age, "user".city, "user".phone_number AS "phoneNumber", "user".img_url AS "img_url", "user".created_at AS "createdAt", "user".updated_at AS "updatedAt",
                 json_agg(
 					DISTINCT jsonb_strip_nulls(
                         jsonb_build_object(
@@ -334,7 +334,7 @@ class User extends CoreModel {
                 return new User(rows[0])
             } else {
                 this.password = await bcrypt.hash(this.password, 10)
-                const { rows } = await db.query('INSERT INTO "user"(firstname, lastname, gender, email, password, description, age, city, phone_number, img_url) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id, firstname, lastname, gender, email, description, age, city, phone_number AS "phoneNumber", imgUrl AS "img_url"', [
+                const { rows } = await db.query('INSERT INTO "user"(firstname, lastname, gender, email, password, description, age, city, phone_number, img_url) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id, firstname, lastname, gender, email, description, age, city, phone_number AS "phoneNumber", img_url AS "img_url"', [
                     this.firstname,
                     this.lastname,
                     this.gender,
