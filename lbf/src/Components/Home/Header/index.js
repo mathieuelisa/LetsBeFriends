@@ -12,8 +12,10 @@ import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { resetInfosUser } from "../../../Redux/actions/profil";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+
+import Logo from "../../../assets/Logo/LOGO_LBF3.png"
 
 const Header = ({ openModalLogin, openModalSignup }) => {
   const dispatch = useDispatch();
@@ -33,8 +35,7 @@ const Header = ({ openModalLogin, openModalSignup }) => {
 
   // useEffect permettant d'avoir le titre de l'application dans le navigateur
   useEffect(() => {
-    document.title =
-      "Let's Be Friends | Website for having fun while learning a new language...";
+    document.title ="Let's Be Friends | Website for having fun while learning a new language...";
   }, []);
 
   const history = useHistory();
@@ -43,17 +44,18 @@ const Header = ({ openModalLogin, openModalSignup }) => {
     dispatch(resetInfosUser());
     history.push("/");
   }
-
-  //let myFirstName = useSelector((state)=>state.profil.myName)
-
+ 
   return (
     <div className="header">
-      <h1 className="header__logo">LBF</h1>
+      {/* <h1 className="header__logo">LBF</h1> */}
+      <div className="header__container">
+        <img className="header__container-logo" alt="logo" src={Logo}/>
+      </div>
       <div className="header__navbar">
         {/* Si un user est stocké dans un localstorage ca affichera son prenom et retirera les boutons login et sign up */}
         {infosUser.firstname ? (
           <a href className="header__navbar__nameOfUser">
-            Hi {infosUser.firstname}{" "}
+              Hi {infosUser.firstname}{" "}
           </a>
         ) : (
           <>
@@ -89,10 +91,10 @@ const Header = ({ openModalLogin, openModalSignup }) => {
               {infosUser.firstname ? (
                 <>
                   <NavLink to="/" exact className="header__hamburger-titlePage">HOME</NavLink>
-                  <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
                   <NavLink to="/searchEvent" className="header__hamburger-titlePage">SEARCH EVENT</NavLink>
                   <NavLink to="/createEvent" className="header__hamburger-titlePage">CREATE EVENT</NavLink>
                   <NavLink to="/listEvent" className="header__hamburger-titlePage">MY EVENTS</NavLink>
+                  <NavLink to="/profil" className="header__hamburger-titlePage">PROFIL</NavLink>
                   <NavLink to="/contact" className="header__hamburger-titlePage">CONTACT</NavLink>
                   <NavLink onClick={handleLogOut} to="/" className="header__hamburger-disconnect">DISCONNECT</NavLink>
                 </>

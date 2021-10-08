@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, React, useRef } from "react";
+import { useEffect, useState, React } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
@@ -32,7 +32,6 @@ function SearchEventContainer() {
   const allLanguages = useSelector((state) => state.common.allLanguages);
   const allEventTags = useSelector((state) => state.event.eventTags);
   const infosUser = useSelector((state) => state.profil.infosUser);
-  const eventCardRef = useRef(null);
 
   const positionIcon = new L.Icon({
     iconUrl:mapPin,
@@ -84,8 +83,8 @@ function SearchEventContainer() {
   
   //Fonctionnalité, Cliquez pour rediriger vers la carte
   //const eventRedirection = useRef(null);
-  
-  //console.log("Tous les events:", events);
+  //console.log("Tous les infos user:", infosUser);
+  console.log("Tous les events:", events);
   // console.log("tout les tags:", fieldsSearch.eventTags);
   // console.log("Initialisation fieldsSearch: ", fieldsSearch);
   
@@ -159,38 +158,33 @@ function SearchEventContainer() {
   // Fonction permettant la soumission du formulaire
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    if(fieldsSearch.selectedTags == null && fieldsSearch.selectedLanguages == null && fieldsSearch.dateFrom.formatISO == null && fieldsSearch.dateTo.formatISO == null) {
-      GetAllEvents();
-    }
     searchEvent(
       fieldsSearch.selectedTags,
       fieldsSearch.selectedLanguages,
       fieldsSearch.dateFrom.formatISO,
       fieldsSearch.dateTo.formatISO
     );
+  
   };
 
-  const handleClickParticipate = () => {
-    console.log('Vous avez recup l event avec l id : ', eventCardRef.current.value)
-    //userWantToParticipate();
+  const handleClickParticipate = (event) => {
+    console.log('Vous avez recup l event avec l id : ', event.id)
+    const eventId = event.id
+    userWantToParticipate(eventId);
   }
 
-  const userWantToParticipate = () => {
+  const userWantToParticipate = (eventId) => {
     axios
     .post(
-      "https://lets-be-friend.herokuapp.com/v1/events/search",
+      "https://lets-be-friend.herokuapp.com/v1/events/request/new",
       {
-        "user_id": infosUser.id,
-        //"event_id": ,
+        "userId": infosUser.id,
+        "eventId": eventId
       },
-      optionsGet
+      optionsGet,
     )
     .then((response) => {
-      console.log(
-        "Voici la réponse de l API pour recherche d evenements :",
-        response.data
-      );
-      dispatch(setAllEvents(response.data));
+      console.log("Voici la réponse de l API pour la demande participation:", response.data);
     })
     .catch((error) => console.log("Error recherche event "));
   } 
@@ -228,8 +222,11 @@ function SearchEventContainer() {
         } else {
         dispatch(setAllEvents(response.data));
       }})
-      .catch((error) => console.log("Error recherche event "))
-      .finally(setLoading(false))
+      .catch((error) => {console.log("Error recherche event ");
+      GetAllEvents()})
+     
+      setLoading(false);
+      
     
   };
   const history = useHistory();
@@ -363,9 +360,9 @@ return (
         {{openSearch} && events?.map((event) => (
           <Marker key={event.id} icon={positionIcon} position={[event.latitude, event.longitude]}>
             <Popup>
-              <EventCardSearch key={event.id} ref={eventCardRef} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
+              <EventCardSearch key={event.id} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
               <div className='leaflet-popup-content-wrapper__searchEvent__description'>{event.description}</div>
-              <button className='leaflet-popup-content-wrapper__searchEvent__button' onClick={handleClickParticipate} >I would like to Participate</button>
+              <ButtonToggleResult className='leaflet-popup-content-wrapper__searchEvent__button' handleClick={() => handleClickParticipate(event)} name='I would like to Participate' />
             </Popup>
           </Marker>
         ))}

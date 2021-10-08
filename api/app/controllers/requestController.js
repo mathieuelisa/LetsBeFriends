@@ -13,6 +13,18 @@ const requestController = {
         }
     },
 
+    findAllJoiningRequestByOwner: async (req, res, next) => {
+        const user_id = Number(req.params.ownerId)
+        try {
+            console.log(user_id)
+            const result = await Request.findAllJoiningRequestByOwnerID(user_id);
+            res.status(result.error ? 418 : 200).json(result);
+        } catch (error) {
+            console.log(error);
+            res.status(400).json(error);
+        }
+    },
+
     makeJoiningRequest: async (req, res, next) => {
         const user_id = req.body.userId;
         const event_id = req.body.eventId;

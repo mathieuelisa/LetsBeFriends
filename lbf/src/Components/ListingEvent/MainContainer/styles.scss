@@ -7,17 +7,30 @@
 
 }
 
-.mainListEvent__container{
+.mainListEvent__precontainer{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+    color: whitesmoke;
+    font-family: "Caviar";
     min-height: 700px;
-    width: 80%;
-    background: rgba( 255, 255, 255, 0.1 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 5px );
-    -webkit-backdrop-filter: blur( 5px );
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border-radius: 10px;
+    
+    &__container-presentation {
+        text-align: center;
+        width: 60%;
+    }
+}
+
+.mainListEvent__precontainer__container__display {
+    display: flex;
+
 }
 
 .listEvent{

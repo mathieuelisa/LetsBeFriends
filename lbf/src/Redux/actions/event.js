@@ -22,3 +22,12 @@ export const setUserEventsById = (value) =>(
     value,
   }
 )
+
+export const SET_ASKING_LIST = 'SET_ASKING_LIST';
+
+export const setAskingList = (value) => (
+   {
+    type: SET_ASKING_LIST,
+    value,    
+  }
+);

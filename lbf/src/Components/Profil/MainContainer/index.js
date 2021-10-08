@@ -24,6 +24,10 @@ import { setEventTags } from "../../../Redux/actions/event";
 import { useEffect, useState } from "react";
 
 function ProfilContainer() {
+
+  // Pictures post cloudinary
+  const [imageUrl, setImageUrl] = useState("")
+
   const infosUser = useSelector((state) => state.profil.infosUser);
   
   const [fieldsCreateProfil, setFieldsCreateProfil] = useState({
@@ -161,6 +165,7 @@ function ProfilContainer() {
         "learningLanguage": myLearningLanguages.map(language => language.id),
         "speakingLanguage": myLanguagesSpoken.map(language => language.id),
         "city": fieldsCreateProfil.city,
+        // "imgUrl": imageUrl
     })
       axios.patch('https://lets-be-friend.herokuapp.com/v1/users', {
           "id": infosUser.id,
@@ -172,13 +177,27 @@ function ProfilContainer() {
           "age": fieldsCreateProfil.age,
           "learningLanguage": myLearningLanguages.map(language => language.id),
           "speakingLanguage": myLanguagesSpoken.map(language => language.id),
-          "city": fieldsCreateProfil.city
+          "city": fieldsCreateProfil.city,
+          // "imgUrl": imageUrl,
+
       }, optionsAxios)
           .then((response) => {
               console.log('Voici la réponse de l API pour l update du profil :', response.data);
               //dispatch(setAllEvents(response.data));
           }).catch(error => console.log('Error recherche event '));
       }
+
+      const uploadImage = (e) =>{
+        const files = e.target.files[0]    
+        const formData = new FormData();
+              formData.append("file", files)
+              formData.append("upload_preset", "dev_setups")
+    
+          axios.post(
+            "https://api.cloudinary.com/v1_1/lbfcloud/image/upload",formData)
+            .then(res=>setImageUrl(res.data.secure_url))
+            .catch((err)=>console.log(err))
+        }
 
   return (
     <div className="profil__container">
@@ -209,9 +228,11 @@ function ProfilContainer() {
             customDiv={"profil__container-avatar"}
             customImg={"profil__container-pictures"}
             customPics={infosUser.imgUrl}
+            // customPics={imageUrl}
           />
-          <h2 className="profil-genre">No binary</h2>
-          <h2 className="profil-telNumber">Tel: 07 85 11 25 18</h2>
+            <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/> 
+              <h2 className="profil-genre">No binary</h2>
+              <h2 className="profil-telNumber">Tel: 07 85 11 25 18</h2>
           <button
             form="myProfilForm"
             type="submit"

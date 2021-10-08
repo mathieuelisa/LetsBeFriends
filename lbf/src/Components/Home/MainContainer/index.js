@@ -1,5 +1,5 @@
 // React
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 //Import styles
 import "./styles.scss";
 //Import fonts
@@ -48,10 +48,10 @@ function MainContainer() {
         <Modal openModale={openModale} />
         <div className="main__container-text">
           <div>
-            <img className="main__container-image1" src={subtitle} alt="logo" />
+            <img className="main__container-image1" src={subtitle} alt="logo" data-aos="fade" data-aos-duration="3000" data-aos-delay="1000"/>
           </div>
 
-          <div className="main__container-divTitle">
+          <div className="main__container-divTitle" data-aos="fade" data-aos-duration="3000" >
             <img className="main__container-image2" src={title} alt="logo" />
             <img className="main__container-image3" src={titlePhone} alt="logo" />
           </div>

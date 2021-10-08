@@ -85,6 +85,8 @@ router
      * @returns {string} 404 - A validation error message
      */
     .get(requestController.findAllJoiningRequest)
+    .route('/events/request/:ownerId')
+    .get(requestController.findAllJoiningRequestByOwner)
 
 router
     .route('/events/request/new')
@@ -136,7 +138,6 @@ router
      * @returns {string} 500 - An error message
      */
     .get(languageController.findAll)
-<<<<<<< HEAD
 router
     .route('/speak')
     /**
@@ -183,8 +184,6 @@ router
      * @returns {string} 500 - an error message
      */
     .delete(languageController.deleteUserLearnLanguage)
-=======
->>>>>>> developpement
 
 // router
 //     .route('/speak')
