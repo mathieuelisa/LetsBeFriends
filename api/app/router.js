@@ -89,7 +89,9 @@ router
      * @returns {string} 404 - A validation error message
      */
     .get(requestController.findAllJoiningRequest)
+
     .route('/events/request/:ownerId')
+    
     .get(requestController.findAllJoiningRequestByOwner)
 
 router
@@ -125,7 +127,7 @@ router
      * @group Event
      * @summary Delete a existing event
      * @param {number} id.path.required id necessary for delete event
-     * @returns {string} 200 - the event deletedss
+     * @returns {string} 200 - the event deleted
      */
     .delete(requestController.refuseJoiningRequest)
 

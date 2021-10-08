@@ -153,8 +153,8 @@ class Language extends CoreModel {
         }
     }
     /**
-     * Fetches all languages from the database
-     * @returns {Array<Language>}
+     * Delete a event who has language
+     * @returns {string}  an event is deleted
      * @static
      * @async
      */
@@ -174,6 +174,12 @@ class Language extends CoreModel {
             }
         }
     }
+    /**
+     * Fetches all languages in the database
+     * @returns {Language|null} null if not language in database
+     * @async
+     * @static
+     */
 
     static async findAll() {
         try {

@@ -110,7 +110,7 @@ class Event extends CoreModel {
 	/**
 	 * fetches all events below on certain limit
 	 * @param {number} limit.query.required
-	 * @returns {Array<Event>}
+	 * @returns {Event|null} null if not event finded
 	 * @static
 	 * @async
 	 */
@@ -172,8 +172,6 @@ class Event extends CoreModel {
 	}
 	/**
 	 * add a new event
-	 * @returns {Array<Event>}
-	 * @async
 	 */
 	async save() {
 		try {
@@ -217,7 +215,7 @@ class Event extends CoreModel {
 	/**
 	 * Fetches a event with a parameter
 	 * @param {object} obj 
-	 * @returns {Array<Event>}
+	 * @returns {Event|null} null if not event finded with a parameter
 	 * @async
 	 * @static
 	}
@@ -282,6 +280,15 @@ class Event extends CoreModel {
 			else throw error;
 		}
 	}
+	/**
+	 * Fetches a user who leave a event
+	 * @param {number} user_id.path.required
+	 * @param {number} event_id.path.required
+	 * @returns {user|null} null if not user exist
+	 * @returns {event|null} null if not event exist
+	 * @static
+	 * @async
+	 */
 
 	static async userLeaveEvent(user_id, event_id) {
 		try {
