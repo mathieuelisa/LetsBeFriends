@@ -46,7 +46,7 @@ const requestController = {
         try {
             const { rowCount } = await Request.deleteUserAskEvent(user_id, event_id);
             const result = await Request.newUserInEvent(user_id, event_id);
-            let placesLeft = await Event.placesLeftDecrement(event_id);
+            const placesLeft = await Event.placesLeftDecrement(event_id);
             res.status(result.error ? 418 : 200).json({ rowCount, result, ...placesLeft });
         } catch (error) {
             console.log(error);
