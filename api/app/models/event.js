@@ -268,6 +268,17 @@ class Event extends CoreModel {
 		}
 	}
 
+	static async userLeaveEvent(user_id, event_id) {
+		try {
+			const { rowCount } = await db.query('DELETE FROM "user_participate_event" WHERE user_id=$1 AND event_id=$2', [user_id, event_id])
+			if (rowCount >= 1) return { rowsDeleted: rowCount, user_id, event_id }
+			else return { error: "Relation not found" }
+		} catch (error) {
+			if (error.detail) throw new Error(error.detail)
+			else throw error;
+		}
+	}
+
 }
 
 module.exports = Event;

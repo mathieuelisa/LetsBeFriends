@@ -71,6 +71,10 @@ router
      */
     .delete(eventController.delete)
 
+router
+    .route('/events/quit')
+    .delete(eventController.userLeaveEvent)
+
 //? --- JOINING REQUEST
 router
     .route('/events/request/:ownerId')
