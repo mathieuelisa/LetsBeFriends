@@ -7,7 +7,7 @@ import { useHistory } from "react-router";
 import EventCardSearch from "../../Styledcomponents/EventCardSearch";
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
 import Tag from "../../Styledcomponents/Tag";
-import { resetInfosUser } from "../../../Redux/actions/profil";
+import ButtonToggleResult from "../../Styledcomponents/ButtonToggleResult";
 //Import Tools
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
@@ -21,8 +21,8 @@ import Loader from "../../Styledcomponents/Loader";
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 import { setAllEvents } from "../../../Redux/actions/event";
-import ButtonToggleResult from "../../Styledcomponents/ButtonToggleResult";
-
+import { resetInfosUser } from "../../../Redux/actions/profil";
+// Import icons Leaflet
 import mapPin from "../../../assets/Img/flag.svg"
 
 
@@ -42,6 +42,7 @@ function SearchEventContainer() {
   const [loading, setLoading] = useState(false);
   const [openSearch, setOpenSearch] = useState(true)
   const [openResults, setOpenResults] = useState(true)
+
   const [fieldsSearch, setFieldsSearch] = useState({
     city: "",
     eventTags: [],
@@ -59,13 +60,12 @@ function SearchEventContainer() {
   });
   const provider = new OpenStreetMapProvider();
     const SearchField = () => {
-    const map = useMap();
-    const searchControl = new GeoSearchControl({
-      provider: provider,
-      autoComplete: true,
+      const map = useMap();
+      const searchControl = new GeoSearchControl({
+        provider: provider,
+        autoComplete: true,
     }).addTo(map)
 
-    
     useEffect(() => {
       map.addControl(searchControl);
       return () => {
@@ -80,13 +80,8 @@ function SearchEventContainer() {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
   };
-  
-  //Fonctionnalité, Cliquez pour rediriger vers la carte
-  //const eventRedirection = useRef(null);
-  //console.log("Tous les infos user:", infosUser);
+
   console.log("Tous les events:", events);
-  // console.log("tout les tags:", fieldsSearch.eventTags);
-  // console.log("Initialisation fieldsSearch: ", fieldsSearch);
   
   // useEffect pour recuperer tout les evenements a chaque refresh de la page
   useEffect(() => {
@@ -215,7 +210,7 @@ function SearchEventContainer() {
         optionsGet
       )
       .then((response) => {
-        console.log("Voici la réponse de l API pour recherche d evenements :",  response.data);
+        // console.log("Voici la réponse de l API pour recherche d evenements :",  response.data);
         if(!response.data[0].id) { 
           setOpenSearch(false)
           console.log('Aucun évènements ne correspond à votre recherche !')
@@ -236,7 +231,6 @@ function SearchEventContainer() {
     history.push("/");
   }
 
-    //console.log("test asynchrone")
 return (
     <div className="searchEvent__container">
       <div className={toggleAction? "header__navbar__settings-open": "header__navbar__settings"}>

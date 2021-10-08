@@ -1,17 +1,22 @@
 // React
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 //Import styles
 import "./styles.scss";
 //Import fonts
 import "../../../assets/Fonts/Surfing2.woff";
 //Import pictures
 import wallpaper from "../../../assets/Wallpaper/wallpaper.jpg";
+// Import images
 import title from "../../../assets/Img/title.png"
 import subtitle from "../../../assets/Img/subtitle.png"
 import titlePhone from "../../../assets/Img/titlePhone.png"
 //React Components
 import Modal from "../../Styledcomponents/Modal";
 import Header from "../Header";
+// Import react reveal components
+import Fade from 'react-reveal/Fade';
+
+
 
 function MainContainer() {
   const [openModale, setOpenModale] = useState("");
@@ -32,10 +37,7 @@ function MainContainer() {
   };
 
   return (
-    <div
-      className="main__container"
-      style={{ backgroundImage: `url(${wallpaper})` }}
-    >
+    <div className="main__container" style={{ backgroundImage: `url(${wallpaper})` }}>
       <div
         className="main__container-overlay"
         ref={modalRef}
@@ -47,14 +49,18 @@ function MainContainer() {
         />
         <Modal openModale={openModale} />
         <div className="main__container-text">
+    <Fade delay={800}>
           <div>
-            <img className="main__container-image1" src={subtitle} alt="logo" data-aos="fade" data-aos-duration="3000" data-aos-delay="1000"/>
+            <img className="main__container-image1" src={subtitle} alt="logo" />
           </div>
+    </Fade>
 
-          <div className="main__container-divTitle" data-aos="fade" data-aos-duration="3000" >
+    <Fade duration={2000}>
+          <div className="main__container-divTitle"  >
             <img className="main__container-image2" src={title} alt="logo" />
             <img className="main__container-image3" src={titlePhone} alt="logo" />
           </div>
+    </Fade>
         </div>
       </div>
     </div>

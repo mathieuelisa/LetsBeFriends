@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
+import { useSelector } from 'react-redux'
+// Import components
 import BtnSlider from './BtnSlider'
 import EventCard from '../../Styledcomponents/EventCard'
-import { useSelector } from 'react-redux'
+// Import styles
 import './styles.scss'
 
 export default function Slider() {
