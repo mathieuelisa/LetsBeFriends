@@ -22,6 +22,8 @@ import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
 
 import { useDispatch, useSelector } from "react-redux"
+// Import react reveal components
+import Fade from 'react-reveal/Fade';
 
 // import actions types
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
@@ -48,8 +50,6 @@ const history = useHistory()
         dispatch(resetInfosUser());
         history.push("/")
 }
-
-
     return(
         <div className="contact__container">
             <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
@@ -83,11 +83,16 @@ const history = useHistory()
 
             <div className="mainContact__container">
                 <div className="contact__container-text">
+                <Fade duration={2000}>
                     <h1 className="contact__container-title">LETS WORK TOGETHER</h1>
+                </Fade>
+
+                <Fade delay={500}>
                         <p className="contact__container-infos">Below are the members of the<br/>  Lets Be Friends project team.<br/>
                             For more details, to report any bugs or to simply meet one of the members of the site
                             don't hesitate to contact us on our social networks.
                         </p>
+                </Fade>
                 </div>
 
                 <div className="contact__avatar-teams">

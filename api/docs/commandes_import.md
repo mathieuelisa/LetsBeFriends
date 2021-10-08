@@ -12,8 +12,8 @@ psql -U postgres -d lbf -f ./data/dummyData/importUserSpeakLanguage.sql &&
 psql -U postgres -d lbf -f ./data/dummyData/importUserParticipateEvent.sql
 ```
 ```
-dropdb &&
-createdb &&
+dropdb lbf &&
+createdb lbf &&
 sqitch deploy &&
 psql -U postgres -d lbf -f ./data/dummyData/importNewFakeData.sql
 ```

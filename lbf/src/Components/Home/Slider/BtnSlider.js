@@ -1,5 +1,7 @@
 import React from "react";
+// Import styles
 import "./styles.scss";
+// Import icons
 import leftArrow from '../../../assets/Icons/previous.png'
 import rightArrow from '../../../assets/Icons/next.png' 
 

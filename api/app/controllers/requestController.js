@@ -1,4 +1,5 @@
 const Request = require('../models/request');
+const Event = require('../models/event');
 
 const requestController = {
 
@@ -41,10 +42,10 @@ const requestController = {
     confirmJoiningRequest: async (req, res, next) => {
         const user_id = req.body.userId;
         const event_id = req.body.eventId;
-
         try {
             const { rowCount } = await Request.deleteUserAskEvent(user_id, event_id);
-            const result = await Request.newUserInEvent(user_id, event_id)
+            let result = await Request.newUserInEvent(user_id, event_id);
+            if (!result.error) result["event"] = await Event.placesLeftDecrement(event_id);
             res.status(result.error ? 418 : 200).json({ rowCount, result });
         } catch (error) {
             console.log(error);

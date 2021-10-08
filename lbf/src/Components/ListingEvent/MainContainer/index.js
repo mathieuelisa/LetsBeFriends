@@ -7,11 +7,7 @@ import { useEffect, useState } from "react"
 // Import ReactComponents
 import Avatar from "../../Styledcomponents/Avatar"
 import ButtonToggle from "../../Styledcomponents/ButtonToggle"
-import EventCardSearch from "../../Styledcomponents/EventCardSearch"
 import { resetInfosUser } from "../../../Redux/actions/profil"
-
-// import pictures
-// import avatarMicheline from "../../../assets/Img/micheline.jpg"
 
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
@@ -122,7 +118,7 @@ function ListEventContainer(){
 
             <div className="mainListEvent__precontainer">
                 <div className='mainListEvent__precontainer__container'>
-                    <div className='mainListEvent__precontainer__container-presentation'>Hallo {infosUser.firstname}, you can find below your events calendar. If you are organizing events, check the asking section to accept/decline the other people participation request </div>
+                    <div className='mainListEvent__precontainer__container-presentation'>Hi {infosUser.firstname}, you can find below your events calendar.If you are organizing events, check the asking section to accept/decline the other people participation request </div>
                     <div className='mainListEvent__precontainer__container__display'>
                         <div className="profil__container-avatars">
                                 <Avatar 
@@ -169,7 +165,6 @@ function ListEventContainer(){
                                                 imgUrl={event.imgUrl}
                                                 textConfig="profil__container-resultsForm-text"
                                                 classNameCard="profil__container-resultsForm"
-
                                             />
                                         ))
                                     }
