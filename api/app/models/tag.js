@@ -18,6 +18,7 @@ const db = require('../database');
  */
 class Tag extends CoreModel {
     static tableName = 'tag';
+
     /**
      * The Tag constructor
      * @param {object} obj a literal object with properties copied into the instance
@@ -29,18 +30,15 @@ class Tag extends CoreModel {
             this[propName] = obj[propName];
         }
     }
-<<<<<<< HEAD
+
     /**
      * Fetches all tags from the database
      * @returns {Array<Tag>}
      * @async
      * @static
      */
-    static async findAll(){
-=======
 
     static async findAll() {
->>>>>>> developpement
         try {
 
             const { rows } = await db.query('SELECT tag.id, tag.name FROM tag')
