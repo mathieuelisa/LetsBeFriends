@@ -167,6 +167,19 @@ const eventController = {
         }
     },
 
+    userLeaveEvent: async (req, res, next) => {
+        const user_id = req.body.userId;
+        const event_id = req.body.eventId;
+
+        try {
+            const result = await Event.userLeaveEvent(user_id, event_id)
+            res.status(200).json(result)
+        } catch (error) {
+            console.log(error);
+            res.status(400).json(error);
+        }
+    }
+
 }
 
 module.exports = eventController;
