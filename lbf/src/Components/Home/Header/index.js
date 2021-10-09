@@ -16,6 +16,9 @@ import { useHistory } from "react-router";
 
 import Logo from "../../../assets/Logo/LOGO_LBF.png"
 
+// Import react reveal components
+import Fade from 'react-reveal/Fade';
+
 const Header = ({ openModalLogin, openModalSignup }) => {
   const dispatch = useDispatch();
   const toggleAction = useSelector((state) => state.common.toggleAction);
@@ -46,10 +49,11 @@ const Header = ({ openModalLogin, openModalSignup }) => {
  
   return (
     <div className="header">
-      {/* <h1 className="header__logo">LBF</h1> */}
-      <div className="header__container">
-        <img className="header__container-logo" alt="logo" src={Logo}/>
-      </div>
+      <Fade delay={1500} duration={2000}>
+        <div className="header__container">
+          <img className="header__container-logo" alt="logo" src={Logo}/>
+        </div>
+      </Fade>
       <div className="header__navbar">
         {/* Si un user est stocké dans un localstorage ca affichera son prenom et retirera les boutons login et sign up */}
         {infosUser.firstname ? (

@@ -8,7 +8,7 @@ import EventCardSearch from "../../Styledcomponents/EventCardSearch";
 import ButtonToggle from "../../Styledcomponents/ButtonToggle";
 import Tag from "../../Styledcomponents/Tag";
 import ButtonToggleResult from "../../Styledcomponents/ButtonToggleResult";
-//Import Tools
+//Import Tools for leaflet
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import L from "leaflet"
@@ -356,7 +356,8 @@ return (
             <Popup>
               <EventCardSearch key={event.id} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
               <div className='leaflet-popup-content-wrapper__searchEvent__description'>{event.description}</div>
-              <ButtonToggleResult className='leaflet-popup-content-wrapper__searchEvent__button' handleClick={() => handleClickParticipate(event)} name='I would like to Participate' />
+              {/* <ButtonToggleResult classNameButton="leaflet-popup-content-wrapper__searchEvent__description-button" className='leaflet-popup-content-wrapper__searchEvent__button' handleClick={() => handleClickParticipate(event)} name='I would like to Participate' /> */}
+              <ButtonToggle classNameDiv="leaflet-popup-content-wrapper__searchEvent__description-button" className='leaflet-popup-content-wrapper__searchEvent__button' handleClick={() => handleClickParticipate(event)} name='PARTICIPATE'></ButtonToggle>            
             </Popup>
           </Marker>
         ))}

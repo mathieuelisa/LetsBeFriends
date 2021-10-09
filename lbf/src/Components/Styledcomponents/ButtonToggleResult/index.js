@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 
 
-function ButtonToggleResult({className, name, handleClick}){
+function ButtonToggleResult({className, name, handleClick, classNameButton}){
 
     return(
         <div className={className} onClick={handleClick}>
-            {name}
+            {/* <button className={classNameButton}> */}
+                {name}
+            {/* </button> */}
         </div>
     )
 }

@@ -1,4 +1,3 @@
-//eslint-disable react-hooks/exhaustive-deps
 // Import styles
 import "./styles.scss";
 //import ReactComponents
@@ -10,8 +9,6 @@ import { resetInfosUser } from "../../../Redux/actions/profil";
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
 import axios from "axios";
-//Actions
-// import avatarMicheline from "../../../assets/Img/micheline.jpg";
 import { useDispatch, useSelector } from "react-redux";
 // import actions types
 import {
@@ -28,7 +25,11 @@ function ProfilContainer() {
   // Pictures post cloudinary
   const [imageUrl, setImageUrl] = useState("")
 
+  console.log("voici l'url de mon image:", imageUrl)
+
   const infosUser = useSelector((state) => state.profil.infosUser);
+
+  console.log("les datas de mon store user", infosUser)
   
   const [fieldsCreateProfil, setFieldsCreateProfil] = useState({
     firstname: infosUser.firstname,
@@ -40,6 +41,8 @@ function ProfilContainer() {
     age: infosUser.age,
     description: infosUser.description,
   });
+
+  console.log("ce qui ya dans fieldsCreateProfil", fieldsCreateProfil)
   
   const optionsAxios = useSelector((state) => state.common.optionsAxios);
   const allLanguages = useSelector((state) => state.common.allLanguages);
@@ -57,13 +60,7 @@ function ProfilContainer() {
       setMyLanguagesSpoken(infosUser.speakingLanguage);
       setMyLearningLanguages(infosUser.learningLanguage);
   }
-  console.log('user Infos : ', infosUser)
 
-  console.log('myLearningLanguages : ', myLearningLanguages)
-  //console.log('myLanguagesSpoken : ', myLanguagesSpoken)
-  //console.log('allLanguages : ', allLanguages)
-  //console.log("infos page profil: ", infosUser)
-  //console.log("Tous les event Tag : ", allEventTags);
   //  function permettant d'obtenir plusieurs valeurs dans une valeur sous forme de tableau
   function handleFielsProfilChange(e) {
     if (e.target.name == "language_spoken" && e.target.value !== null) {
@@ -154,21 +151,8 @@ function ProfilContainer() {
   };
 
 
-  const updateProfil = () => {
-      console.log('Body de la Request : ', {
-        "id": infosUser.id,
-        "firstname": fieldsCreateProfil.firstname,
-        "lastname": fieldsCreateProfil.lastname,
-        "email": fieldsCreateProfil.mail,
-        "bio": fieldsCreateProfil.description,
-        "age": fieldsCreateProfil.age,
-        "learningLanguage": myLearningLanguages.map(language => language.id),
-        "speakingLanguage": myLanguagesSpoken.map(language => language.id),
-        "city": fieldsCreateProfil.city,
-        // "imgUrl": imageUrl
-    })
-      axios.patch('https://lets-be-friend.herokuapp.com/v1/users', {
-          "id": infosUser.id,
+  let myVariable = {
+    "id": infosUser.id,
           "firstname": fieldsCreateProfil.firstname,
           "lastname": fieldsCreateProfil.lastname,
           "gender": fieldsCreateProfil.gender,
@@ -178,13 +162,30 @@ function ProfilContainer() {
           "learningLanguage": myLearningLanguages.map(language => language.id),
           "speakingLanguage": myLanguagesSpoken.map(language => language.id),
           "city": fieldsCreateProfil.city,
-          // "imgUrl": imageUrl,
+          "img_url": imageUrl,
+  }
 
-      }, optionsAxios)
-          .then((response) => {
-              console.log('Voici la réponse de l API pour l update du profil :', response.data);
-              //dispatch(setAllEvents(response.data));
-          }).catch(error => console.log('Error recherche event '));
+  // Fonction stripped permettant de supprimer les strings vide pour update un profil avec uniquement une photo ou uniquement un input
+  const stripped = Object.fromEntries(Object.entries(myVariable).filter(value => value[1]))
+
+  const updateProfil = () => {
+      console.log('Body de la Request : ', {
+        "id": infosUser.id,
+        "firstname": fieldsCreateProfil.firstname,
+        "lastname": fieldsCreateProfil.lastname,
+        "email": fieldsCreateProfil.mail,
+        "description": fieldsCreateProfil.description,
+        "age": fieldsCreateProfil.age,
+        "learningLanguage": myLearningLanguages.map(language => language.id),
+        "speakingLanguage": myLanguagesSpoken.map(language => language.id),
+        "city": fieldsCreateProfil.city,
+        "img_url": imageUrl
+    })
+
+      axios.patch('https://lets-be-friend.herokuapp.com/v1/users', stripped, optionsAxios)
+        .then((response) => {
+            console.log('Voici la réponse de l API pour lupdate du profil :', response.data);
+        }).catch(error => console.log('Error recherche event '));
       }
 
       const uploadImage = (e) =>{
@@ -196,6 +197,7 @@ function ProfilContainer() {
           axios.post(
             "https://api.cloudinary.com/v1_1/lbfcloud/image/upload",formData)
             .then(res=>setImageUrl(res.data.secure_url))
+            .then(response=>console.log("la reponse de cloudinary:", response.data))
             .catch((err)=>console.log(err))
         }
 
@@ -227,8 +229,8 @@ function ProfilContainer() {
           <Avatar
             customDiv={"profil__container-avatar"}
             customImg={"profil__container-pictures"}
+            // customPics={infosUser.imgUrl}
             customPics={infosUser.imgUrl}
-            // customPics={imageUrl}
           />
             <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/> 
               <h2 className="profil-genre">No binary</h2>

@@ -138,14 +138,14 @@ function CreateEventContainer() {
     "user_id": infosUser.id,
     "eventLanguage": selectedLanguages.map(language => language.id),
     "tagId": selectedEventTags.map(tag => tag.id),
-    // "imgUrl": imageUrl
+    "img_url": imageUrl
   })
     axios
       .post(
         "https://lets-be-friend.herokuapp.com/v1/events",
         {
           "title": fieldsCreate.title,
-          // "imgUrl": imageUrl,
+          "img_url": imageUrl,
           "city": fieldsCreate.city,
           "country": fieldsCreate.country,
           "location": fieldsCreate.location,
