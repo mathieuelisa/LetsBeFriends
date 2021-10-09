@@ -108,11 +108,13 @@ function ProfilContainer() {
     //console.log("Tu as cliqué sur le bouton");
     dispatch({ type: SET_TOGGLE });
   }
+  
 //Fonction permettant de fermer les tags de l'onglet "learning languages" 
   const handleClickClosedTagLearningLanguage = (language) => {
    console.log('newLearningLanguageCanceled : ', language)
       setMyLearningLanguages(myLearningLanguages.filter(learningLanguage => learningLanguage.name !== language.name))
   };
+
   //Fonction permettant de fermer les tags de l'onglet " languages spoken" 
   const handleClickClosedTagLanguageSpoken = (language) => {
     console.log('newLanguageSpokenCanceled : ', language)
@@ -149,7 +151,6 @@ function ProfilContainer() {
       })
       .catch((error) => console.log("Error recherche users "));
   };
-
 
   let myVariable = {
     "id": infosUser.id,
