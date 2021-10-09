@@ -30,10 +30,6 @@ const Modal = ({ openModale }) => {
     gender: "",
   });
 
-  console.log("modal:", openModale);
-
-  // const [isCheckedLogin, setIsCheckedLogin] = useState(false);
-  // const [isCheckedSignUp, setIsCheckedSignUp] = useState(false);
   const infosUser = useSelector((state) => state.profil.infosUser);
 
   const dispatch = useDispatch();

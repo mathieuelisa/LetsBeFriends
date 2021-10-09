@@ -19,7 +19,9 @@ import {
 } from "../../../Redux/actions/common";
 import { setEventTags } from "../../../Redux/actions/event";
 import { useEffect, useState } from "react";
-
+// Import images
+import Male from "../../../assets/Logo/male.png"
+import Female from "../../../assets/Logo/female.png"
 function ProfilContainer() {
 
   // Pictures post cloudinary
@@ -55,7 +57,6 @@ function ProfilContainer() {
   // Condition en fonction de la creation et la soumission d"un event
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-
   const initializeMyLanguages = () => {
       setMyLanguagesSpoken(infosUser.speakingLanguage);
       setMyLearningLanguages(infosUser.learningLanguage);
@@ -71,10 +72,6 @@ function ProfilContainer() {
       const newLanguageSpokenAdded = allLanguages.find((language) => (language.name == e.target.value))
       setMyLanguagesSpoken([...myLanguagesSpoken, newLanguageSpokenAdded]);
     } else if (e.target.name == "language_toLearn" && e.target.value !== null) {
-      // setFieldsCreateProfil({
-      //   ...fieldsCreateProfil,
-      //   language_toLearn: [...fieldsCreateProfil.language_toLearn, e.target.value],
-      // });
       const newLearningLanguageAdded = allLanguages.find((language) => (language.name == e.target.value))
       setMyLearningLanguages([...myLearningLanguages, newLearningLanguageAdded]);
     } else {
@@ -230,12 +227,14 @@ function ProfilContainer() {
           <Avatar
             customDiv={"profil__container-avatar"}
             customImg={"profil__container-pictures"}
-            // customPics={infosUser.imgUrl}
             customPics={infosUser.imgUrl}
           />
-            <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/> 
-              <h2 className="profil-genre">No binary</h2>
-              <h2 className="profil-telNumber">Tel: 07 85 11 25 18</h2>
+            <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/>
+
+              {infosUser.gender == "Male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
+                : <img className="profil__container-avatars-gender" src={Female} alt="Female"/>
+              }
+              {/* <h2 className="profil-genre">{infosUser.gender}</h2> */}
           <button
             form="myProfilForm"
             type="submit"
@@ -297,9 +296,9 @@ function ProfilContainer() {
                 className="myInputs-profilPage-input"
                 name="mail"
                 type="email"
-                value={fieldsCreateProfil.email}
+                value={fieldsCreateProfil.mail}
                 onChange={handleFielsProfilChange}
-                placeholder={fieldsCreateProfil.email}
+                placeholder={fieldsCreateProfil.mail}
               />
             </div>
             <div className="myInputs-profilPage">
@@ -316,13 +315,7 @@ function ProfilContainer() {
                 {allLanguages.map((language) => (
                   <option>{language.name}</option>
                 ))}
-                {/* <option>English</option>
-                                        <option>French</option>
-                                        <option>Spanish</option>
-                                        <option>Japanese</option>
-                                        <option>Mandarin</option>
-                                        <option>Russian</option>
-                                        <option>Italian</option> */}
+
               </select>
             </div>
             <div className="searchEvent__container-infosDetails-location__tag-selected">
@@ -344,13 +337,7 @@ function ProfilContainer() {
                 {allLanguages.map((language) => (
                   <option>{language.name}</option>
                 ))}
-                {/* <option>English</option>
-                                        <option>French</option>
-                                        <option>Spanish</option>
-                                        <option>Japanese</option>
-                                        <option>Mandarin</option>
-                                        <option>Russian</option>
-                                        <option>Italian</option> */}
+
               </select>
             </div>
             <div className="searchEvent__container-infosDetails-location__tag-selected">
