@@ -7,8 +7,6 @@ import ButtonToggle from "../../Styledcomponents/ButtonToggle";
 import { resetInfosUser } from "../../../Redux/actions/profil";
 // Import styles
 import "./styles.scss";
-// Import pictures
-import imgEvent from "../../../assets/Img/sport.png";
 // Import loading icons
 import Loader from "../../Styledcomponents/Loader";
 

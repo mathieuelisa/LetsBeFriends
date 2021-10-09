@@ -22,16 +22,15 @@ import { useEffect, useState } from "react";
 // Import images
 import Male from "../../../assets/Logo/male.png"
 import Female from "../../../assets/Logo/female.png"
-function ProfilContainer() {
 
+function ProfilContainer() {
   // Pictures post cloudinary
   const [imageUrl, setImageUrl] = useState("")
 
-  console.log("voici l'url de mon image:", imageUrl)
-
+  // All my infos about my user
   const infosUser = useSelector((state) => state.profil.infosUser);
 
-  console.log("les datas de mon store user", infosUser)
+  console.log("Data user:", infosUser)
   
   const [fieldsCreateProfil, setFieldsCreateProfil] = useState({
     firstname: infosUser.firstname,
@@ -44,7 +43,7 @@ function ProfilContainer() {
     description: infosUser.description,
   });
 
-  console.log("ce qui ya dans fieldsCreateProfil", fieldsCreateProfil)
+  console.log("FieldsCreateProfil:", fieldsCreateProfil)
   
   const optionsAxios = useSelector((state) => state.common.optionsAxios);
   const allLanguages = useSelector((state) => state.common.allLanguages);
@@ -52,8 +51,9 @@ function ProfilContainer() {
   const [myLearningLanguages, setMyLearningLanguages] = useState([]);
   const [myLanguagesSpoken, setMyLanguagesSpoken] = useState([]);
 
-  // Message a la suite de la creation d'un event
+  // Message à la suite de la creation d'un event
   const [messageAfterSubmitted, setMessageAfterSubmitted] = useState("")
+
   // Condition en fonction de la creation et la soumission d"un event
   const [isSubmitted, setIsSubmitted] = useState(false)
 
@@ -102,7 +102,6 @@ function ProfilContainer() {
   
   function handleClick(event) {
     event.preventDefault();
-    //console.log("Tu as cliqué sur le bouton");
     dispatch({ type: SET_TOGGLE });
   }
   
@@ -163,7 +162,7 @@ function ProfilContainer() {
           "img_url": imageUrl,
   }
 
-  // Fonction stripped permettant de supprimer les strings vide pour update un profil avec uniquement une photo ou uniquement un input
+  // Fonction "stripped" permettant de supprimer les strings vide pour update un profil avec uniquement une photo ou uniquement un input
   const stripped = Object.fromEntries(Object.entries(myVariable).filter(value => value[1]))
 
   const updateProfil = () => {

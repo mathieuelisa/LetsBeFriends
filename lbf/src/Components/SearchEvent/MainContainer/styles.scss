@@ -70,7 +70,6 @@
                     font-size: 0.6em;
                     width: 92%;
                     height: 100px;
-                    background: linear-gradient(to top,rgba(247, 11, 3, 0.37), rgba(247, 80, 3, 0.37),rgba(247, 113, 3, 0.37));
                     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
                     backdrop-filter: blur( 7.5px );
                     -webkit-backdrop-filter: blur( 7.5px );
@@ -79,6 +78,7 @@
                     color: whitesmoke;
                     padding: 10px;
                     margin-bottom: 0.8rem;
+                    cursor: pointer;
                 
                     &-infos{
                         display: flex;
@@ -360,11 +360,14 @@ border-radius: 10px;
 
 .leaflet-popup-content-wrapper__searchEvent h2{
     width: 150px;
+    margin-bottom: 10px;
+    font-size: 1.4em;
 }
 
 .leaflet-popup-content p:last-child{
     margin: 0;
     margin-bottom: 10px;
+    font-size: 1em;
 }
 
 

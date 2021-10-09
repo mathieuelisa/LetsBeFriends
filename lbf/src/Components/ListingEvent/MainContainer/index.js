@@ -32,17 +32,13 @@ function ListEventContainer(){
     const infosUser = useSelector((state)=>state.profil.infosUser)
     const events = useSelector((state)=>state.event.events)
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
-
-    console.log("dataEvents", dataEvents)
     
-    console.log(" Events",events)
-    console.log(' data events : ', dataEvents);
-    console.log('La liste des askings request : ', askingList)
+    console.log("Events:",events)
+    console.log('La liste des askings requests : ', askingList)
 
     // Recherche des events du user
     function handleClick(event){
         event.preventDefault()
-        console.log("Tu as cliqué sur le bouton")
         dispatch({type: SET_TOGGLE})
     }
 
@@ -118,7 +114,7 @@ function ListEventContainer(){
 
             <div className="mainListEvent__precontainer">
                 <div className='mainListEvent__precontainer__container'>
-                    <div className='mainListEvent__precontainer__container-presentation'>Hi {infosUser.firstname}, you can find below your events calendar.If you are organizing events, check the asking section to accept/decline the other people participation request </div>
+                    <div className='mainListEvent__precontainer__container-presentation'>Hi {infosUser.firstname}, you can find below your events calendar.<br/><br/> If you're organizing events, check the asking section to accept/decline the other people participations requests </div>
                     <div className='mainListEvent__precontainer__container__display'>
                         <div className="profil__container-avatars">
                                 <Avatar 
@@ -128,7 +124,7 @@ function ListEventContainer(){
                                 />
                         </div>
 
-                        <div className="profil__container-data">
+                        <div className="mainListEvent__container-data">
                             <div className="title__listContainer">
                                 <div className="choice__listContainer">
                                     <a onClick={handleClickPast} href className="choice__listContainer-link"><h2>PAST</h2></a>
@@ -151,8 +147,12 @@ function ListEventContainer(){
                                                 key={event.id} 
                                                 title={event.title}
                                                 imgUrl={event.imgUrl}
+                                                textConfigDescription="mainListEvent__container-resultsForm-description"
+                                                description={event.description}
                                                 textConfig="profil__container-resultsForm-text"
                                                 classNameCard="profil__container-resultsForm"
+                                                eventDateStart={event.startingDate}
+                                                eventDateEnd={event.endingDate}
                                             />
                                         ))
 

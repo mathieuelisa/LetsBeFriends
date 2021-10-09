@@ -22,8 +22,8 @@ function EventCardSearch({
             <div className={infos}>
                 <h2 className={titleConfig}>{title}</h2>
                 {/* Commenter afin de pouvoir bosser sur les autres pages */}
-                <p>{languages.map(language => language.name)}</p> 
-                <p className={textConfig}>{placesLeft} spot left</p>
+                <p>Languages : {languages.map(language => language.name)}</p> 
+                <p className={textConfig}>Places remaining : {placesLeft}</p>
                 
             </div>
 

@@ -36,10 +36,9 @@ function App() {
           .get("https://lets-be-friend.herokuapp.com/v1/events", optionsAxios)
           .then((response) => {
             dispatch(setAllEvents(response.data));
-            //console.log("La liste de tous les events : ", response.data);
           })
           .catch((error) =>
-            console.log("ERREUR : Je n'arrive pas à recuperer les evenements")
+            console.log("ERREUR : I can't get all the events")
           )
       };
       
@@ -47,11 +46,10 @@ function App() {
         axios
           .get("https://lets-be-friend.herokuapp.com/v1/languages", optionsAxios)
           .then((response) => {
-            //console.log("Voici la réponse de l API les tous Languages :", response.data);
             dispatch(setLanguages(response.data));
             dispatch(setLanguagesToLearn(response.data));
           })
-          .catch((error) => console.log("Error recherche users "));
+          .catch((error) => console.log("Error about languages"));
       };
       
       const getEventsTags = () => {
@@ -60,7 +58,7 @@ function App() {
           .then((response) => {
             dispatch(setEventTags(response.data));
           })
-          .catch((error) => console.log("Error recherche users "));
+          .catch((error) => console.log("Error about tags"));
       };
 
       const GetUserEventsById = () => {
@@ -68,10 +66,9 @@ function App() {
           .get(`https://lets-be-friend.herokuapp.com/v1/users/${idUser}`, optionsAxios)
           .then((response) => {
             dispatch(setUserEventsById(response.data.event));
-            console.log("coucou voici ta reponse de ton API:", response.data.event)
           })
           .catch((error) =>
-            console.log(`ERREUR : I can't all the data form the user ${idUser}`)
+            console.log(`ERREUR : I can't catch all the data form the user ${idUser}`)
           )
       };
 

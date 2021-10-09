@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, React } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useHistory } from "react-router";
 //Import React components
 import EventCardSearch from "../../Styledcomponents/EventCardSearch";
@@ -309,7 +309,7 @@ return (
               />
             </div>
             <div className="searchEvent__container-infosDetails-location">
-              <label>languages: </label>
+              <label>Languages: </label>
               <select
                 className="searchEvent__container-select"
                 name="languages"
@@ -344,6 +344,7 @@ return (
           ))}
         </div>
       </div>
+
       {/* Component Leaflet  */}
       <MapContainer center={[48.85837, 2.294481]} zoom={6} scrollWheelZoom={true}>
         <TileLayer
@@ -356,11 +357,11 @@ return (
             <Popup>
               <EventCardSearch key={event.id} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
               <div className='leaflet-popup-content-wrapper__searchEvent__description'>{event.description}</div>
-              {/* <ButtonToggleResult classNameButton="leaflet-popup-content-wrapper__searchEvent__description-button" className='leaflet-popup-content-wrapper__searchEvent__button' handleClick={() => handleClickParticipate(event)} name='I would like to Participate' /> */}
-              <ButtonToggle classNameDiv="leaflet-popup-content-wrapper__searchEvent__description-button" className='leaflet-popup-content-wrapper__searchEvent__button' handleClick={() => handleClickParticipate(event)} name='PARTICIPATE'></ButtonToggle>            
+                <ButtonToggle classNameDiv="leaflet-popup-content-wrapper__searchEvent__description-button" className='leaflet-popup-content-wrapper__searchEvent__button' handleClick={() => handleClickParticipate(event)} name='PARTICIPATE'></ButtonToggle>            
             </Popup>
           </Marker>
         ))}
+
       </MapContainer>
     </div>
   );

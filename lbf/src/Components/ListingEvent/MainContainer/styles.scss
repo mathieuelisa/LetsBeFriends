@@ -21,6 +21,8 @@
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border-radius: 10px;
+    min-height: 700px;
+    width: 80%;
     
     &__container-presentation {
         text-align: center;
@@ -29,9 +31,33 @@
     }
 }
 
-.mainListEvent__precontainer__container__display {
-    display: flex;
+.mainListEvent__precontainer__container{
+    &__display{
+        display: flex;
+    }
 
+    &-presentation{
+        line-height:1.6em
+    }
+}
+.mainListEvent__container-data{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 90%;
+    padding: 30px;
+    text-align: start;
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Caviar";
+    height: 450px;
+    overflow-y: scroll;
+    margin-top: 15px;
+}
+
+.mainListEvent__container-resultsForm-description{
+    width: 400px;
+    margin-top: 15px;
 }
 
 .listEvent{
@@ -77,7 +103,7 @@
     font-family: "Caviar";
     font-size: 0.8em;
     width: 70%;
-    height: 100px;
+    height: 160px;
     box-shadow: 0 0 7px -1px;
     -webkit-backdrop-filter: blur(7.5px);
     border-radius: 10px;
@@ -92,6 +118,32 @@
 }
 
 @media screen and (max-width: 970px){
+    .mainListEvent__precontainer{
+        flex-direction: column;
+        justify-content: center;
+        margin: 60px 0 40px 0;
+        height: auto;
+        z-index: 1;
+
+        &__container-presentation{
+            line-height: 1em;
+            font-size: 0.8em;
+            margin-top:15px;
+            width: 75%;
+        }
+    }
+
+    .mainListEvent__precontainer__container__display{
+        flex-direction: column;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .mainListEvent__container-data{
+        width: 100%;
+        padding: 0
+    }
+
     .mainListEvent__container{
         flex-direction: column;
         margin: 60px 0 40px 0;
@@ -100,7 +152,7 @@
     }
 
     .title__listContainer{
-        font-size: 0.5em;
+        font-size: 0.4em;
         justify-content: center;
     }
 
@@ -130,10 +182,16 @@
     }
 
     .profil__container-resultsForm{
-        width: 90%;
+        height: 200px;
+        width: 100%;
     }
 
     .list__container{
         height: auto;
+    }
+
+    .mainListEvent__container-resultsForm-description{
+        width: 185px;
+        font-size: 0.8em;
     }
 }
