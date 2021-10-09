@@ -89,6 +89,8 @@ router
      * @returns {string} 404 - A validation error message
      */
     .get(requestController.findAllJoiningRequest)
+
+router
     .route('/events/request/:ownerId')
     .get(requestController.findAllJoiningRequestByOwner)
 
@@ -155,15 +157,15 @@ router
      * @returns {string} 500 - An error message
      */
     .post(languageController.newUserSpeakLanguage)
-     /**
-     * Delete a user who learn a language
-     * @route DELETE /speak
-     * @group Language
-     * @summary Delete a user who learn a language
-     * @param {number} id.path.required the id of user who deleted
-     * @returns {string} 200 - An user is deleted
-     * @returns {string} 500 - an error message
-     */
+    /**
+    * Delete a user who learn a language
+    * @route DELETE /speak
+    * @group Language
+    * @summary Delete a user who learn a language
+    * @param {number} id.path.required the id of user who deleted
+    * @returns {string} 200 - An user is deleted
+    * @returns {string} 500 - an error message
+    */
     .delete(languageController.deleteUserSpeakLanguage)
 router
     .route('/learn')
@@ -202,14 +204,14 @@ router
 //? --- TAG
 router
     .route('/tags')
-     /**
-     * Responds with all events in database
-     * @route GET /tags
-     * @group Tag
-     * @summary Responds with all events in database
-     * @returns {Array<Tag>} 200 -An array of events
-     * @returns {string} 500 - An error message
-     */
+    /**
+    * Responds with all events in database
+    * @route GET /tags
+    * @group Tag
+    * @summary Responds with all events in database
+    * @returns {Array<Tag>} 200 -An array of events
+    * @returns {string} 500 - An error message
+    */
     .get(tagController.findAll)
     .delete(tagController.deleteEventHasTag)
 
@@ -280,16 +282,16 @@ router
 router
     .route('/resetpassword')
     .get(userController.findOneByEmail)
-     /**
-     * Modify a user's password with a email
-     * @route PUT /resetpassword
-     * @group User
-     * @summary modify a user's password with a email
-     * @param {number} id.path.required The id of user
-     * @param {string} email.query.required the email of the user for modify password
-     * @returns {Array<User>} 200 -An array of events
-     * @returns {string} 500 - An error message
-     */
+    /**
+    * Modify a user's password with a email
+    * @route PUT /resetpassword
+    * @group User
+    * @summary modify a user's password with a email
+    * @param {number} id.path.required The id of user
+    * @param {string} email.query.required the email of the user for modify password
+    * @returns {Array<User>} 200 -An array of events
+    * @returns {string} 500 - An error message
+    */
     .patch(validateBody(updateUserSecuritySchema), userController.update)
 
 router.post('/users/login', userController.login)
