@@ -35,8 +35,16 @@
             padding: 15px;
             color: whitesmoke;
             font-family: "caviar";
-            border: 1px solid whitesmoke;
+            border: 2px solid whitesmoke;
             border-radius: 50px;
+            cursor: pointer;
+            transition: all 1s ease;
+
+            &:hover{
+                background-color: white;
+                color: black;
+                font-weight: bold;
+            }
         }
 }
 
