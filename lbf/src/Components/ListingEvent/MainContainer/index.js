@@ -35,8 +35,8 @@ function ListEventContainer(){
     const dataPastEvents = []
     const dataComingEvents = []
     
-    console.log('data Events : ', dataEvents) 
-    console.log("Events:",events)
+    //console.log('data Events : ', dataEvents) 
+    //console.log("Events:",events)
     console.log('La liste des askings requests : ', askingList)
 
     // Recherche des events du user
@@ -79,8 +79,8 @@ function ListEventContainer(){
         }
     }
 
-    console.log("Tous les évènements antérieurs à aujourd'hui  : ", dataPastEvents)
-    console.log("Tous les évènements ultérieurs à aujourd'hui  : ", dataComingEvents)
+    //console.log("Tous les évènements antérieurs à aujourd'hui  : ", dataPastEvents)
+    //console.log("Tous les évènements ultérieurs à aujourd'hui  : ", dataComingEvents)
 
     // useEffect permettant de remettre le menu hamburger a false a chaque rendu
     useEffect(()=>{
@@ -125,10 +125,6 @@ function ListEventContainer(){
         setPastEvents("")
         setMyEvents("")
   }
-
-  const displayAskingRequests = () => {
-
-  } 
 
     return(
         <div className="list__container">
@@ -209,7 +205,7 @@ function ListEventContainer(){
                                         ))
                                     }
 
-                            {pastEvents && dataPastEvents.map((event) => (
+                            { !dataPastEvents ? <><p>Tu n'as pas d'évènements passés</p></> : <>{pastEvents && dataPastEvents.map((event) => (
                                             <EventCardMyEvents 
                                                 key={event.id} 
                                                 title={"Pasts events"}
@@ -218,7 +214,7 @@ function ListEventContainer(){
                                                 classNameCard="profil__container-resultsForm"
                                             />
                                         ))
-                                    }
+                                    }</>} 
 
                             {askings && askingList[0].participants.map((participant) => (
                                     <ParticipateRequest 
@@ -226,8 +222,8 @@ function ListEventContainer(){
                                         firstname={participant.firstname}
                                         lastname={participant.lastname}
                                         description={participant.description}
-                                        title={dataEvents.find(event => event.id == askingList[0].eventId).title}
-                                        placesLeft={dataEvents.find(event => event.id == askingList[0].eventId).placesLeft}
+                                        title={askingList[0].title[0]}
+                                        placesLeft={askingList[0].placesleft[0]}
                                         imgUrl={participant.imgUrl}
                                         textConfig="profil__container-resultsForm-text"
                                         classNameCard="profil__container-resultsForm"
