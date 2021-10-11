@@ -21,7 +21,8 @@ function EventCardMyEvents({
     eventDateStart,
     eventDateEnd,
     eventHourStart,
-    eventHourEnd
+    eventHourEnd, 
+    displayInfos
 }){
     return(
         <div onClick={handleClick} className={classNameCard}>

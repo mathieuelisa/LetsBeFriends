@@ -132,7 +132,11 @@
         margin-bottom: 1.8rem;
         border: 1px solid whitesmoke;
     &-displayInfos{
-        height: 80px;
+        height: 140px;
+    }
+
+    &-description{
+        margin-top:10px;
     }
 }
 }
