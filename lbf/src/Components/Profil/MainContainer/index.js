@@ -149,7 +149,7 @@ function ProfilContainer() {
   };
 
   let myVariable = {
-    "id": infosUser.id,
+          "id": infosUser.id,
           "firstname": fieldsCreateProfil.firstname,
           "lastname": fieldsCreateProfil.lastname,
           "gender": fieldsCreateProfil.gender,
@@ -163,7 +163,8 @@ function ProfilContainer() {
   }
 
   // Fonction "stripped" permettant de supprimer les strings vide pour update un profil avec uniquement une photo ou uniquement un input
-  const stripped = Object.fromEntries(Object.entries(myVariable).filter(value => value[1]))
+  const stripped = Object.entries(myVariable).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})
+  //const stripped = Object.fromEntries(Object.entries(myVariable).filter(value => value[1]))
 
   const updateProfil = () => {
       console.log('Body de la Request : ', {
@@ -185,7 +186,7 @@ function ProfilContainer() {
         }).catch(error => console.log('Error recherche event '));
       }
 
-      const uploadImage = (e) =>{
+      const uploadImage = (e) => {
         const files = e.target.files[0]    
         const formData = new FormData();
               formData.append("file", files)

@@ -63,7 +63,7 @@ function App() {
 
       const GetUserEventsById = () => {
         axios
-          .get(`https://lets-be-friend.herokuapp.com/v1/users/${2}`, optionsAxios)
+          .get(`https://lets-be-friend.herokuapp.com/v1/users/${idUser}`, optionsAxios)
           .then((response) => {
             dispatch(setUserEventsById(response.data.event));
           })
@@ -77,11 +77,20 @@ function App() {
         .get(`https://lets-be-friend.herokuapp.com/v1/events/request/${idUser}`, optionsAxios)
         .then((response) => {
           console.log("La liste des demandes de  participation à tes events:", response.data)
+          if(response.data.error) {
+            
+            console.log("Erreur" , response.data.error)
+          }
           dispatch(setAskingList(response.data));
+
+         // console.log('La liste des askings requests : ', askingList)
         })
-        .catch((error) =>
-          console.log(`ERREUR : I can't catch all the data from the user ${infosUser.id}`)
-        )
+        .catch((error) => {
+          //console.log(`ERREUR : I can't catch all the data from the user ${infosUser.id}`)
+          console.log('Message error: ', error)
+          dispatch(setAskingList([]))
+      
+        }) 
       }
 
        useEffect(() => {

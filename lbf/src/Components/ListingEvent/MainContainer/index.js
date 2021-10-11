@@ -39,9 +39,9 @@ function ListEventContainer(){
     const dataComingEvents = []
     
     console.log('data Events : ', dataEvents) 
-    console.log('Infos User : ', infosUser) 
+    //console.log('Infos User : ', infosUser) 
     //console.log("Events:",events)
-    //console.log('La liste des askings requests : ', askingList)
+    console.log('La liste des askings requests : ', askingList)
 
     // Recherche des events du user
     function handleClick(event){
@@ -84,7 +84,7 @@ function ListEventContainer(){
     }
 
     //console.log("Tous les évènements antérieurs à aujourd'hui  : ", dataPastEvents)
-    console.log("Tous les évènements ultérieurs à aujourd'hui  : ", dataComingEvents)
+    //console.log("Tous les évènements ultérieurs à aujourd'hui  : ", dataComingEvents)
 
     // useEffect permettant de remettre le menu hamburger a false a chaque rendu
     useEffect(()=>{
@@ -216,7 +216,7 @@ function ListEventContainer(){
                                         ))
                                     }
 
-                            { !dataPastEvents ? <><p>Tu n'as pas d'évènements passés</p></> : <>{pastEvents && dataPastEvents.map((event) => (
+                            { !dataEvents ? <><p>Tu n'as pas d'évènements passés</p></> : <>{pastEvents && dataPastEvents.map((event) => (
                                             <EventCardMyEvents 
                                                 key={event.id} 
                                                 title={"Pasts events"}
@@ -232,7 +232,7 @@ function ListEventContainer(){
                                         ))
                                     }</>} 
 
-                            {askings && askingList[0].participants.map((participant) => (
+                            {!askingList[0] ? <><p>Tu n'as pas de demandes de participation en attente</p></> : <>{askings && askingList[0].participants.map((participant) => (
                                     <ParticipateRequest 
                                         key={participant.id} 
                                         firstname={participant.firstname}
@@ -249,7 +249,7 @@ function ListEventContainer(){
                                     />
                                     
                                 ))
-                            }
+                            }</>}
                         </div> 
                     </div>    
                 </div>           
