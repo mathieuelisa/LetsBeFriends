@@ -234,13 +234,15 @@ function ListEventContainer(){
                                         email={participant.email}
                                         gender={participant.gender}
                                         lastname={participant.lastname}
-                                        displayInfos="profil__container-resultsForm-displayInfos"
+                                        // displayInfos="profil__container-resultsForm-displayInfos"
                                         description={participant.description}
                                         title={askingList[0].title[0]}
-                                        placesLeft={askingList[0].placesleft[0]}
+                                        // placesLeft={askingList[0].placesleft[0]}
                                         imgUrl={participant.imgUrl}
+                                        classNameDescription="profil__container-resultsForm-description"
                                         textConfig="profil__container-resultsForm-text"
                                         classNameCard="profil__container-resultsForm"
+                                        classNameInfos="profil__container-resultsForm-displayInfos"
                                     />
                                     
                                 ))
