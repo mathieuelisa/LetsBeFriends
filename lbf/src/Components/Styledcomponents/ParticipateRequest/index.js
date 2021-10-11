@@ -23,20 +23,21 @@ function ParticipateRequest({
     ClassNamePicturesDiv,
     title,
     placesLeft,
-    startingDate
-
+    startingDate,
+    gender
 }){
     
 
     return(
         <div onClick={handleClick} className={classNameCard}>
             <div className={classNameInfos}>
-                <h2 className={titleConfig}>{firstname}  {lastname.charAt(0)}.</h2>
-                <h3>{age} ans</h3>
-                <h3>{title}</h3>
-                <h4>{placesLeft} spots left</h4>
+                <h2>{title}</h2>
+                <h3 className={titleConfig}>{firstname} {lastname.charAt(0)}.</h3>
+                <h3>{gender}</h3>
+                <h3>{email}</h3>
                 <h4>{startingDate}</h4>
-                <h4>{description}</h4>
+                <h5>{description}</h5>
+
             </div>
         
             <div className={ClassNamePicturesDiv}>

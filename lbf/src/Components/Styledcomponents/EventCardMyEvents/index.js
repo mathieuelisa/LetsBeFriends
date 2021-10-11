@@ -19,12 +19,13 @@ function EventCardMyEvents({
     description,
     textConfigDescription,
     eventDateStart,
-    eventDateEnd
+    eventDateEnd,
+    displayInfos
 }){
     return(
         <div onClick={handleClick} className={classNameCard}>
             <div className={infos}>
-                <div>
+                <div className={displayInfos}>
                     <h2 className={titleConfig}>{title}</h2>
                     <h5>Start : {eventDateStart}</h5>
                     <h5>End : {eventDateEnd}</h5>
