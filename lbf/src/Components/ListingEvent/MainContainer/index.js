@@ -129,6 +129,7 @@ function ListEventContainer(){
         setPastEvents("")
         setMyEvents("")
   }
+  
 
     return(
         <div className="list__container">
@@ -197,7 +198,7 @@ function ListEventContainer(){
 
                                     } */}
 
-                            {comingSoonEvents && dataComingEvents?.map((event) => (
+                            { dataComingEvents == null ? <><p>Tu n'as pas d'évènements à venir</p></> : <>{comingSoonEvents && dataComingEvents?.map((event) => (
                                             <EventCardMyEvents 
                                                 key={event.id} 
                                                 title={event.title}
@@ -214,9 +215,9 @@ function ListEventContainer(){
                                                 imageConfiguration="profil__container-resultsForm-image"
                                             />
                                         ))
-                                    }
+                                    }</>}
 
-                            { !dataEvents ? <><p>Tu n'as pas d'évènements passés</p></> : <>{pastEvents && dataPastEvents.map((event) => (
+                            { pastEvents && dataPastEvents == null ? <><p>Tu n'as pas d'évènements passés</p></> : <>{ dataPastEvents.map((event) => (
                                             <EventCardMyEvents 
                                                 key={event.id} 
                                                 title={"Pasts events"}
@@ -232,7 +233,7 @@ function ListEventContainer(){
                                         ))
                                     }</>} 
 
-                            {!askingList[0] ? <><p>Tu n'as pas de demandes de participation en attente</p></> : <>{askings && askingList[0].participants.map((participant) => (
+                            {askings &&  askingList == null ? <p>Tu n'as pas de demandes de participation en attente</p> : <> {askingList[0].participants.map((participant) => (
                                     <ParticipateRequest 
                                         key={participant.id} 
                                         firstname={participant.firstname}

@@ -67,9 +67,10 @@ function App() {
           .then((response) => {
             dispatch(setUserEventsById(response.data.event));
           })
-          .catch((error) =>
+          .catch((error) => {
             console.log(`ERREUR : I can't catch all the data form the user ${idUser}`)
-          )
+            dispatch(setUserEventsById([]))
+          })
       };
 
       const getAskingRequestToMyEvents = () => {
@@ -77,10 +78,6 @@ function App() {
         .get(`https://lets-be-friend.herokuapp.com/v1/events/request/${idUser}`, optionsAxios)
         .then((response) => {
           console.log("La liste des demandes de  participation à tes events:", response.data)
-          if(response.data.error) {
-            
-            console.log("Erreur" , response.data.error)
-          }
           dispatch(setAskingList(response.data));
 
          // console.log('La liste des askings requests : ', askingList)
