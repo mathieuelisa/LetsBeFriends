@@ -372,7 +372,7 @@ function CreateEventContainer() {
                   <div className="second">
                   {loading && <Loader />}
                       <div className="createEvent__container-eventTitle-img">
-                    {imageUrl ? <>  <img className="createEvent-img" src={imageUrl} alt="imageEvent" /> </> :  <img className="createEvent-img" src={Avatar} alt="imageEvent" />}     
+                    {imageUrl ? <img className="createEvent-img" src={imageUrl} alt="imageEvent" /> : <img className="createEvent-img" src={Avatar} alt="imageEvent" />}     
                       </div>
  
                           <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/> 
