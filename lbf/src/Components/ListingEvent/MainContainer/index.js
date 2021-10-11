@@ -35,9 +35,10 @@ function ListEventContainer(){
     const dataPastEvents = []
     const dataComingEvents = []
     
-    //console.log('data Events : ', dataEvents) 
+    console.log('data Events : ', dataEvents) 
+    console.log('Infos User : ', infosUser) 
     //console.log("Events:",events)
-    console.log('La liste des askings requests : ', askingList)
+    //console.log('La liste des askings requests : ', askingList)
 
     // Recherche des events du user
     function handleClick(event){
@@ -201,7 +202,7 @@ function ListEventContainer(){
                                                 imgUrl={event.imgUrl}
                                                 description={event.description}
                                                 textConfig="profil__container-resultsForm-text"
-                                                classNameCard="profil__container-resultsForm"
+                                                classNameCard={ (event.ownerId == infosUser.id) ? "profil__container-resultsForm--myEvent ": "profil__container-resultsForm"}
                                                 eventDateStart={event.startingDate.slice(0,10)}
                                                 eventHourStart={event.startingDate.slice(11,16)}
                                                 eventDateEnd={event.endingDate.slice(0,10)}
