@@ -222,7 +222,7 @@ function ListEventContainer(){
 
                         <div className="mainListEvent__container-data">
                             <div className="title__listContainer">
-                                <div clas-sName="choice__listContainer">
+                                <div className="choice__listContainer">
                                     <a onClick={handleClickPast} href className="choice__listContainer-link"><h2>PAST</h2></a>
                                 </div>
                                 <div className="choice__listContainer">
