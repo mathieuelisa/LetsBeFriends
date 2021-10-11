@@ -30,10 +30,9 @@ class Tag extends CoreModel {
             this[propName] = obj[propName];
         }
     }
-
     /**
      * Fetches all tags from the database
-     * @returns {Array<Tag>}
+     * @returns {Tag|null} null if not tags in database
      * @async
      * @static
      */
@@ -53,7 +52,14 @@ class Tag extends CoreModel {
             }
         }
     }
-
+    /**
+     * Add a new event with a tag
+     * @param {number} event_id.path.required
+     * @param {number} tag_id.path.required
+     * @returns {Tag|null} null if tag not exist
+     * @static
+     * @async
+     */
     static async newEventHasTag(event_id, tag_id) {
         try {
             const { rows } = await db.query('INSERT INTO "event_has_tag"(event_id, tag_id) VALUES($1, $2) RETURNING event_id AS "eventId", tag_id AS "tagId"', [event_id, tag_id]);
@@ -69,6 +75,14 @@ class Tag extends CoreModel {
             }
         }
     }
+    /**
+     * Delete a event with a tag
+     * @param {number} event_id.path.required
+     * @param {number} tag_id 
+     * @returns {string} -An event is deleted
+     * @async
+     * @static
+     */
 
     static async deleteEventHasTag(event_id, tag_id) {
         try {

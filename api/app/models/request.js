@@ -111,6 +111,13 @@ class Request extends CoreModel {
             }
         }
     }
+    /**
+     * Fetches all users who
+     * @param {number} user_id 
+     * @returns {Request|null} null if not event find
+     * @async
+     * @static
+     */
 
     static async findAllJoiningRequestByOwnerID(user_id) {
         try {
