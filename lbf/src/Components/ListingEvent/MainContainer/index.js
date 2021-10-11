@@ -168,9 +168,9 @@ function ListEventContainer(){
                                 <div className="choice__listContainer">
                                     <a onClick={handleClickComingSoon} href className="choice__listContainer-link"><h2>COMING SOON</h2></a>
                                 </div>
-                                <div className="choice__listContainer">
+                                {/* <div className="choice__listContainer">
                                     <a onClick={handleClickEvents} href className="choice__listContainer-link"><h2>MY EVENT</h2></a>  
-                                </div>
+                                </div> */}
                                 {/* Partie qui sera visible uniquement pour l'organisateur */}
                                 <div className="choice__listContainer">
                                     <a onClick={handleClickAsking} href className="choice__listContainer-link"><h2>ASKING</h2></a>
@@ -178,7 +178,7 @@ function ListEventContainer(){
 
                             </div>
 
-                            {myEvents && dataEvents.map((event) => (
+                            {/* {myEvents && dataEvents.map((event) => (
                                             <EventCardMyEvents 
                                                 key={event.id} 
                                                 title={event.title}
@@ -192,15 +192,18 @@ function ListEventContainer(){
                                             />
                                         ))
 
-                                    }
+                                    } */}
 
                             {comingSoonEvents && dataComingEvents?.map((event) => (
                                             <EventCardMyEvents 
                                                 key={event.id} 
                                                 title={event.title}
                                                 imgUrl={event.imgUrl}
+                                                description={event.description}
                                                 textConfig="profil__container-resultsForm-text"
                                                 classNameCard="profil__container-resultsForm"
+                                                eventDateStart={event.startingDate}
+                                                eventDateEnd={event.endingDate}
                                             />
                                         ))
                                     }
