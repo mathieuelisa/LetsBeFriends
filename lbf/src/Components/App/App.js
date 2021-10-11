@@ -63,7 +63,7 @@ function App() {
 
       const GetUserEventsById = () => {
         axios
-          .get(`https://lets-be-friend.herokuapp.com/v1/users/${idUser}`, optionsAxios)
+          .get(`https://lets-be-friend.herokuapp.com/v1/users/${2}`, optionsAxios)
           .then((response) => {
             dispatch(setUserEventsById(response.data.event));
           })
