@@ -370,9 +370,9 @@ function ProfilContainer() {
         </>
         :
         <>
-            <div className="mainCreateEvent__container-success">
-                {messageAfterSubmitted}
-            </div>
+          <div className="mainCreateEvent__container-success">
+              {messageAfterSubmitted}
+          </div>
         </>
         }
       </div>
