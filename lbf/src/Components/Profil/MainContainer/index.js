@@ -158,7 +158,7 @@ function ProfilContainer() {
           "age": fieldsCreateProfil.age,
           "learningLanguage": myLearningLanguages.map(language => language.id),
           "speakingLanguage": myLanguagesSpoken.map(language => language.id),
-          "city": fieldsCreateProfil.city,
+
           "img_url": imageUrl,
   }
 
@@ -279,7 +279,7 @@ function ProfilContainer() {
                 placeholder={fieldsCreateProfil.age}
               />
             </div>
-            <div className="myInputs-profilPage">
+            {/* <div className="myInputs-profilPage">
               <label className="myInputs-ProfilPage-label">City:</label>
               <input
                 className="myInputs-profilPage-input"
@@ -289,7 +289,7 @@ function ProfilContainer() {
                 onChange={handleFielsProfilChange}
                 placeholder={fieldsCreateProfil.city}
               />
-            </div>
+            </div> */}
             <div className="myInputs-profilPage">
               <label className="myInputs-ProfilPage-label">Mail:</label>
               <input

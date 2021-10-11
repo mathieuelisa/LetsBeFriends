@@ -98,7 +98,7 @@ function App() {
          getAskingRequestToMyEvents();
         }, [])
 
-      if(events !== null && allLanguages !== null && allEventTags !== null && !askingList && loader == false && askingList !== undefined && dataEvents !== null) {
+      if(events !== null && allLanguages !== null && allEventTags !== null && askingList.length > 0 && loader == false && askingList !== undefined && dataEvents !== null) {
            setLoader(!loader);
        }
   return (
