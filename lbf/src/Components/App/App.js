@@ -74,7 +74,7 @@ function App() {
 
       const getAskingRequestToMyEvents = () => {
         axios
-        .get(`https://lets-be-friend.herokuapp.com/v1/events/request/${idUser}`, optionsAxios)
+        .get(`https://lets-be-friend.herokuapp.com/v1/events/request/${2}`, optionsAxios)
         .then((response) => {
           console.log("La liste des demandes de  participation à tes events:", response.data)
           dispatch(setAskingList(response.data));

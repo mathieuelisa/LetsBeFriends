@@ -36,6 +36,7 @@ function ParticipateRequest({
                 <h3>{title}</h3>
                 <h4>{placesLeft} spots left</h4>
                 <h4>{startingDate}</h4>
+                <h4>{description}</h4>
             </div>
         
             <div className={ClassNamePicturesDiv}>

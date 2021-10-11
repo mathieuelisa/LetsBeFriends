@@ -32,7 +32,10 @@ function ListEventContainer(){
     const infosUser = useSelector((state)=>state.profil.infosUser)
     const events = useSelector((state)=>state.event.events)
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
+    const dataPastEvents = []
+    const dataComingEvents = []
     
+    console.log('data Events : ', dataEvents) 
     console.log("Events:",events)
     console.log('La liste des askings requests : ', askingList)
 
@@ -41,6 +44,43 @@ function ListEventContainer(){
         event.preventDefault()
         dispatch({type: SET_TOGGLE})
     }
+
+    // Fonction tri par date
+    const isBeforeToday = (timeToCompare)=>{
+        const today = new Date()
+        const year = Number(timeToCompare.slice(0,4))
+        // console.log(year)
+        const month = Number(timeToCompare.slice(5, 7))
+        // console.log(month)
+        const day = Number(timeToCompare.slice(8,10))
+        // console.log(day)
+        const hours = Number(timeToCompare.slice(11 , 13))
+        // console.log(hours)
+        const minutes = Number(timeToCompare.slice(14, 16))
+        // console.log(minutes)
+        if(year < today.getUTCFullYear()) return true
+        else if (year > today.getUTCFullYear()) return false
+        if(month < today.getMonth()+1) return true
+        else if(month > today.getMonth()+1) return false
+        if(day < today.getDay()+3) return true
+        else if(day > today.getDay()+3) return false
+        if(hours < today.getUTCHours()+2) return true
+        else if(hours > today.getUTCHours()+2) return false
+        if(minutes < today.getUTCMinutes()) return true
+        else if(minutes > today.getUTCMinutes()) return false
+        else return false
+    }
+ 
+    for (const event of dataEvents) {
+        if(isBeforeToday(event.startingDate)) {
+            dataPastEvents.push(event)
+        } else {
+            dataComingEvents.push(event)
+        }
+    }
+
+    console.log("Tous les évènements antérieurs à aujourd'hui  : ", dataPastEvents)
+    console.log("Tous les évènements ultérieurs à aujourd'hui  : ", dataComingEvents)
 
     // useEffect permettant de remettre le menu hamburger a false a chaque rendu
     useEffect(()=>{
@@ -142,7 +182,7 @@ function ListEventContainer(){
 
                             </div>
 
-                            {myEvents && dataEvents?.map((event) => (
+                            {myEvents && dataEvents.map((event) => (
                                             <EventCardMyEvents 
                                                 key={event.id} 
                                                 title={event.title}
@@ -158,10 +198,10 @@ function ListEventContainer(){
 
                                     }
 
-                            {comingSoonEvents && dataEvents?.map((event) => (
+                            {comingSoonEvents && dataComingEvents?.map((event) => (
                                             <EventCardMyEvents 
                                                 key={event.id} 
-                                                title={"Coming soon events"}
+                                                title={event.title}
                                                 imgUrl={event.imgUrl}
                                                 textConfig="profil__container-resultsForm-text"
                                                 classNameCard="profil__container-resultsForm"
@@ -169,7 +209,7 @@ function ListEventContainer(){
                                         ))
                                     }
 
-                            {pastEvents && dataEvents?.map((event) => (
+                            {pastEvents && dataPastEvents.map((event) => (
                                             <EventCardMyEvents 
                                                 key={event.id} 
                                                 title={"Pasts events"}
@@ -185,7 +225,7 @@ function ListEventContainer(){
                                         key={participant.id} 
                                         firstname={participant.firstname}
                                         lastname={participant.lastname}
-                                        age={participant.age}
+                                        description={participant.description}
                                         title={dataEvents.find(event => event.id == askingList[0].eventId).title}
                                         placesLeft={dataEvents.find(event => event.id == askingList[0].eventId).placesLeft}
                                         imgUrl={participant.imgUrl}
