@@ -122,7 +122,7 @@ class Request extends CoreModel {
     static async findAllJoiningRequestByOwnerID(user_id) {
         try {
             console.log("debut de la requete", user_id)
-            const { rows } = await db.query(`SELECT user_ask_event.event_id AS "eventId", event.title AS "title",
+            const { rows } = await db.query(`SELECT user_ask_event.event_id AS "eventId", json_agg(DISTINCT event.title) AS "title",
             json_agg(
                 DISTINCT jsonb_build_object(
                     'id', "user".id,
