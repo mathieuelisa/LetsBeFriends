@@ -22,15 +22,18 @@ function EventCardMyEvents({
     eventDateEnd,
     eventHourStart,
     eventHourEnd, 
-    displayInfos
+    displayInfos,
+    image,
+    imageConfiguration
 }){
     return(
         <div onClick={handleClick} className={classNameCard}>
             <div className={infos}>
                 <div className={displayInfos}>
                     <h2 className={titleConfig}>{title}</h2>
-                    <h5>Start : {eventDateStart}  time:  {eventHourStart} </h5>
-                    <h5>End : {eventDateEnd}  time:  {eventHourEnd}</h5>
+                    <img className={imageConfiguration} alt="" src={image}></img>
+                    <h5>Start : {eventDateStart}  at:  {eventHourStart} </h5>
+                    <h5>End : {eventDateEnd}  at:  {eventHourEnd}</h5>
                 </div>
                 <p className={textConfig}>{placesLeft} spot left</p>
                 <p className={textConfigDescription}>{description}</p>

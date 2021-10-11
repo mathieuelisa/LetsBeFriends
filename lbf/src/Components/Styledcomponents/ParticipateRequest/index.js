@@ -39,7 +39,7 @@ function ParticipateRequest({
                     {gender == "male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
                         : <img className="profil__container-avatars-gender" src={Female} alt="Female"/>}
                 <h4>{email}</h4>
-                <h5 className={classNameDescription}>{description}</h5>
+                <h5 className={classNameDescription}>Bio of {firstname} : {description}</h5>
 
             </div>
         

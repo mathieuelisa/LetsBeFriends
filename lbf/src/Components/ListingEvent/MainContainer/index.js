@@ -17,6 +17,9 @@ import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
 import ParticipateRequest from "../../Styledcomponents/ParticipateRequest"
 import EventCardMyEvents from "../../Styledcomponents/EventCardMyEvents"
 
+// import icons
+import Couronne from "../../../assets/Logo/couronne.png"
+
 function ListEventContainer(){
     const dispatch = useDispatch()
 
@@ -151,7 +154,7 @@ function ListEventContainer(){
 
             <div className="mainListEvent__precontainer">
                 <div className='mainListEvent__precontainer__container'>
-                    <div className='mainListEvent__precontainer__container-presentation'>Hi {infosUser.firstname}, you can find below your events calendar.<br/><br/> If you're organizing events, check the asking section to accept/decline the other people participations requests </div>
+                    <div className='mainListEvent__precontainer__container-presentation'>Hi {infosUser.firstname}, you can find below your events calendar.<br/><br/> If you're organizing events ( <img className="profil__container-resultsForm-imageText" alt="Logo" src={Couronne}></img> ), check the asking section to accept/decline the other people participations requests </div>
                     <div className='mainListEvent__precontainer__container__display'>
                         <div className="profil__container-avatars">
                                 <Avatar 
@@ -172,7 +175,6 @@ function ListEventContainer(){
                                 {/* <div className="choice__listContainer">
                                     <a onClick={handleClickEvents} href className="choice__listContainer-link"><h2>MY EVENT</h2></a>  
                                 </div> */}
-                                {/* Partie qui sera visible uniquement pour l'organisateur */}
                                 <div className="choice__listContainer">
                                     <a onClick={handleClickAsking} href className="choice__listContainer-link"><h2>ASKING</h2></a>
                                 </div>
@@ -208,6 +210,8 @@ function ListEventContainer(){
                                                 eventDateEnd={event.endingDate.slice(0,10)}
                                                 eventHourEnd={event.endingDate.slice(11,16)}
                                                 placesLeft={event.placesLeft}
+                                                image={ (event.ownerId == infosUser.id) ? Couronne : ""}
+                                                imageConfiguration="profil__container-resultsForm-image"
                                             />
                                         ))
                                     }
@@ -235,10 +239,8 @@ function ListEventContainer(){
                                         email={participant.email}
                                         gender={participant.gender}
                                         lastname={participant.lastname}
-                                        // displayInfos="profil__container-resultsForm-displayInfos"
                                         description={participant.description}
                                         title={askingList[0].title[0]}
-                                        // placesLeft={askingList[0].placesleft[0]}
                                         imgUrl={participant.imgUrl}
                                         classNameDescription="profil__container-resultsForm-description"
                                         textConfig="profil__container-resultsForm-text"
