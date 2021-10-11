@@ -80,7 +80,7 @@ function ListEventContainer(){
     }
 
     //console.log("Tous les évènements antérieurs à aujourd'hui  : ", dataPastEvents)
-    //console.log("Tous les évènements ultérieurs à aujourd'hui  : ", dataComingEvents)
+    console.log("Tous les évènements ultérieurs à aujourd'hui  : ", dataComingEvents)
 
     // useEffect permettant de remettre le menu hamburger a false a chaque rendu
     useEffect(()=>{
@@ -202,8 +202,11 @@ function ListEventContainer(){
                                                 description={event.description}
                                                 textConfig="profil__container-resultsForm-text"
                                                 classNameCard="profil__container-resultsForm"
-                                                eventDateStart={event.startingDate}
-                                                eventDateEnd={event.endingDate}
+                                                eventDateStart={event.startingDate.slice(0,10)}
+                                                eventHourStart={event.startingDate.slice(11,16)}
+                                                eventDateEnd={event.endingDate.slice(0,10)}
+                                                eventHourEnd={event.endingDate.slice(11,16)}
+                                                placesLeft={event.placesLeft}
                                             />
                                         ))
                                     }
@@ -215,6 +218,11 @@ function ListEventContainer(){
                                                 imgUrl={event.imgUrl}
                                                 textConfig="profil__container-resultsForm-text"
                                                 classNameCard="profil__container-resultsForm"
+                                                eventDateStart={event.startingDate.slice(0,10)}
+                                                eventHourStart={event.startingDate.slice(11,16)}
+                                                eventDateEnd={event.endingDate.slice(0,10)}
+                                                eventHourEnd={event.endingDate.slice(11,16)}
+                                                placesLeft={event.placesLeft}
                                             />
                                         ))
                                     }</>} 
