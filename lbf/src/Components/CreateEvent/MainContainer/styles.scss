@@ -92,7 +92,7 @@
 }
 .createEvent-img{
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     max-width: 400px;
     border-radius: 15px;
     margin-left: 50px;
@@ -128,6 +128,11 @@
     color: whitesmoke;
     cursor: pointer;
     box-shadow: 0 0 7px -1px;
+    transition: all 1s ease;
+
+    &:hover{
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    }
 }
 
 .myInputs{
