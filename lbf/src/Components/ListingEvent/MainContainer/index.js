@@ -232,7 +232,10 @@ function ListEventContainer(){
                                     <ParticipateRequest 
                                         key={participant.id} 
                                         firstname={participant.firstname}
+                                        email={participant.email}
+                                        gender={participant.gender}
                                         lastname={participant.lastname}
+                                        displayInfos="profil__container-resultsForm-displayInfos"
                                         description={participant.description}
                                         title={askingList[0].title[0]}
                                         placesLeft={askingList[0].placesleft[0]}
