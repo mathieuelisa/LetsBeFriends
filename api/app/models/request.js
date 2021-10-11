@@ -128,8 +128,10 @@ class Request extends CoreModel {
                     'id', "user".id,
                     'firstname', "user".firstname,
                     'lastname', "user".lastname,
-                    'age', "user".age,
-                    'imgUrl', "user".img_url
+                    'description', "user".description,
+                    'imgUrl', "user".img_url,
+                    'email', "user".email,
+                    'gender', "user".gender
                 )
             ) AS "participants"
             FROM user_ask_event

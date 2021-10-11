@@ -76,23 +76,22 @@ router
     .delete(eventController.userLeaveEvent)
 
 //? --- JOINING REQUEST
-router
-    .route('/events/request/:id')
-    /**
-     * Do a request on one event
-     * @route GET /events/request/:id
-     * @group Event
-     * @summary Do a request on one event
-     * @param {number} id.path.required id necessary for search event
-     * @returns {string} 201 - the event finded
-     * @returns {string} 500 - an error server
-     * @returns {string} 404 - A validation error message
-     */
-    .get(requestController.findAllJoiningRequest)
+// router
+//     .route('/events/request/:id')
+//     .get(requestController.findAllJoiningRequest)
 
 router
     .route('/events/request/:ownerId')
-    
+    /**
+     * Find all Joining rtequest by Owner ID
+     * @route GET /events/request/:id
+     * @group Event
+     * @summary Find all Joining Request by Owner ID
+     * @param {number} id.path.required id necessary for search event
+     * @returns {string} 201 - the event finded 
+     * @returns {string} 500 - an error server
+     * @returns {string} 404 - A validation error message
+     */
     .get(requestController.findAllJoiningRequestByOwner)
 
 router

@@ -40,7 +40,7 @@ insert into event (title, starting_date, ending_date, img_url, places_left, desc
 
 ('Murder Party - Le meurtre d Arthur Pendragon', '2021-11-05 09:00:00', '2021-11-05 17:00:00', 'https://images.pexels.com/photos/1881965/pexels-photo-1881965.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 5, 'Résolvez l assassinat d Arthur Pendragon en parcourant les rues de Lyon tout en apprenant une langue étrangère', 4.835659,45.764043, 8),
 
-('Fête du cinéma japonais à aix-en-provence', '2021-10-10 14:00:00', '2021-10-10 22:30:00', 'https://images.pexels.com/photos/1049622/pexels-photo-1049622.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',6, 'Venez assister à la représentation de Your Name en version originale puis discuter du film en parlant japonais autour d un thé', 5.447427, 43.529742, 5),
+('Fête du cinéma japonais à aix-en-provence', '2021-11-10 14:00:00', '2021-11-10 22:30:00', 'https://images.pexels.com/photos/1049622/pexels-photo-1049622.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',6, 'Venez assister à la représentation de Your Name en version originale puis discuter du film en parlant japonais autour d un thé', 5.447427, 43.529742, 5),
 
 ('Sunday Brunch', '2021-10-20 12:30:00', '2021-10-20 16:30:00', 'https://images.pexels.com/photos/4873695/pexels-photo-4873695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 6, 'Rendez vous au trocadéro pour bruncher et apprendre une nouvelle langue', 2.3522219, 48.856614, 7),
 
