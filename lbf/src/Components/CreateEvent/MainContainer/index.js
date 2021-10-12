@@ -17,7 +17,8 @@ import { useHistory } from "react-router";
 import { SET_TOGGLE, RESET_TOGGLE } from "../../../Redux/actions/common";
 // import Axios
 import axios from "axios";
-
+// import image avatar
+import Avatar from "../../../assets/Img/selectPics.png"
 
 function CreateEventContainer() {
   const allLanguages = useSelector((state)=>state.common.allLanguages)
@@ -371,7 +372,7 @@ function CreateEventContainer() {
                   <div className="second">
                   {loading && <Loader />}
                       <div className="createEvent__container-eventTitle-img">
-                          <img className="createEvent-img" src={imageUrl} alt="imageEvent" />
+                    {imageUrl ? <img className="createEvent-img" src={imageUrl} alt="imageEvent" /> : <img className="createEvent-img" src={Avatar} alt="imageEvent" />}     
                       </div>
  
                           <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/> 

@@ -67,9 +67,10 @@ function App() {
           .then((response) => {
             dispatch(setUserEventsById(response.data.event));
           })
-          .catch((error) =>
+          .catch((error) => {
             console.log(`ERREUR : I can't catch all the data form the user ${idUser}`)
-          )
+            dispatch(setUserEventsById([]))
+          })
       };
 
       const getAskingRequestToMyEvents = () => {
@@ -78,10 +79,15 @@ function App() {
         .then((response) => {
           console.log("La liste des demandes de  participation à tes events:", response.data)
           dispatch(setAskingList(response.data));
+
+         // console.log('La liste des askings requests : ', askingList)
         })
-        .catch((error) =>
-          console.log(`ERREUR : I can't catch all the data from the user ${infosUser.id}`)
-        )
+        .catch((error) => {
+          //console.log(`ERREUR : I can't catch all the data from the user ${infosUser.id}`)
+          console.log('Message error: ', error)
+          dispatch(setAskingList([]))
+      
+        }) 
       }
 
        useEffect(() => {
@@ -92,7 +98,7 @@ function App() {
          getAskingRequestToMyEvents();
         }, [])
 
-      if(events !== null && allLanguages !== null && allEventTags !== null && !askingList && loader == false && askingList !== undefined && dataEvents !== null) {
+      if(events !== null && allLanguages !== null && allEventTags !== null && askingList.length > 0 && loader == false && askingList !== undefined && dataEvents !== null) {
            setLoader(!loader);
        }
   return (

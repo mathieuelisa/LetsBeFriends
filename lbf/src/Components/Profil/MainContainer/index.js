@@ -29,7 +29,6 @@ function ProfilContainer() {
 
   // All my infos about my user
   const infosUser = useSelector((state) => state.profil.infosUser);
-
   console.log("Data user:", infosUser)
   
   const [fieldsCreateProfil, setFieldsCreateProfil] = useState({
@@ -149,7 +148,7 @@ function ProfilContainer() {
   };
 
   let myVariable = {
-    "id": infosUser.id,
+          "id": infosUser.id,
           "firstname": fieldsCreateProfil.firstname,
           "lastname": fieldsCreateProfil.lastname,
           "gender": fieldsCreateProfil.gender,
@@ -158,12 +157,12 @@ function ProfilContainer() {
           "age": fieldsCreateProfil.age,
           "learningLanguage": myLearningLanguages.map(language => language.id),
           "speakingLanguage": myLanguagesSpoken.map(language => language.id),
-          "city": fieldsCreateProfil.city,
+
           "img_url": imageUrl,
   }
 
   // Fonction "stripped" permettant de supprimer les strings vide pour update un profil avec uniquement une photo ou uniquement un input
-  const stripped = Object.fromEntries(Object.entries(myVariable).filter(value => value[1]))
+  const stripped = Object.entries(myVariable).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})
 
   const updateProfil = () => {
       console.log('Body de la Request : ', {
@@ -185,7 +184,7 @@ function ProfilContainer() {
         }).catch(error => console.log('Error recherche event '));
       }
 
-      const uploadImage = (e) =>{
+      const uploadImage = (e) => {
         const files = e.target.files[0]    
         const formData = new FormData();
               formData.append("file", files)
@@ -195,7 +194,7 @@ function ProfilContainer() {
             "https://api.cloudinary.com/v1_1/lbfcloud/image/upload",formData)
             .then(res=>setImageUrl(res.data.secure_url))
             .then(response=>console.log("la reponse de cloudinary:", response.data))
-            .catch((err)=>console.log(err))
+            .catch((err)=>console.log(err)) 
         }
 
   return (
@@ -279,17 +278,6 @@ function ProfilContainer() {
               />
             </div>
             <div className="myInputs-profilPage">
-              <label className="myInputs-ProfilPage-label">City:</label>
-              <input
-                className="myInputs-profilPage-input"
-                name="adress"
-                type="text"
-                value={fieldsCreateProfil.city}
-                onChange={handleFielsProfilChange}
-                placeholder={fieldsCreateProfil.city}
-              />
-            </div>
-            <div className="myInputs-profilPage">
               <label className="myInputs-ProfilPage-label">Mail:</label>
               <input
                 className="myInputs-profilPage-input"
@@ -370,9 +358,9 @@ function ProfilContainer() {
         </>
         :
         <>
-            <div className="mainCreateEvent__container-success">
-                {messageAfterSubmitted}
-            </div>
+          <div className="mainCreateEvent__container-success">
+              {messageAfterSubmitted}
+          </div>
         </>
         }
       </div>
