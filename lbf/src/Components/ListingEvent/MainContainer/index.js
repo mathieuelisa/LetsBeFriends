@@ -236,11 +236,11 @@ function ListEventContainer(){
                                 </div>
 
                             </div>
-
-                            {pastEvents ? arraypastevents : ""}
-                            {comingSoonEvents ? arraycomingsoon : ""}
-                            {askings ? arrayaskinglist : ""}
-                            
+                            <div className="display-cards">
+                                {pastEvents ? arraypastevents : ""}
+                                {comingSoonEvents ? arraycomingsoon : ""}
+                                {askings ? arrayaskinglist : ""}
+                            </div>
 
                         </div> 
                     </div>    
