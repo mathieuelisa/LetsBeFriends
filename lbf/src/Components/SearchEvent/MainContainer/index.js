@@ -159,13 +159,14 @@ function SearchEventContainer() {
       fieldsSearch.dateFrom.formatISO,
       fieldsSearch.dateTo.formatISO
     );
-  
+
   };
 
   const handleClickParticipate = (event) => {
     console.log('Vous avez recup l event avec l id : ', event.id)
     const eventId = event.id
     userWantToParticipate(eventId);
+    
   }
 
   const userWantToParticipate = (eventId) => {
@@ -356,8 +357,8 @@ return (
           <Marker key={event.id} icon={positionIcon} position={[event.latitude, event.longitude]}>
             <Popup>
               <EventCardSearch key={event.id} {...event} classNameCard="leaflet-popup-content-wrapper__searchEvent"/>
-              <div className='leaflet-popup-content-wrapper__searchEvent__description'>{event.description}</div>
-                <ButtonToggle classNameDiv="leaflet-popup-content-wrapper__searchEvent__description-button" className='leaflet-popup-content-wrapper__searchEvent__button' handleClick={() => handleClickParticipate(event)} name='PARTICIPATE'></ButtonToggle>            
+              <div className='leaflet-popup-content-wrapper__searchEvent__description'>{event.description}</div>  
+               <ButtonToggle classNameDiv="leaflet-popup-content-wrapper__searchEvent__description-button" className='leaflet-popup-content-wrapper__searchEvent__button' handleClick={() => handleClickParticipate(event)} name='PARTICIPATE'></ButtonToggle>       
             </Popup>
           </Marker>
         ))}

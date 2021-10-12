@@ -140,6 +140,8 @@
     background: transparent;
     color: whitesmoke;
     font-family: "Caviar";
+    width: 160px;
+    padding-left: 5px;
 }
 
 select option{
@@ -210,6 +212,7 @@ select option{
 
     .createEvent-img{
         margin: 0;
+        width: 203px;
     }
 
     .createEvent__container-infosDetails-location{
