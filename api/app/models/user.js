@@ -323,7 +323,7 @@ class User extends CoreModel {
                 let count = 1;
                 const properties = [];
                 const values = [this.id];
-
+                if(this.password) this.password = await bcrypt.hash(this.password, 10)
                 for (const key in this) {
                     if (key == 'id') continue;
                     properties.push(`"${key}"=$${++count}`)

@@ -317,7 +317,7 @@ class Event extends CoreModel {
 
 	static async placesLeftIncrement(event_id) {
 		try {
-			const { rows } = await db.query('UPDATE event SET places_left=places_left+1 WHERE event.id = $1 RETURNING places_left', [event_id])
+		const { rows } = await db.query('UPDATE event SET places_left=places_left+1 WHERE event.id = $1 RETURNING places_left', [event_id])
 			let placesLeft = rows[0];
 			placesLeft = placesLeft.places_left
 
