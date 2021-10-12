@@ -11,6 +11,8 @@ export default function Slider() {
     const [slideIndex, setSlideIndex] = useState(1)
     const events = useSelector(state => state.event.events)
 
+    console.log("event carr", events)
+
     const nextSlide = () => {
         if(slideIndex !==5){
             // events.length
@@ -36,12 +38,11 @@ export default function Slider() {
 
     return (
         <>
-        
         <div className="container-slider">
             {events.map((obj, index) => {
                 return (
                     <div key={obj.id} className={slideIndex === index + 1 ? "slide active-anim" : "slide"}>
-                        <EventCard {...obj}/>
+                        <EventCard {...obj} />
                     </div>
                 )
             })}
