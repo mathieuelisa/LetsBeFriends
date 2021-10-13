@@ -340,7 +340,7 @@ function CreateEventContainer() {
                     </div>
 
                     <div className="createEvent__container-infosDetails-participants">
-                      <label>Nombre de participants: </label>
+                      <label>Number of participants: </label>
                       <select
                         className="createEvent__container-infosDetails-location"
                         name="participants"
