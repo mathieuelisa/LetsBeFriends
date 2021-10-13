@@ -15,6 +15,7 @@ import CreateEventPage from "../CreateEvent";
 import SearchEventPage from "../SearchEvent";
 import ListEventPage from "../ListingEvent";
 import ErrorPage from "../Error404";
+import MentionsPage from "../MentionsLegales"
 
 
 function App() {
@@ -126,6 +127,10 @@ function App() {
 
         <Route path="/contact" exact>
             <ContactPage />
+        </Route>
+
+        <Route path="/mentions" exact>
+            <MentionsPage />
         </Route>
 
         <Route>

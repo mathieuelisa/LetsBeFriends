@@ -4,10 +4,6 @@ import './styles.scss';
 import groupLogo from '../../../assets/Icons/group.svg';
 import placeholder from '../../../assets/Icons/placeholder.svg'
 import calendar from '../../../assets/Icons/calendar.svg'
-//import React Component
-import Avatar from '../Avatar';
-
-import avatarMicheline from "../../../assets/Img/micheline.jpg"
 
 const EventCard = ({ startingDate, placesLeft, title, imgUrl, languages}) => (
   
@@ -17,13 +13,8 @@ const EventCard = ({ startingDate, placesLeft, title, imgUrl, languages}) => (
 
         {/* Profil */}
 
-        {/* <Avatar 
-          customDiv='avatar-div' 
-          customImg='avatar-image'
-          customPics={avatarMicheline} 
-        /> */}
         <div className='eventcard__infos__profil__identity'>
-          <h2 className='eventcard__infos__profil__identity--firstname'></h2>
+          {/* <h2 className='eventcard__infos__profil__identity--firstname'></h2> */}
           <p className='eventcard__infos__profil__identity--age'></p>
         </div>
       </div>

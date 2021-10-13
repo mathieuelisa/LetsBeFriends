@@ -1,6 +1,5 @@
 // Import styles
 import "./styles.scss"
-import "../../../"
 // Import Gif
 import LogoError from "../../../assets/Logo/chevre.gif"
 import { Link } from "react-router-dom"

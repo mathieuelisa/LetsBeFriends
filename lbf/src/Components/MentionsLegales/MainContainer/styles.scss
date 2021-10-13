@@ -1,0 +1,56 @@
+.mentionsContainer__container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        color: whitesmoke;
+        background: linear-gradient(to top,rgb(178 31 31) 0%, rgb(153, 10, 10) 0%, rgba(18, 75, 160, 0.5));
+
+        &-bloc{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 1000px;
+            width: 80%;
+
+            &-title{
+                font-family: "Caviar";
+                margin: 20px;
+            }
+
+            &-text{
+                font-family: "Caviar";
+                height: 90%;
+                width: 90%;
+                overflow-y: scroll;
+                padding: 15px;
+                text-align: justify;
+            }
+
+            &-sectionTitle{
+                margin: 20px 0;
+            }
+        }
+
+        &-button{
+            margin-top: 20px;
+        }
+    }
+
+    @media screen and (max-width: 970px){
+        .mentionsContainer__container{
+            height: auto;
+
+            &-bloc{
+                width: 90%;
+            }
+        }
+
+        .mentionsContainer__container-bloc-text{
+            padding: 0;
+            margin-bottom: 100px;
+            padding-left: 8px;
+        }
+    }

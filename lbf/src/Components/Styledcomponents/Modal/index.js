@@ -144,8 +144,6 @@ const Modal = ({ openModale }) => {
                 className="modal-container__modal__formlogin__button--login"
                 name="Login"
               >Let'go</button>
- 
- 
             </form>
           ) : (
             <form
@@ -215,23 +213,6 @@ const Modal = ({ openModale }) => {
                 classNameDiv="div-input-login"
                 onChange={handleChangeSignup}
               />
-
-              {/* <div className="modal-container__modal__formsignup__terms">
-                <input
-                  type="checkbox"
-                  id="terms"
-                  checked={isCheckedSignUp}
-                  onChange={(e) => {
-                    setIsCheckedSignUp(e.target.checked);
-                  }}
-                />
-                <label
-                  className="modal-container__modal__formsignup__terms--label"
-                  htmlFor="remember"
-                >
-                  I accept the Term of Use & Privacy Policy
-                </label>
-              </div> */}
               <button type="submit" className="button-sign" name="Sign">Let's go</button>
             </form>
           )}
