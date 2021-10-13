@@ -27,6 +27,7 @@ function ListEventContainer(){
     const [pastEvents, setPastEvents] = useState(false)
     const [comingSoonEvents, setComingSoonEvents] = useState(false)
     const [askings, setAskings] = useState(false)
+    const [scrollIcons, setScrollIcons] = useState(false)
 
     const askingList = useSelector(state => state.event.askingList)
     const toggleAction = useSelector((state)=> state.common.toggleAction)
@@ -170,9 +171,9 @@ function ListEventContainer(){
     e.preventDefault();
     console.log('handleClickComingSoon')
         setPastEvents(false)
-        
         setAskings(false)
         setComingSoonEvents(true)
+        setScrollIcons(true)
   }
 
   const handleClickAsking = (e) =>{
@@ -180,8 +181,8 @@ function ListEventContainer(){
       console.log('handleClickAsking')
         setComingSoonEvents(false)
         setPastEvents(false)
-        
         setAskings(true)
+        setScrollIcons(true)
   }
   
   console.log("Tous les évènements antérieurs à aujourd'hui  : ", dataPastEvents)
@@ -244,9 +245,18 @@ function ListEventContainer(){
                             </div>
 
                         </div> 
-                    </div>    
+                    </div> 
+
+                {scrollIcons == true ? 
+                <> <div className="choice__listContainer-scrollIcon">
+                        <h1>scroll down</h1>
+                    </div>  
+                </> : ""}
+
                 </div>           
             </div>
+
+          
         </div>
     )
 }
