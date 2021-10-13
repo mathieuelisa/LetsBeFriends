@@ -148,6 +148,7 @@ function ListEventContainer(){
                 textConfig="profil__container-resultsForm-text"
                 classNameCard="profil__container-resultsForm"
                 classNameInfos="profil__container-resultsForm-displayInfos"
+                emailConfig="profil__container-resultsForm-email"
             />
             
             )

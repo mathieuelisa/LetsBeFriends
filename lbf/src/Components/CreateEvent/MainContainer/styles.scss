@@ -79,16 +79,17 @@
 ::-webkit-file-upload-button{
     color: white;
     background-color: transparent;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid whitesmoke;
     border-radius: 50px;
     outline: none;
     cursor: pointer;
     margin-top: 15px;
+    transition: all 0.6s ease;
 }
 
 ::-webkit-file-upload-button:hover{
-
+    background-color: #ad4211
 }
 .createEvent-img{
     height: 100%;

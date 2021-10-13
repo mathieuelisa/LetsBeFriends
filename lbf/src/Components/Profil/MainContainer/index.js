@@ -157,7 +157,6 @@ function ProfilContainer() {
           "age": fieldsCreateProfil.age,
           "learningLanguage": myLearningLanguages.map(language => language.id),
           "speakingLanguage": myLanguagesSpoken.map(language => language.id),
-
           "img_url": imageUrl,
   }
 
@@ -229,10 +228,10 @@ function ProfilContainer() {
           />
             <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/>
 
-              {infosUser.gender == "Male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
+              {infosUser.gender == "Male" || "male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
                 : <img className="profil__container-avatars-gender" src={Female} alt="Female"/>
               }
-              {/* <h2 className="profil-genre">{infosUser.gender}</h2> */}
+
           <button
             form="myProfilForm"
             type="submit"
