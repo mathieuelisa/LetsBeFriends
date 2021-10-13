@@ -94,7 +94,7 @@ Configurer PostgreSQL (ou fournir les variables d'environnement nécéssaires à
 sqitch deploy psql -U postgres -d lbf -f data/dummyData/importFakeData.sql
 ```
 
-## Lnacement
+## Lancement
 
 
 ```bash

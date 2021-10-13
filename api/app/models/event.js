@@ -300,6 +300,13 @@ class Event extends CoreModel {
 			else throw error;
 		}
 	}
+	/**
+	 * Fetches the number of place who decrement
+	 * @param {number} event_id.path.required event_id
+	 * @returns {Event|null} null if not places exist
+	 * @async
+	 * @static
+	 */
 
 	static async placesLeftDecrement(event_id) {
 		try {
@@ -314,6 +321,14 @@ class Event extends CoreModel {
 			else throw error;
 		}
 	}
+	/**
+	 * Fetches the number of place who increment
+	 * @param {number} event_id.path.required event_id
+	 * @returns {Event|null} null if not places exist
+	 * @async
+	 * @static
+	 */
+
 
 	static async placesLeftIncrement(event_id) {
 		try {
