@@ -55,6 +55,19 @@ const Modal = ({ openModale }) => {
     });
   };
 
+  const openModalScroll = () => {
+    let windowOffset = 0
+    if (openModale === 'signup' || openModale === "login") {
+      windowOffset = window.scrollY
+      document.body.setAttribute('style', `position: fixed; top: -${windowOffset}px; left: 0; right: 0;`)
+    } else {
+      document.body.setAttribute('style', '')
+      window.scrollTo(0, windowOffset)
+    }
+  }    
+
+  openModalScroll();
+
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     console.log("Votre forumlaire : ");
