@@ -361,6 +361,7 @@ function CreateEventContainer() {
                       <textarea
                         name="description"
                         className="myInputs"
+                        id="myInputs-textArea"
                         type="text"
                         value={fieldsCreate.description}
                         onChange={handleFieldsCreateChange}
