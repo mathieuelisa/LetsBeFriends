@@ -128,7 +128,7 @@ const Modal = ({ openModale }) => {
               onSubmit={handleSubmitLogin}
             >
               {infosUser.firstname ? (
-                <h1>Bonjour {nameUser}</h1>
+                <h1>Hey what's up {nameUser}</h1>
               ) : (
                 <h1>Login</h1>
               )}
