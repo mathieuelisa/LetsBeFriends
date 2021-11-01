@@ -35,8 +35,8 @@ function ParticipateRequest({
     return(
         <div onClick={handleClick} className={classNameCard}>
             <div className={classNameInfos}>
-                <h2>{title}</h2>
-                <h3 className={titleConfig}>{firstname} {lastname.charAt(0)}.</h3>
+                <h2>{firstname} {lastname.charAt(0)}.</h2>
+                <h3 className={titleConfig}>{title}</h3>
                     {gender == "male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
                         : <img className="profil__container-avatars-gender" src={Female} alt="Female"/>}
                 <h4 className={emailConfig}>{email}</h4>

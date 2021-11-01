@@ -103,7 +103,7 @@ function ListEventContainer(){
     const arraypastevents = dataPastEvents.map((event) => (
         <EventCardMyEvents 
             key={event.id} 
-            title={"Pasts events"}
+            title={event.title}
             imgUrl={event.imgUrl}
             textConfig="profil__container-resultsForm-text"
             classNameCard="profil__container-resultsForm"
@@ -111,7 +111,7 @@ function ListEventContainer(){
             eventHourStart={event.startingDate.slice(11,16)}
             eventDateEnd={event.endingDate.slice(0,10)}
             eventHourEnd={event.endingDate.slice(11,16)}
-            placesLeft={event.placesleft}
+            placesLeft={event.placesLeft}
         />
     ))
 
@@ -225,16 +225,16 @@ function ListEventContainer(){
                         <div className="mainListEvent__container-data">
                             <div className="title__listContainer">
                                 <div className="choice__listContainer">
-                                    <a onClick={handleClickPast} href className="choice__listContainer-link"><h2>PAST</h2></a>
+                                    <a onClick={handleClickPast} href className="choice__listContainer-link"><h2>PAST EVENTS</h2></a>
                                 </div>
                                 <div className="choice__listContainer">
-                                    <a onClick={handleClickComingSoon} href className="choice__listContainer-link"><h2>COMING SOON</h2></a>
+                                    <a onClick={handleClickComingSoon} href className="choice__listContainer-link"><h2>UPCOMING EVENTS</h2></a>
                                 </div>
                                 {/* <div className="choice__listContainer">
                                     <a onClick={handleClickEvents} href className="choice__listContainer-link"><h2>MY EVENT</h2></a>  
                                 </div> */}
                                 <div className="choice__listContainer">
-                                    <a onClick={handleClickAsking} href className="choice__listContainer-link"><h2>ASKING</h2></a>
+                                    <a onClick={handleClickAsking} href className="choice__listContainer-link"><h2>REQUESTS</h2></a>
                                 </div>
 
                             </div>
