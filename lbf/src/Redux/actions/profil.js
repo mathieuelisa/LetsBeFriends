@@ -75,3 +75,12 @@ export const resetInfosUser = () => (
     type: RESET_INFOS_USER,
   }
 );
+
+export const SET_UPDATED_PROFIL_INFOS = 'SET_UPDATED_PROFIL_INFOS';
+
+export const setUpdatedProfilInfos = (value) => (
+  {
+    type: SET_UPDATED_PROFIL_INFOS,
+    value,
+  }
+);

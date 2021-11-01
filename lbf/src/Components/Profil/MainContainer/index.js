@@ -17,11 +17,13 @@ import {
   setLanguages,
   setLanguagesToLearn,
 } from "../../../Redux/actions/common";
+import { setUpdatedProfilInfos } from "../../../Redux/actions/profil";
 import { setEventTags } from "../../../Redux/actions/event";
 import { useEffect, useState } from "react";
 // Import images
 import Male from "../../../assets/Logo/male.png"
 import Female from "../../../assets/Logo/female.png"
+
 
 function ProfilContainer() {
   // Pictures post cloudinary
@@ -42,7 +44,7 @@ function ProfilContainer() {
     description: infosUser.description,
   });
 
-  console.log("FieldsCreateProfil:", fieldsCreateProfil)
+  //console.log("FieldsCreateProfil:", fieldsCreateProfil)
   
   const optionsAxios = useSelector((state) => state.common.optionsAxios);
   const allLanguages = useSelector((state) => state.common.allLanguages);
@@ -128,10 +130,7 @@ function ProfilContainer() {
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/languages", optionsAxios)
       .then((response) => {
-        console.log(
-          "Voici la réponse de l API les tous Languages :",
-          response.data
-        );
+        //console.log("Voici la réponse de l API les tous Languages :",response.data);
         dispatch(setLanguages(response.data));
         dispatch(setLanguagesToLearn(response.data));
       })
@@ -164,22 +163,23 @@ function ProfilContainer() {
   const stripped = Object.entries(myVariable).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})
 
   const updateProfil = () => {
-      console.log('Body de la Request : ', {
-        "id": infosUser.id,
-        "firstname": fieldsCreateProfil.firstname,
-        "lastname": fieldsCreateProfil.lastname,
-        "email": fieldsCreateProfil.mail,
-        "description": fieldsCreateProfil.description,
-        "age": fieldsCreateProfil.age,
-        "learningLanguage": myLearningLanguages.map(language => language.id),
-        "speakingLanguage": myLanguagesSpoken.map(language => language.id),
-        "city": fieldsCreateProfil.city,
-        "img_url": imageUrl
-    })
+    //   console.log('Body de la Request : ', {
+    //     "id": infosUser.id,
+    //     "firstname": fieldsCreateProfil.firstname,
+    //     "lastname": fieldsCreateProfil.lastname,
+    //     "email": fieldsCreateProfil.mail,
+    //     "description": fieldsCreateProfil.description,
+    //     "age": fieldsCreateProfil.age,
+    //     "learningLanguage": myLearningLanguages.map(language => language.id),
+    //     "speakingLanguage": myLanguagesSpoken.map(language => language.id),
+    //     "city": fieldsCreateProfil.city,
+    //     "img_url": imageUrl
+    // })
 
       axios.patch('https://lets-be-friend.herokuapp.com/v1/users', stripped, optionsAxios)
         .then((response) => {
             console.log('Voici la réponse de l API pour lupdate du profil :', response.data);
+            dispatch(setUpdatedProfilInfos(response.data))
         }).catch(error => console.log('Error recherche event '));
       }
 
