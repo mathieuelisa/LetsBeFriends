@@ -220,7 +220,7 @@ const Modal = ({ openModale }) => {
                 classNameDiv="div-input-login"
                 onChange={handleChangeSignup}
               />
-              {passwordValuesRequired && <div className="message-password">Votre mot de passe doit contenir 8 caractères minimum</div>}
+              {passwordValuesRequired && <div className="error-message">Votre mot de passe doit contenir 8 caractères minimum</div>}
               <Input
                 name="confirmedPassword"
                 type="password"
