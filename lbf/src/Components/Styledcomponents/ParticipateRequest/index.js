@@ -28,29 +28,38 @@ function ParticipateRequest({
     title,
     gender,
     classNameDescription,
-    emailConfig
+    emailConfig,
+    handleAccept,
+    handleDecline
 }){
     
 
     return(
-        <div onClick={handleClick} className={classNameCard}>
-            <div className={classNameInfos}>
-                <h2>{firstname} {lastname.charAt(0)}.</h2>
-                <h3 className={titleConfig}>{title}</h3>
-                    {gender == "male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
-                        : <img className="profil__container-avatars-gender" src={Female} alt="Female"/>}
-                <h4 className={emailConfig}>{email}</h4>
-                <h5 className={classNameDescription}>Bio of {firstname} : {description}</h5>
+        <div className='infos'>
+            <div onClick={handleClick} className={classNameCard}>
+            
+                <div className={classNameInfos}>
+                    <h2>{firstname} {lastname.charAt(0)}.</h2>
+                    <h3 className={titleConfig}>{title}</h3>
+                        {gender == "male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
+                            : <img className="profil__container-avatars-gender" src={Female} alt="Female"/>}
+                    <h4 className={emailConfig}>{email}</h4>
+                    <h5 className={classNameDescription}>Bio of {firstname} : {description}</h5>
 
+                </div>
+            
+                <div className={ClassNamePicturesDiv}>
+                    <Avatar 
+                        customDiv={"search__container-avatar"} 
+                        customImg={"search__container-pictures"}  
+                        customPics={imgUrl}
+                    />
+                </div>  
             </div>
-        
-            <div className={ClassNamePicturesDiv}>
-                <Avatar 
-                    customDiv={"search__container-avatar"} 
-                    customImg={"search__container-pictures"}  
-                    customPics={imgUrl}
-                />
-            </div>  
+            <div>
+                <button onClick={handleAccept}>Accept</button>
+                <button onClick={handleDecline}>Decline</button>
+            </div>
         </div>
     )
 }

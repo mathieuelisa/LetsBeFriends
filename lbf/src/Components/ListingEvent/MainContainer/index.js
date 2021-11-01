@@ -150,6 +150,8 @@ function ListEventContainer(){
                 classNameCard="profil__container-resultsForm"
                 classNameInfos="profil__container-resultsForm-displayInfos"
                 emailConfig="profil__container-resultsForm-email"
+                handleAccept={handleAccept}
+                handleDecline={handleDecline}
             />
             
             )
@@ -184,6 +186,13 @@ function ListEventContainer(){
         setAskings(true)
         setScrollIcons(true)
   }
+
+  const handleAccept = (e) => {
+  }
+
+  const handleDecline = (e) => {
+
+}
   
   console.log("Tous les évènements antérieurs à aujourd'hui  : ", dataPastEvents)
   console.log("Tous les évènements ultérieurs à aujourd'hui  : ", dataComingEvents)
