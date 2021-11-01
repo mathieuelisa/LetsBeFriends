@@ -257,7 +257,7 @@ return (
       <div className="searchEvent__container-form">
         <div className={openResults ? "searchEvent__container-searchForm" : 'searchEvent__container-searchForm--closed'}>
           <form id="searchForm" onSubmit={handleSubmitForm}>
-            <div className="searchEvent__container-infosDetails-location">
+            {/* <div className="searchEvent__container-infosDetails-location">
               <label>City: </label>
               <input
                 name="city"
@@ -266,7 +266,7 @@ return (
                 value={fieldsSearch.city}
                 onChange={handleFieldSearchChange}
               />
-            </div>
+            </div> */}
             <div className="searchEvent__container-infosDetails-location">
               <label>Event: </label>
               <select

@@ -31,6 +31,8 @@ const Modal = ({ openModale }) => {
   });
 
   const infosUser = useSelector((state) => state.profil.infosUser);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [passwordValuesRequired, setpasswordValuesRequired] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -53,6 +55,12 @@ const Modal = ({ openModale }) => {
       ...signUp,
       [e.target.name]: e.target.value,
     });
+    if (e.target.name == 'password' && e.target.value.length < 8) {
+      setpasswordValuesRequired(true)
+    } else {
+      setpasswordValuesRequired(false)
+    }
+ 
   };
 
   const openModalScroll = () => {
@@ -88,9 +96,14 @@ const Modal = ({ openModale }) => {
           localStorage.setItem("userDate", Date.now());
           dispatch(setPseudo(response.data.firstname));
           dispatch(setInfosUser(response.data));
+          setErrorMessage(false)
+          
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error)
+        setErrorMessage(true);
+      });
   };
 
   const handleSubmitSignUp = (e) => {
@@ -152,6 +165,7 @@ const Modal = ({ openModale }) => {
                 classNameInput="modal-container__modal__formlogin__input-login"
                 classNameDiv="div-input-login"
               />
+              {errorMessage && <div className="error-message">Une erreur s'est produite, veuillez reessayer svp</div>}
               <button 
                 type="submit"
                 className="modal-container__modal__formlogin__button--login"
@@ -206,6 +220,7 @@ const Modal = ({ openModale }) => {
                 classNameDiv="div-input-login"
                 onChange={handleChangeSignup}
               />
+              {passwordValuesRequired && <div className="message-password">Votre mot de passe doit contenir 8 caractères minimum</div>}
               <Input
                 name="confirmedPassword"
                 type="password"
