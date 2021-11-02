@@ -13,6 +13,7 @@ import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
 
 // import actions types
+//import { setUpdateAskingList } from '../../../Redux/actions/event';
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
 import ParticipateRequest from "../../Styledcomponents/ParticipateRequest"
 import EventCardMyEvents from "../../Styledcomponents/EventCardMyEvents"
@@ -20,7 +21,7 @@ import EventCardMyEvents from "../../Styledcomponents/EventCardMyEvents"
 // import icons
 import Couronne from "../../../assets/Logo/couronne.png"
 
-function ListEventContainer(){
+function ListEventContainer() {
     const dispatch = useDispatch()
 
     // Conditions pour un rendu differents
@@ -36,11 +37,12 @@ function ListEventContainer(){
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
     const [dataPastEvents, setDataPastEvents] = useState([]);
     const [dataComingEvents, setDataComingEvents] = useState([]);
+    const [RequestList, setRequestList] = useState([])
+
+
     
     console.log('data past Events : ', dataPastEvents) 
-    //console.log('Infos User : ', infosUser) 
-    //console.log("Events:",events)
-    console.log('La liste des askings requests : ', askingList)
+    console.log('La liste des askings requests : ', RequestList)
 
     // Recherche des events du user
     function handleClick(event){
@@ -73,24 +75,13 @@ function ListEventContainer(){
         else if(minutes > today.getUTCMinutes()) return false
         else return false
     }
- 
-    // for (const event of dataEvents) {
-    //     if(isBeforeToday(event.startingDate)) {
-    //         setDataPastEvents([...dataPastEvents, event])
-    //     } else {
-    //         setDataComingEvents([...dataComingEvents, event])
-    //     }
-    // }
-   
-
-
-
     // useEffect permettant de remettre le menu hamburger a false a chaque rendu
     useEffect(()=>{
         dispatch({type: RESET_TOGGLE})
         console.log('Data events depuis le useEffect : ', dataEvents)
         setDataPastEvents(dataEvents.filter((event) => isBeforeToday(event.startingDate)));
         setDataComingEvents(dataEvents.filter((event) => !isBeforeToday(event.startingDate)));
+        setRequestList(askingList)
     },[])
 
     const history = useHistory()
@@ -98,7 +89,7 @@ function ListEventContainer(){
     function handleLogOut(){
     dispatch(resetInfosUser());
     history.push("/")
-}
+    }
 
     const arraypastevents = dataPastEvents.map((event) => (
         <EventCardMyEvents 
@@ -133,11 +124,10 @@ function ListEventContainer(){
         />
     ))
 
-    const arrayaskinglist = askingList.map((eventList) => {
+    const arrayRequestList = RequestList.map((eventList) => {
         return eventList.participants.map((participant) => {
             return(
-            <ParticipateRequest 
-                key={participant.id} 
+            <ParticipateRequest  
                 firstname={participant.firstname}
                 email={participant.email}
                 gender={participant.gender}
@@ -150,14 +140,14 @@ function ListEventContainer(){
                 classNameCard="profil__container-resultsForm"
                 classNameInfos="profil__container-resultsForm-displayInfos"
                 emailConfig="profil__container-resultsForm-email"
-                handleAccept={handleAccept}
+                handleAccept={() => handleAccept(participant.id, eventList.eventId)}
                 handleDecline={handleDecline}
             />
             
             )
         })
 
-})
+    })
     
     
   const handleClickPast = (e) =>{
@@ -187,16 +177,27 @@ function ListEventContainer(){
         setScrollIcons(true)
   }
 
-  const handleAccept = (e) => {
-  }
+  const handleAccept = (participant_id, event_id) => {
+    console.log("participantID : ", participant_id)
+    console.log("eventId : ", event_id)
+    const RequestListUpdated = RequestList
+
+    const eventRequest = RequestList.find(event => event.eventId == event_id)
+    const participantsListUpdated = eventRequest.participants.filter(participant => participant.id !== participant_id)
+    eventRequest.participants = participantsListUpdated
+    const RequestListIndex = RequestList.findIndex(event => event.eventId == event_id)
+    RequestListUpdated[RequestListIndex] = eventRequest
+    setRequestList(RequestListUpdated)
+    console.log("RequestList Updated ?: ", RequestList)   
+  } 
 
   const handleDecline = (e) => {
 
-}
+  }
   
   console.log("Tous les évènements antérieurs à aujourd'hui  : ", dataPastEvents)
   console.log("Tous les évènements ultérieurs à aujourd'hui  : ", dataComingEvents)
-  console.log("Tous les asking requests : ", askingList)
+  console.log("Tous les asking requests ?: ", RequestList)
     return(
         <div className="list__container">
             <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
@@ -250,7 +251,7 @@ function ListEventContainer(){
                             <div className="display-cards">
                                 {pastEvents ? arraypastevents : ""}
                                 {comingSoonEvents ? arraycomingsoon : ""}
-                                {askings ? arrayaskinglist : ""}
+                                {askings ? arrayRequestList : ""}
                             </div>
 
                         </div> 
@@ -263,9 +264,7 @@ function ListEventContainer(){
                 </> : ""}
 
                 </div>           
-            </div>
-
-          
+            </div>          
         </div>
     )
 }

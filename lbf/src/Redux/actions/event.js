@@ -31,3 +31,12 @@ export const setAskingList = (value) => (
     value,    
   }
 );
+
+export const SET_UPDATE_ASKING_LIST = 'SET_UPDATE_ASKING_LIST';
+
+export const setUpdateAskingList = (value) => (
+   {
+    type: SET_UPDATE_ASKING_LIST,
+    value,    
+  }
+);
