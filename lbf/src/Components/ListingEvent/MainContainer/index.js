@@ -38,6 +38,7 @@ function ListEventContainer() {
     const [dataPastEvents, setDataPastEvents] = useState([]);
     const [dataComingEvents, setDataComingEvents] = useState([]);
     const [RequestList, setRequestList] = useState([])
+    const [updateRequestList, setUpdateRequestList] = useState(false)
 
 
     
@@ -83,6 +84,7 @@ function ListEventContainer() {
         setDataComingEvents(dataEvents.filter((event) => !isBeforeToday(event.startingDate)));
         setRequestList(askingList)
     },[])
+   
 
     const history = useHistory()
     // Fonction permettant de se logout
@@ -106,7 +108,7 @@ function ListEventContainer() {
         />
     ))
 
-    const arraycomingsoon = dataComingEvents?.map((event) => (
+    const arraycomingsoon = dataComingEvents.map((event) => (
         <EventCardMyEvents 
             key={event.id} 
             title={event.title}
@@ -187,7 +189,9 @@ function ListEventContainer() {
     eventRequest.participants = participantsListUpdated
     const RequestListIndex = RequestList.findIndex(event => event.eventId == event_id)
     RequestListUpdated[RequestListIndex] = eventRequest
+    
     setRequestList(RequestListUpdated)
+    setUpdateRequestList(!updateRequestList)
     console.log("RequestList Updated ?: ", RequestList)   
   } 
 
