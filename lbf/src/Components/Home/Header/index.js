@@ -28,6 +28,12 @@ const Header = ({ openModalLogin, openModalSignup }) => {
   function handleClick(event) {
     event.preventDefault();
     dispatch({ type: SET_TOGGLE });
+
+    if (toggleAction == true ) {
+      document.body.setAttribute('style', `overflow: null`)
+    } else {
+      document.body.setAttribute('style', `overflow: hidden`)
+    }
   }
 
   // useEffect permettant de remettre le menu hamburger a false a chaque rendu

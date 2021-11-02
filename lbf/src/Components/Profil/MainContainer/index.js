@@ -118,7 +118,6 @@ function ProfilContainer() {
        setMyLanguagesSpoken(myLanguagesSpoken.filter(languageSpoken => languageSpoken.name !== language.name))
    };
 
-  // useEffect permettant de remettre le menu hamburger a false a chaque rendu
   const history = useHistory();
 
   function handleLogOut() {
@@ -180,7 +179,7 @@ function ProfilContainer() {
         .then((response) => {
             console.log('Voici la réponse de l API pour lupdate du profil :', response.data);
             dispatch(setUpdatedProfilInfos(response.data))
-        }).catch(error => console.log('Error recherche event '));
+        }).catch(error => console.log('Error recherche event'));
       }
 
       const uploadImage = (e) => {
