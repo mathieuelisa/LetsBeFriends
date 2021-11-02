@@ -4,6 +4,7 @@ import "./styles.scss"
 
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
+import axios from "axios";
 // Import ReactComponents
 import Avatar from "../../Styledcomponents/Avatar"
 import ButtonToggle from "../../Styledcomponents/ButtonToggle"
@@ -24,26 +25,30 @@ import Couronne from "../../../assets/Logo/couronne.png"
 function ListEventContainer() {
     const dispatch = useDispatch()
 
-    // Conditions pour un rendu differents
-    const [pastEvents, setPastEvents] = useState(false)
-    const [comingSoonEvents, setComingSoonEvents] = useState(false)
-    const [askings, setAskings] = useState(false)
-    const [scrollIcons, setScrollIcons] = useState(false)
-
     const askingList = useSelector(state => state.event.askingList)
     const toggleAction = useSelector((state)=> state.common.toggleAction)
     const infosUser = useSelector((state)=>state.profil.infosUser)
     const events = useSelector((state)=>state.event.events)
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
+  
+
+    // Conditions pour un rendu differents
+    const [pastEvents, setPastEvents] = useState(false)
+    const [comingSoonEvents, setComingSoonEvents] = useState(false)
+    const [askings, setAskings] = useState(false)
+    const [scrollIcons, setScrollIcons] = useState(false)
     const [dataPastEvents, setDataPastEvents] = useState([]);
     const [dataComingEvents, setDataComingEvents] = useState([]);
     const [RequestList, setRequestList] = useState([])
     const [updateRequestList, setUpdateRequestList] = useState(false)
 
 
-    
+    const optionsGet = {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      };
     console.log('data past Events : ', dataPastEvents) 
-    console.log('La liste des askings requests : ', RequestList)
+    console.log('La liste des askings list : ', askingList)
 
     // Recherche des events du user
     function handleClick(event){
@@ -189,19 +194,61 @@ function ListEventContainer() {
     eventRequest.participants = participantsListUpdated
     const RequestListIndex = RequestList.findIndex(event => event.eventId == event_id)
     RequestListUpdated[RequestListIndex] = eventRequest
-    
+
     setRequestList(RequestListUpdated)
     setUpdateRequestList(!updateRequestList)
-    console.log("RequestList Updated ?: ", RequestList)   
+    console.log("RequestList Updated ?: ", RequestList) 
+    
+    requestAccepted(event_id, participant_id)
   } 
 
-  const handleDecline = (e) => {
+  const handleDecline = (participant_id, event_id) => {
+    console.log("participantID : ", participant_id)
+    console.log("eventId : ", event_id)
+    const RequestListUpdated = RequestList
+
+    const eventRequest = RequestList.find(event => event.eventId == event_id)
+    const participantsListUpdated = eventRequest.participants.filter(participant => participant.id !== participant_id)
+    eventRequest.participants = participantsListUpdated
+    const RequestListIndex = RequestList.findIndex(event => event.eventId == event_id)
+    RequestListUpdated[RequestListIndex] = eventRequest
+    setRequestList(RequestListUpdated)
 
   }
-  
-  console.log("Tous les évènements antérieurs à aujourd'hui  : ", dataPastEvents)
-  console.log("Tous les évènements ultérieurs à aujourd'hui  : ", dataComingEvents)
-  console.log("Tous les asking requests ?: ", RequestList)
+
+  const requestAccepted = (eventId, userId) => {
+
+    console.log("La Requete de confoirmation est lancée avec le body : ", {"eventId": eventId,"userId": userId })
+    axios
+    .post(
+      "https://lets-be-friend.herokuapp.com/v1/events/request/confirm",
+      {
+        "eventId": eventId,
+        "userId": userId
+      },
+      optionsGet,
+    )
+    .then((response) => {
+      console.log("Voici la réponse de l API pour l'acceptation de la demande de participation:", response.data);
+    })
+    .catch((error) => console.log("Error confirmation de participation "));
+  }
+  const requestDeclined = (eventId, userId) => {
+    axios
+    .delete(
+      "https://lets-be-friend.herokuapp.com/v1/events/request/confirm",
+      {
+        "eventId": eventId,
+        "userId": userId
+      },
+      optionsGet,
+    )
+    .then((response) => {
+      console.log("Voici la réponse de l API pour le refus de la demande participation:", response.data);
+    })
+    .catch((error) => console.log("Error refus de participation "));
+  }
+
     return(
         <div className="list__container">
             <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
