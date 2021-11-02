@@ -334,7 +334,7 @@ class User extends CoreModel {
                 return new User(rows[0])
             } else {
                 this.password = await bcrypt.hash(this.password, 10)
-                const { rows } = await db.query('INSERT INTO "user"(firstname, lastname, gender, email, password, description, age, city, phone_number, img_url) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id, firstname, lastname, gender, email, description, age, city, phone_number AS "phoneNumber", img_url AS "img_url"', [
+                const { rows } = await db.query('INSERT INTO "user"(firstname, lastname, gender, email, password, description, age, city, phone_number, img_url) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id, firstname, lastname, gender, email, description, age, city, phone_number AS "phoneNumber", img_url AS "imgUrl"', [
                     this.firstname,
                     this.lastname,
                     this.gender,
