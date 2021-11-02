@@ -45,7 +45,7 @@ function ListEventContainer() {
 
     const optionsGet = {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "*"
       };
     console.log('data past Events : ', dataPastEvents) 
     console.log('La liste des askings list : ', askingList)
@@ -148,7 +148,7 @@ function ListEventContainer() {
                 classNameInfos="profil__container-resultsForm-displayInfos"
                 emailConfig="profil__container-resultsForm-email"
                 handleAccept={() => handleAccept(participant.id, eventList.eventId)}
-                handleDecline={handleDecline}
+                handleDecline={() => handleDecline(participant.id, eventList.eventId)}
             />
             
             )
@@ -197,7 +197,7 @@ function ListEventContainer() {
 
     setRequestList(RequestListUpdated)
     setUpdateRequestList(!updateRequestList)
-    console.log("RequestList Updated ?: ", RequestList) 
+    console.log("RequestList Updated after accepting request ?: ", RequestList) 
     
     requestAccepted(event_id, participant_id)
   } 
@@ -213,6 +213,10 @@ function ListEventContainer() {
     const RequestListIndex = RequestList.findIndex(event => event.eventId == event_id)
     RequestListUpdated[RequestListIndex] = eventRequest
     setRequestList(RequestListUpdated)
+    setUpdateRequestList(!updateRequestList)
+    console.log("RequestList Updated after declining request ?: ", RequestList) 
+
+    requestDeclined(event_id, participant_id);
 
   }
 
@@ -233,22 +237,30 @@ function ListEventContainer() {
     })
     .catch((error) => console.log("Error confirmation de participation "));
   }
+
+
+
   const requestDeclined = (eventId, userId) => {
+    console.log("La Requete de refus est lancée avec le body : ", {"eventId": eventId,"userId": userId })
     axios
     .delete(
       "https://lets-be-friend.herokuapp.com/v1/events/request/confirm",
-      {
+      {data: {
         "eventId": eventId,
         "userId": userId
-      },
-      optionsGet,
+      }}, optionsGet
     )
     .then((response) => {
       console.log("Voici la réponse de l API pour le refus de la demande participation:", response.data);
     })
-    .catch((error) => console.log("Error refus de participation "));
+    .catch((error) => console.log("La Requete de refus est lancée avec le body : ", {"eventId": eventId,"userId": userId })
+    );
   }
 
+
+
+
+  
     return(
         <div className="list__container">
             <div className={toggleAction ? 'header__navbar__settings-open' : 'header__navbar__settings'}>
