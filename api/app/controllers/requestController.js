@@ -56,6 +56,8 @@ const requestController = {
     refuseJoiningRequest: async (req, res, next) => {
         const user_id = req.body.userId;
         const event_id = req.body.eventId;
+        console.log('userId = ',user_id)
+        console.log('eventId = ',event_id)
 
         try {
             const result = await Request.deleteUserAskEvent(user_id, event_id);
