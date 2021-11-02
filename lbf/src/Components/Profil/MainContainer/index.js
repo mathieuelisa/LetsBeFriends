@@ -62,6 +62,10 @@ function ProfilContainer() {
       setMyLanguagesSpoken(infosUser.speakingLanguage);
       setMyLearningLanguages(infosUser.learningLanguage);
   }
+  const optionsGet = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*"
+  };
 
   //  function permettant d'obtenir plusieurs valeurs dans une valeur sous forme de tableau
   function handleFielsProfilChange(e) {
@@ -125,6 +129,26 @@ function ProfilContainer() {
     history.push("/");
   }
 
+  const handleDelete = () => {
+    console.log("Vous etes dans la call back delete account")
+    deleteAccount(infosUser.id )
+  }
+
+  const deleteAccount = (userId) => {
+    console.log("Lancement de la requete de Suppresion du compte de l id:", userId)
+    axios
+    .delete(
+      "https://lets-be-friend.herokuapp.com/v1/users",
+      {data: {
+        "id": userId
+      }}, optionsGet
+    )
+    .then((response) => {
+      console.log("Voici la réponse de l API pour la suppression du compte:", response.data);
+    })
+    .catch((error) => console.log("La Requete suppression compte est lancée avec le body : ")
+  );
+  }
   const getLanguages = () => {
     axios
       .get("https://lets-be-friend.herokuapp.com/v1/languages", optionsAxios)
@@ -236,6 +260,7 @@ function ProfilContainer() {
             type="submit"
             className="myButton-deleted"
             id="deletedButton"
+            onClick={handleDelete}
           >
             DELETE MY ACCOUNT
           </button>
