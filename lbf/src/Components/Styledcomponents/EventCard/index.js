@@ -35,7 +35,7 @@ const EventCard = ({ startingDate, placesLeft, title, imgUrl, languages}) => (
           <img src={calendar} alt='logo-calendar' className='logo' />
           <p className='eventcard__infos__event--eventdate---date'>{startingDate}</p>
         </div>
-          <p className='eventcard__infos__event--eventlanguage'>{languages.map(language => <div>{language.name}</div>)}</p>
+          <div className='eventcard__infos__event--eventlanguage'>{languages.map(language => <div key={language.id}>{language.name}</div>)}</div>
 
         {/* Spots */}
         <div className='eventcard__infos__event--numberspotsleft'>

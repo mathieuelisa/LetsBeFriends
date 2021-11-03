@@ -91,7 +91,7 @@ function SearchEventContainer() {
   // Fonction permettant de rendre les champs controllés en fonction de l'input choisi
   function handleFieldSearchChange(e) {
     e.preventDefault();
-    if (e.target.name == "dateTo" || e.target.name == "dateFrom") {
+    if (e.target.name === "dateTo" || e.target.name === "dateFrom") {
       let date = e.target.value;
       let formatDate = new Date(date);
       setFieldsSearch({
@@ -101,17 +101,17 @@ function SearchEventContainer() {
           formatString: date,
         },
       });
-    } else if (e.target.name == "eventTags" && e.target.value !== null) {
+    } else if (e.target.name === "eventTags" && e.target.value !== null) {
       setFieldsSearch({
         ...fieldsSearch,
         selectedTags: [...fieldsSearch.selectedTags, e.target.value],
       });
-    } else if (e.target.name == "languages" && e.target.value !== null) {
+    } else if (e.target.name === "languages" && e.target.value !== null) {
       setFieldsSearch({
         ...fieldsSearch,
         selectedLanguages: [...fieldsSearch.selectedLanguages, e.target.value],
       });
-    }  else if (e.target.name == "city" && e.target.value !== null) {
+    }  else if (e.target.name === "city" && e.target.value !== null) {
       setFieldsSearch({
         ...fieldsSearch,
         [e.target.name]: e.target.value,

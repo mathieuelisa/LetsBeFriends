@@ -68,7 +68,7 @@ const Header = ({ openModalLogin, openModalSignup }) => {
       <div className="header__navbar">
         {/* Si un user est stocké dans un localstorage ca affichera son prenom et retirera les boutons login et sign up */}
         {infosUser.firstname ? (
-          <a href className="header__navbar__nameOfUser">
+          <a className="header__navbar__nameOfUser">
               Hi {infosUser.firstname}{" "}
           </a>
         ) : (

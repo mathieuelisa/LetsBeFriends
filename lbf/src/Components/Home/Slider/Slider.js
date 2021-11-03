@@ -53,6 +53,7 @@ export default function Slider() {
                 {Array.from({length: 5}).map((item, index) => (
                     <div 
                     onClick={() => moveDot(index + 1)}
+                    key={index}
                     className={slideIndex === index + 1 ? "dot active" : "dot"}
                     ></div>
                 ))}

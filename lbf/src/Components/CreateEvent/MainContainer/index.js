@@ -59,7 +59,7 @@ function CreateEventContainer() {
   function handleFieldsCreateChange(e) {
     e.preventDefault();
 
-    if (e.target.name == "dateTo" || e.target.name == "dateFrom") {
+    if (e.target.name === "dateTo" || e.target.name === "dateFrom") {
       let date = e.target.value;
       let formatDate = new Date(date);
       setFieldsCreate({
@@ -70,11 +70,11 @@ function CreateEventContainer() {
         },
       });
 
-    } else if (e.target.name == "eventTags" && e.target.value !== null) {
-      const newTagsAdded = allEvents.find((events)=> (events.name  == e.target.value))
+    } else if (e.target.name === "eventTags" && e.target.value !== null) {
+      const newTagsAdded = allEvents.find((events)=> (events.name  === e.target.value))
         setSelectedEventTags([...selectedEventTags, newTagsAdded])
-    } else if (e.target.name == "language" && e.target.value !== null) {
-      const newLanguageAdded = allLanguages.find((language) => (language.name == e.target.value))
+    } else if (e.target.name === "language" && e.target.value !== null) {
+      const newLanguageAdded = allLanguages.find((language) => (language.name === e.target.value))
         setSelectedLanguages([...selectedLanguages, newLanguageAdded])
     } else {
       setFieldsCreate({

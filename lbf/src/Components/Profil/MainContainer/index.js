@@ -71,15 +71,15 @@ function ProfilContainer() {
 
   //  function permettant d'obtenir plusieurs valeurs dans une valeur sous forme de tableau
   function handleFielsProfilChange(e) {
-    if (e.target.name == "language_spoken" && e.target.value !== null) {
+    if (e.target.name === "language_spoken" && e.target.value !== null) {
       setFieldsCreateProfil({
         ...fieldsCreateProfil,
         language_spoken: [...fieldsCreateProfil.language_spoken,  e.target.value],
       });
-      const newLanguageSpokenAdded = allLanguages.find((language) => (language.name == e.target.value))
+      const newLanguageSpokenAdded = allLanguages.find((language) => (language.name === e.target.value))
       setMyLanguagesSpoken([...myLanguagesSpoken, newLanguageSpokenAdded]);
-    } else if (e.target.name == "language_toLearn" && e.target.value !== null) {
-      const newLearningLanguageAdded = allLanguages.find((language) => (language.name == e.target.value))
+    } else if (e.target.name === "language_toLearn" && e.target.value !== null) {
+      const newLearningLanguageAdded = allLanguages.find((language) => (language.name === e.target.value))
       setMyLearningLanguages([...myLearningLanguages, newLearningLanguageAdded]);
     } else {
       setFieldsCreateProfil({
@@ -253,7 +253,7 @@ function ProfilContainer() {
           />
             <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/>
 
-              {infosUser.gender == "Male" || "male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
+              {infosUser.gender === "Male" || "male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
                 : <img className="profil__container-avatars-gender" src={Female} alt="Female"/>
               }
 

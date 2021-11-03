@@ -28,7 +28,7 @@ function App() {
     const allEventTags = useSelector((state) => state.event.eventTags);
     const optionsAxios = useSelector((state) => state.common.optionsAxios);
     const idUser = useSelector((state)=>state.profil.infosUser.id)
-    const infosUser = useSelector((state)=>state.profil.infosUser)
+    //const infosUser = useSelector((state)=>state.profil.infosUser)
     const askingList = useSelector(state => state.event.askingList)
     const dataEvents  = useSelector(state => state.event.dataEvents)
 
@@ -99,7 +99,7 @@ function App() {
          getAskingRequestToMyEvents();
         }, [])
 
-      if(events !== null && allLanguages !== null && allEventTags !== null && askingList.length > 0 && loader == false && askingList !== undefined && dataEvents !== null) {
+      if(events !== null && allLanguages !== null && allEventTags !== null && askingList.length > 0 && loader === false && askingList !== undefined && dataEvents !== null) {
            setLoader(!loader);
        }
   return (

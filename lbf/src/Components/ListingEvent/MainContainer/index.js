@@ -117,13 +117,13 @@ function ListEventContainer() {
             imgUrl={event.imgUrl}
             description={event.description}
             textConfig="profil__container-resultsForm-text"
-            classNameCard={ (event.ownerId == infosUser.id) ? "profil__container-resultsForm--myEvent ": "profil__container-resultsForm"}
+            classNameCard={ (event.ownerId === infosUser.id) ? "profil__container-resultsForm--myEvent ": "profil__container-resultsForm"}
             eventDateStart={event.startingDate.slice(0,10)}
             eventHourStart={event.startingDate.slice(11,16)}
             eventDateEnd={event.endingDate.slice(0,10)}
             eventHourEnd={event.endingDate.slice(11,16)}
             placesLeft={event.placesLeft}
-            image={ (event.ownerId == infosUser.id) ? Couronne : ""}
+            image={ (event.ownerId === infosUser.id) ? Couronne : ""}
             imageConfiguration="profil__container-resultsForm-image"
         />
     ))
@@ -185,10 +185,10 @@ function ListEventContainer() {
     console.log("participantID : ", participant_id)
     console.log("eventId : ", event_id)
     const RequestListUpdated = RequestList
-    const eventRequest = RequestList.find(event => event.eventId == event_id)
+    const eventRequest = RequestList.find(event => event.eventId === event_id)
     const participantsListUpdated = eventRequest.participants.filter(participant => participant.id !== participant_id)
     eventRequest.participants = participantsListUpdated
-    const RequestListIndex = RequestList.findIndex(event => event.eventId == event_id)
+    const RequestListIndex = RequestList.findIndex(event => event.eventId === event_id)
     RequestListUpdated[RequestListIndex] = eventRequest
 
     setRequestList(RequestListUpdated)
@@ -201,10 +201,10 @@ function ListEventContainer() {
     console.log("participantID : ", participant_id)
     console.log("eventId : ", event_id)
     const RequestListUpdated = RequestList
-    const eventRequest = RequestList.find(event => event.eventId == event_id)
+    const eventRequest = RequestList.find(event => event.eventId === event_id)
     const participantsListUpdated = eventRequest.participants.filter(participant => participant.id !== participant_id)
     eventRequest.participants = participantsListUpdated
-    const RequestListIndex = RequestList.findIndex(event => event.eventId == event_id)
+    const RequestListIndex = RequestList.findIndex(event => event.eventId === event_id)
     RequestListUpdated[RequestListIndex] = eventRequest
     setRequestList(RequestListUpdated)
     setUpdateRequestList(!updateRequestList)
@@ -321,7 +321,7 @@ function ListEventContainer() {
                         </div> 
                     </div> 
 
-                {scrollIcons == true ? 
+                {scrollIcons === true ? 
                 <> <div className="choice__listContainer-scrollIcon">
                         <h1>scroll down</h1>
                     </div>  

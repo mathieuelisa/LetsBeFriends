@@ -30,10 +30,10 @@ function MainContainer() {
   };
 
   const openModalLogin = (prev) => {
-    setOpenModale(openModale == "login" ? "" : "login");
+    setOpenModale(openModale === "login" ? "" : "login");
   };
   const openModalSignup = (prev) => {
-    setOpenModale(openModale == "signup" ? "" : "signup");
+    setOpenModale(openModale === "signup" ? "" : "signup");
   };
 
   return (
