@@ -101,7 +101,7 @@ insert into language ("name") values
 insert into tag ("name") values
  ('culture'),
 
- ('cinema '),
+ ('cinema'),
 
  ('voyage'),
 
