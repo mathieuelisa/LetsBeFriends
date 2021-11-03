@@ -221,6 +221,8 @@ function ProfilContainer() {
             .catch((err)=>console.log(err)) 
         }
 
+        console.log(infosUser.gender)
+
   return (
     <div className="profil__container">
 
@@ -253,7 +255,7 @@ function ProfilContainer() {
           />
             <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/>
 
-              {infosUser.gender === "Male" || "male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
+              {infosUser.gender == "Male" || infosUser.gender == "male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
                 : <img className="profil__container-avatars-gender" src={Female} alt="Female"/>
               }
 
