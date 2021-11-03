@@ -10,14 +10,14 @@ import 'react-toastify/dist/ReactToastify.css';
 // Import ReactComponents
 import Avatar from "../../Styledcomponents/Avatar"
 import ButtonToggle from "../../Styledcomponents/ButtonToggle"
-import { resetInfosUser } from "../../../Redux/actions/profil"
 
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
 
 // import actions types
-//import { setUpdateAskingList } from '../../../Redux/actions/event';
+import { resetInfosUser } from "../../../Redux/actions/profil"
 import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
+//import { setUpdateAskingList } from '../../../Redux/actions/event';
 import ParticipateRequest from "../../Styledcomponents/ParticipateRequest"
 import EventCardMyEvents from "../../Styledcomponents/EventCardMyEvents"
 
@@ -45,7 +45,6 @@ function ListEventContainer() {
     const [RequestList, setRequestList] = useState([])
     const [updateRequestList, setUpdateRequestList] = useState(false)
 
-
     const optionsGet = {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
@@ -57,15 +56,11 @@ function ListEventContainer() {
     const isBeforeToday = (timeToCompare)=>{
         const today = new Date()
         const year = Number(timeToCompare.slice(0,4))
-        // console.log(year)
         const month = Number(timeToCompare.slice(5, 7))
-        // console.log(month)
         const day = Number(timeToCompare.slice(8,10))
-        // console.log(day)
         const hours = Number(timeToCompare.slice(11 , 13))
-        // console.log(hours)
         const minutes = Number(timeToCompare.slice(14, 16))
-        // console.log(minutes)
+
         if(year < today.getUTCFullYear()) return true
         else if (year > today.getUTCFullYear()) return false
         if(month < today.getMonth()+1) return true
@@ -147,6 +142,8 @@ function ListEventContainer() {
                 emailConfig="profil__container-resultsForm-email"
                 handleAccept={() => handleAccept(participant.id, eventList.eventId, participant.firstname)}
                 handleDecline={() => handleDecline(participant.id, eventList.eventId, participant.firstname)}
+                buttonRefused="buttonRefused"
+                buttonAccept="buttonAccept"
             />
             
             )
@@ -157,7 +154,6 @@ function ListEventContainer() {
     
   const handleClickPast = (e) =>{
       e.preventDefault();
-        
         console.log('handleClickPast')
         setComingSoonEvents(false)
         setAskings(false)
@@ -207,13 +203,13 @@ function ListEventContainer() {
     eventRequest.participants = participantsListUpdated
     const RequestListIndex = RequestList.findIndex(event => event.eventId === event_id)
     RequestListUpdated[RequestListIndex] = eventRequest
+
     setRequestList(RequestListUpdated)
     setUpdateRequestList(!updateRequestList)
     console.log("RequestList Updated after declining request ?: ", RequestList) 
 
     requestDeclined(event_id, participant_id);
     toast.info( `${firstname}'s request declined'`, {position: toast.POSITION.BOTTOM_LEFT})
-
 
   }
       // Recherche des events du user
@@ -224,7 +220,7 @@ function ListEventContainer() {
 
   const requestAccepted = (eventId, userId) => {
 
-    console.log("La Requete de confoirmation est lancée avec le body : ", {"eventId": eventId,"userId": userId })
+    console.log("La Requete de confirmation est lancée avec le body : ", {"eventId": eventId,"userId": userId })
     axios
     .post(
       "https://lets-be-friend.herokuapp.com/v1/events/request/confirm",
@@ -239,8 +235,6 @@ function ListEventContainer() {
     })
     .catch((error) => console.log("Error confirmation de participation "));
   }
-
-
 
   const requestDeclined = (eventId, userId) => {
     console.log("La Requete de refus est lancée avec le body : ", {"eventId": eventId,"userId": userId })

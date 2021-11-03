@@ -30,7 +30,9 @@ function ParticipateRequest({
     classNameDescription,
     emailConfig,
     handleAccept,
-    handleDecline
+    handleDecline,
+    buttonAccept,
+    buttonRefused
 }){
     
 
@@ -57,8 +59,8 @@ function ParticipateRequest({
                 </div>  
             </div>
             <div>
-                <button onClick={handleAccept}>Accept</button>
-                <button onClick={handleDecline}>Decline</button>
+                <button className={buttonAccept} onClick={handleAccept}>Accept</button>
+                <button className={buttonRefused} onClick={handleDecline}>Decline</button>
             </div>
         </div>
     )
