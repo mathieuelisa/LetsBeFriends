@@ -17,12 +17,13 @@ import { useHistory } from 'react-router';
 
 // import actions types
 //import { setUpdateAskingList } from '../../../Redux/actions/event';
-import { SET_TOGGLE, RESET_TOGGLE } from '../../../Redux/actions/common';
+import { SET_TOGGLE, RESET_TOGGLE, resetAskingList } from '../../../Redux/actions/common';
 import ParticipateRequest from "../../Styledcomponents/ParticipateRequest"
 import EventCardMyEvents from "../../Styledcomponents/EventCardMyEvents"
 
 // import icons
 import Couronne from "../../../assets/Logo/couronne.png"
+import { resetDataEvents } from "../../../Redux/actions/event";
 
 toast.configure()
 
@@ -32,7 +33,7 @@ function ListEventContainer() {
     const askingList = useSelector(state => state.event.askingList)
     const toggleAction = useSelector((state)=> state.common.toggleAction)
     const infosUser = useSelector((state)=>state.profil.infosUser)
-    const events = useSelector((state)=>state.event.events)
+    //const events = useSelector((state)=>state.event.events)
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
   
     // Conditions pour un rendu differents
@@ -50,8 +51,8 @@ function ListEventContainer() {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
       };
-    console.log('data past Events : ', dataPastEvents) 
-    console.log('La liste des askings list : ', askingList)
+    //console.log('data past Events : ', dataPastEvents) 
+    //console.log('La liste des askings list : ', askingList)
 
     // Fonction tri par date
     const isBeforeToday = (timeToCompare)=>{
@@ -81,7 +82,7 @@ function ListEventContainer() {
     // useEffect permettant de remettre le menu hamburger a false a chaque rendu
     useEffect(()=>{
         dispatch({type: RESET_TOGGLE})
-        console.log('Data events depuis le useEffect : ', dataEvents)
+        //console.log('Data events depuis le useEffect : ', dataEvents)
         setDataPastEvents(dataEvents.filter((event) => isBeforeToday(event.startingDate)));
         setDataComingEvents(dataEvents.filter((event) => !isBeforeToday(event.startingDate)));
         setRequestList(askingList)
@@ -91,7 +92,10 @@ function ListEventContainer() {
     const history = useHistory()
     // Fonction permettant de se logout
     function handleLogOut(){
-        dispatch(resetInfosUser());
+        dispatch(resetInfosUser())
+        dispatch(resetAskingList())
+        dispatch(resetDataEvents())
+        //faire un dispatch pour Askinglist, data events, ...
         window.localStorage.clear();
         history.push("/")
     }
@@ -157,8 +161,7 @@ function ListEventContainer() {
     
   const handleClickPast = (e) =>{
       e.preventDefault();
-        
-        console.log('handleClickPast')
+        //console.log('handleClickPast')
         setComingSoonEvents(false)
         setAskings(false)
         setPastEvents(true)
@@ -166,7 +169,7 @@ function ListEventContainer() {
 
   const handleClickComingSoon = (e) =>{
     e.preventDefault();
-    console.log('handleClickComingSoon')
+    //console.log('handleClickComingSoon')
         setPastEvents(false)
         setAskings(false)
         setComingSoonEvents(true)
@@ -175,7 +178,7 @@ function ListEventContainer() {
 
   const handleClickAsking = (e) =>{
       e.preventDefault();
-      console.log('handleClickAsking')
+      //console.log('handleClickAsking')
         setComingSoonEvents(false)
         setPastEvents(false)
         setAskings(true)
@@ -183,8 +186,8 @@ function ListEventContainer() {
   }
 
   const handleAccept = (participant_id, event_id, firstname) => {
-    console.log("participantID : ", participant_id)
-    console.log("eventId : ", event_id)
+    //console.log("participantID : ", participant_id)
+    //console.log("eventId : ", event_id)
     const RequestListUpdated = RequestList
     const eventRequest = RequestList.find(event => event.eventId === event_id)
     const participantsListUpdated = eventRequest.participants.filter(participant => participant.id !== participant_id)
@@ -199,8 +202,8 @@ function ListEventContainer() {
 
   const handleDecline = (participant_id, event_id, firstname) => {
 
-    console.log("participantID : ", participant_id)
-    console.log("eventId : ", event_id)
+    //console.log("participantID : ", participant_id)
+   // console.log("eventId : ", event_id)
     const RequestListUpdated = RequestList
     const eventRequest = RequestList.find(event => event.eventId === event_id)
     const participantsListUpdated = eventRequest.participants.filter(participant => participant.id !== participant_id)
@@ -209,7 +212,7 @@ function ListEventContainer() {
     RequestListUpdated[RequestListIndex] = eventRequest
     setRequestList(RequestListUpdated)
     setUpdateRequestList(!updateRequestList)
-    console.log("RequestList Updated after declining request ?: ", RequestList) 
+   // console.log("RequestList Updated after declining request ?: ", RequestList) 
 
     requestDeclined(event_id, participant_id);
     toast.info( `${firstname}'s request declined'`, {position: toast.POSITION.BOTTOM_LEFT})
@@ -224,7 +227,7 @@ function ListEventContainer() {
 
   const requestAccepted = (eventId, userId) => {
 
-    console.log("La Requete de confoirmation est lancée avec le body : ", {"eventId": eventId,"userId": userId })
+    //console.log("La Requete de confoirmation est lancée avec le body : ", {"eventId": eventId,"userId": userId })
     axios
     .post(
       "https://lets-be-friend.herokuapp.com/v1/events/request/confirm",
@@ -243,7 +246,7 @@ function ListEventContainer() {
 
 
   const requestDeclined = (eventId, userId) => {
-    console.log("La Requete de refus est lancée avec le body : ", {"eventId": eventId,"userId": userId })
+   // console.log("La Requete de refus est lancée avec le body : ", {"eventId": eventId,"userId": userId })
     axios
     .delete(
       "https://lets-be-friend.herokuapp.com/v1/events/request/confirm",

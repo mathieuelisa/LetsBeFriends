@@ -31,11 +31,13 @@ function App() {
     //const infosUser = useSelector((state)=>state.profil.infosUser)
     const askingList = useSelector(state => state.event.askingList)
     const dataEvents  = useSelector(state => state.event.dataEvents)
+    const isLogged = useSelector((state)=>state.profil.isLogged)
 
     const GetAllEvents = () => {
         axios
           .get("https://lets-be-friend.herokuapp.com/v1/events", optionsAxios)
           .then((response) => {
+            console.log("All events APP: ", response.data)
             dispatch(setAllEvents(response.data));
           })
           .catch((error) =>
@@ -67,6 +69,7 @@ function App() {
           .get(`https://lets-be-friend.herokuapp.com/v1/users/${idUser}`, optionsAxios)
           .then((response) => {
             dispatch(setUserEventsById(response.data.event));
+            console.log("MyEvents APP: ", response.data.event)
           })
           .catch((error) => {
             console.log(`ERREUR : I can't catch all the data form the user ${idUser}`)
@@ -78,10 +81,8 @@ function App() {
         axios
         .get(`https://lets-be-friend.herokuapp.com/v1/events/request/${idUser}`, optionsAxios)
         .then((response) => {
-          console.log("La liste des demandes de  participation à tes events:", response.data)
           dispatch(setAskingList(response.data));
-
-         // console.log('La liste des askings requests : ', askingList)
+          console.log("askingList APP: ", response.data)
         })
         .catch((error) => {
           //console.log(`ERREUR : I can't catch all the data from the user ${infosUser.id}`)
@@ -97,9 +98,9 @@ function App() {
          getEventsTags();
          GetUserEventsById();
          getAskingRequestToMyEvents();
-        }, [])
+        }, ([] || isLogged ))
 
-      if(events !== null && allLanguages !== null && allEventTags !== null && askingList.length > 0 && loader === false && askingList !== undefined && dataEvents !== null) {
+      if(events !== null && allLanguages !== null && allEventTags !== null && askingList.length > 0 && loader === false && askingList !== undefined && dataEvents !== null && isLogged) {
            setLoader(!loader);
        }
   return (

@@ -84,3 +84,11 @@ export const setUpdatedProfilInfos = (value) => (
     value,
   }
 );
+
+export const SET_LOGGEDIN = 'SET_LOGGEDIN';
+
+export const setLoggedin = () => (
+  {
+    type: SET_LOGGEDIN,
+  }
+);

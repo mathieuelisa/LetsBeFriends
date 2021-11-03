@@ -3,6 +3,7 @@ import {
   SET_TOGGLE,
   SET_LANGUAGES,
   SET_LANGUAGES_TO_LEARN,
+  RESET_ASKING_LIST,
 } from "../actions/common";
 
 export const initialState = {

@@ -1,11 +1,12 @@
-import { SET_FIELD_IDENTIFICATION, SET_CHECKBOX_REMEMBER, SET_CHECKBOX_TERMS, SET_PSEUDO, SET_INFOS_USER, RESET_INFOS_USER, SET_UPDATED_PROFIL_INFOS } from '../actions/profil';
+import { SET_FIELD_IDENTIFICATION, SET_CHECKBOX_REMEMBER, SET_CHECKBOX_TERMS, SET_PSEUDO, SET_INFOS_USER, RESET_INFOS_USER, SET_UPDATED_PROFIL_INFOS, SET_LOGGEDIN } from '../actions/profil';
 
 export const initialState = {
   //login: {email: 'gertrude.manoukian@gmail.com', password: 'abcd'},
   //signup: {email: 'antoine.dupond@gmail.com', password: 'efgh', confirmedPassword: 'efgh', firstName: 'Antoine', lastName: 'Dupond', gender:"male" },
   termsAccepted: false,
   isRemembered: false,
-  infosUser: []
+  infosUser: [],
+  isLogged: false
 };
 
 let pipo = localStorage.getItem("user") 
@@ -54,6 +55,11 @@ const reducer = (state = initialState, action = {}) => {
       return{
         ...state,
         infosUser: action.value,
+      }
+      case SET_LOGGEDIN: 
+      return{
+        ...state,
+        isLogged: true,
       }
     default:
       return state;

@@ -1,4 +1,5 @@
-import { SET_ALL_EVENTS, SET_ASKING_LIST, SET_EVENT_TAGS, SET_UPDATE_ASKING_LIST, SET_USER_EVENTS_BY_ID } from "../actions/event";
+import { RESET_ASKING_LIST } from "../actions/common";
+import { RESET_DATA_EVENTS, SET_ALL_EVENTS, SET_ASKING_LIST, SET_EVENT_TAGS, SET_UPDATE_ASKING_LIST, SET_USER_EVENTS_BY_ID } from "../actions/event";
 
 export const initialState = {
   events: [],
@@ -36,6 +37,17 @@ const reducer = (state = initialState, action = {}) => {
           ...state,
           askingList: action.value,
         }
+      case RESET_ASKING_LIST:
+        return {
+          ...state,
+          askingList: [],
+        };
+      case RESET_DATA_EVENTS:
+        return {
+          ...state,
+          eventUserEvents: [],
+          events: [],
+        };
     default:
       return state;
   }

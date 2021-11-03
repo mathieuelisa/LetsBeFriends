@@ -343,9 +343,9 @@ function ProfilContainer() {
               </select>
             </div>
             <div className="searchEvent__container-infosDetails-location__tag-selected">
-              {myLanguagesSpoken === null ? "" : myLanguagesSpoken.map((language) => (
+              {myLanguagesSpoken.map((language) => (
                 <Tag handleClick={() => handleClickClosedTagLanguageSpoken(language)} key={language.id} name={language.name} />
-              )) }
+              ))}
             </div>
             <div className="myInputs-profilPage">
               <label className="myInputs-ProfilPage-label">

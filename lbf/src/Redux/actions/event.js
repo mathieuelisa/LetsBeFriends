@@ -40,3 +40,11 @@ export const setUpdateAskingList = (value) => (
     value,    
   }
 );
+
+export const RESET_DATA_EVENTS = 'RESET_DATA_EVENTS';
+
+export const resetDataEvents = () => (
+   {
+    type: RESET_DATA_EVENTS, 
+  }
+);

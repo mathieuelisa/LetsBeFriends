@@ -1,5 +1,5 @@
 //Import Actions
-import { setPseudo, setInfosUser } from "../../../Redux/actions/profil";
+import { setPseudo, setInfosUser, setLoggedin } from "../../../Redux/actions/profil";
 //Import Styles
 import "./styles.scss";
 // Import Axios
@@ -22,6 +22,7 @@ const getData = () => {
     return "";
   }
 };
+
 
 const Modal = ({ openModale }) => {
   const [login, setLogin] = useState(getData());
@@ -102,7 +103,8 @@ const Modal = ({ openModale }) => {
           dispatch(setInfosUser(response.data));
           toast.success(`Great ${infosUser.firstname} ! You are logged in !`, {position: toast.POSITION.BOTTOM_LEFT})
           setErrorMessage(false)
-          resetData();
+          dispatch(setLoggedin())
+
         }
       })
       .catch((error) => {

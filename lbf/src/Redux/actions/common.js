@@ -17,3 +17,11 @@ export const setLanguagesToLearn = (value) => (
     value,
   }
 );
+
+export const RESET_ASKING_LIST = 'RESET_ASKING_LIST';
+
+export const resetAskingList = () => (
+   {
+    type: RESET_ASKING_LIST, 
+  }
+);
