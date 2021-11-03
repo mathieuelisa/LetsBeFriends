@@ -36,19 +36,19 @@ insert into "user" (firstname, lastname, gender, email, password, description, a
 
 insert into event (title, starting_date, ending_date, img_url, places_left, description, longitude, latitude, user_id) values
 
-('Traveler On Stage', '2021-10-20 19:00:00', '2021-10-21 00:00:00', 'https://images.pexels.com/photos/9051411/pexels-photo-9051411.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 6, 'rendez-vous au café culturel pour discuter et organiser un voyage tout en apprenant une nouvelle langue autour dun bon café', -0.57918, 44.837789, 2),
+('Traveler On Stage', '2022-10-20 19:00:00', '2022-10-21 00:00:00', 'https://images.pexels.com/photos/9051411/pexels-photo-9051411.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 6, 'rendez-vous au café culturel pour discuter et organiser un voyage tout en apprenant une nouvelle langue autour dun bon café', -0.57918, 44.837789, 2),
 
-('Murder Party - Le meurtre d Arthur Pendragon', '2021-11-05 09:00:00', '2021-11-05 17:00:00', 'https://images.pexels.com/photos/1881965/pexels-photo-1881965.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 5, 'Résolvez l assassinat d Arthur Pendragon en parcourant les rues de Lyon tout en apprenant une langue étrangère', 4.835659,45.764043, 8),
+('Murder Party - Le meurtre d Arthur Pendragon', '2022-11-05 09:00:00', '2022-11-05 17:00:00', 'https://images.pexels.com/photos/1881965/pexels-photo-1881965.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 5, 'Résolvez l assassinat d Arthur Pendragon en parcourant les rues de Lyon tout en apprenant une langue étrangère', 4.835659,45.764043, 8),
 
-('Fête du cinéma japonais à aix-en-provence', '2021-11-10 14:00:00', '2021-11-10 22:30:00', 'https://images.pexels.com/photos/1049622/pexels-photo-1049622.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',6, 'Venez assister à la représentation de Your Name en version originale puis discuter du film en parlant japonais autour d un thé', 5.447427, 43.529742, 5),
+('Fête du cinéma japonais à aix-en-provence', '2022-11-10 14:00:00', '2022-11-10 22:30:00', 'https://images.pexels.com/photos/1049622/pexels-photo-1049622.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',6, 'Venez assister à la représentation de Your Name en version originale puis discuter du film en parlant japonais autour d un thé', 5.447427, 43.529742, 5),
 
-('Sunday Brunch', '2021-10-20 12:30:00', '2021-10-20 16:30:00', 'https://images.pexels.com/photos/4873695/pexels-photo-4873695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 6, 'Rendez vous au trocadéro pour bruncher et apprendre une nouvelle langue', 2.3522219, 48.856614, 7),
+('Sunday Brunch', '2022-10-20 12:30:00', '2022-10-20 16:30:00', 'https://images.pexels.com/photos/4873695/pexels-photo-4873695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 6, 'Rendez vous au trocadéro pour bruncher et apprendre une nouvelle langue', 2.3522219, 48.856614, 7),
 
-('Week-end Nature', '2021-10-20 10:00:00', '2021-10-21 18:00:00', 'https://images.pexels.com/photos/132428/pexels-photo-132428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 3, 'Venez camper en foret pour un week-end et apprendre une nouvelle langue', -1.1672, 44.3945, 1),
+('Week-end Nature', '2022-10-20 10:00:00', '2022-10-21 18:00:00', 'https://images.pexels.com/photos/132428/pexels-photo-132428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 3, 'Venez camper en foret pour un week-end et apprendre une nouvelle langue', -1.1672, 44.3945, 1),
 
-('Degustation de houmous', '2021-12-05 20:00:00', '2021-12-5 23:00:00', 'https://images.pexels.com/photos/1618898/pexels-photo-1618898.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 6, 'Venez déguster du houmous et pratiquer les langues du magreb', 1.444209, 43.604652, 6),
+('Degustation de houmous', '2022-12-05 20:00:00', '2022-12-5 23:00:00', 'https://images.pexels.com/photos/1618898/pexels-photo-1618898.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 6, 'Venez déguster du houmous et pratiquer les langues du magreb', 1.444209, 43.604652, 6),
 
-('Visite à La Rochelle', '2021-11-28 14:00:00', '2021-11-29 18:00:00', 'https://images.pexels.com/photos/5302525/pexels-photo-5302525.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 6, 'Venez visiter La Rochelle et pratiquez une nouvelle langue entre amis ', -1.151139, 46.160329, 3 ),
+('Visite à La Rochelle', '2022-11-28 14:00:00', '2022-11-29 18:00:00', 'https://images.pexels.com/photos/5302525/pexels-photo-5302525.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 6, 'Venez visiter La Rochelle et pratiquez une nouvelle langue entre amis ', -1.151139, 46.160329, 3 ),
 
 ('Voyage à Sarlat', '2022-06-20 10:00:00', '2022-07-09 18:00:00', 'https://images.pexels.com/photos/6353830/pexels-photo-6353830.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 5, 'Venez pratiquez une nouvelle langue en visitant Sarlat et le Périgord Noir',1.217292, 44.890891, 4),
  
@@ -68,7 +68,7 @@ insert into event (title, starting_date, ending_date, img_url, places_left, desc
 
 ('Les épicuriales', '2022-05-01 10:00:00', '2022-05-31 18:00:00', 'https://images.pexels.com/photos/3252051/pexels-photo-3252051.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 6, 'Venez découvrir les spécialités gastronomiques du Sud-Ouest à bordeaux en compagnie de d amis pour pratiquer la langue de votre choix',-0.5800364,44.841225 , 4),
 
-('Eruption du Cumbre Vieja', '2021-10-20 10:00:00', '2022-07-09 18:00:00', 'https://images.pexels.com/photos/7301299/pexels-photo-7301299.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 5, 'Venez assister à l eruption du Cumbre Vieja aux iles Canaries pour approfondir ou preatiquer la langue de ce pays',-17.8573223, 28.6552318, 5),
+('Eruption du Cumbre Vieja', '2022-10-20 10:00:00', '2022-07-09 18:00:00', 'https://images.pexels.com/photos/7301299/pexels-photo-7301299.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 5, 'Venez assister à l eruption du Cumbre Vieja aux iles Canaries pour approfondir ou preatiquer la langue de ce pays',-17.8573223, 28.6552318, 5),
 
 ('Visite du parc de Yellowstone ', '2022-06-20 10:00:00', '2022-07-09 18:00:00', 'https://images.pexels.com/photos/7259416/pexels-photo-7259416.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 5, 'Venez viditer ce parc naturel et son immense caldeira qui repose sur un supervolcan et apratiquer l anglais americain',-108.276076, 45.9645464, 8),
 
@@ -101,7 +101,7 @@ insert into language ("name") values
 insert into tag ("name") values
  ('culture'),
 
- ('cinema '),
+ ('cinema'),
 
  ('voyage'),
 
