@@ -54,7 +54,7 @@ const Modal = ({ openModale }) => {
   };
 
   const handleChangeSignup = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setSignUp({
       ...signUp,
       [e.target.name]: e.target.value,
@@ -249,28 +249,31 @@ const Modal = ({ openModale }) => {
                 classNameDiv="div-input-login"
                 onChange={handleChangeSignup}
               />
-              <label>Male
-              <Input
-                name="gender"
-                type="radio"
-                checked={signUp.gender === "male"}
-                label="signup"
-                value="male"
-                onChange={handleChangeSignup}
-              />
-              </label>
+              <div className="div-input-checkbox"> 
+                <label>Male
+                <Input
+                  name="gender"
+                  type="radio"
+                  checked={signUp.gender === "male"}
+                  label="signup"
+                  value="male"
+                  classNameDiv="div-input-checkbox-each"
+                  onChange={handleChangeSignup}
+                />
+                </label>
 
-              <label>Female  
-              <Input
-                name="gender"
-                type="radio"
-                checked={signUp.gender === "female"}
-                label="signup"
-                value="female"
-                onChange={handleChangeSignup}
-              />
-              </label>
-
+                <label>Female  
+                <Input
+                  name="gender"
+                  type="radio"
+                  checked={signUp.gender === "female"}
+                  label="signup"
+                  value="female"
+                  classNameDiv="div-input-checkbox-each"
+                  onChange={handleChangeSignup}
+                />
+                </label>
+              </div>
               <button type="submit" className="button-sign" name="Sign">Let's go</button>
             </form>
           )}

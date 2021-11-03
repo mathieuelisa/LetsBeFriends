@@ -229,6 +229,7 @@ function SearchEventContainer() {
   // Function permettant de se logout en reinitialisant le localStorages
   function handleLogOut() {
     dispatch(resetInfosUser());
+    window.localStorage.clear();
     history.push("/");
   }
 

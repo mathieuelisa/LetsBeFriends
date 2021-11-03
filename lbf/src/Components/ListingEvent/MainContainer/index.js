@@ -92,6 +92,7 @@ function ListEventContainer() {
     // Fonction permettant de se logout
     function handleLogOut(){
         dispatch(resetInfosUser());
+        window.localStorage.clear();
         history.push("/")
     }
 
