@@ -30,6 +30,7 @@ function CreateEventContainer() {
 
   const [selectedLanguages, setSelectedLanguages] = useState([])
   const [selectedEventTags, setSelectedEventTags] = useState([])
+  console.log("allEvents : ", allEvents)
   // Message a la suite de la creation d'un event
   const [messageAfterSubmitted, setMessageAfterSubmitted] = useState("")
   // Condition en fonction de la creation et la soumission d"un event
@@ -314,7 +315,7 @@ function CreateEventContainer() {
                     
                     <div className="searchEvent__container-infosDetails-location__tag-selected">
                       {selectedEventTags.map((events) => (
-                        <Tag handleClick={() =>handleClickClosedEvents(events)} name={events.name} />
+                        <Tag handleClick={() => handleClickClosedEvents(events)} name={events.name} />
                       ))}
                     </div>
 

@@ -26,11 +26,13 @@ import Female from "../../../assets/Logo/female.png"
 
 
 function ProfilContainer() {
-  // Pictures post cloudinary
-  const [imageUrl, setImageUrl] = useState("")
+  
+  
 
   // All my infos about my user
   const infosUser = useSelector((state) => state.profil.infosUser);
+  // Pictures post cloudinary
+  const [imageUrl, setImageUrl] = useState(infosUser.img_url)
   console.log("Data user:", infosUser)
   
   const [fieldsCreateProfil, setFieldsCreateProfil] = useState({
@@ -215,7 +217,7 @@ function ProfilContainer() {
           axios.post(
             "https://api.cloudinary.com/v1_1/lbfcloud/image/upload",formData)
             .then(res=>setImageUrl(res.data.secure_url))
-            .then(response=>console.log("la reponse de cloudinary:", response.data))
+            .then(response =>console.log("la reponse de cloudinary:", response.data))
             .catch((err)=>console.log(err)) 
         }
 
@@ -247,7 +249,7 @@ function ProfilContainer() {
           <Avatar
             customDiv={"profil__container-avatar"}
             customImg={"profil__container-pictures"}
-            customPics={infosUser.imgUrl}
+            customPics={imageUrl}
           />
             <input className="createEvent__container-eventTitle-uploadInput" type="file" onChange={uploadImage}/>
 
