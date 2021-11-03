@@ -222,7 +222,6 @@ function SearchEventContainer() {
       GetAllEvents()})
      
       setLoading(false);
-      
     
   };
   const history = useHistory();

@@ -41,7 +41,7 @@ function ParticipateRequest({
                 <div className={classNameInfos}>
                     <h2>{firstname} {lastname.charAt(0)}.</h2>
                     <h3 className={titleConfig}>{title}</h3>
-                        {gender == "male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
+                        {gender == "male" || gender == "Male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
                             : <img className="profil__container-avatars-gender" src={Female} alt="Female"/>}
                     <h4 className={emailConfig}>{email}</h4>
                     <h5 className={classNameDescription}>Bio of {firstname} : {description}</h5>
