@@ -10,6 +10,8 @@ import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import actions types
 import {
   SET_TOGGLE,
@@ -24,6 +26,7 @@ import { useEffect, useState } from "react";
 import Male from "../../../assets/Logo/male.png"
 import Female from "../../../assets/Logo/female.png"
 
+toast.configure()
 
 function ProfilContainer() {
   
@@ -71,7 +74,7 @@ function ProfilContainer() {
 
   //  function permettant d'obtenir plusieurs valeurs dans une valeur sous forme de tableau
   function handleFielsProfilChange(e) {
-    if (e.target.name === "language_spoken" && e.target.value !== null) {
+    if (e.target.name === "language_spoken" && e.target.value !== null && e.target.value !== "") {
       setFieldsCreateProfil({
         ...fieldsCreateProfil,
         language_spoken: [...fieldsCreateProfil.language_spoken,  e.target.value],
@@ -101,7 +104,11 @@ function ProfilContainer() {
     e.preventDefault();
     updateProfil();
     setMessageAfterSubmitted("Your profil have been updated")
+    toast.success('You have just updated your profil infos', {position: toast.POSITION.BOTTOM_LEFT})
     setIsSubmitted(true)
+    setTimeout(() => {
+      setIsSubmitted(false)
+    }, 1500);
   }
   const dispatch = useDispatch();
 
@@ -130,10 +137,12 @@ function ProfilContainer() {
     dispatch(resetInfosUser());
     history.push("/");
   }
-
   const handleDelete = () => {
-    console.log("Vous etes dans la call back delete account")
     deleteAccount(infosUser.id )
+    toast.success('Your account is deleted', {position: toast.POSITION.BOTTOM_LEFT})
+    setTimeout(() => {
+      handleLogOut()
+    }, 1500);
   }
 
   const deleteAccount = (userId) => {
@@ -221,6 +230,7 @@ function ProfilContainer() {
             .catch((err)=>console.log(err)) 
         }
 
+        console.log('MyLanguagesSpoken : ', myLanguagesSpoken)
   return (
     <div className="profil__container">
 
@@ -331,9 +341,9 @@ function ProfilContainer() {
               </select>
             </div>
             <div className="searchEvent__container-infosDetails-location__tag-selected">
-              {myLanguagesSpoken.map((language) => (
+              {myLanguagesSpoken === null ? "" : myLanguagesSpoken.map((language) => (
                 <Tag handleClick={() => handleClickClosedTagLanguageSpoken(language)} key={language.id} name={language.name} />
-              ))}
+              )) }
             </div>
             <div className="myInputs-profilPage">
               <label className="myInputs-ProfilPage-label">

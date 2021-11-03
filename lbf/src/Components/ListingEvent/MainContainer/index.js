@@ -321,7 +321,7 @@ function ListEventContainer() {
                         </div> 
                     </div> 
 
-                {scrollIcons === true ? 
+                {scrollIcons == true ? 
                 <> <div className="choice__listContainer-scrollIcon">
                         <h1>scroll down</h1>
                     </div>  
