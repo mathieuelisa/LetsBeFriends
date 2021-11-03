@@ -53,6 +53,7 @@ const Header = ({ openModalLogin, openModalSignup }) => {
 
   function handleLogOut() {
     dispatch(resetInfosUser());
+    window.localStorage.clear();
     toast.success(`${infosUser.firstname}, you are logged out !`, {position: toast.POSITION.BOTTOM_LEFT})
     
     history.push("/");

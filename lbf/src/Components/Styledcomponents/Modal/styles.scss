@@ -169,6 +169,15 @@
     border: none;
 }
 
+.div-input-checkbox{
+    display: flex;
+    justify-content: space-around
+}
+
+.div-input-checkbox-each{
+    text-align: center;
+}
+
 .error-message{
     color: red;
     font-size: 0.8em;

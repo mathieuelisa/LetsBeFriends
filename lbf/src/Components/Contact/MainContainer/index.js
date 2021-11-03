@@ -49,6 +49,7 @@ const history = useHistory()
     function handleLogOut(){
         dispatch(resetInfosUser());
         history.push("/")
+        window.localStorage.clear();
 }
     return(
         <div className="contact__container">

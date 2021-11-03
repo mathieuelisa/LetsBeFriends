@@ -135,6 +135,7 @@ function ProfilContainer() {
 
   function handleLogOut() {
     dispatch(resetInfosUser());
+    window.localStorage.clear();
     history.push("/");
   }
   const handleDelete = () => {
