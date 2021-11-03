@@ -231,16 +231,28 @@ const Modal = ({ openModale }) => {
                 classNameDiv="div-input-login"
                 onChange={handleChangeSignup}
               />
+              <label>Male
               <Input
                 name="gender"
-                type="text"
+                type="radio"
+                checked={signUp.gender === "male"}
                 label="signup"
-                value={signUp.gender}
-                placeHolder="Gender"
-                classNameInput="modal-container__modal__formsignup--password"
-                classNameDiv="div-input-login"
+                value="male"
                 onChange={handleChangeSignup}
               />
+              </label>
+
+              <label>Female  
+              <Input
+                name="gender"
+                type="radio"
+                checked={signUp.gender === "female"}
+                label="signup"
+                value="female"
+                onChange={handleChangeSignup}
+              />
+              </label>
+
               <button type="submit" className="button-sign" name="Sign">Let's go</button>
             </form>
           )}
