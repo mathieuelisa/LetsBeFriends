@@ -7,8 +7,12 @@ import axios from "axios";
 //React Components
 import Input from "../Input";
 import { useState } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 //Redux
 import { useDispatch, useSelector } from "react-redux";
+
+toast.configure()
 
 const getData = () => {
   let dataProfil = localStorage.getItem("user");
@@ -96,8 +100,9 @@ const Modal = ({ openModale }) => {
           localStorage.setItem("userDate", Date.now());
           dispatch(setPseudo(response.data.firstname));
           dispatch(setInfosUser(response.data));
+          toast.success(`Great ${infosUser.firstname} ! You are logged in !`, {position: toast.POSITION.BOTTOM_LEFT})
           setErrorMessage(false)
-          
+          resetData();
         }
       })
       .catch((error) => {
@@ -105,6 +110,17 @@ const Modal = ({ openModale }) => {
         setErrorMessage(true);
       });
   };
+
+  const resetData = () => {
+    setSignUp({
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+      confirmedPassword: "",
+      gender: "",
+    })
+  }
 
   const handleSubmitSignUp = (e) => {
     e.preventDefault();
@@ -124,6 +140,8 @@ const Modal = ({ openModale }) => {
       )
       .then((response) => {
         console.log(response.data);
+        toast.success(`Great ${signUp.firstname}! You signed up, you can log in now`, {position: toast.POSITION.BOTTOM_LEFT})
+        resetData();
       });
   };
 

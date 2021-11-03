@@ -13,11 +13,14 @@ import { resetInfosUser } from "../../../Redux/actions/profil";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Logo from "../../../assets/Logo/LOGO_LBF.png"
 
 // Import react reveal components
 import Fade from 'react-reveal/Fade';
+
+toast.configure()
 
 const Header = ({ openModalLogin, openModalSignup }) => {
   const dispatch = useDispatch();
@@ -50,6 +53,8 @@ const Header = ({ openModalLogin, openModalSignup }) => {
 
   function handleLogOut() {
     dispatch(resetInfosUser());
+    toast.success(`${infosUser.firstname}, you are logged out !`, {position: toast.POSITION.BOTTOM_LEFT})
+    
     history.push("/");
   }
  

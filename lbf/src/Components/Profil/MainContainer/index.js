@@ -32,7 +32,7 @@ function ProfilContainer() {
   // All my infos about my user
   const infosUser = useSelector((state) => state.profil.infosUser);
   // Pictures post cloudinary
-  const [imageUrl, setImageUrl] = useState(infosUser.img_url)
+  const [imageUrl, setImageUrl] = useState(infosUser.imgUrl)
   console.log("Data user:", infosUser)
   
   const [fieldsCreateProfil, setFieldsCreateProfil] = useState({

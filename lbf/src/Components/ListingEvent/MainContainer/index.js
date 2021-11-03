@@ -5,6 +5,8 @@ import "./styles.scss"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // Import ReactComponents
 import Avatar from "../../Styledcomponents/Avatar"
 import ButtonToggle from "../../Styledcomponents/ButtonToggle"
@@ -22,6 +24,8 @@ import EventCardMyEvents from "../../Styledcomponents/EventCardMyEvents"
 // import icons
 import Couronne from "../../../assets/Logo/couronne.png"
 
+toast.configure()
+
 function ListEventContainer() {
     const dispatch = useDispatch()
 
@@ -31,7 +35,6 @@ function ListEventContainer() {
     const events = useSelector((state)=>state.event.events)
     const dataEvents = useSelector((state)=>state.event.eventUserEvents)
   
-
     // Conditions pour un rendu differents
     const [pastEvents, setPastEvents] = useState(false)
     const [comingSoonEvents, setComingSoonEvents] = useState(false)
@@ -49,12 +52,6 @@ function ListEventContainer() {
       };
     console.log('data past Events : ', dataPastEvents) 
     console.log('La liste des askings list : ', askingList)
-
-    // Recherche des events du user
-    function handleClick(event){
-        event.preventDefault()
-        dispatch({type: SET_TOGGLE})
-    }
 
     // Fonction tri par date
     const isBeforeToday = (timeToCompare)=>{
@@ -94,8 +91,8 @@ function ListEventContainer() {
     const history = useHistory()
     // Fonction permettant de se logout
     function handleLogOut(){
-    dispatch(resetInfosUser());
-    history.push("/")
+        dispatch(resetInfosUser());
+        history.push("/")
     }
 
     const arraypastevents = dataPastEvents.map((event) => (
@@ -147,8 +144,8 @@ function ListEventContainer() {
                 classNameCard="profil__container-resultsForm"
                 classNameInfos="profil__container-resultsForm-displayInfos"
                 emailConfig="profil__container-resultsForm-email"
-                handleAccept={() => handleAccept(participant.id, eventList.eventId)}
-                handleDecline={() => handleDecline(participant.id, eventList.eventId)}
+                handleAccept={() => handleAccept(participant.id, eventList.eventId, participant.firstname)}
+                handleDecline={() => handleDecline(participant.id, eventList.eventId, participant.firstname)}
             />
             
             )
@@ -184,11 +181,10 @@ function ListEventContainer() {
         setScrollIcons(true)
   }
 
-  const handleAccept = (participant_id, event_id) => {
+  const handleAccept = (participant_id, event_id, firstname) => {
     console.log("participantID : ", participant_id)
     console.log("eventId : ", event_id)
     const RequestListUpdated = RequestList
-
     const eventRequest = RequestList.find(event => event.eventId == event_id)
     const participantsListUpdated = eventRequest.participants.filter(participant => participant.id !== participant_id)
     eventRequest.participants = participantsListUpdated
@@ -196,17 +192,15 @@ function ListEventContainer() {
     RequestListUpdated[RequestListIndex] = eventRequest
 
     setRequestList(RequestListUpdated)
-    setUpdateRequestList(!updateRequestList)
-    console.log("RequestList Updated after accepting request ?: ", RequestList) 
-    
     requestAccepted(event_id, participant_id)
+    toast.success( `${firstname}'s request accepted'`, {position: toast.POSITION.BOTTOM_LEFT})
   } 
 
-  const handleDecline = (participant_id, event_id) => {
+  const handleDecline = (participant_id, event_id, firstname) => {
+
     console.log("participantID : ", participant_id)
     console.log("eventId : ", event_id)
     const RequestListUpdated = RequestList
-
     const eventRequest = RequestList.find(event => event.eventId == event_id)
     const participantsListUpdated = eventRequest.participants.filter(participant => participant.id !== participant_id)
     eventRequest.participants = participantsListUpdated
@@ -217,8 +211,15 @@ function ListEventContainer() {
     console.log("RequestList Updated after declining request ?: ", RequestList) 
 
     requestDeclined(event_id, participant_id);
+    toast.info( `${firstname}'s request declined'`, {position: toast.POSITION.BOTTOM_LEFT})
+
 
   }
+      // Recherche des events du user
+      function handleClick(event){
+        event.preventDefault()
+        dispatch({type: SET_TOGGLE})
+    }
 
   const requestAccepted = (eventId, userId) => {
 
@@ -291,7 +292,7 @@ function ListEventContainer() {
                                 <Avatar 
                                     customDiv={"profil__container-avatar"} 
                                     customImg={"profil__container-pictures"} 
-                                    customPics={infosUser.imgUrl}
+                                    customPics={infosUser.img_url}
                                 />
                         </div>
 
