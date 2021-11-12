@@ -117,6 +117,7 @@ function ProfilContainer() {
   function handleClick(event) {
     event.preventDefault();
     dispatch({ type: SET_TOGGLE });
+
   }
   
 //Fonction permettant de fermer les tags de l'onglet "learning languages" 
