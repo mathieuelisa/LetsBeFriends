@@ -139,6 +139,7 @@ function ProfilContainer() {
     window.localStorage.clear();
     history.push("/");
   }
+  
   const handleDelete = () => {
     deleteAccount(infosUser.id )
     toast.success('Your account is deleted', {position: toast.POSITION.BOTTOM_LEFT})
