@@ -36,7 +36,7 @@ function ProfilContainer() {
   const infosUser = useSelector((state) => state.profil.infosUser);
   // Pictures post cloudinary
   const [imageUrl, setImageUrl] = useState(infosUser.imgUrl)
-  console.log("Data user:", infosUser)
+  //console.log("Data user:", infosUser)
   
   const [fieldsCreateProfil, setFieldsCreateProfil] = useState({
     firstname: infosUser.firstname,

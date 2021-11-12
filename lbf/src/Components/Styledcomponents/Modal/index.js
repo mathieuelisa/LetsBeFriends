@@ -1,5 +1,5 @@
 //Import Actions
-import { setPseudo, setInfosUser, setLoggedin } from "../../../Redux/actions/profil";
+import { setPseudo, setInfosUser } from "../../../Redux/actions/profil";
 //Import Styles
 import "./styles.scss";
 // Import Axios
@@ -41,7 +41,7 @@ const Modal = ({ openModale }) => {
 
   const dispatch = useDispatch();
 
-  const optionsPost = {
+  const optionsGet = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
   };
@@ -84,14 +84,14 @@ const Modal = ({ openModale }) => {
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     console.log("Votre forumlaire : ");
-    axios
+     axios
       .post(
         "https://lets-be-friend.herokuapp.com/v1/users/login",
         {
           email: login.email,
           password: login.password,
         },
-        optionsPost
+        optionsGet
       )
       .then((response) => {
         console.log(response.data);
@@ -103,8 +103,6 @@ const Modal = ({ openModale }) => {
           dispatch(setInfosUser(response.data));
           toast.success(`Great ${infosUser.firstname} ! You are logged in !`, {position: toast.POSITION.BOTTOM_LEFT})
           setErrorMessage(false)
-          dispatch(setLoggedin())
-
         }
       })
       .catch((error) => {
@@ -138,7 +136,7 @@ const Modal = ({ openModale }) => {
           confirmPassword: signUp.confirmedPassword,
           gender: signUp.gender,
         },
-        optionsPost
+        optionsGet
       )
       .then((response) => {
         console.log(response.data);
@@ -146,7 +144,6 @@ const Modal = ({ openModale }) => {
         resetData();
       });
   };
-
   // Recuperation de la valeur afin de l'afficher par la suite
   const nameUser = useSelector((state) => state.profil.myName);
 

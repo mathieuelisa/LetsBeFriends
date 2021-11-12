@@ -30,7 +30,9 @@ function ParticipateRequest({
     classNameDescription,
     emailConfig,
     handleAccept,
-    handleDecline
+    handleDecline,
+    buttonAccept,
+    buttonRefused
 }){
     
 
@@ -41,7 +43,7 @@ function ParticipateRequest({
                 <div className={classNameInfos}>
                     <h2>{firstname} {lastname.charAt(0)}.</h2>
                     <h3 className={titleConfig}>{title}</h3>
-                        {gender == "male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
+                        {gender == "male" || gender == "Male" ? <img className="profil__container-avatars-gender" src={Male} alt="Male"/>
                             : <img className="profil__container-avatars-gender" src={Female} alt="Female"/>}
                     <h4 className={emailConfig}>{email}</h4>
                     <h5 className={classNameDescription}>Bio of {firstname} : {description}</h5>
@@ -57,8 +59,8 @@ function ParticipateRequest({
                 </div>  
             </div>
             <div>
-                <button onClick={handleAccept}>Accept</button>
-                <button onClick={handleDecline}>Decline</button>
+                <button className={buttonAccept} onClick={handleAccept}>Accept</button>
+                <button className={buttonRefused} onClick={handleDecline}>Decline</button>
             </div>
         </div>
     )

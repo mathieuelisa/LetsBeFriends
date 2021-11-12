@@ -11,7 +11,7 @@ export default function Slider() {
     const [slideIndex, setSlideIndex] = useState(1)
     const events = useSelector(state => state.event.events)
 
-    console.log("event carr", events)
+   //console.log("event carr", events)
 
     const nextSlide = () => {
         if(slideIndex !==5){

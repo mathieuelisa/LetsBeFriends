@@ -55,3 +55,13 @@ Dites moi si vous pensez à d'autres icônes/situations
 ### 4- Procédures détaillées
 
 [Procedure git pull merge](https://www.notion.so/Procedure-git-pull-merge-26448aac92364359b2684a3ef1d56b1c)
+
+### 5- Petit descriptif du projet
+As a frontend developer, i currently participate to a web application project called Let's Be friends with 4 other developer.
+Following the report that there some application to make friends and other to learn a language, we decided to build a new application that combine both. With Let's be Friends, we can participate to events close to our house while learning a new language.
+With a team of 3 backend and 2 frontend developpers, we realized the MVP of our project and i will be glad to show it to you !
+
+Also, you can check my interactive resume by clicking on the following link:
+https://www.robinmarien.com/
+
+

@@ -180,6 +180,36 @@
     line-height: 0.9em;
 }
 
+.buttonRefused, .buttonAccept{
+    margin: 10px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid whitesmoke;
+    color: whitesmoke;
+    cursor: pointer;
+    transition: all 1s ease;
+}
+
+.buttonRefused{
+&:hover{
+    color: whitesmoke;
+    border: 1px solid rgb(192, 14, 14);
+    background-color: rgb(192, 14, 14);
+}
+}
+
+.buttonAccept{
+    &:hover{
+        color: whitesmoke;
+        border: 1px solid rgb(11, 114, 11);
+        background-color: rgb(11, 114, 11);
+    }
+    }
+    
+
 @media screen and (max-width: 970px){
     .mainListEvent__precontainer{
         flex-direction: column;
