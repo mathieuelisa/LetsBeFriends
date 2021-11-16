@@ -1,7 +1,7 @@
 // Import styles
 import "./styles.scss"
 // Import Gif
-import LogoError from "../../../assets/Logo/chevre.gif"
+import LogoError from "../../../assets/Logo/error.gif"
 import { Link } from "react-router-dom"
 
 function ErrorContainer(){
