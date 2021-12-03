@@ -155,7 +155,7 @@ const history = useHistory()
                         </div>
 
                         <div className="contact__avatar-container">
-                        <h2 className="contact__avatar-name">Robz</h2>
+                        <h2 className="contact__avatar-name">Robin</h2>
                             <Avatar 
                             customDiv={"contact__avatar-div"} 
                             customImg={"contact__avatar-img"} 
