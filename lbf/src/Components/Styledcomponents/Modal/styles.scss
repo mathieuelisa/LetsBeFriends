@@ -15,8 +15,8 @@
         font-family: "Caviar";
         background: rgba( 255, 255, 255, 0.35 );
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-        backdrop-filter: blur( 13.5px );
-        -webkit-backdrop-filter: blur( 13.5px );
+        backdrop-filter: blur( 8.5px );
+        -webkit-backdrop-filter: blur( 8.5px );
         border-radius: 10px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
         text-align: left;
@@ -26,14 +26,13 @@
         transition: 300;
 
         &__formlogin{
-            
             display: flex;
             flex-direction: column;
             justify-content: space-around;
             align-items: stretch;
             background-color: rgba($color: #fff, $alpha: 0.0);
             height: 70%;
-            width: 60%;
+            width: 70%;
             padding: 50px;
 
             h1 {
@@ -43,7 +42,7 @@
             &__input-login {
                 width: 100%;
                 border: transparent;
-                //border-bottom: 2px solid red;
+                font-size: 1em;
                 padding: 10px;
                 border-bottom: 1px solid #E66630 ;
                 background-color: rgba($color: #fff, $alpha: 0.0); ;
@@ -63,14 +62,24 @@
             }
 
             &__button--login {
-                width: 100%;
+                width: 50%;
+                margin: 0 auto;
                 text-align: center;
-                background-color: rgba($color: #E66630, $alpha: 0.9);
+                background-color:#E66630;
                 color: whitesmoke;
                 font-weight: 700;
-                border-radius: 10px;
                 text-decoration: none;
                 padding: 10px;
+                font-family: "Caviar";
+                cursor: pointer;
+                border-radius: 10px;
+                opacity: 0.7;
+                transition: all 0.4s ease;
+                border: none;
+
+                &:hover{
+                    background-color: #d6531a;
+                  }
             }
         }
 
@@ -79,14 +88,15 @@
                 flex-direction: column;
                 justify-content: space-around;
                 align-items: stretch;
-                background-color: rgba($color: #fff, $alpha: 0.0);
+                background-color: transparent;
                 height: 80%;
-                width: 60%;
+                width: 70%;
                 padding: 50px;
     
                 h1 {
                     text-align: center;
                 }
+
                 &__name{
                     display: flex;
                     justify-content: space-between;
@@ -94,10 +104,10 @@
                     &--firstname, &--lastname {
                         width: 70%;
                         border: transparent;
-                        //border-bottom: 2px solid red;
+                        font-size: 1em;
                         padding: 10px;
                         border-bottom: 1px solid #E66630 ;
-                        background-color: rgba($color: #fff, $alpha: 0.0); ;
+                        background-color: transparent ;
         
                         &:focus, &::placeholder {
                             outline: none;
@@ -132,20 +142,71 @@
                 }
 
                 .button-sign {
-                    width: 100%;
+                    width: 50%;
+                    margin: 0 auto;
                     text-align: center;
-                    background-color: rgba($color: #E66630, $alpha: 0.9);
+                    background-color:#E66630;
                     color: whitesmoke;
                     font-weight: 700;
-                    border-radius: 10px;
                     text-decoration: none;
                     padding: 10px;
+                    font-family: "Caviar";
+                    cursor: pointer;
+                    border-radius: 10px;
+                    opacity: 0.7;
+                    transition: all 0.4s ease;
+                    border: none;
+
+                    &:hover{
+                        background-color: #d6531a;
+                      }
                 }
-            
         }
     }
 }
 
 .div-input-login {
     border: none;
+}
+
+.div-input-checkbox{
+    display: flex;
+    justify-content: space-around
+}
+
+.div-input-checkbox-each{
+    text-align: center;
+}
+
+.error-message{
+    color: red;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-align: center;
+}
+
+@media screen and (max-width: 970px){
+    .modal-container__modal{
+        width: 85vw;
+        left: 8%;
+    }
+
+    .modal-container__modal__formsignup{
+        padding: 0;
+        width: 80%;
+    }
+
+    .modal-container__modal__formlogin{
+        padding: 0;
+        width: 65%;
+    }
+
+    .modal-container__modal__formlogin__remember{
+        width: 100%;
+    }
+
+    .modal-container__modal__formsignup__terms{
+        width: 100%;
+    }
+
 }

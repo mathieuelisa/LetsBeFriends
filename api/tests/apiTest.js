@@ -7,9 +7,9 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const id = getRandomIntInclusive(3, 50);
+const id = getRandomIntInclusive(1, 50);
 const email = `test14${getRandomIntInclusive(3, 999)}@daube.com`
-const phone_number = `0610171${getRandomIntInclusive(100, 200)}`
+const age = `${getRandomIntInclusive(18, 58)}`
 
 //==================== user API test ====================
 /**
@@ -32,7 +32,7 @@ describe('GET v1/users', function () {
 describe('GET v1/users/:id', function () {
     it('should respond with json containing a single user', function (done) {
         request(app)
-            .get('/v1/users/12')
+            .get('/v1/users/1')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200, done);
@@ -112,8 +112,8 @@ describe('POST /users', function () {
  */
 describe('PATCH /users', function () {
     let data = {
-        "id": id,
-        "phone_number": phone_number,
+        "id": 2,
+        "age": age,
     }
     it('Update the profil of a user, and return 200 and the profil updated', function (done) {
         request(app)
@@ -132,7 +132,7 @@ describe('PATCH /users', function () {
 describe('PATCH /users', function () {
     let data = {
         "id": id,
-        "phone_number": phone_number,
+        "age": age,
         "fakedata": "Riendutous"
     }
     it('should be refused, return 400, and the data that has not been allowed', function (done) {
@@ -179,7 +179,7 @@ describe('GET /users/login bad login', function () {
     }
     it('should be refused, return 401 and a message', function (done) {
         request(app)
-            .get('/v1/users/login')
+            .post('/v1/users/login')
             .send(data)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -201,7 +201,7 @@ describe('GET /users/login', function () {
     }
     it('should be accepted, return 200 and user', function (done) {
         request(app)
-            .get('/v1/users/login')
+            .post('/v1/users/login')
             .send(data)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -236,7 +236,7 @@ describe('GET /v1/events', function () {
 describe('GET /v1/events/:id', function () {
     it('should respond with json containing a single event', function (done) {
         request(app)
-            .get('/v1/events/3')
+            .get('/v1/events/1')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200, done);
@@ -252,8 +252,8 @@ describe('GET /v1/event/:id Failing', function () {
             .get('/v1/events/176877')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
-            .expect(404)
-            .expect('"event not found"') // expecting content value
+            .expect(418)
+            .expect({ "error": "Event with id 176877 doesn't exist" }) // expecting content value
             .end((err) => {
                 if (err) return done(err);
                 done();
@@ -272,10 +272,9 @@ describe('POST /events', function () {
         "ending_date": "2021-11-09T15:35:03.000Z",
         "img_url": "http://dummyimage.com/103x100.png/5fa2dd/ffffff",
         "places_left": 6,
-        "description": "Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-        "longitude": 159,
-        "latitude": 14,
-        "user_id": 16
+        "description": "V, tempus sit amet, sem.",
+        "address": "11 rue du parc, bron",
+        "user_id": 1
     }
     it('respond with 201 created', function (done) {
         request(app)
@@ -321,10 +320,10 @@ describe('POST /events', function () {
  */
 describe('PATCH /events', function () {
     let data = {
-        "id": 3,
-        "title": "efefefef"
+        "id": 1,
+        "title": "BBQ saucisse"
     }
-    it('Update an event, return 200 and the profil updated', function (done) {
+    it('Update an event, return 200 and the event updated', function (done) {
         request(app)
             .patch('/v1/events')
             .send(data)
@@ -344,7 +343,7 @@ describe('PATCH /events', function () {
 describe('PATCH /events', function () {
     let data = {
         "fakedata": id,
-        "kjbkjb": phone_number,
+        "kjbkjb": age,
         "fakedata": "Riendutous"
     }
     it('should be refused, return 400, and the data that has not been allowed', function (done) {
@@ -388,16 +387,16 @@ describe('DELETE /events', function () {
  */
 describe('POST /v1/speak', function () {
     let data = {
-        "userId": "3",
-        "languageId": "3",
+        "userId": "1",
+        "languageId": "2"
     }
-    it('should return 200 and the relation created', function (done) {
+    it('should return 201 and the relation created', function (done) {
         request(app)
             .post('/v1/speak')
             .send(data)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
-            .expect(201, done)
+            .expect(200, done)
     });
 });
 /**
@@ -405,8 +404,8 @@ describe('POST /v1/speak', function () {
  */
 describe('POST /v1/learn', function () {
     let data = {
-        "userId": "3",
-        "languageId": "3",
+        "userId": "1",
+        "languageId": "2"
     }
     it('should return 200 and the relation created', function (done) {
         request(app)
@@ -414,7 +413,7 @@ describe('POST /v1/learn', function () {
             .send(data)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
-            .expect(201, done)
+            .expect(200, done)
     });
 });
 
@@ -423,8 +422,8 @@ describe('POST /v1/learn', function () {
  */
 describe('DELETE /v1/speak', function () {
     let data = {
-        "userId": "3",
-        "languageId": "3",
+        "userId": "1",
+        "languageId": "2",
     }
     it('should return 200', function (done) {
         request(app)
@@ -440,8 +439,8 @@ describe('DELETE /v1/speak', function () {
  */
 describe('DELETE /v1/learn', function () {
     let data = {
-        "userId": "3",
-        "languageId": "3",
+        "userId": "1",
+        "languageId": "2",
     }
     it('should return 200', function (done) {
         request(app)

@@ -1,16 +1,11 @@
 //Import styles
 import './styles.scss';
 //Import images
-import eventImage from '../../../assets/Img/videogames.png' ;
 import groupLogo from '../../../assets/Icons/group.svg';
 import placeholder from '../../../assets/Icons/placeholder.svg'
 import calendar from '../../../assets/Icons/calendar.svg'
-//import React Component
-import Avatar from '../Avatar';
 
-import avatarMicheline from "../../../assets/Img/micheline.jpg"
-
-const EventCard = ({ className }) => (
+const EventCard = ({ startingDate, placesLeft, title, imgUrl, languages}) => (
   
   <div className='eventcard'>
     <div className='eventcard__infos'>
@@ -18,20 +13,16 @@ const EventCard = ({ className }) => (
 
         {/* Profil */}
 
-        <Avatar 
-        customDiv='avatar-div' 
-        customImg='avatar-image'
-        customPics={avatarMicheline} />
         <div className='eventcard__infos__profil__identity'>
-          <h2 className='eventcard__infos__profil__identity--firstname'>Gertrude M.</h2>
-          <p className='eventcard__infos__profil__identity--age'>21 ans</p>
+          {/* <h2 className='eventcard__infos__profil__identity--firstname'></h2> */}
+          <p className='eventcard__infos__profil__identity--age'></p>
         </div>
       </div>
 
       {/* Event */}
 
       <div className='eventcard__infos__event'>
-        <h3 className='eventcard__infos__event--eventname'>Cooking Class</h3>
+        <h3 className='eventcard__infos__event--eventname'>{title}</h3>
 
         {/* Place */}
         <div className='eventcard__infos__event--cityevent'>
@@ -42,21 +33,21 @@ const EventCard = ({ className }) => (
         {/* Date */}
         <div className='eventcard__infos__event--eventdate'>
           <img src={calendar} alt='logo-calendar' className='logo' />
-          <p className='eventcard__infos__event--eventdate---date'>July - 12th - 2021</p>
+          <p className='eventcard__infos__event--eventdate---date'>{startingDate}</p>
         </div>
-          <p className='eventcard__infos__event--eventlanguage'>French</p>
+          <div className='eventcard__infos__event--eventlanguage'>{languages.map(language => <div key={language.id}>{language.name}</div>)}</div>
 
         {/* Spots */}
         <div className='eventcard__infos__event--numberspotsleft'>
           <img src={groupLogo} alt='logo-group' className='logo' />
-          <p className='eventcard__infos__event--numberspotsleft---number'>2 spots left</p>
+          <p className='eventcard__infos__event--numberspotsleft---number'>{placesLeft} spots left</p>
         </div>
       </div>
     </div>
 
     {/* IMAGE EVENT */}
     <div className='eventcard__imagediv'>
-      <img className='eventcard__image'src={eventImage} alt='logo-event' />
+      <img className='eventcard__image'src={imgUrl} alt='logo-event' />
     </div>
   </div>
 );

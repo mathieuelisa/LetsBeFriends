@@ -1,10 +1,10 @@
 @baseUrl=http://localhost:3000/v1
 
-GET {{baseUrl}}/users/12
+GET {{baseUrl}}/users
 
 ###
 
-GET {{baseUrl}}/users/?limit=3
+GET {{baseUrl}}/users/?limit=10
 
 ###
 
@@ -14,11 +14,10 @@ Content-Type: application/json
 {
     "firstname": "test-first-name",
     "lastname" : "test_last_name",
-    "email":"test89@gmail.com",
+    "email":"test78@gmail.com",
     "password" : "fvzefgzefzerf",
     "confirmPassword" : "fvzefgzefzerf",
-    "gender" : "male",
-    "phone_number" : "04546574984"
+    "gender" : "male"
     
 }
 
@@ -46,15 +45,15 @@ GET  {{baseUrl}}/users/login
 Content-Type: application/json
 
 {
-    "email":"test89@gmail.com",
-    "password" : "1234"
+    "email":"test78@gmail.com",
+    "password" : "fvzefgzefzerf"
 }
 
 ###
 
 ### ---- EVENT
 ## FIND ONE
-GET {{baseUrl}}/events/2
+GET {{baseUrl}}/events/1
 ### FIND ALL LIMIT
 GET {{baseUrl}}/events/?limit=10
 ### UPDATE EVENTS
@@ -83,10 +82,9 @@ Content-Type: application/json
     "starting_date": "2021-10-20T06:00:26.000Z",
     "ending_date": "2021-11-09T15:35:03.000Z",
     "img_url": "http://dummyimage.com/103x100.png/5fa2dd/ffffff",
-    "places_left": 9,
+    "places_left": 5,
     "description": "Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-    "longitude": 159,
-    "latitude": 14,
+    "address" : "11 rue du parc, bron",
     "user_id": 16
 }
 ###
@@ -119,4 +117,13 @@ Content-Type: application/json
 {
     "userId": 5,
     "languageId": 2
+}
+###
+
+DELETE  {{baseUrl}}/tags
+Content-Type: application/json
+
+{
+    "eventId": 5,
+    "tagId": 2
 }

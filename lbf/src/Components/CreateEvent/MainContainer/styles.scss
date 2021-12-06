@@ -8,11 +8,9 @@
     background: linear-gradient(to top,rgb(178 31 31) 0%, rgba(178, 31, 31,1) 0%, rgba(253, 187, 45, .5));
 
     &-infosDetails{
-        display: flex;
-        justify-content: center;
-        width: 30%;
-        height: 50%;
-        margin-left: 55px;
+        // display: flex;
+        // justify-content: center;
+        // width: 55%;
 
         &-location{
             display: flex;
@@ -20,7 +18,17 @@
             background: transparent;
             border: none;
             border-bottom: 1px solid white;
-            margin-bottom: 40px;
+            color: whitesmoke;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+        &-participants{
+            display: flex;
+            justify-content: space-between;
+            background: transparent;
+            border: none;
+            border-bottom: none;
             padding-bottom: 10px;
         }
 
@@ -31,6 +39,11 @@
             min-width: 250px;
             padding-bottom: 25px;
             outline: none;
+
+            &-label{
+                width: 140px;
+                text-align: start;
+            }
         }
     }
 
@@ -49,6 +62,7 @@
 
         &-img{
             margin: 0 auto;
+            height: 350px;
         }
 
         &-button{
@@ -57,27 +71,55 @@
             position: relative;
             top: 50px;
         }
+
     }
 }
 
+
+::-webkit-file-upload-button{
+    color: white;
+    background-color: transparent;
+    padding: 5px;
+    border: 1px solid whitesmoke;
+    border-radius: 50px;
+    outline: none;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.6s ease;
+}
+
+::-webkit-file-upload-button:hover{
+    background-color: #ad4211
+}
 .createEvent-img{
-    width: 80%;
-    max-width: 500px;
+    height: 100%;
+    object-fit: contain;
+    max-width: 400px;
     border-radius: 15px;
+    margin-left: 50px;
+    left: 100px;
 }
 
 .mainCreateEvent__container{
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 700px;
     width: 80%;
     background: rgba( 255, 255, 255, 0.1 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 5px );
-    -webkit-backdrop-filter: blur( 5px );
+    backdrop-filter: blur( 3px );
+    -webkit-backdrop-filter: blur( 3px );
     border-radius: 10px;
-}
 
+    &-success{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-family: "Caviar";
+        color: whitesmoke;
+    }
+}
 .myButton{
     width: 145px;
     height: 41px;
@@ -87,12 +129,32 @@
     color: whitesmoke;
     cursor: pointer;
     box-shadow: 0 0 7px -1px;
+    transition: all 1s ease;
+
+    &:hover{
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    }
 }
 
 .myInputs{
     border: none;
     background: transparent;
     color: whitesmoke;
+    font-family: "Caviar";
+    width: 178px;
+    padding-left: 5px;
+}
+
+#myInputs-textArea{
+    width: 295px;
+    height: 49px;
+}
+
+select option{
+    margin: 40px;
+    background: #c54c24;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
 #registerForm{
@@ -103,17 +165,73 @@
     font-family: 'Caviar';
 }
 
+.globale{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}
 
-@media screen and (max-width: 1070px){
+.first{
+    width: 40%;
+    margin-left: 40px;
+}
+
+.second{
+    width: 60%;
+}
+
+.createEvent__container-infosDetails{
+    width: 75%;
+}
+
+
+@media screen and (max-width: 1050px){
     .mainCreateEvent__container{
         height: auto;
         flex-direction: column;
         margin: 60px 0 90px 0;
         text-align: center;
+        z-index: 1;
+    }
+
+    .globale{
+        flex-direction: column;
+        width: 85%;
+        margin: 0 auto;
+    }
+
+    .first{
+        width: 100%;
+        margin: 0;
+    }
+
+    .second{
+        width: 100%;
+        flex-direction: column;
+        display: flex;
+    
+    }
+
+    .createEvent__container-eventTitle-img{
+        height: 50vw;
+    }
+
+    .createEvent-img{
+        margin: 0;
+        width: 203px;
+    }
+
+    .createEvent__container-infosDetails-location{
+        width: 100%;
     }
 
     .createEvent__container{
         height: auto;
+
+        &-label{
+            width: 40%;
+            text-align: start;
+        }
     }
 
     .createEvent__container-infosDetails{
@@ -133,8 +251,38 @@
         }
 
     }
+    
+    .createEvent__container-infosDetails-calendar-label{
+        width: 44px;
+    }
+
 
     #div-location{
         margin-top: 50px;
+        text-align: start;
+    }
+
+    #createEvent__label{
+        border: none;
+    }
+
+    #profil__description-textArea{
+        display: flex;
+    }
+
+    #createEvent-textArea{
+        display: flex;
+        flex-direction: column;
+        border-bottom: none;
+
+        &-width{
+            width: 100%;
+            border: 1px solid whitesmoke;
+            border-radius: 5px;
+            margin-top: 10px;
+            height: 100px;
+            padding: 10px;
+            font-family: 'Caviar';
+        }
     }
 }

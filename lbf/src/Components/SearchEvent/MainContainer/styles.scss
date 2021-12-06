@@ -13,6 +13,8 @@
             flex-direction: column;
             width: 20%;
             height: 100%;
+            box-shadow: 5px -5px 18px black;
+            z-index: 12;
         }
 
         &-leaflet{
@@ -23,21 +25,92 @@
 
         &-searchForm{
             height: 60%;
+            transition: 0.3s;
+
+            &--closed {
+                text-indent: -99999px;
+                white-space: nowrap;
+                overflow: hidden;
+                border: none;
+                height: 0px;
+                width: 0px;
+                transition: all 1.5s ease;
+            }
+        }
+
+        &-select{
+            background: transparent;
+            border: none;
+            color: whitesmoke;
+            margin-bottom: 10px;
         }
 
         &-resultsForm{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             height: 40%;
             overflow-y: scroll;
             scrollbar-color: rebeccapurple green;
+
+            &--open {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 90%;
+                overflow-y: scroll;
+                scrollbar-color: rebeccapurple green;
+                
+            }
+
+                &__searchEvent {
+                    display: flex;
+                    justify-content: space-between;
+                    font-family: "Caviar";
+                    font-size: 0.6em;
+                    width: 92%;
+                    height: 100px;
+                    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+                    backdrop-filter: blur( 7.5px );
+                    -webkit-backdrop-filter: blur( 7.5px );
+                    border-radius: 10px;
+                    border: 1px solid rgba( 255, 255, 255, 0.18 );
+                    color: whitesmoke;
+                    padding: 10px;
+                    margin-bottom: 0.8rem;
+                    cursor: pointer;
+                
+                    &-infos{
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        width: 60%;
+                        padding: 13px;                     
+                    }
+                
+                    &-pictures{
+                        display: flex;
+                        width: 40%;
+                    }
+                
+                    &-title{
+                        font-size: 1.1em;
+                        margin-bottom: 0.5rem;
+                    }
+                }
         }
         
-
         &-infosDetails-location{
             display: flex;
             justify-content: space-between;
             border-bottom: 1px solid whitesmoke;
             width: 70%;
             margin: 0 auto;
+
+            &__tag-selected{
+                display: flex;
+                flex-wrap: wrap;
+            }
     }
 
     #searchForm{
@@ -60,6 +133,20 @@
         margin-bottom: 10px;
         font-family: "Caviar";
     }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 5px transparent; 
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+background: transparent; 
+border-radius: 10px;
 }
 
 .input__container{
@@ -140,7 +227,6 @@
     cursor: pointer;
     text-decoration: none;
     color: whitesmoke;
-    //box-shadow: 0 0 7px -1px;
 
     &:hover {
         transform: rotate(90deg);
@@ -149,7 +235,87 @@
         transition: transform 0.5s, background-color 0.5s;
         box-shadow: 0 0 7px -1px;
     }
+}
 
+.leaflet-popup-content-wrapper {
+    display: flex;
+    font-family: 'Caviar';
+    font-weight: 700;
+    background: linear-gradient(to top,rgba(247, 11, 3, 0.37), rgba(247, 80, 3, 0.37),rgba(247, 113, 3, 0.37));
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 7.5px );
+    -webkit-backdrop-filter: blur( 7.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: whitesmoke;
+    padding: 0;
+    margin: 0;
+
+    &__searchEvent {
+        display: flex;
+        justify-content: space-between;
+        width: 92%;
+        height: 100px;
+
+    
+        &-infos{
+            display: flex;
+            justify-content: space-between;
+            font-family: "Caviar";
+            flex-direction: column;
+            width: 60%;
+            padding: 13px;
+        }
+    
+        &-pictures{
+            display: flex;
+            width: 40%;
+        }
+    
+        &-title{
+            font-size: 1.1em;
+        }
+        &__button {
+            display: flex;
+            justify-content: end;
+            background-color: transparent;
+            color: whitesmoke;
+            border: none;
+            font-family: 'Caviar';
+
+
+            &:hover {
+                cursor: pointer;
+                color: whitesmoke;
+                transition: 0.3s ease;
+            }
+        }
+    }
+}
+
+.leaflet-popup-content-wrapper__searchEvent__description{
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    &-button{
+        background-color: transparent;
+        cursor: pointer;
+        width: 110px;
+        border-radius: 5px;
+        box-shadow: 0 0 7px -1px;
+        display: flex;
+        height: 26px;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        transition: all 1s ease;
+
+        &:hover{
+            background: rgba(0, 128, 0, 0.418);
+            color: whitesmoke;
+            cursor: pointer;
+        }
+    }
 }
 
 .searchEvent-button-menu {
@@ -159,12 +325,223 @@
     top: 4px;
 }
 
-@media screen and (max-width: 1070px){
+
+// BARRE DE RECHERCHE LEAFLET
+
+.leaflet-left{
+    display: none;
+}
+
+.leaflet-bar a{
+    border: none;
+}
+
+.results.active{
+    cursor: pointer;
+}
+
+.leaflet-popup-content p{
+    font-size: 1.2em;
+    margin-top: 25px;
+    text-align: end;
+    margin: 0;
+    font-style: italic;
+}
+
+
+.leaflet-container a{
+    color: whitesmoke;
+    transition: all 0.4s ease-in;
+
+    &:hover{
+        color:rgb(75, 75, 204)
+    }
+}
+
+.leaflet-popup-content-wrapper__searchEvent h2{
+    width: 150px;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+
+.leaflet-popup-content p:last-child{
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+
+
+.leaflet-touch .leaflet-bar a {
+    border: none;
+}
+
+.leaflet-touch .leaflet-bar a:first-child,
+.leaflet-touch .leaflet-bar a:last-child {
+    background: transparent;
+    color: whitesmoke;
+    transition: all 0.3s ease-in;
+    border: none;
+
+    &:hover{
+        color: orange;
+    }
+}
+
+.leaflet-popup-content{
+    width: 300px;
+}
+
+.glass{
+    width: 300px;
+}
+
+ .leaflet-left, .leaflet-top {
+    display: flex;
+    width: 400px;
+    font-family: 'Caviar';
+    background: linear-gradient(to top,rgba(247, 11, 3, 0.37), rgba(247, 80, 3, 0.37),rgba(247, 113, 3, 0.37));
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 7.5px );
+    -webkit-backdrop-filter: blur( 7.5px );
+    border-radius: 0px 5px 5px 0;
+    color: whitesmoke;
+    border-color: whitesmoke;
+
+    .geosearch, .leaflet-bar, .leaflet-control, .leaflet-control-geosearch, .leaflet-geosearch-button {
+        border: none;
+        display: flex;
+    }
+    input {
+        font-family: 'Caviar';
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1em;
+        font-weight: 700;;
+        background-color: rgba($color: #fff, $alpha: 0.0);
+        border: 1px solid whitesmoke;
+        color: whitesmoke;
+        border-color: whitesmoke;
+
+        &::placeholder {
+            color: whitesmoke;
+        }
+    }
+
+    .reset{
+        font-size: 2em;
+        background-color: transparent;
+        color: whitesmoke;
+        border: none;
+
+        &:hover{
+            color: orange;
+            background: transparent;
+        }
+
+    }
+}
+.glass {
+    background-color: linear-gradient(to top,rgba(247, 11, 3, 0.37), rgba(247, 80, 3, 0.37),rgba(247, 113, 3, 0.37));
+}
+
+.display-result{
+    align-content: center;
+    margin: 0 auto;
+    width: 55px;
+    text-align: center;
+    font-size: 2rem;
+    color: whitesmoke;
+    font-weight: 700;
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border-radius: 10px;
+
+    @keyframes movingCursor {
+        0%{
+            transform: translateY(0px);
+        }
+
+        50%{
+            transform: translateY(-10px);
+        }
+
+        100%{
+            transform: translateY(0px);
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+        // transform: translateY(-10px);
+        animation: movingCursor 1.5s infinite
+     
+    }
+
+    &--open {
+        align-content: center;
+        margin: 0 auto;
+        width: 55px;
+        text-align: center;
+        font-size: 2rem;
+        color: whitesmoke;
+        font-weight: 700;
+        box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
+        border-radius: 10px;
+        transform: rotate(180deg);
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 1300px){
+    .searchEvent__container{
+        height: 130vh;
+    }
+
     .searchEvent__container-leaflet{
         display: none;
     }
 
     .searchEvent__container-form{
-        width: 90%;
+        width: 80%;
+    }
+
+    .leaflet-container{
+        display: none;
+    }
+
+    .searchEvent__container-form{
+        box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+        border-radius: 10px;
+        height: 85%;
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+    }
+
+    .searchEvent-pictures{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 10px;
+        width: 40%;
+    }
+
+    .searchEvent-infos{
+        font-size: 0.9em;
+    }
+
+    .registerForm{
+        width: 85%;
+    }
+
+    .searchEvent__container-resultsForm__searchEvent{
+        margin-top: 20px;
     }
 }
+

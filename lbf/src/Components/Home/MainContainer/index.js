@@ -1,48 +1,70 @@
 // React
-import React, {useState, useRef } from 'react';
+import React, { useState, useRef } from "react";
 //Import styles
-import "./styles.scss"
+import "./styles.scss";
 //Import fonts
-import "../../../assets/Fonts/Surfing2.woff"
+import "../../../assets/Fonts/Surfing2.woff";
 //Import pictures
-import wallpaper from "../../../assets/Wallpaper/wallpaper.jpg"
+import wallpaper from "../../../assets/Wallpaper/wallpaper.jpg";
+// Import images
+import title from "../../../assets/Img/title.png"
+import subtitle from "../../../assets/Img/subtitle.png"
+import titlePhone from "../../../assets/Img/titlePhone.png"
 //React Components
-import Modal from "../../Styledcomponents/Modal"
-import Header from "../Header"
+import Modal from "../../Styledcomponents/Modal";
+import Header from "../Header";
+// Import react reveal components
+import Fade from 'react-reveal/Fade';
 
-function MainContainer(){
 
-    const [ModalLogin, setModalLogin] = useState(false);
-    const [ModalSignup, setModalSignup] = useState(false);
 
-    const modalRef = useRef();
+function MainContainer() {
+  const [openModale, setOpenModale] = useState("");
 
-    const closeModal = e => {
-        if(modalRef.current === e.target) {
-            setModalLogin(false);
-            setModalSignup(false);
-        }
+  const modalRef = useRef();
+
+  const closeModal = (e) => {
+    if (modalRef.current === e.target) {
+      setOpenModale();
     }
-    
-    const openModalLogin = (prev) => {
-        setModalLogin(prev => !prev);
-    }
-    const openModalSignup = (prev) => {
-        setModalSignup(prev => !prev);
-    }
-    return(
-        <div className="main__container" style={{backgroundImage:`url(${wallpaper})`}} >
+  };
 
-            <div className="main__container-overlay" ref={modalRef} onClick={closeModal}>
-                <Header openModalLogin={openModalLogin} openModalSignup={openModalSignup} />
-                <Modal showModalLogin={ModalLogin} showModalSignup={ModalSignup} openModalLogin={openModalLogin} openModalSignup={openModalSignup} />
-                <div className="main__container-text">
-                    <h3 className="main__container--secondTitle">The simpliest way to meet people and train languages !</h3>
-                    <h1 className="main__container--title">LETS BE FRIENDS</h1>
-                </div>
-            </div>
+  const openModalLogin = (prev) => {
+    setOpenModale(openModale === "login" ? "" : "login");
+  };
+  const openModalSignup = (prev) => {
+    setOpenModale(openModale === "signup" ? "" : "signup");
+  };
+
+  return (
+    <div className="main__container" style={{ backgroundImage: `url(${wallpaper})` }}>
+      <div
+        className="main__container-overlay"
+        ref={modalRef}
+        onClick={closeModal}
+      >
+        <Header
+          openModalLogin={openModalLogin}
+          openModalSignup={openModalSignup}
+        />
+        <Modal openModale={openModale} />
+        <div className="main__container-text">
+    <Fade delay={800}>
+          <div>
+            <img className="main__container-image1" src={subtitle} alt="logo" />
+          </div>
+    </Fade>
+
+    <Fade duration={2000}>
+          <div className="main__container-divTitle"  >
+            <img className="main__container-image2" src={title} alt="logo" />
+            <img className="main__container-image3" src={titlePhone} alt="logo" />
+          </div>
+    </Fade>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
 export default MainContainer;

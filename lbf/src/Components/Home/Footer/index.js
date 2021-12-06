@@ -1,14 +1,15 @@
 import './styles.scss';
 
 //import React Composants
-import Caroussel from '../Caroussel';
+import Caroussel from '../Slider/Slider';
+import { Link } from 'react-router-dom';
 
 const Footer = () => (
   <div className='styles'>
     <Caroussel />
     <div className='mentions'>
-        <h3><a className='mentions__contact' href='/contact'>Contact </a></h3>
-        <h3><a className='mentions__legales' href='/contact'>Mentions Légales</a></h3>
+        <Link to="/contact" className='mentions__contact' >Contact</Link>
+        <Link to="/mentions" className='mentions__legales' >Mentions Légales</Link>
     </div>
   </div>
 );

@@ -1,215 +1,200 @@
-
-
-// .settings__container{
-//     background-color: red;
-//     display: flex;
-//     position: fixed;
-//     top: -8px;
-//     right: 0;
-//     height: 150px;
-//     justify-content: center;
-//     align-items: center;
-//     transition: all .3s ease;
-//     z-index: 99;
-//     transform: translateX(50px);
-
-//     &--form{
-//         display: flex;
-//         justify-content: center;
-//         flex-direction: column;
-//     }
-
-//     &.open {
-//         transform: translateX(-50px);
-//         width: 350px;
-
-//         .settings__container--toggle {
-//             transform: rotate(90deg);
-//             right: 300px;
-//         }
-//     }
-// }
-
-// .settings__container--input{
-//     margin: 5px 0;
-//     border-radius: 5px;
-//     border: 1px solid lightgray;
-//     height: 35px;
-//     padding-left: 10px;
-// }
-
-// .settings__container--button{
-//    background-color: orange;
-//    height: 35px;
-//    border: none;
-//    border-radius: 5px;
-//    color: whitesmoke;
-// }
-
-// .settings__container--toggle{
-//     color: orange;
-//     background-color: white;
-//     border: 1px solid lightgray;
-//     border-radius: 50%;
-//     height: 30px;
-//     width: 30px;
-//     font-size: 1.5em;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     position: absolute;
-//     top: 29px;
-//     right: 72px;
-//     transition: transform 300ms;
-//     transform: rotate(0deg);
-//     cursor: pointer;
-// }
-
-
-
-
-// CSS BUTTON ROBZ
 .header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
 
-    &__navbar {
+  &__container{
+    height: 85px;
+    position: relative;
+    left: 25px;
 
-        display: flex;
-        align-items: center;
-
-        &__logo {
-            top: 0;
-            left: 0;
-            padding: 5px;
-        }
-
-        &__login {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 25px;
-            font-size: 1em;
-            padding: 10px;
-            margin: 10px 20px 10px 20px;
-            background-color: rgba(117, 190, 218, 0);
-            color: #fff;
-            cursor: pointer;
-            text-decoration: none;
-            font-family: "Caviar";
-        }
-
-        &__signup {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 35px;
-            width: 125px;
-            font-size: 1em;
-            padding: 10px;
-            margin: 10px 20px 10px 20px;            
-            border-radius: 5px;
-            background-color: rgba(117, 190, 218, 0.0);
-            color: rgb(209, 21, 21);
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.4s linear 0s;
-            font-family: "Caviar";
-
-            &:hover{
-                color: whitesmoke;
-                background-color: rgb(209, 21, 21);
-                transition: all 0.2s linear 0s;
-            }
-        }
-
-
-        
-         &__settings {
-
-            transition: all 1.5s ease;
-        
-         .settings__container--toggle {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 40px;
-                width: 40px;
-                font-size: 1.5em;
-                font-weight: 500;
-                padding: 10px;
-                margin: 10px 20px 10px 20px;
-                border: 3px solid;
-                border-radius: 30px;
-                background-color: rgba(117, 190, 218, 0);
-                cursor: pointer;
-                text-decoration: none;
-                color: whitesmoke;
-
-                &:hover {
-                transform: rotate(90deg);
-                background-color: rgba($color: whitesmoke, $alpha: 0.9);
-                color: rgba(229, 175, 108);
-                transition: transform 0.5s, background-color 0.5s;
-                box-shadow: 0 0 7px -1px;
-                }
-
-            }
-        }
-
-        &__settings-open {
-            height: 100vh;
-            width: 17vw;
-            background-color: whitesmoke;
-            transition: all .3s ease;
-            z-index: 30;
-            transform: translateX(50px);
-            position: fixed;
-            top: 0px;
-            background: rgba( 255, 255, 255, 0.5 );
-            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-            backdrop-filter: blur( 4px );
-            -webkit-backdrop-filter: blur( 4px );
-            border-radius: 10px;
-            border: 1px solid rgba( 255, 255, 255, 0.18 );
-            transition: all 1.5s ease;
-
-            .settings__container--toggle {
-                display: flex;
-                position: relative;
-                top: 7px;
-                right: 7px;
-                justify-content: center;
-                align-items: center;
-                height: 40px;
-                width: 40px;
-                font-size: 1.5em;
-                font-weight: 500;
-                padding: 10px;
-                margin: 10px 20px 10px 20px;
-                border: 3px solid;
-                border-radius: 30px;
-                background-color: rgba(117, 190, 218, 0);
-                cursor: pointer;
-                text-decoration: none;
-                color: whitesmoke;
-                transform: rotate(90deg);
-                background-color: rgba($color: whitesmoke, $alpha: 0.9);
-                color: rgba(229, 175, 108);
-                transition: transform 0.5s, background-color 0.5s;
-                box-shadow: 0 0 7px -1px;
-                z-index: 40;
-            }
-
-        }
-
-
+    &-logo{
+      height: 100%;
     }
+  }
+
+  &__navbar {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+
+    
+
+    // &__logo {
+    //   top: 0;
+    //   left: 0;
+    //   padding: 5px;
+    // }
+
+    &__login {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 25px;
+      font-size: 1em;
+      padding: 10px;
+      margin: 10px 20px 10px 20px;
+      background-color: rgba(117, 190, 218, 0);
+      color: #fff;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: "Caviar";
+      font-weight: bold;
+    }
+
+    &__nameOfUser {
+      color: whitesmoke;
+      font-family: "Caviar";
+      font-size: 1.3em;
+      margin: 10px 20px 10px 20px;
+    }
+
+    &__signup {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 35px;
+      width: 125px;
+      font-size: 1em;
+      padding: 10px;
+      margin: 10px 10px 10px 20px;
+      border-radius: 5px;
+      background-color: rgba(117, 190, 218, 0);
+      color: rgb(209, 21, 21);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.4s linear 0s;
+      font-family: "Caviar";
+      font-weight: bold;
+
+      &:hover {
+        color: whitesmoke;
+        background-color: rgb(209, 21, 21);
+        transition: all 0.2s linear 0s;
+      }
+    }
+
+    &__settings {
+      .settings__container--toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 40px;
+        font-size: 1.5em;
+        font-weight: 500;
+        padding: 10px;
+        margin: 10px 20px 10px 20px;
+        border: 3px solid;
+        border-radius: 30px;
+        background-color: rgba(117, 190, 218, 0);
+        cursor: pointer;
+        text-decoration: none;
+        color: whitesmoke;
+        z-index: 5;
+
+        &:hover {
+          transform: rotate(90deg);
+          background-color: whitesmoke;
+          opacity: 0.8;
+          color: rgba(229, 175, 108);
+          transition: transform 0.5s, background-color 0.5s;
+          box-shadow: 0 0 7px -1px;
+        }
+      }
+    }
+
+    &__settings-open {
+      height: 90vh;
+      background-color: whitesmoke;
+      transition: all 0.3s ease;
+      z-index: 30;
+      padding: 0 50px 0 0;
+      position: fixed;
+      top: 0px;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      border-radius: 0px 0px 0px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      transition: all 1.5s ease;
+
+      .settings__container--toggle {
+        display: flex;
+        position: relative;
+        top: 7px;
+        right: 7px;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 40px;
+        font-size: 1.5em;
+        font-weight: 500;
+        padding: 10px;
+        margin: 10px 20px 10px 20px;
+        border: 3px solid;
+        border-radius: 30px;
+        background-color: rgba(117, 190, 218, 0);
+        cursor: pointer;
+        text-decoration: none;
+        color: whitesmoke;
+        transform: rotate(90deg);
+        background-color: whitesmoke;
+        opacity: 0.8;
+        color: rgba(229, 175, 108);
+        transition: transform 0.5s, background-color 0.5s;
+        box-shadow: 0 0 7px -1px;
+        z-index: 40;
+      }
+    }
+  }
 }
 
- .searchEvent-button-menuhome {
-     position: relative;
- }
+.searchEvent-button-menuhome {
+  position: relative;
+}
+
+.header__hamburger {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  &-titlePage {
+    font-family: "Caviar";
+    font-weight: bold;
+    padding: 15px;
+    color: grey;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      color: black;
+    }
+  }
+
+  &-disconnect {
+    font-family: "Caviar";
+    font-weight: bold;
+    padding: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    color: red;
+  }
+}
+
+@media screen and (max-width: 1070px) {
+.header__container{
+  height: 65px;
+}
+
+  .header__navbar__settings .settings__container--toggle:hover {
+    transform: rotate(-0deg);
+  }
+
+  .header__navbar__settings .settings__container--toggle{
+    z-index: 1;
+  }
+}

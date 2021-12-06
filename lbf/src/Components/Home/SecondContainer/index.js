@@ -1,13 +1,13 @@
-
 import "./styles.scss"
-
-// Fonts
+//Import Fonts
 import "../../../assets/Fonts/Caviar.ttf";
-
+//Import icons
 import calendar from "../../../assets/Icons/calendar.svg"
 import question from "../../../assets/Icons/question.svg"
 import ballot from "../../../assets/Icons/ballot.svg"
 import evaluation from "../../../assets/Icons/evaluation.svg"
+// Import react reveal components
+import Fade from 'react-reveal/Fade';
 
 function SecondContainer(){
     return(
@@ -22,38 +22,47 @@ function SecondContainer(){
                     <h2>LET ME EXPLAIN TO YOU OUR CONCEPT</h2>
                 </div>
 
-                <div className="steps">
+        <Fade left duration={3000}>
+                <div className="steps" >
                     <img src={calendar} className="steps--logo" alt="Calendar"/>
                         <h3 className="steps-text2"><span className="steps-title">1. Search for an event</span><br/>with the language you want to learn / practice 
                             in a chosen area.
                         </h3>
                 </div>
+        </Fade>
 
-                <div className="steps" id="reverse-text">
+        <Fade right duration={3000}>
+                <div className="steps" id="reverse-text" >
                         <h3 className="steps-text1"><span className="steps-title">2. Request to participate</span><br/> 
                             to join the event.
                         </h3>
                     <img src={question} className="steps--logo" alt="Question"/>
                 </div>
+        </Fade>
 
-                <div className="steps">
+        <Fade left duration={3000}>
+                <div className="steps" >
                     <img src={ballot} className="steps--logo" alt="Ballot"/>
                     <div className="steps-asking">
                         <h3 className="steps-text2" id="steps-three"><span className="steps-title">3. Your request is accepted ?</span><br/> 
                             Join the group chat and enjoy your event.
                         </h3>
 
-                        <h3 className="steps-text2"><span className="steps-title">Your request is refused ?</span><br/>                     
+                        <h3 className="steps-text2"><span className="steps-title" >Your request is refused ?</span><br/>                     
                             Search for a new event or become an organizer :)
                         </h3>
                     </div>
                 </div>
+        </Fade>
 
-                <div className="steps" id="reverse-text">
+        <Fade right duration={3000}>
+                <div className="steps" id="reverse-text" >
                         <h3 className="steps-text1"><span className="steps-title">4. Give a review</span><br/> at the end of each event you attended about your new friends & your language experience.
                         </h3>
                     <img src={evaluation} className="steps--logo" alt="Evaluation"/>
                 </div>
+        </Fade>
+
             </div>
 
         </div>

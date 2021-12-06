@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# <img src="../lbf/src/assets/logo/LOGO_LBF.png" style = "width:100px; border-radius: 50%" > LET'S BE FRIENDS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## CONTEXT
 
-## Available Scripts
+LET’S BE FRIENDS is a project proposed by me to end our 5 month training with the O’clock school. <br>
+The goal of this project was to be immersed during 4 weeks in conditions similar to the professional world:
 
-In the project directory, you can run:
+- **Sprints**
+- **MVP**
+- **Wireframes**
+- **MCD**
+- **Daily Briefings...**
 
-### `yarn start`
+Regarding the composition of my team, I had the chance to collaborate with 4 others developers.<br>
+We were therefore 2 front developers and 3 back developers.
+For this project, I had the opportunity to wear two hats: `Product owner` and `Lead Dev Front`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+If you want to see the presentation of the project live on youtube, just follow the link below
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## MY PROJECT
 
-### `yarn test`
+Let’s be friend is an application that tries to touch originality with the tip of a finger by allowing one or more users to learn or practice a foreign language through events.
+These events can take differents forms such as picnics, evenings at the user's home, or even a weekend together, the choices are very unlimited.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## TECHNICAL STACK
 
-### `yarn build`
+### FRONT
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React combined with Redux
+- Redux
+- React Router Dom
+- Axios
+- React Leaflet
+- Sass
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### BACK
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Node
+- Express
+- Geocoding
+- Postgre SQL
+- API Geocoding
+- Cloudinary
 
-### `yarn eject`
+### DEPLOYMENT
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Front : Netlify
+- Back : Heroku
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## HOW TO USE THIS APP ?
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Clone the project
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+git clone <url of the repo>
+```
 
-## Learn More
+2. Install the dependencies for the front and the back
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+yarn install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Check for `.envExemple` for get the `.env` key
 
-### Code Splitting
+4. Start the application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+yarn start
+```
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5. Create an user with 8 characters min. and search for an event.
+6. Once you have found your event, simply click on participate.
+7. If none of the events seem to be right for you, simply create your own event.
