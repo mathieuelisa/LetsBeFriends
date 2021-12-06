@@ -1,4 +1,4 @@
-# <img src="../lbf/src/assets/Logo/LOGO_LBF.png" style = "width:100px; border-radius: 50%" > LET'S BE FRIENDS
+# <img src="./lbf/src/assets/Logo/LOGO_LBF.png" style = "width:100px; border-radius: 50%" > LET'S BE FRIENDS
 
 ## CONTEXT
 
