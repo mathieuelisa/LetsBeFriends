@@ -1,47 +1,48 @@
-
 .styles {
-    overflow: hidden;
-    height: 670px;
+  overflow: hidden;
+  height: 151px;
 }
 
-*, ::before, ::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .mentions {
-    font-family: "caviar";
-    font-size: 0.7em;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: whitesmoke inherit;
-    position: relative;
-    top: 100px;
-    margin: 0 auto;
-    width: 210px;
+  font-family: "caviar";
+  font-size: 0.7em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: whitesmoke inherit;
+  position: relative;
+  top: 100px;
+  margin: 0 auto;
+  width: 210px;
 
-    
-    &__legales, &__contact {
-        color: whitesmoke;
-        text-decoration: none;
-        transition: all 0.5s ease-in;
+  &__legales,
+  &__contact {
+    color: whitesmoke;
+    text-decoration: none;
+    transition: all 0.5s ease-in;
 
-        &:hover{
-            color: rgb(190, 187, 187);
-        }
-    }
-}
-
-@media screen and (max-width: 700px){
-    .mentions{
-        font-size: 0.4em;
-        width: 130px;
-        top: 150px;
-    }
-
-    .styles{
-        height: 160px;
+    &:hover {
+      color: rgb(190, 187, 187);
     }
   }
+}
+
+@media screen and (max-width: 700px) {
+  .mentions {
+    font-size: 0.4em;
+    width: 130px;
+    top: 150px;
+  }
+
+  .styles {
+    height: 160px;
+  }
+}
