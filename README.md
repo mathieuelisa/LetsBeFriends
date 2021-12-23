@@ -22,30 +22,34 @@ If you want to see the presentation of the project live on youtube, just follow 
 Let’s be friend is an application that tries to touch originality with the tip of a finger by allowing one or more users to learn or practice a foreign language through events.
 These events can take differents forms such as picnics, evenings at the user's home, or even a weekend together, the choices are very unlimited.
 
+## LINK OF THE PRESENTATION ON [YOUTUBE](https://www.youtube.com/watch?v=4uRlJYU4224&t=1301s&ab_channel=O%27clock)
+
+With this link you have approximately 8 minutes of presentation followed by 7 minutes of questioning on the project. Have fun.
+
 ## TECHNICAL STACK
 
 ### FRONT
 
-- React combined with Redux
-- Redux
-- React Router Dom
-- Axios
-- React Leaflet
-- Sass
+- **React combined with Redux**
+- **React Router Dom**
+- **Axios**
+- **React Leaflet**
+- **Sass**
+- **Jest**
 
 ### BACK
 
-- Node
-- Express
-- Geocoding
-- Postgre SQL
-- API Geocoding
-- Cloudinary
+- **Node**
+- **Express JS**
+- **Geocoding**
+- **Postgre SQL**
+- **API Geocoding**
+- **Cloudinary**
 
 ### DEPLOYMENT
 
-- Front : Netlify
-- Back : Heroku
+- Front : **Netlify**
+- Back : **Heroku**
 
 ## HOW TO USE THIS APP ?
 
@@ -58,12 +62,12 @@ git clone <url of the repo>
 2. Install the dependencies for the front and the back
 
 ```bash
-yarn install
+yarn install && npm install
 ```
 
 3. Check for `.envExemple` for get the `.env` key
 
-4. Start the application
+4. Start the application in the **lbf** folder
 
 ```bash
 yarn start
