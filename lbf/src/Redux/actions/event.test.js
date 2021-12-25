@@ -13,7 +13,7 @@ import {
   resetDataEvents,
 } from "./event";
 
-describe.only("TESTING SYNC EVENTS ACTIONS", () => {
+describe("TESTING SYNC EVENTS ACTIONS", () => {
   test("should get all the events actions", () => {
     const value = "test";
     const action = {
